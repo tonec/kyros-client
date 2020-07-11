@@ -11,7 +11,7 @@ export default ({
   return `
     <!DOCTYPE html>
     <style>
-      body { margin: 0; height: 100vh; }
+      html, body, #content, #content > div { height: 100%; margin: 0; }
     </style>
     <html lang="en-US">
       <head>
