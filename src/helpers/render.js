@@ -20,7 +20,7 @@ export default (req, store, routerContext) => {
   const jsx = extractor.collectChunks(
     <Provider store={store}>
       <HelmetProvider context={helmetContext}>
-        <StaticRouter location={req.originalUrl} context={{}}>
+        <StaticRouter location={req.originalUrl} context={routerContext}>
           {renderRoutes(routes)}
         </StaticRouter>
       </HelmetProvider>
