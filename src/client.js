@@ -13,8 +13,6 @@ import { HelmetProvider } from 'react-helmet-async'
 import createStore from 'redux/store'
 import routes from './routes'
 
-import 'assets/fonts/index.css'
-
 window.addEventListener('unhandledrejection', (err, promise) => {
   console.log('Unhandled promise rejection: ', err, promise)
 })
