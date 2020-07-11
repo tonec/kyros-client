@@ -1,14 +1,6 @@
 import React from 'react'
 import { object } from 'prop-types'
 
-const propTypes = {
-  staticContext: object
-}
-
-const defaultProps = {
-  staticContext: {}
-}
-
 const NotFound = ({ staticContext }) => {
   staticContext.notFound = true
 
@@ -22,7 +14,12 @@ const NotFound = ({ staticContext }) => {
   )
 }
 
-NotFound.propTypes = propTypes
-NotFound.defaultProps = defaultProps
+NotFound.propTypes = {
+  staticContext: object
+}
+
+NotFound.defaultProps = {
+  staticContext: {}
+}
 
 export default NotFound

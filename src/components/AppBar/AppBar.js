@@ -2,10 +2,6 @@ import React from 'react'
 import { oneOfType, arrayOf, node } from 'prop-types'
 import { Box } from 'components'
 
-const propTypes = {
-  children: oneOfType([arrayOf(node), node]).isRequired
-}
-
 const AppBar = ({ children }) => (
   <Box
     tag="header"
@@ -20,6 +16,8 @@ const AppBar = ({ children }) => (
   </Box>
 )
 
-AppBar.propTypes = propTypes
+AppBar.propTypes = {
+  children: oneOfType([arrayOf(node), node]).isRequired
+}
 
 export default AppBar

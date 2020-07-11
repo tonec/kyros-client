@@ -4,17 +4,6 @@ import { Helmet } from 'react-helmet-async'
 import get from 'lodash/get'
 import config from '../../../config'
 
-const propTypes = {
-  title: string,
-  description: string,
-  children: oneOfType([arrayOf(node), node])
-}
-
-const defaultProps = {
-  title: null,
-  description: null
-}
-
 const renderMeta = () => {
   const meta = get(config, 'app.head.meta')
 
@@ -50,7 +39,15 @@ const Meta = ({ title, description, children }) => (
   </Helmet>
 )
 
-Meta.propTypes = propTypes
-Meta.defaultProps = defaultProps
+Meta.propTypes = {
+  title: string,
+  description: string,
+  children: oneOfType([arrayOf(node), node])
+}
+
+Meta.defaultProps = {
+  title: null,
+  description: null
+}
 
 export default Meta

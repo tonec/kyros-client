@@ -6,7 +6,7 @@ import { Nav } from './style'
 const Header = () => (
   <AppBar>
     <Nav>
-      <Heading level={1} size="medium">
+      <Heading level={1} size="small">
         Sleep SSR
       </Heading>
       <ul>

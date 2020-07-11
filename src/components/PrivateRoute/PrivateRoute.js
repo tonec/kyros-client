@@ -1,10 +1,10 @@
 import React from 'react'
-import PropTypes, { arrayOf, node } from 'prop-types'
+import { oneOfType, arrayOf, node } from 'prop-types'
 import { Route, Redirect, useLocation } from 'react-router-dom'
 import { hasUploadPermissions } from '../utils/checkPermissions'
 import { useGlobalStore } from '../context/GlobalStore'
 
-function PrivateRoute({ children, ...rest }) {
+const PrivateRoute = ({ children, ...rest }) => {
   const location = useLocation()
   const {
     auth: { user },
@@ -28,7 +28,7 @@ function PrivateRoute({ children, ...rest }) {
 }
 
 PrivateRoute.propTypes = {
-  children: PropTypes.oneOfType([arrayOf(node), node]).isRequired,
+  children: oneOfType([arrayOf(node), node]).isRequired,
 }
 
 export default PrivateRoute
