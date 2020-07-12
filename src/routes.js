@@ -1,6 +1,6 @@
 import App from 'App'
 import { NotFound } from 'components'
-import { Home, Users } from 'containers'
+import { Home, Users } from 'views'
 
 export default [
   {
