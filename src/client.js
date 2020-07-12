@@ -1,7 +1,7 @@
 import 'babel-polyfill'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { matchRoutes, renderRoutes } from 'react-router-config'
+import { renderRoutes } from 'react-router-config'
 import { loadableReady } from '@loadable/component'
 import qhistory from 'qhistory'
 import { stringify, parse } from 'qs'
@@ -11,6 +11,8 @@ import { Provider } from 'react-redux'
 import { trigger } from 'redial'
 import { HelmetProvider } from 'react-helmet-async'
 import createStore from 'redux/store'
+import { asyncMatchRoutes } from 'utils'
+import { AsyncConnect } from 'components'
 import routes from './routes'
 
 window.addEventListener('unhandledrejection', (err, promise) => {
@@ -18,28 +20,34 @@ window.addEventListener('unhandledrejection', (err, promise) => {
 })
 
 const history = qhistory(createBrowserHistory(), stringify, parse)
-const store = createStore(history)
 
-const hydrate = () => {
-  history.listen(location => {
-    const branch = matchRoutes(routes, location.pathname)
-    const components = branch.map(b => b.route.component)
-    const locals = { store }
+const hydrate = async () => {
+  const { components, match, params } = await asyncMatchRoutes(routes, history.location.pathname)
+  const store = createStore({ history, match, params })
 
-    if (window.INITIAL_STATE) {
-      delete window.INITIAL_STATE
-    } else {
-      trigger('fetch', components, locals)
-    }
+  const locals = {
+    history,
+    store,
+    match,
+    params,
+    location: history.location
+  }
 
-    trigger('defer', components, locals)
-  })
+  if (window.INITIAL_STATE) {
+    delete window.INITIAL_STATE
+  } else {
+    trigger('fetch', components, locals)
+  }
+
+  trigger('defer', components, locals)
 
   ReactDOM.hydrate(
     <Provider store={store}>
       <HelmetProvider>
         <ConnectedRouter history={history}>
-          {renderRoutes(routes)}
+          <AsyncConnect routes={routes} store={store}>
+            {renderRoutes(routes)}
+          </AsyncConnect>
         </ConnectedRouter>
       </HelmetProvider>
     </Provider>,

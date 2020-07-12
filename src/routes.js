@@ -8,6 +8,8 @@ export default [
     routes: [
       { path: '/', exact: true, component: Home },
       { path: '/users', component: Users },
+      { path: '/clients', component: Users },
+      { path: '/sometheing', component: Users },
       { component: NotFound }
     ]
   }

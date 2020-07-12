@@ -5,7 +5,6 @@ import helmet from 'helmet'
 import cookieParser from 'cookie-parser'
 import compression from 'compression'
 import favicon from 'serve-favicon'
-import { matchRoutes } from 'react-router-config'
 import { createMemoryHistory } from 'history'
 import qhistory from 'qhistory'
 import { stringify, parse } from 'qs'
@@ -13,6 +12,7 @@ import { trigger } from 'redial'
 import PrettyError from 'pretty-error'
 import render from 'helpers/render'
 import createStore from 'redux/store'
+import { asyncMatchRoutes } from 'utils'
 import routes from './routes'
 import config from '../config'
 
@@ -40,16 +40,22 @@ app.use('/app-shell', (req, res) => {
 })
 
 
-app.get('*', (req, res) => {
-  const history = qhistory(createMemoryHistory({ initialEntries: [req.originalUrl] }), stringify, parse)
-  const store = createStore(history)
-  const branch = matchRoutes(routes, req.path)
-  const components = branch.map(b => b.route.component)
-  const locals = { store }
+app.get('*', async (req, res) => {
+  const memHistory = createMemoryHistory({ initialEntries: [req.originalUrl] })
+  const history = qhistory(memHistory, stringify, parse)
+  const { components, match, params } = await asyncMatchRoutes(routes, req.path)
+  const store = createStore({ history, match, params })
+
+  const locals = {
+    history,
+    store,
+    match,
+    params
+  }
 
   trigger('fetch', components, locals).then(() => {
     const routerContext = {}
-    const appContent = render(req, store, routerContext)
+    const appContent = render(req, store, history, routerContext)
 
     if (routerContext.notFound) {
       res.status(404)

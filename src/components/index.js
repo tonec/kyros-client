@@ -14,5 +14,6 @@ export { default as Meta } from './Meta/Meta'
 
 // Feature
 export { default as AppBar } from './AppBar/AppBar'
+export { default as AsyncConnect } from './AsyncConnect/AsyncConnect'
 export { default as Header } from './Header/Header'
 export { default as NotFound } from './NotFound/NotFound'

@@ -1,9 +1,9 @@
 import { createStore, applyMiddleware, compose } from 'redux'
 import { routerMiddleware } from 'connected-react-router'
-import thunk from 'redux-thunk'
+import apiMiddleware from './middleware/apiMiddleware'
 import rootReducer from './rootReducer'
 
-export default history => {
+export default ({ history, match, params }) => {
   let composeEnhancers = compose
   let initialState = {}
 
@@ -14,7 +14,7 @@ export default history => {
   }
 
   const middleware = [
-    thunk,
+    apiMiddleware({ history, match, params }),
     routerMiddleware(history)
   ]
 

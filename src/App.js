@@ -4,7 +4,7 @@ import { renderRoutes } from 'react-router-config'
 import { Grommet, defaultProps } from 'grommet'
 import theme from 'theme'
 
-console.log('defaultProps', defaultProps)
+// console.log('defaultProps', defaultProps)
 
 class App extends Component {
   static propTypes = {
