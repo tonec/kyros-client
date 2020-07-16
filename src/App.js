@@ -5,6 +5,9 @@ import { usePrevious } from 'hooks'
 import { Grommet, defaultProps } from 'grommet'
 import theme from 'theme'
 
+import './assets/stylesheets/global.css'
+import './assets/stylesheets/reset.css'
+
 console.log('defaultProps', defaultProps)
 
 const App = ({ location, route }) => {
@@ -23,8 +26,8 @@ const App = ({ location, route }) => {
   }, [location.pathname])
 
   return (
-    <div style={{ visibility: ready ? 'visible' : 'hidden' }}>
-      <Grommet theme={theme}>
+    <div className="app" style={{ visibility: ready ? 'visible' : 'hidden', height: '100%' }}>
+      <Grommet theme={theme} style={{ height: '100%' }}>
         {renderRoutes(route.routes)}
       </Grommet>
     </div>

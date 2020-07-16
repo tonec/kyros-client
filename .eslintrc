@@ -1,5 +1,9 @@
 {
-  "extends": "airbnb",
+  "extends": [
+    "airbnb",
+    "prettier",
+    "prettier/react"
+  ],
   "env": {
     "browser": true,
     "node": true,
@@ -110,7 +114,10 @@
   },
   "plugins": [
     "react",
-    "import"
+    "prettier",
+    "react-hooks",
+    "babel",
+    "async"
   ],
   "settings": {
     "import/resolve": {
@@ -123,7 +130,11 @@
   },
   "parser": "babel-eslint",
   "parserOptions": {
-    "sourceType": "module"
+    "sourceType": "module",
+    "ecmaVersion": 2019,
+    "ecmaFeatures": {
+      "jsx": true
+    }
   },
   "globals": {
     "__CLIENT__": true,
