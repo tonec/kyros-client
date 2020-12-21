@@ -10,9 +10,9 @@ import qhistory from 'qhistory'
 import { stringify, parse } from 'qs'
 import { trigger } from 'redial'
 import PrettyError from 'pretty-error'
+import asyncMatchRoutes from 'helpers/asyncMatchRoutes'
 import render from 'helpers/render'
 import createStore from 'redux/store'
-import { asyncMatchRoutes } from 'utils'
 import routes from './routes'
 import config from '../config'
 
@@ -24,6 +24,7 @@ const app = express()
 const pretty = new PrettyError()
 
 process.on('unhandledRejection', (reason, p) => {
+  // eslint-disable-next-line no-console
   console.error('Unhandled Rejection at: Promise ', p, pretty.render(reason))
 })
 

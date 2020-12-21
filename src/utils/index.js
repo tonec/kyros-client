@@ -1,4 +1,3 @@
-export { default as asyncMatchRoutes } from './asyncMatchRoutes'
 export * as constants from './constants'
 export { default as createChainedFunction } from './createChainedFunction'
 export { default as fk } from './fk'

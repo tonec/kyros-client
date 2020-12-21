@@ -1,9 +1,10 @@
+/* eslint-disable react/forbid-prop-types */
 import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { childrenType } from 'types'
 import { withRouter, Route } from 'react-router'
 import { trigger } from 'redial'
-import asyncMatchRoutes from 'utils/asyncMatchRoutes'
+import asyncMatchRoutes from 'helpers/asyncMatchRoutes'
 
 const AsyncConnect = ({ history, location, routes, store, children }) => {
   useEffect(() => {

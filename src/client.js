@@ -11,18 +11,22 @@ import { Provider } from 'react-redux'
 import { trigger } from 'redial'
 import { HelmetProvider } from 'react-helmet-async'
 import createStore from 'redux/store'
-import { asyncMatchRoutes } from 'utils'
+import asyncMatchRoutes from 'helpers/asyncMatchRoutes'
 import { AsyncConnect } from 'components'
 import routes from './routes'
 
 window.addEventListener('unhandledrejection', (err, promise) => {
+  // eslint-disable-next-line no-console
   console.log('Unhandled promise rejection: ', err, promise)
 })
 
 const history = qhistory(createBrowserHistory(), stringify, parse)
 
 const hydrate = async () => {
-  const { components, match, params } = await asyncMatchRoutes(routes, history.location.pathname)
+  const { components, match, params } = await asyncMatchRoutes(
+    routes,
+    history.location.pathname,
+  )
   const store = createStore({ history, match, params })
 
   const locals = {
@@ -30,7 +34,7 @@ const hydrate = async () => {
     store,
     match,
     params,
-    location: history.location
+    location: history.location,
   }
 
   if (window.INITIAL_STATE) {
@@ -51,7 +55,7 @@ const hydrate = async () => {
         </ConnectedRouter>
       </HelmetProvider>
     </Provider>,
-    document.getElementById('content')
+    document.getElementById('content'),
   )
 }
 
