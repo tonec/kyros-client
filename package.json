@@ -18,7 +18,7 @@
   "dependencies": {
     "@loadable/component": "^5.14.1",
     "@loadable/server": "^5.14.0",
-    "axios": "^0.19.2",
+    "axios": "^0.21.0",
     "babel-polyfill": "^6.26.0",
     "clsx": "^1.1.1",
     "compression": "^1.7.4",
@@ -37,8 +37,8 @@
     "prop-types": "^15.7.2",
     "qhistory": "^1.1.0",
     "qs": "^6.9.4",
-    "react": "^16.14.0",
-    "react-dom": "^16.14.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
     "react-final-form": "^6.5.2",
     "react-helmet": "^6.1.0",
     "react-helmet-async": "^1.0.7",
@@ -50,7 +50,7 @@
     "redial": "^0.5.0",
     "redux": "^4.0.5",
     "seamless-immutable": "^7.1.4",
-    "serialize-javascript": "^2.1.2",
+    "serialize-javascript": "^5.0.1",
     "serve-favicon": "^2.5.0",
     "styled-components": "^5.2.1"
   },
