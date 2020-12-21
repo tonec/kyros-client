@@ -1,6 +1,6 @@
 import App from 'App'
 import { NotFound } from 'components'
-import { Home, Login, Users } from 'views'
+import { FormLibrary, Home, Login, Users } from 'views'
 
 export default [
   {
@@ -11,7 +11,8 @@ export default [
       { path: '/users', component: Users },
       { path: '/clients', component: Users },
       { path: '/sometheing', component: Users },
-      { component: NotFound }
-    ]
-  }
+      { path: '/form', component: FormLibrary },
+      { component: NotFound },
+    ],
+  },
 ]

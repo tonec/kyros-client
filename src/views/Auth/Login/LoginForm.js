@@ -1,7 +1,7 @@
 import React from 'react'
 import { func } from 'prop-types'
 import { Form } from 'react-final-form'
-import { CheckboxField, InputField, RadioField } from 'components/Form'
+import { InputField } from 'components/Form'
 import validate from './validate'
 
 function LoginForm({ handleOnSubmit }) {
@@ -26,9 +26,6 @@ function LoginForm({ handleOnSubmit }) {
               type="password"
               validate={validate.password}
             />
-            <CheckboxField label="dsdsd" name="remember" />
-            <RadioField label="1" name="checky" value="1" />
-            <RadioField label="2" name="checky" value="2" />
           </form>
         )
       }}
