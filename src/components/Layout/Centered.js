@@ -1,7 +1,8 @@
 import React from 'react'
-import { string, node, oneOfType, arrayOf, number } from 'prop-types'
+import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import styled from 'styled-components'
+import { childrenType } from '../../types'
 
 const Layout = styled.div`
   display: table;
@@ -35,11 +36,11 @@ function Centered({ className, title, align, width, children, ...props }) {
 }
 
 Centered.propTypes = {
-  className: string,
-  title: string.isRequired,
-  align: string,
-  width: number,
-  children: oneOfType([arrayOf(node), node]).isRequired,
+  className: PropTypes.string,
+  title: PropTypes.string.isRequired,
+  align: PropTypes.string,
+  width: PropTypes.number,
+  children: childrenType.isRequired,
 }
 
 Centered.defaultProps = {

@@ -8,7 +8,7 @@ import theme from 'theme'
 import './assets/stylesheets/global.css'
 import './assets/stylesheets/reset.css'
 
-console.log('defaultProps', defaultProps)
+// console.log('defaultProps', defaultProps)
 
 const App = ({ location, route }) => {
   const [ready, setReady] = useState(false)
@@ -26,7 +26,10 @@ const App = ({ location, route }) => {
   }, [location.pathname])
 
   return (
-    <div className="app" style={{ visibility: ready ? 'visible' : 'hidden', height: '100%' }}>
+    <div
+      className="app"
+      style={{ visibility: ready ? 'visible' : 'hidden', height: '100%' }}
+    >
       <Grommet theme={theme} style={{ height: '100%' }}>
         {renderRoutes(route.routes)}
       </Grommet>
@@ -36,7 +39,7 @@ const App = ({ location, route }) => {
 
 App.propTypes = {
   location: object.isRequired,
-  route: object.isRequired
+  route: object.isRequired,
 }
 
 export default App

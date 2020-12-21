@@ -27,7 +27,8 @@ process.on('unhandledRejection', (reason, p) => {
   console.error('Unhandled Rejection at: Promise ', p, pretty.render(reason))
 })
 
-app.use(helmet())
+app
+  .use(helmet())
   .use(cookieParser())
   .use(compression())
   .use(favicon(FAVICON))
@@ -39,7 +40,6 @@ app.use('/app-shell', (req, res) => {
   res.send(render())
 })
 
-
 app.get('*', async (req, res) => {
   const memHistory = createMemoryHistory({ initialEntries: [req.originalUrl] })
   const history = qhistory(memHistory, stringify, parse)
@@ -50,7 +50,7 @@ app.get('*', async (req, res) => {
     history,
     store,
     match,
-    params
+    params,
   }
 
   trigger('fetch', components, locals).then(() => {

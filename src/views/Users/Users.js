@@ -5,19 +5,17 @@ import { LayoutMain } from 'components'
 
 class Users extends Component {
   static propTypes = {
-    users: array
+    users: array,
   }
 
   static defaultProps = {
-    users: []
+    users: [],
   }
 
   renderUsers() {
     const { users } = this.props
 
-    return users.map(user => (
-      <li key={user.id}>{user.name}</li>
-    ))
+    return users.map(user => <li key={user.id}>{user.name}</li>)
   }
 
   render() {

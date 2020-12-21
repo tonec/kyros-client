@@ -1,5 +1,6 @@
 import React from 'react'
-import PropTypes, { arrayOf, object, node, string } from 'prop-types'
+import PropTypes, { object, string } from 'prop-types'
+import { childrenType } from 'types'
 import { Box as BaseBox } from 'grommet'
 
 function Box({
@@ -28,7 +29,7 @@ function Box({
 }
 
 Box.propTypes = {
-  children: PropTypes.oneOfType([arrayOf(node), node]),
+  children: childrenType.isRequired,
   tag: PropTypes.string,
   direction: PropTypes.string,
   align: PropTypes.string,

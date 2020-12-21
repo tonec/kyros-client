@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes, { arrayOf, node } from 'prop-types'
+import { childrenType } from 'types'
 import { Box } from 'components'
 
 function AppBar({ children }) {
@@ -19,7 +19,7 @@ function AppBar({ children }) {
 }
 
 AppBar.propTypes = {
-  children: PropTypes.oneOfType([arrayOf(node), node]).isRequired,
+  children: childrenType.isRequired,
 }
 
 export default AppBar

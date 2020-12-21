@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes, { oneOfType, arrayOf, node } from 'prop-types'
+import { childrenType } from 'types'
 import { Heading as BaseHeading } from 'grommet'
 
 function Heading({ children, ...rest }) {
@@ -7,7 +7,7 @@ function Heading({ children, ...rest }) {
 }
 
 Heading.propTypes = {
-  children: PropTypes.oneOfType([arrayOf(node), node]).isRequired,
+  children: childrenType.isRequired,
 }
 
 Heading.defaultProps = {}

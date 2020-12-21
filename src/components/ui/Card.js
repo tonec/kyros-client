@@ -1,17 +1,20 @@
 import React from 'react'
-import PropTypes, { arrayOf, node } from 'prop-types'
-import { Box } from 'components'
+import { childrenType } from 'types'
+import * as grommet from 'grommet'
+
+console.log('grommet', grommet)
 
 function Card({ children }) {
   return (
-    <Box background="light-1" pad="medium">
+    <div background="light-1" pad="medium">
       {children}
-    </Box>
+      {/* <BaseCard>sdsdsd</BaseCard> */}
+    </div>
   )
 }
 
 Card.propTypes = {
-  children: PropTypes.oneOfType([arrayOf(node), node]),
+  children: childrenType,
 }
 
 export default Card

@@ -1,31 +1,41 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Field } from 'react-final-form'
-import TextInputFormWrap from './TextInputFormWrap'
+import { TextInput as BaseInput } from 'grommet'
+import FormControl from './FormControl'
 
-function TextInputForm({ name, type, fieldProps, ...rest }) {
+function TextInputFormWrap(props) {
+  const {
+    input: { name, value, type, onChange, ...restInput },
+    meta,
+    label,
+    ...rest
+  } = props
+
+  const { error, touched } = meta
+
   return (
-    <Field
+    <FormControl
       name={name}
-      type={type}
-      {...fieldProps}
-      render={({ input, meta }) => (
-        <TextInputFormWrap
-          input={input}
-          meta={meta}
-          name={name}
-          type={type}
-          {...rest}
-        />
-      )}
-    />
+      label={label}
+      isError={error && touched}
+      error={error}
+    >
+      <BaseInput
+        name={name}
+        value={value}
+        type={type}
+        inputProps={restInput}
+        onChange={onChange}
+        {...rest}
+      />
+    </FormControl>
   )
 }
 
-TextInputForm.propTypes = {
-  name: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
-  fieldProps: PropTypes.object,
+TextInputFormWrap.propTypes = {
+  label: PropTypes.string.isRequired,
+  input: PropTypes.object.isRequired,
+  meta: PropTypes.object.isRequired,
 }
 
-export default TextInputForm
+export default TextInputFormWrap

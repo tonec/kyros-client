@@ -1,5 +1,6 @@
 import React from 'react'
-import PropTypes, { arrayOf, node, bool, func } from 'prop-types'
+import PropTypes from 'prop-types'
+import { childrenType } from 'types'
 
 function ConditionalWrap({ condition, wrap, children }) {
   return condition ? wrap(children) : <>{children}</>
@@ -8,7 +9,7 @@ function ConditionalWrap({ condition, wrap, children }) {
 ConditionalWrap.propTypes = {
   condition: PropTypes.bool.isRequired,
   wrap: PropTypes.func.isRequired,
-  children: PropTypes.oneOfType([arrayOf(node), node]).isRequired,
+  children: childrenType.isRequired,
 }
 
 export default ConditionalWrap

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
+import { childrenType } from 'types'
 import { withRouter, Route } from 'react-router'
 import { trigger } from 'redial'
 import asyncMatchRoutes from 'utils/asyncMatchRoutes'
@@ -32,7 +33,7 @@ const AsyncConnect = ({ history, location, routes, store, children }) => {
 }
 
 AsyncConnect.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: childrenType.isRequired,
   history: PropTypes.objectOf(PropTypes.any).isRequired,
   location: PropTypes.objectOf(PropTypes.any).isRequired,
   routes: PropTypes.array.isRequired,

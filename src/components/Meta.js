@@ -1,5 +1,5 @@
 import React from 'react'
-import { string, oneOfType, arrayOf, node } from 'prop-types'
+import PropTypes from 'prop-types'
 import { Helmet } from 'react-helmet-async'
 import get from 'lodash/get'
 import config from '../../config'
@@ -46,9 +46,9 @@ function Meta({ title, description, children }) {
 }
 
 Meta.propTypes = {
-  title: string,
-  description: string,
-  children: oneOfType([arrayOf(node), node]),
+  title: PropTypes.string,
+  description: PropTypes.string,
+  children: PropTypes.element,
 }
 
 Meta.defaultProps = {

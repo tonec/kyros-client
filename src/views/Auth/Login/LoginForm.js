@@ -1,7 +1,7 @@
 import React from 'react'
 import { func } from 'prop-types'
 import { Form } from 'react-final-form'
-import { TextInputForm } from 'components'
+import { TextInputFormField } from 'components'
 
 function LoginForm({ handleOnSubmit }) {
   return (
@@ -11,7 +11,7 @@ function LoginForm({ handleOnSubmit }) {
       render={({ handleSubmit }) => {
         return (
           <form onSubmit={handleSubmit}>
-            <TextInputForm
+            <TextInputFormField
               label="Email"
               name="email"
               type="text"

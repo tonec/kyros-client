@@ -14,7 +14,10 @@ import Html from './Html'
 export default (req, store, routerContext) => {
   if (!req) return Html({})
 
-  const statsFile = path.resolve(__dirname, '../public/dist/loadable-stats.json')
+  const statsFile = path.resolve(
+    __dirname,
+    '../public/dist/loadable-stats.json',
+  )
   const extractor = new ChunkExtractor({ statsFile })
   const helmetContext = {}
 
@@ -27,7 +30,7 @@ export default (req, store, routerContext) => {
           </AsyncConnect>
         </StaticRouter>
       </HelmetProvider>
-    </Provider>
+    </Provider>,
   )
 
   const content = renderToString(jsx)

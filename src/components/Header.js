@@ -33,7 +33,7 @@ function Header() {
     <AppBar>
       <Nav>
         <Heading level={1} size="xsmall">
-          Sleep SSR
+          <p>Sleep SSR</p>
         </Heading>
         <ul>
           <li>
