@@ -1,20 +1,20 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { CheckBox as BaseCheckBox } from 'grommet'
+import { RadioButton as BaseRadio } from 'grommet'
 
-function CheckBoxForm(props) {
+function RadioForm(props) {
   const {
     input: { name, ...restInput },
     label,
   } = props
 
-  return <BaseCheckBox name={name} label={label} {...restInput} />
+  return <BaseRadio type="radio" name={name} label={label} {...restInput} />
 }
 
-CheckBoxForm.propTypes = {
+RadioForm.propTypes = {
   label: PropTypes.string.isRequired,
   input: PropTypes.object.isRequired,
   meta: PropTypes.object.isRequired,
 }
 
-export default CheckBoxForm
+export default RadioForm

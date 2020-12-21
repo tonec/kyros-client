@@ -1,15 +1,15 @@
 import React from 'react'
 import { func } from 'prop-types'
 import { Form } from 'react-final-form'
-import { CheckboxField, InputField } from 'components/Form'
+import { CheckboxField, InputField, RadioField } from 'components/Form'
 import validate from './validate'
 
 function LoginForm({ handleOnSubmit }) {
   return (
     <Form
       onSubmit={handleOnSubmit}
-      initialValues={{ remember: true }}
-      render={({ handleSubmit, values }) => {
+      initialValues={{ remember: true, checky: 1 }}
+      render={({ handleSubmit }) => {
         return (
           <form onSubmit={handleSubmit}>
             <InputField
@@ -27,7 +27,8 @@ function LoginForm({ handleOnSubmit }) {
               validate={validate.password}
             />
             <CheckboxField label="dsdsd" name="remember" />
-            {JSON.stringify(values, 0, 2)}
+            <RadioField label="1" name="checky" value="1" />
+            <RadioField label="2" name="checky" value="2" />
           </form>
         )
       }}
