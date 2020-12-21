@@ -9,7 +9,7 @@ function FormControl({ children, label, name, isError, error }) {
       <Label htmlFor={name}>{label}</Label>
       {children}
       <span className="error-container">
-        {isError && error && (
+        {isError && (
           <small className="error-message">
             X<span>{error}</span>
           </small>

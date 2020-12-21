@@ -7,8 +7,6 @@ export { default as Box } from './ui/Box'
 export { default as Button } from './ui/Button'
 export { default as Card } from './ui/Card'
 export { default as Heading } from './ui/Heading'
-export { default as FormControl } from './ui/FormControl'
-export { default as Label } from './ui/Label'
 
 // Common
 export { default as Meta } from './Meta'

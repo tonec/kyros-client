@@ -1,11 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { TextInput as BaseInput } from 'grommet'
-import FormControl from '../ui/FormControl'
+import FormControl from './FormControl'
 
 function InputForm(props) {
   const {
-    input: { name, value, type, onChange, ...restInput },
+    input: { name, ...restInput },
     meta,
     label,
     ...rest
@@ -20,14 +20,7 @@ function InputForm(props) {
       isError={error && touched}
       error={error}
     >
-      <BaseInput
-        name={name}
-        value={value}
-        type={type}
-        inputProps={restInput}
-        onChange={onChange}
-        {...rest}
-      />
+      <BaseInput name={name} {...rest} {...restInput} />
     </FormControl>
   )
 }

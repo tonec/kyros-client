@@ -1,30 +1,28 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Field } from 'react-final-form'
-import Input from './InputForm'
+import CheckboxForm from './CheckboxForm'
 
-function InputField({ name, label, type, validate, ...rest }) {
+function CheckboxField({ name, label, ...rest }) {
   return (
     <Field
       name={name}
-      type={type}
-      validate={validate}
+      type="checkbox"
       render={({ input, meta }) => (
-        <Input input={input} meta={meta} label={label} {...rest} />
+        <CheckboxForm input={input} meta={meta} label={label} {...rest} />
       )}
     />
   )
 }
 
-InputField.propTypes = {
+CheckboxField.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
   validate: PropTypes.func,
 }
 
-InputField.defaultProps = {
+CheckboxField.defaultProps = {
   validate: null,
 }
 
-export default InputField
+export default CheckboxField

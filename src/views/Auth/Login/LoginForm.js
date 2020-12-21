@@ -1,14 +1,15 @@
 import React from 'react'
 import { func } from 'prop-types'
 import { Form } from 'react-final-form'
-import { InputField } from 'components/Form'
+import { CheckboxField, InputField } from 'components/Form'
+import validate from './validate'
 
 function LoginForm({ handleOnSubmit }) {
   return (
     <Form
       onSubmit={handleOnSubmit}
       initialValues={{ remember: true }}
-      render={({ handleSubmit }) => {
+      render={({ handleSubmit, values }) => {
         return (
           <form onSubmit={handleSubmit}>
             <InputField
@@ -17,17 +18,16 @@ function LoginForm({ handleOnSubmit }) {
               type="text"
               placeholder="Email"
               autoCapitalize="off"
-              // validate={validation.email}
+              validate={validate.email}
             />
-            {/* <Field
-              label="Email"
-              name="email"
-              type="text"
-              placeholder="Email"
-              render={TextInputForm}
-              // validate={validation.email}
-              autoCapitalize="off"
-            /> */}
+            <InputField
+              label="Password"
+              name="password"
+              type="password"
+              validate={validate.password}
+            />
+            <CheckboxField label="dsdsd" name="remember" />
+            {JSON.stringify(values, 0, 2)}
           </form>
         )
       }}
