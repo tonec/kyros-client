@@ -9,7 +9,6 @@ export { default as Card } from './ui/Card'
 export { default as Heading } from './ui/Heading'
 export { default as FormControl } from './ui/FormControl'
 export { default as Label } from './ui/Label'
-export { default as TextInputFormField } from './ui/TextInputFormField'
 
 // Common
 export { default as Meta } from './Meta'

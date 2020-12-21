@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { TextInput as BaseInput } from 'grommet'
-import FormControl from './FormControl'
+import FormControl from '../ui/FormControl'
 
-function TextInputFormWrap(props) {
+function InputForm(props) {
   const {
     input: { name, value, type, onChange, ...restInput },
     meta,
@@ -32,10 +32,10 @@ function TextInputFormWrap(props) {
   )
 }
 
-TextInputFormWrap.propTypes = {
+InputForm.propTypes = {
   label: PropTypes.string.isRequired,
   input: PropTypes.object.isRequired,
   meta: PropTypes.object.isRequired,
 }
 
-export default TextInputFormWrap
+export default InputForm

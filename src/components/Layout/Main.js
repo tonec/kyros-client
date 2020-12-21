@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Box, Meta, Header } from 'components'
-import { childrenType } from '../../types'
+import { childrenType } from 'types'
 
 const LayoutMain = ({ children, title }) => (
   <div>
