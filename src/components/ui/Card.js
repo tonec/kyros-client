@@ -1,20 +1,32 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { childrenType } from 'types'
-import * as grommet from 'grommet'
+import { Card as BaseCard } from 'grommet'
 
-console.log('grommet', grommet)
-
-function Card({ children }) {
+function Card({ children, background, pad, elevation }) {
   return (
-    <div background="light-1" pad="medium">
+    <BaseCard background={background} pad={pad} elevation={elevation}>
       {children}
-      {/* <BaseCard>sdsdsd</BaseCard> */}
-    </div>
+    </BaseCard>
   )
 }
 
 Card.propTypes = {
-  children: childrenType,
+  children: childrenType.isRequired,
+  background: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  pad: PropTypes.string,
+  elevation: PropTypes.oneOf(["none",
+    "small",
+    "medium",
+    "large",
+    "xlarge",
+  ])
+}
+
+Card.defaultProps = {
+  background: 'light-1',
+  pad: 'medium',
+  elevation: 'medium'
 }
 
 export default Card
