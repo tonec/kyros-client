@@ -1,18 +1,14 @@
 const path = require('path')
 
 module.exports = {
-  "extends": [
-    "airbnb",
-    "prettier",
-    "prettier/react"
-  ],
-  "env": {
-    "browser": true,
-    "node": true,
-    "jest": true,
-    "es6": true
+  extends: ['airbnb', 'prettier', 'prettier/react'],
+  env: {
+    browser: true,
+    node: true,
+    jest: true,
+    es6: true,
   },
-  "rules": {
+  rules: {
     // "arrow-body-style": "off",
     // "arrow-parens": [
     //   "error",
@@ -62,9 +58,9 @@ module.exports = {
     // ],
     // "prefer-promise-reject-errors": "warn",
     // "prefer-template": "warn",
-    // "react/forbid-prop-types": "off",
-    // "react/jsx-closing-tag-location": "off",
-    "react/jsx-filename-extension": "off",
+    'react/forbid-prop-types': 'off',
+    'react/jsx-closing-tag-location': 'off',
+    'react/jsx-filename-extension': 'off',
     // "react/jsx-no-target-blank": "warn",
     // "react/no-find-dom-node": "off",
     // "react/no-multi-comp": [
@@ -75,7 +71,7 @@ module.exports = {
     // ],
     // "react/no-unescaped-entities": "off",
     // "react/prefer-stateless-function": "off",
-    // "react/jsx-props-no-spreading": "off",
+    'react/jsx-props-no-spreading': 'off',
     // "react/static-property-placement": [
     //   "error",
     //   "static public field"
@@ -113,31 +109,25 @@ module.exports = {
     //   "never"
     // ]
   },
-  "plugins": [
-    "react",
-    "prettier",
-    "react-hooks",
-    "babel",
-    "async"
-  ],
-  "settings": {
-    "import/resolver": {
-      "node": {
-          "paths": [path.resolve(__dirname, "src")]
-      }
-    }
+  plugins: ['react', 'prettier', 'react-hooks', 'babel', 'async'],
+  settings: {
+    'import/resolver': {
+      node: {
+        paths: [path.resolve(__dirname, 'src')],
+      },
+    },
   },
-  "parser": "babel-eslint",
-  "parserOptions": {
-    "sourceType": "module",
-    "ecmaVersion": 2019,
-    "ecmaFeatures": {
-      "jsx": true
-    }
+  parser: 'babel-eslint',
+  parserOptions: {
+    sourceType: 'module',
+    ecmaVersion: 2019,
+    ecmaFeatures: {
+      jsx: true,
+    },
   },
-  "globals": {
-    "browser": true,
-    "__CLIENT__": true,
-    "__SERVER__": true
-  }
+  globals: {
+    browser: true,
+    __CLIENT__: true,
+    __SERVER__: true,
+  },
 }
