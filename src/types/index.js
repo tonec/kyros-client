@@ -5,6 +5,7 @@ import {
   instanceOf,
   node,
   number,
+  oneOf,
   oneOfType,
   shape,
   string,
@@ -31,4 +32,9 @@ const Element = typeof Element === 'undefined' ? () => {} : Element
 export const refType = oneOfType([
   func,
   shape({ current: oneOfType([instanceOf(Element)]) }),
+])
+
+export const maxWidthType = oneOfType([
+  bool,
+  oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
 ])

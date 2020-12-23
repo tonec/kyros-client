@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { childrenType } from 'types'
+import { childrenType, maxWidthType } from 'types'
 import { makeStyles } from '@material-ui/core/styles'
 import Base from './Base'
 
@@ -32,10 +32,7 @@ Centered.propTypes = {
   children: childrenType.isRequired,
   title: PropTypes.string.isRequired,
   container: PropTypes.bool,
-  maxWidth: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
-  ]),
+  maxWidth: maxWidthType,
 }
 
 Centered.defaultProps = {

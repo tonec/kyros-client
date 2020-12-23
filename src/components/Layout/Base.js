@@ -1,5 +1,6 @@
 import React from 'react'
-import PropTypes, { arrayOf, node } from 'prop-types'
+import PropTypes from 'prop-types'
+import { childrenType, maxWidthType } from 'types'
 import cx from 'clsx'
 import Helmet from 'react-helmet'
 import { makeStyles } from '@material-ui/core/styles'
@@ -39,13 +40,10 @@ function BaseLayout({
 }
 
 BaseLayout.propTypes = {
-  children: PropTypes.oneOfType([arrayOf(node), node]).isRequired,
+  children: childrenType.isRequired,
   title: PropTypes.string.isRequired,
   container: PropTypes.bool,
-  maxWidth: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
-  ]),
+  maxWidth: maxWidthType,
   classNameWrap: PropTypes.string,
   classNameContainer: PropTypes.string,
 }

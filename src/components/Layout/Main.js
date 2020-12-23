@@ -1,5 +1,6 @@
 import React from 'react'
-import PropTypes, { arrayOf, node } from 'prop-types'
+import PropTypes from 'prop-types'
+import { childrenType, maxWidthType } from 'types'
 import cx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
 import { ConditionalWrap, Container } from '../ui'
@@ -36,12 +37,9 @@ function Main({ children, maxWidth, className, container }) {
 }
 
 Main.propTypes = {
-  children: PropTypes.oneOfType([arrayOf(node), node]).isRequired,
+  children: childrenType.isRequired,
   container: PropTypes.bool,
-  maxWidth: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
-  ]),
+  maxWidth: maxWidthType,
   className: PropTypes.string,
 }
 
