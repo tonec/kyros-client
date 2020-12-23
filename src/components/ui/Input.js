@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { useLinkType } from 'types'
 import { makeStyles } from '@material-ui/core/styles'
 import BaseInput from '@material-ui/core/OutlinedInput'
 import ConditionalWrap from './ConditionalWrap'
@@ -73,13 +74,7 @@ Input.propTypes = {
   placeholder: PropTypes.string,
   label: PropTypes.string,
   type: PropTypes.string,
-  $value: PropTypes.shape({
-    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    set: PropTypes.func,
-    check: PropTypes.func,
-    error: PropTypes.string,
-  }),
-  // eslint-disable-next-line react/forbid-prop-types
+  $value: useLinkType,
   inputProps: PropTypes.object,
   disabled: PropTypes.bool,
   isWrapped: PropTypes.bool,

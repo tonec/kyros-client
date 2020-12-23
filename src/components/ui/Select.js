@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { useLinkType } from 'types'
 import { makeStyles } from '@material-ui/core/styles'
 import BaseSelect from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
@@ -17,7 +18,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-function SelectInput({
+function Select({
   label,
   placeholder,
   options,
@@ -75,19 +76,13 @@ function SelectInput({
   )
 }
 
-SelectInput.propTypes = {
+Select.propTypes = {
   placeholder: PropTypes.string,
   label: PropTypes.string,
   options: PropTypes.shape({}).isRequired,
   icons: PropTypes.shape({}),
-  $value: PropTypes.shape({
-    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    set: PropTypes.func,
-    check: PropTypes.func,
-    error: PropTypes.string,
-  }),
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  // eslint-disable-next-line react/forbid-prop-types
+  $value: useLinkType,
+  value: PropTypes.string,
   inputProps: PropTypes.object,
   disabled: PropTypes.bool,
   className: PropTypes.string,
@@ -95,7 +90,7 @@ SelectInput.propTypes = {
   onBlur: PropTypes.func,
 }
 
-SelectInput.defaultProps = {
+Select.defaultProps = {
   placeholder: null,
   label: null,
   icons: {},
@@ -108,4 +103,4 @@ SelectInput.defaultProps = {
   onBlur: null,
 }
 
-export default SelectInput
+export default Select
