@@ -1,6 +1,6 @@
 import React from 'react'
 import { func } from 'prop-types'
-import { Form, TextInputForm } from 'components/ui/form'
+import { Form, InputField } from 'components/ui/form'
 import validate from './validate'
 
 function LoginForm({ handleOnSubmit }) {
@@ -11,7 +11,7 @@ function LoginForm({ handleOnSubmit }) {
       render={({ handleSubmit }) => {
         return (
           <form onSubmit={handleSubmit}>
-            <TextInputForm
+            <InputField
               label="Email"
               name="email"
               type="text"
@@ -19,7 +19,7 @@ function LoginForm({ handleOnSubmit }) {
               autoCapitalize="off"
               validate={validate.email}
             />
-            <TextInputForm
+            <InputField
               label="Password"
               name="password"
               type="password"

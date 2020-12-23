@@ -13,11 +13,11 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-function TextInputFormWrap(props) {
+function InputForm(props) {
   const classes = useStyles()
 
   const {
-    input: { name, value, type, onChange, ...restInput },
+    input: { name, ...restInput },
     meta,
     label,
     disabled,
@@ -35,15 +35,16 @@ function TextInputFormWrap(props) {
       isError={isError}
       className={classes.control}
     >
-      {label && <InputLabel disabled={disabled}>{label}</InputLabel>}
+      {label && (
+        <InputLabel htmlFor={name} disabled={disabled}>
+          {label}
+        </InputLabel>
+      )}
       <BaseInput
         name={name}
-        value={value}
-        type={type}
         inputProps={restInput}
         disabled={disabled}
         error={isError}
-        onChange={onChange}
         {...rest}
       />
       {isError && <FormInputError error={error} />}
@@ -51,16 +52,16 @@ function TextInputFormWrap(props) {
   )
 }
 
-TextInputFormWrap.propTypes = {
+InputForm.propTypes = {
   label: PropTypes.string,
   disabled: PropTypes.bool,
   input: formInputType.isRequired,
   meta: formMetaType.isRequired,
 }
 
-TextInputFormWrap.defaultProps = {
+InputForm.defaultProps = {
   label: null,
   disabled: false,
 }
 
-export default TextInputFormWrap
+export default InputForm
