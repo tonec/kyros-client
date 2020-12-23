@@ -1,9 +1,9 @@
-import React from 'react';
-import PropTypes, { arrayOf, node } from 'prop-types';
-import cx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
-import { ConditionalWrap, Container } from './ui';
-import Header from './Header/Header';
+import React from 'react'
+import PropTypes, { arrayOf, node } from 'prop-types'
+import cx from 'clsx'
+import { makeStyles } from '@material-ui/core/styles'
+import { ConditionalWrap, Container } from '../ui'
+import Header from '../Header/Header'
 
 const useStyles = makeStyles({
   wrap: {
@@ -17,10 +17,10 @@ const useStyles = makeStyles({
     width: '100%',
     marginLeft: 56,
   },
-});
+})
 
-function Layout({ children, maxWidth, className, container }) {
-  const classes = useStyles();
+function Main({ children, maxWidth, className, container }) {
+  const classes = useStyles()
 
   return (
     <div className={cx(classes.wrap, className)}>
@@ -32,10 +32,10 @@ function Layout({ children, maxWidth, className, container }) {
         <div className={classes.inner}>{children}</div>
       </ConditionalWrap>
     </div>
-  );
+  )
 }
 
-Layout.propTypes = {
+Main.propTypes = {
   children: PropTypes.oneOfType([arrayOf(node), node]).isRequired,
   container: PropTypes.bool,
   maxWidth: PropTypes.oneOfType([
@@ -43,12 +43,12 @@ Layout.propTypes = {
     PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
   ]),
   className: PropTypes.string,
-};
+}
 
-Layout.defaultProps = {
+Main.defaultProps = {
   maxWidth: false,
   container: false,
   className: null,
-};
+}
 
-export default Layout;
+export default Main

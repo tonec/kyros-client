@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { array } from 'prop-types'
 import { connect } from 'react-redux'
-import { LayoutMain } from 'components'
+import { Layout } from 'components'
 
 class Users extends Component {
   static propTypes = {
@@ -20,10 +20,10 @@ class Users extends Component {
 
   render() {
     return (
-      <LayoutMain title="Users">
+      <Layout title="Users">
         <h2>Users lists:</h2>
         <ul>{this.renderUsers()}</ul>
-      </LayoutMain>
+      </Layout>
     )
   }
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Heading } from 'components'
+import { Card, Typography } from 'components/ui'
 import LoginForm from './LoginForm'
 
 function LoginFormContainer() {
@@ -9,9 +9,7 @@ function LoginFormContainer() {
 
   return (
     <Card>
-      <Heading level={1} size="xsmall">
-        Log in
-      </Heading>
+      <Typography variant="h1">Log in</Typography>
       <LoginForm handleOnSubmit={handleOnSubmit} />
     </Card>
   )

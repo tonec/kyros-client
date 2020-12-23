@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { object } from 'prop-types'
 import { renderRoutes } from 'react-router-config'
 import { usePrevious } from 'hooks'
@@ -22,7 +22,7 @@ const App = ({ location, route }) => {
     }
   }, [location.pathname])
 
-  return <div className="app">{renderRoutes(route.routes)}</div>
+  return renderRoutes(route.routes)
 }
 
 App.propTypes = {

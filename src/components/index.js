@@ -1,6 +1,6 @@
 // Layout
-export { default as Layout } from './Layout'
-// export { default as Centered } from './Layout/Centered'
+export { default as Centered } from './Layout/Centered'
+export { default as Main } from './Layout/Main'
 
 // // UI - component library component
 // export { default as Box } from './ui/Box'

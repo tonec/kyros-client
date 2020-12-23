@@ -1,14 +1,13 @@
 import React from 'react'
-import { Layout } from 'components'
-// import LoginFormContainer from './Login'
+import { Centered } from 'components'
+import Login from './Login'
 
-function Login() {
+function LoginView() {
   return (
-    <Layout maxWidth="sm" container>
-      <p>sdsdsd</p>
-      {/* <LoginFormContainer /> */}
-    </Layout>
+    <Centered title="Log in">
+      <Login />
+    </Centered>
   )
 }
 
-export default Login
+export default LoginView
