@@ -41,7 +41,7 @@ function LoginForm({ handleOnSubmit }) {
                 wetlands: 'Wetlands',
               }}
             />
-            {JSON.stringify(values, 0, 2)}
+            <pre>{JSON.stringify(values, 0, 2)}</pre>
           </form>
         )
       }}
