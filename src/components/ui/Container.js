@@ -1,7 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import BaseContainer from '@material-ui/core/Container';
-import { childrenType } from '../../types';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { childrenType } from 'types'
+import BaseContainer from '@material-ui/core/Container'
 
 function Container({
   children,
@@ -24,7 +24,7 @@ function Container({
     >
       {children}
     </BaseContainer>
-  );
+  )
 }
 
 Container.propTypes = {
@@ -38,7 +38,7 @@ Container.propTypes = {
     PropTypes.bool,
     PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
   ]),
-};
+}
 
 Container.defaultProps = {
   classes: null,
@@ -47,6 +47,6 @@ Container.defaultProps = {
   disableGutters: false,
   fixed: false,
   maxWidth: null,
-};
+}
 
-export default Container;
+export default Container

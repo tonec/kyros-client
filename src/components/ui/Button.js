@@ -1,18 +1,18 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import cx from 'clsx';
-import { Link } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
-import BaseButton from '@material-ui/core/Button';
-import { childrenType } from '../../types';
-import ConditionalWrap from './ConditionalWrap';
-import FormControl from './FormControl';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { childrenType } from 'types'
+import cx from 'clsx'
+import { Link } from 'react-router-dom'
+import { makeStyles } from '@material-ui/core/styles'
+import BaseButton from '@material-ui/core/Button'
+import ConditionalWrap from './ConditionalWrap'
+import FormControl from './form/FormControl'
 
 const useStyles = makeStyles(theme => ({
   control: {
     margin: theme.spacing(2, 0),
   },
-}));
+}))
 
 function Button({
   children,
@@ -28,7 +28,7 @@ function Button({
   testid,
   onClick,
 }) {
-  const compClasses = useStyles({ color });
+  const compClasses = useStyles({ color })
 
   return (
     <ConditionalWrap
@@ -52,11 +52,11 @@ function Button({
         {children}
       </BaseButton>
     </ConditionalWrap>
-  );
+  )
 }
 
 // Used in ButtonsSpacer!
-Button.displayName = 'Button';
+Button.displayName = 'Button'
 
 Button.propTypes = {
   children: childrenType.isRequired,
@@ -71,7 +71,7 @@ Button.propTypes = {
   testid: PropTypes.string,
   onClick: PropTypes.func,
   className: PropTypes.string,
-};
+}
 
 Button.defaultProps = {
   color: 'default',
@@ -85,6 +85,6 @@ Button.defaultProps = {
   className: '',
   testid: null,
   onClick: null,
-};
+}
 
-export default Button;
+export default Button

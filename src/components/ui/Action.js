@@ -1,10 +1,10 @@
 /* eslint-disable react/button-has-type */
-import React from 'react';
-import PropTypes from 'prop-types';
-import cx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
-import { childrenType } from '../../types';
-import { getColor } from '../../utils';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { childrenType } from 'types'
+import cx from 'clsx'
+import { getColor } from 'utils'
+import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles(theme => {
   return {
@@ -23,36 +23,36 @@ const useStyles = makeStyles(theme => {
 
       color: ({ variant, disabled }) => {
         if (disabled) {
-          return theme.palette.grey[500];
+          return theme.palette.grey[500]
         }
         return variant === 'primary'
           ? getColor(theme, 'white')
-          : getColor(theme, 'primary');
+          : getColor(theme, 'primary')
       },
 
       backgroundColor: ({ variant, disabled }) => {
         if (disabled) {
-          return theme.palette.grey[300];
+          return theme.palette.grey[300]
         }
-        return variant === 'primary' ? getColor(theme, 'primary') : '#f9f9f9';
+        return variant === 'primary' ? getColor(theme, 'primary') : '#f9f9f9'
       },
 
       '&:hover': {
         color: ({ variant, disabled }) => {
           if (disabled) {
-            return theme.palette.grey[500];
+            return theme.palette.grey[500]
           }
           return variant === 'primary'
             ? getColor(theme, 'white')
-            : getColor(theme, 'primary.dark');
+            : getColor(theme, 'primary.dark')
         },
       },
     },
-  };
-});
+  }
+})
 
 function Action({ children, type, variant, disabled, className, onClick }) {
-  const classes = useStyles({ variant, disabled });
+  const classes = useStyles({ variant, disabled })
 
   return (
     <button
@@ -63,7 +63,7 @@ function Action({ children, type, variant, disabled, className, onClick }) {
     >
       {children}
     </button>
-  );
+  )
 }
 
 Action.propTypes = {
@@ -73,7 +73,7 @@ Action.propTypes = {
   disabled: PropTypes.bool,
   className: PropTypes.string,
   onClick: PropTypes.func,
-};
+}
 
 Action.defaultProps = {
   type: 'button',
@@ -81,6 +81,6 @@ Action.defaultProps = {
   disabled: false,
   className: null,
   onClick: null,
-};
+}
 
-export default Action;
+export default Action

@@ -1,29 +1,29 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import BaseCheckbox from '@material-ui/core/Checkbox';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { makeStyles } from '@material-ui/core/styles'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
+import BaseCheckbox from '@material-ui/core/Checkbox'
 
 const useStyles = makeStyles(theme => ({
   control: {
     margin: theme.spacing(1),
   },
-}));
+}))
 
 function Checkbox({ name, label, $value, checked, disabled, onChange }) {
-  const classes = useStyles();
+  const classes = useStyles()
 
-  const val = $value ? $value.value : checked;
+  const val = $value ? $value.value : checked
 
   const handleOnChange = e => {
     if ($value) {
-      $value.set(value => !value);
+      $value.set(value => !value)
     }
 
     if (typeof onChange === 'function') {
-      onChange(e);
+      onChange(e)
     }
-  };
+  }
 
   if (!label) {
     return (
@@ -35,7 +35,7 @@ function Checkbox({ name, label, $value, checked, disabled, onChange }) {
         color="primary"
         onChange={handleOnChange}
       />
-    );
+    )
   }
 
   return (
@@ -53,7 +53,7 @@ function Checkbox({ name, label, $value, checked, disabled, onChange }) {
       }
       label={label}
     />
-  );
+  )
 }
 
 Checkbox.propTypes = {
@@ -68,7 +68,7 @@ Checkbox.propTypes = {
   checked: PropTypes.bool,
   disabled: PropTypes.bool,
   onChange: PropTypes.func,
-};
+}
 
 Checkbox.defaultProps = {
   label: null,
@@ -76,6 +76,6 @@ Checkbox.defaultProps = {
   checked: undefined,
   disabled: false,
   onChange: null,
-};
+}
 
-export default Checkbox;
+export default Checkbox

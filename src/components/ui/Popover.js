@@ -1,11 +1,11 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
-import PropTypes from 'prop-types';
-import cx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
-import BasePopover from '@material-ui/core/Popover';
-import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
-import { childrenType } from '../../types';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { childrenType } from 'types'
+import cx from 'clsx'
+import { makeStyles } from '@material-ui/core/styles'
+import BasePopover from '@material-ui/core/Popover'
+import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state'
 
 const useStyles = makeStyles({
   triggerWrap: {
@@ -14,7 +14,7 @@ const useStyles = makeStyles({
     padding: 0,
     cursor: 'pointer',
   },
-});
+})
 
 function Popover({
   children,
@@ -23,19 +23,19 @@ function Popover({
   anchorOrigin,
   transformOrigin,
 }) {
-  const classes = useStyles();
+  const classes = useStyles()
 
   const preventBubbling = event => {
-    if (!event) return;
+    if (!event) return
 
-    event.preventDefault();
-    event.stopPropagation();
+    event.preventDefault()
+    event.stopPropagation()
 
-    if (!event.nativeEvent) return;
+    if (!event.nativeEvent) return
 
-    event.nativeEvent.preventDefault();
-    event.nativeEvent.stopImmediatePropagation();
-  };
+    event.nativeEvent.preventDefault()
+    event.nativeEvent.stopImmediatePropagation()
+  }
 
   return (
     <PopupState variant="popover" popupId="demo-popup-popover">
@@ -62,7 +62,7 @@ function Popover({
         </>
       )}
     </PopupState>
-  );
+  )
 }
 
 Popover.propTypes = {
@@ -77,7 +77,7 @@ Popover.propTypes = {
     vertical: PropTypes.string,
     horizontal: PropTypes.string,
   }),
-};
+}
 
 Popover.defaultProps = {
   triggerWrapClassName: null,
@@ -89,6 +89,6 @@ Popover.defaultProps = {
     vertical: 'bottom',
     horizontal: 'center',
   },
-};
+}
 
-export default Popover;
+export default Popover

@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles'
 import BaseInput from '@material-ui/core/OutlinedInput'
 import ConditionalWrap from './ConditionalWrap'
-import FormControl from './form/FormControl'
-import InputLabel from './form/InputLabel'
+import FormControl from './FormControl'
+import InputLabel from './InputLabel'
 
 const useStyles = makeStyles(theme => ({
   control: {

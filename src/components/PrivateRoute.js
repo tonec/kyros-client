@@ -1,16 +1,16 @@
 /* eslint-disable react/forbid-prop-types */
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
-import PropTypes, { arrayOf, node } from 'prop-types';
-import { Route, Redirect, useLocation } from 'react-router-dom';
-import { hasUploadPermissions } from '../utils/checkPermissions';
-import { useGlobalStore } from '../context/GlobalStore';
+import React from 'react'
+import PropTypes, { arrayOf, node } from 'prop-types'
+import { Route, Redirect, useLocation } from 'react-router-dom'
+import { hasUploadPermissions } from '../utils/checkPermissions'
+import { useGlobalStore } from '../context/GlobalStore'
 
 function PrivateRoute({ children, ...rest }) {
-  const location = useLocation();
+  const location = useLocation()
   const {
     auth: { user },
-  } = useGlobalStore();
+  } = useGlobalStore()
 
   return (
     <Route
@@ -28,11 +28,11 @@ function PrivateRoute({ children, ...rest }) {
         )
       }
     />
-  );
+  )
 }
 
 PrivateRoute.propTypes = {
   children: PropTypes.oneOfType([arrayOf(node), node]).isRequired,
-};
+}
 
-export default PrivateRoute;
+export default PrivateRoute

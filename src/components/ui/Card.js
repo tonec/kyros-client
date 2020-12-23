@@ -1,18 +1,18 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import cx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
-import BaseCard from '@material-ui/core/Card';
-import { childrenType } from '../../types';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { childrenType } from 'types'
+import cx from 'clsx'
+import { makeStyles } from '@material-ui/core/styles'
+import BaseCard from '@material-ui/core/Card'
 
 const useStyles = makeStyles(theme => ({
   root: {
     padding: ({ flush }) => (flush ? 0 : theme.spacing(4)),
   },
-}));
+}))
 
 function Card({ children, raised, elevation, flush, className }) {
-  const classes = useStyles({ flush });
+  const classes = useStyles({ flush })
 
   return (
     <BaseCard
@@ -22,7 +22,7 @@ function Card({ children, raised, elevation, flush, className }) {
     >
       {children}
     </BaseCard>
-  );
+  )
 }
 
 Card.propTypes = {
@@ -31,13 +31,13 @@ Card.propTypes = {
   flush: PropTypes.bool,
   elevation: PropTypes.number,
   className: PropTypes.string,
-};
+}
 
 Card.defaultProps = {
   raised: false,
   flush: false,
   elevation: 0,
   className: null,
-};
+}
 
-export default Card;
+export default Card

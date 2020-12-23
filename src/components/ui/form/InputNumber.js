@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import PropTypes, { oneOfType, string, func, number } from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import BaseInput from '@material-ui/core/TextField';
-import ConditionalWrap from './ConditionalWrap';
-import FormControl from './FormControl';
+import React, { useState } from 'react'
+import PropTypes, { oneOfType, string, func, number } from 'prop-types'
+import { makeStyles } from '@material-ui/core/styles'
+import BaseInput from '@material-ui/core/TextField'
+import ConditionalWrap from '../ConditionalWrap'
+import FormControl from './FormControl'
 
 const useStyles = makeStyles(theme => ({
   control: {
     margin: theme.spacing(2, 0, 0),
   },
-}));
+}))
 
 function InputNumber({
   name,
@@ -30,55 +30,55 @@ function InputNumber({
   useLocalStorage,
   onChange,
 }) {
-  const classes = useStyles();
+  const classes = useStyles()
 
-  const [val, setVal] = useState(value || defaultValue);
+  const [val, setVal] = useState(value || defaultValue)
 
   const handleOnChange = e => {
-    let v = e.target.value;
+    let v = e.target.value
 
     if (v !== '') {
       if (min && v < min) {
-        v = min;
+        v = min
       }
 
       if (max && v > max) {
-        v = max;
+        v = max
       }
     }
 
     if ($value) {
-      $value.set(v);
+      $value.set(v)
     } else {
-      setVal(v);
+      setVal(v)
     }
 
     if (useLocalStorage) {
-      localStorage.setItem(e.target.name, e.target.value);
+      localStorage.setItem(e.target.name, e.target.value)
     }
 
     if (typeof onChange === 'function') {
-      onChange(e);
+      onChange(e)
     }
-  };
+  }
 
   const handleOnBlur = e => {
     if (val === '') {
-      setVal(defaultValue);
-      e.target.value = defaultValue;
-      handleOnChange(e);
+      setVal(defaultValue)
+      e.target.value = defaultValue
+      handleOnChange(e)
     }
-  };
+  }
 
-  const error = $value ? $value.error : null;
+  const error = $value ? $value.error : null
 
-  let styles = {};
+  let styles = {}
 
   if (noStepper) {
     styles = {
       appearance: 'none',
       margin: 0,
-    };
+    }
   }
 
   return (
@@ -105,7 +105,7 @@ function InputNumber({
       />
       {error && <span>{error}</span>}
     </ConditionalWrap>
-  );
+  )
 }
 
 InputNumber.propTypes = {
@@ -132,7 +132,7 @@ InputNumber.propTypes = {
   className: PropTypes.string,
   useLocalStorage: PropTypes.bool,
   onChange: PropTypes.func,
-};
+}
 
 InputNumber.defaultProps = {
   label: '',
@@ -151,6 +151,6 @@ InputNumber.defaultProps = {
   className: null,
   useLocalStorage: false,
   onChange: null,
-};
+}
 
-export default InputNumber;
+export default InputNumber

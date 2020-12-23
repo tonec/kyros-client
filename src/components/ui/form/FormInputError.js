@@ -1,8 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import ErrorIcon from '@material-ui/icons/Error';
-import Typography from './Typography';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { makeStyles } from '@material-ui/core/styles'
+import ErrorIcon from '@material-ui/icons/Error'
+import Typography from '../Typography'
 
 const useStyles = makeStyles(theme => ({
   errorContainer: {
@@ -15,10 +15,10 @@ const useStyles = makeStyles(theme => ({
       marginRight: 6,
     },
   },
-}));
+}))
 
 function FormInputError({ error }) {
-  const classes = useStyles();
+  const classes = useStyles()
 
   return (
     <div className={classes.errorContainer}>
@@ -27,11 +27,11 @@ function FormInputError({ error }) {
         {error}
       </Typography>
     </div>
-  );
+  )
 }
 
 FormInputError.propTypes = {
   error: PropTypes.string.isRequired,
-};
+}
 
-export default FormInputError;
+export default FormInputError

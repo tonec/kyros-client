@@ -1,9 +1,7 @@
-/* eslint-disable react/forbid-prop-types */
-/* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Field } from 'react-final-form';
-import CheckboxFormWrap from './CheckboxFormWrap';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Field } from 'react-final-form'
+import CheckboxFormWrap from './CheckboxFormWrap'
 
 function CheckboxForm({ name, label, value, fieldProps, ...rest }) {
   return (
@@ -19,7 +17,7 @@ function CheckboxForm({ name, label, value, fieldProps, ...rest }) {
         )}
       />
     </>
-  );
+  )
 }
 
 CheckboxForm.propTypes = {
@@ -27,11 +25,11 @@ CheckboxForm.propTypes = {
   label: PropTypes.string.isRequired,
   fieldProps: PropTypes.object,
   value: PropTypes.string,
-};
+}
 
 CheckboxForm.defaultProps = {
   fieldProps: null,
   value: null,
-};
+}
 
-export default CheckboxForm;
+export default CheckboxForm

@@ -1,9 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import BaseTabs from '@material-ui/core/Tabs';
-import BaseTab from '@material-ui/core/Tab';
-import { childrenType } from '../../types';
-import Box from './Box';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { childrenType } from 'types'
+import BaseTabs from '@material-ui/core/Tabs'
+import BaseTab from '@material-ui/core/Tab'
+import Box from './Box'
 
 function Tabs({
   children,
@@ -27,10 +27,10 @@ function Tabs({
     >
       {children}
     </BaseTabs>
-  );
+  )
 }
 
-Tabs.muiName = 'Tabs';
+Tabs.muiName = 'Tabs'
 
 Tabs.propTypes = {
   children: childrenType.isRequired,
@@ -41,7 +41,7 @@ Tabs.propTypes = {
   centered: PropTypes.bool,
   onChange: PropTypes.func.isRequired,
   testid: PropTypes.string,
-};
+}
 
 Tabs.defaultProps = {
   indicatorColor: 'primary',
@@ -49,7 +49,7 @@ Tabs.defaultProps = {
   variant: 'standard',
   centered: false,
   testid: null,
-};
+}
 
 function Tab({ label, value, disabled, className, onChange }) {
   return (
@@ -61,7 +61,7 @@ function Tab({ label, value, disabled, className, onChange }) {
       data-testid={`tab-${label.toLowerCase().split(' ').join('-')}`}
       onChange={onChange}
     />
-  );
+  )
 }
 
 Tab.propTypes = {
@@ -70,13 +70,13 @@ Tab.propTypes = {
   disabled: PropTypes.bool,
   className: PropTypes.string,
   onChange: PropTypes.func,
-};
+}
 
 Tab.defaultProps = {
   disabled: false,
   className: null,
   onChange: undefined,
-};
+}
 
 function TabPanel({ children, value, index, className, testid }) {
   return (
@@ -90,7 +90,7 @@ function TabPanel({ children, value, index, className, testid }) {
     >
       {value === index && <Box>{children}</Box>}
     </div>
-  );
+  )
 }
 
 TabPanel.propTypes = {
@@ -99,14 +99,14 @@ TabPanel.propTypes = {
   value: PropTypes.string.isRequired,
   className: PropTypes.string,
   testid: PropTypes.string,
-};
+}
 
 TabPanel.defaultProps = {
   testid: null,
   className: null,
-};
+}
 
-Tabs.Tab = Tab;
-Tabs.TabPanel = TabPanel;
+Tabs.Tab = Tab
+Tabs.TabPanel = TabPanel
 
-export default Tabs;
+export default Tabs

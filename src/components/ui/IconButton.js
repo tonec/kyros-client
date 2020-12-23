@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
-import PropTypes from 'prop-types';
-import BaseIconButton from '@material-ui/core/IconButton';
-import { childrenType } from '../../types';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { childrenType } from 'types'
+import BaseIconButton from '@material-ui/core/IconButton'
 
 function IconButton({ children, color, className, testid, onClick }) {
   return (
@@ -14,7 +14,7 @@ function IconButton({ children, color, className, testid, onClick }) {
     >
       {children}
     </BaseIconButton>
-  );
+  )
 }
 
 IconButton.propTypes = {
@@ -23,13 +23,13 @@ IconButton.propTypes = {
   className: PropTypes.string,
   testid: PropTypes.string,
   onClick: PropTypes.func,
-};
+}
 
 IconButton.defaultProps = {
   color: 'default',
   className: null,
   testid: null,
   onClick: null,
-};
+}
 
-export default IconButton;
+export default IconButton

@@ -1,15 +1,15 @@
-import React from 'react';
-import PropTypes, { arrayOf, node } from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import BaseDialog from '@material-ui/core/Dialog';
-import BaseDialogTitle from '@material-ui/core/DialogTitle';
-import BaseDialogContent from '@material-ui/core/DialogContent';
-import BaseDialogContentText from '@material-ui/core/DialogContentText';
-import BaseDialogActions from '@material-ui/core/DialogActions';
-import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
-import Typography from '@material-ui/core/Typography';
-import { childrenType } from '../../types';
+import React from 'react'
+import PropTypes, { arrayOf, node } from 'prop-types'
+import { makeStyles } from '@material-ui/core/styles'
+import BaseDialog from '@material-ui/core/Dialog'
+import BaseDialogTitle from '@material-ui/core/DialogTitle'
+import BaseDialogContent from '@material-ui/core/DialogContent'
+import BaseDialogContentText from '@material-ui/core/DialogContentText'
+import BaseDialogActions from '@material-ui/core/DialogActions'
+import IconButton from '@material-ui/core/IconButton'
+import CloseIcon from '@material-ui/icons/Close'
+import Typography from '@material-ui/core/Typography'
+import { childrenType } from 'types'
 
 const useStylesTitle = makeStyles(theme => ({
   root: {
@@ -22,10 +22,10 @@ const useStylesTitle = makeStyles(theme => ({
     top: theme.spacing(0.5),
     color: theme.palette.grey[500],
   },
-}));
+}))
 
 function DialogTitle({ children, onClose, ...props }) {
-  const classes = useStylesTitle();
+  const classes = useStylesTitle()
 
   return (
     // eslint-disable-next-line react/jsx-props-no-spreading
@@ -41,22 +41,22 @@ function DialogTitle({ children, onClose, ...props }) {
         </IconButton>
       ) : null}
     </BaseDialogTitle>
-  );
+  )
 }
 
 DialogTitle.propTypes = {
   children: PropTypes.oneOfType([arrayOf(node), node]).isRequired,
   onClose: PropTypes.func.isRequired,
-};
+}
 
 const useStylesDialog = makeStyles({
   content: {
     minWidth: 324,
   },
-});
+})
 
 function Dialog({ children, title, open, testid, onClose }) {
-  const classes = useStylesDialog();
+  const classes = useStylesDialog()
 
   return (
     <BaseDialog
@@ -74,7 +74,7 @@ function Dialog({ children, title, open, testid, onClose }) {
         {children}
       </BaseDialogContent>
     </BaseDialog>
-  );
+  )
 }
 
 Dialog.propTypes = {
@@ -83,14 +83,14 @@ Dialog.propTypes = {
   onClose: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,
   testid: PropTypes.string,
-};
+}
 
 Dialog.defaultProps = {
   title: null,
   testid: null,
-};
+}
 
-Dialog.DialogContentText = BaseDialogContentText;
-Dialog.DialogActions = BaseDialogActions;
+Dialog.DialogContentText = BaseDialogContentText
+Dialog.DialogActions = BaseDialogActions
 
-export default Dialog;
+export default Dialog

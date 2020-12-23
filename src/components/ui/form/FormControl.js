@@ -1,10 +1,10 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import { childrenType } from '../../types';
-import { getColor } from '../../utils';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { childrenType } from 'types'
+import { makeStyles } from '@material-ui/core/styles'
+import { getColor } from 'utils'
 
-const width = ({ fullWidth }) => (fullWidth ? '100%' : 'auto');
+const width = ({ fullWidth }) => (fullWidth ? '100%' : 'auto')
 
 const useStyles = makeStyles(theme => ({
   control: {
@@ -21,19 +21,19 @@ const useStyles = makeStyles(theme => ({
       width,
       borderColor: ({ disabled, isError }) => {
         if (disabled) {
-          return getColor(theme, 'disabled');
+          return getColor(theme, 'disabled')
         }
 
-        return isError ? getColor(theme, 'error') : 'initial';
+        return isError ? getColor(theme, 'error') : 'initial'
       },
     },
   },
-}));
+}))
 
 function FormControl({ children, fullWidth, disabled, isError }) {
-  const classes = useStyles({ fullWidth, disabled, isError });
+  const classes = useStyles({ fullWidth, disabled, isError })
 
-  return <div className={classes.control}>{children}</div>;
+  return <div className={classes.control}>{children}</div>
 }
 
 FormControl.propTypes = {
@@ -41,12 +41,12 @@ FormControl.propTypes = {
   disabled: PropTypes.bool,
   isError: PropTypes.bool,
   fullWidth: PropTypes.bool,
-};
+}
 
 FormControl.defaultProps = {
   disabled: false,
   isError: false,
   fullWidth: false,
-};
+}
 
-export default FormControl;
+export default FormControl

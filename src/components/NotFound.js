@@ -1,6 +1,6 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Box, Card, Container, Grid, Typography } from './ui';
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { Box, Card, Container, Grid, Typography } from './ui'
 
 function NotFound() {
   return (
@@ -16,7 +16,7 @@ function NotFound() {
         </Grid>
       </Grid>
     </Container>
-  );
+  )
 }
 
-export default NotFound;
+export default NotFound

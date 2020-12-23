@@ -1,9 +1,9 @@
-import React, { forwardRef } from 'react';
-import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import ConditionalWrap from './ConditionalWrap';
-import FormControl from './FormControl';
-import Button from './Button';
+import React, { forwardRef } from 'react'
+import PropTypes from 'prop-types'
+import { makeStyles } from '@material-ui/core/styles'
+import ConditionalWrap from '../ConditionalWrap'
+import FormControl from './FormControl'
+import Button from '../Button'
 
 const useStyles = makeStyles(theme => ({
   control: {
@@ -21,11 +21,11 @@ const useStyles = makeStyles(theme => ({
     position: 'absolute',
     zIndex: -1,
   },
-}));
+}))
 
 const InputFile = forwardRef(
   ({ buttonText, directory, isWrapped, disabled, onChange }, ref) => {
-    const classes = useStyles();
+    const classes = useStyles()
 
     return (
       <ConditionalWrap
@@ -51,9 +51,9 @@ const InputFile = forwardRef(
           />
         </Button>
       </ConditionalWrap>
-    );
+    )
   },
-);
+)
 
 InputFile.propTypes = {
   buttonText: PropTypes.string,
@@ -61,13 +61,13 @@ InputFile.propTypes = {
   isWrapped: PropTypes.bool,
   disabled: PropTypes.bool,
   onChange: PropTypes.func.isRequired,
-};
+}
 
 InputFile.defaultProps = {
   buttonText: 'Choose file',
   directory: 'false',
   isWrapped: false,
   disabled: false,
-};
+}
 
-export default InputFile;
+export default InputFile

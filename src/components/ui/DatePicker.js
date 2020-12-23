@@ -1,13 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { isValid } from 'date-fns';
-import DateFnsUtils from '@date-io/date-fns';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { isValid } from 'date-fns'
+import DateFnsUtils from '@date-io/date-fns'
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
-} from '@material-ui/pickers';
-import { useLinkType } from '../../types';
-import InputLabel from './InputLabel';
+} from '@material-ui/pickers'
+import { useLinkType } from 'types'
+import InputLabel from './form/InputLabel'
 
 function DatePicker({
   label,
@@ -19,9 +19,9 @@ function DatePicker({
 }) {
   const handleDateChange = date => {
     if (isValid(date)) {
-      $value.set(date);
+      $value.set(date)
     }
-  };
+  }
 
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -41,7 +41,7 @@ function DatePicker({
         }}
       />
     </MuiPickersUtilsProvider>
-  );
+  )
 }
 
 DatePicker.propTypes = {
@@ -51,7 +51,7 @@ DatePicker.propTypes = {
   format: PropTypes.string,
   margin: PropTypes.string,
   disableToolbar: PropTypes.bool,
-};
+}
 
 DatePicker.defaultProps = {
   label: null,
@@ -60,6 +60,6 @@ DatePicker.defaultProps = {
   format: 'yyyy-MM-dd',
   margin: 'normal',
   disableToolbar: true,
-};
+}
 
-export default DatePicker;
+export default DatePicker

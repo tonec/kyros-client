@@ -1,7 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import BaseTypography from '@material-ui/core/Typography';
-import { childrenType } from '../../types';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { childrenType } from 'types'
+import BaseTypography from '@material-ui/core/Typography'
 
 function Typography({
   children,
@@ -31,7 +31,7 @@ function Typography({
     >
       {children}
     </BaseTypography>
-  );
+  )
 }
 
 Typography.propTypes = {
@@ -46,7 +46,7 @@ Typography.propTypes = {
   component: PropTypes.string,
   className: PropTypes.string,
   testid: PropTypes.string,
-};
+}
 
 Typography.defaultProps = {
   align: 'inherit',
@@ -59,6 +59,6 @@ Typography.defaultProps = {
   component: null,
   className: '',
   testid: '',
-};
+}
 
-export default Typography;
+export default Typography

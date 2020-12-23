@@ -1,7 +1,7 @@
-import React from 'react';
-import PropTypes, { string, bool, number } from 'prop-types';
-import BaseGrid from '@material-ui/core/Grid';
-import { childrenType } from '../../types';
+import React from 'react'
+import PropTypes, { string, bool, number } from 'prop-types'
+import { childrenType } from 'types'
+import BaseGrid from '@material-ui/core/Grid'
 
 function Grid({
   children,
@@ -30,7 +30,7 @@ function Grid({
       >
         {children}
       </BaseGrid>
-    );
+    )
   }
 
   return (
@@ -45,7 +45,7 @@ function Grid({
     >
       {children}
     </BaseGrid>
-  );
+  )
 }
 
 Grid.propTypes = {
@@ -62,7 +62,7 @@ Grid.propTypes = {
   lg: PropTypes.oneOfType([string, bool, number]),
   xl: PropTypes.oneOfType([string, bool, number]),
   className: PropTypes.string,
-};
+}
 
 Grid.defaultProps = {
   container: false,
@@ -77,6 +77,6 @@ Grid.defaultProps = {
   lg: false,
   xl: false,
   className: '',
-};
+}
 
-export default Grid;
+export default Grid
