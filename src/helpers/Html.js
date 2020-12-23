@@ -1,13 +1,13 @@
 import registerSW from './registerSW'
 
-export default ({
+export default function ({
   content = '',
   links = '',
   styles = '',
   scripts = '',
   initialState = '',
   helmet,
-}) => {
+}) {
   return `
     <!DOCTYPE html>
     <style>
@@ -17,6 +17,7 @@ export default ({
       <head>
         ${helmet.title.toString()}
         ${helmet.meta.toString()}
+        <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="manifest" href="/manifest.json" />
         ${process.env.NODE_ENV !== 'development' ? registerSW() : ''}
