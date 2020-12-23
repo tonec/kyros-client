@@ -36,7 +36,7 @@
     "grommet": "^2.16.2",
     "grommet-icons": "^4.5.0",
     "helmet": "^3.23.3",
-    "history": "^5.0.0",
+    "history": "^4.10.1",
     "immutable": "^4.0.0-rc.12",
     "lodash": "^4.17.20",
     "material-ui-popup-state": "^1.7.1",
