@@ -10,9 +10,11 @@ import { ConnectedRouter } from 'connected-react-router'
 import { Provider } from 'react-redux'
 import { trigger } from 'redial'
 import { HelmetProvider } from 'react-helmet-async'
+import { ThemeProvider } from '@material-ui/core/styles'
 import createStore from 'redux/store'
 import asyncMatchRoutes from 'helpers/asyncMatchRoutes'
 import { AsyncConnect } from 'components'
+import theme from 'theme'
 import routes from './routes'
 
 window.addEventListener('unhandledrejection', (err, promise) => {
@@ -50,7 +52,7 @@ const hydrate = async () => {
       <HelmetProvider>
         <ConnectedRouter history={history}>
           <AsyncConnect routes={routes} store={store}>
-            {renderRoutes(routes)}
+            <ThemeProvider theme={theme}>{renderRoutes(routes)}</ThemeProvider>
           </AsyncConnect>
         </ConnectedRouter>
       </HelmetProvider>

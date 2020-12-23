@@ -1,0 +1,12 @@
+export { default as AddIcon } from './AddIcon';
+export { default as AgriIcon } from './AgriIcon';
+export { default as AnalyticsIcon } from './AnalyticsIcon';
+export { default as AreaIcon } from './AreaIcon';
+export { default as ArtiIcon } from './ArtiIcon';
+export { default as DownIcon } from './DownIcon';
+export { default as EditIcon } from './EditIcon';
+export { default as ForestIcon } from './ForestIcon';
+export { default as MapIcon } from './MapIcon';
+export { default as SearchIcon } from './SearchIcon';
+export { default as UpIcon } from './UpIcon';
+export { default as WetlandsIcon } from './WetlandsIcon';

@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { childrenType } from 'types';
-import createChainedFunction from 'utils/createChainedFunction';
+import { childrenType } from '../../types';
+import createChainedFunction from '../../utils/createChainedFunction';
 
 function isTrivialHref(href) {
   return !href || href.trim() === '#';

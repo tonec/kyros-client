@@ -1,13 +1,20 @@
 import React from 'react'
-import { Centered } from 'components'
-import LoginFormContainer from './LoginFormContainer'
+import { Card, Heading } from 'components'
+import LoginForm from './LoginForm'
 
-function Login() {
+function LoginFormContainer() {
+  const handleOnSubmit = () => {
+    console.log('submit')
+  }
+
   return (
-    <Centered title="Log in">
-      <LoginFormContainer />
-    </Centered>
+    <Card>
+      <Heading level={1} size="xsmall">
+        Log in
+      </Heading>
+      <LoginForm handleOnSubmit={handleOnSubmit} />
+    </Card>
   )
 }
 
-export default Login
+export default LoginFormContainer

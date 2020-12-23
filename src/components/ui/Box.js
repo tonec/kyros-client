@@ -1,52 +1,35 @@
-import React from 'react'
-import PropTypes, { object, string } from 'prop-types'
-import { childrenType } from 'types'
-import { Box as BaseBox } from 'grommet'
+/* eslint-disable react/jsx-props-no-spreading */
+import React from 'react';
+import PropTypes from 'prop-types';
+import BaseBox from '@material-ui/core/Box';
+import { childrenType } from '../../types';
 
-function Box({
-  tag,
-  direction,
-  align,
-  justify,
-  background,
-  pad,
-  elevation,
-  children,
-}) {
+function Box({ children, clone, component, className, spacing }) {
   return (
     <BaseBox
-      tag={tag}
-      direction={direction}
-      align={align}
-      justify={justify}
-      background={background}
-      pad={pad}
-      elevation={elevation}
+      clone={clone}
+      component={component}
+      className={className}
+      {...spacing}
     >
       {children}
     </BaseBox>
-  )
+  );
 }
 
 Box.propTypes = {
   children: childrenType.isRequired,
-  tag: PropTypes.string,
-  direction: PropTypes.string,
-  align: PropTypes.string,
-  justify: PropTypes.string,
-  background: PropTypes.string,
-  pad: PropTypes.oneOfType([string, object]),
-  elevation: PropTypes.string,
-}
+  clone: PropTypes.bool,
+  component: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
+  className: PropTypes.string,
+  spacing: PropTypes.oneOfType([PropTypes.number, PropTypes.object]),
+};
 
 Box.defaultProps = {
-  tag: null,
-  direction: null,
-  align: null,
-  justify: null,
-  background: null,
-  pad: null,
-  elevation: null,
-}
+  clone: false,
+  component: 'div',
+  className: '',
+  spacing: {},
+};
 
-export default Box
+export default Box;

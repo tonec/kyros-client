@@ -6,7 +6,7 @@ export default ({
   styles = '',
   scripts = '',
   initialState = '',
-  helmet
+  helmet,
 }) => {
   return `
     <!DOCTYPE html>
@@ -21,11 +21,14 @@ export default ({
         <link rel="manifest" href="/manifest.json" />
         ${process.env.NODE_ENV !== 'development' ? registerSW() : ''}
         ${links}
-        ${styles}
+        <style id="jss-server-side">${styles}</style>
       </head>
       <body>
         <div id="content">${content}</div>
-        ${initialState && `<script>window.INITIAL_STATE = ${initialState}</script>`}
+        ${
+          initialState &&
+          `<script>window.INITIAL_STATE = ${initialState}</script>`
+        }
         ${scripts}
       </body>
     </html>

@@ -1,6 +1,7 @@
 export * as constants from './constants'
 export { default as createChainedFunction } from './createChainedFunction'
 export { default as fk } from './fk'
+export { default as getColor } from './getColor'
 export { default as isEmpty } from './isEmpty'
 export { default as keyNotNull } from './keyNotNull'
 export * as mutators from './mutators'

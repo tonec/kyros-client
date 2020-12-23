@@ -1,7 +1,7 @@
 import React from 'react'
 import { func } from 'prop-types'
 import { Form } from 'react-final-form'
-import { InputField } from 'components/Form'
+import { TextInputForm } from 'components/ui'
 import validate from './validate'
 
 function LoginForm({ handleOnSubmit }) {
@@ -12,7 +12,7 @@ function LoginForm({ handleOnSubmit }) {
       render={({ handleSubmit }) => {
         return (
           <form onSubmit={handleSubmit}>
-            <InputField
+            <TextInputForm
               label="Email"
               name="email"
               type="text"
@@ -20,7 +20,7 @@ function LoginForm({ handleOnSubmit }) {
               autoCapitalize="off"
               validate={validate.email}
             />
-            <InputField
+            <TextInputForm
               label="Password"
               name="password"
               type="password"

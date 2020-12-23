@@ -1,23 +1,22 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Box, Card, Container, Grid, Typography } from './ui';
 
-function NotFound({ staticContext }) {
-  staticContext.notFound = true
-
+function NotFound() {
   return (
-    <div className="container">
-      <h1>Doh! 404!</h1>
-      <p>These are not the droids you are looking for!</p>
-    </div>
-  )
+    <Container maxWidth="sm">
+      <Grid container spacing={3}>
+        <Grid item xs={12}>
+          <Box spacing={{ m: 4 }}>
+            <Card>
+              <Typography variant="h1">Page not found</Typography>
+              <Link to="/">Go to the home page</Link>
+            </Card>
+          </Box>
+        </Grid>
+      </Grid>
+    </Container>
+  );
 }
 
-NotFound.propTypes = {
-  staticContext: PropTypes.object,
-}
-
-NotFound.defaultProps = {
-  staticContext: {},
-}
-
-export default NotFound
+export default NotFound;
