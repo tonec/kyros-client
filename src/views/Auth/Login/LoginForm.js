@@ -1,6 +1,11 @@
 import React from 'react'
 import { func } from 'prop-types'
-import { Form, InputField, CheckboxField } from 'components/ui/form'
+import {
+  Form,
+  InputField,
+  CheckboxField,
+  SelectField,
+} from 'components/ui/form'
 import validate from './validate'
 
 function LoginForm({ handleOnSubmit }) {
@@ -26,6 +31,16 @@ function LoginForm({ handleOnSubmit }) {
               validate={validate.password}
             />
             <CheckboxField name="checky" label="Checky" />
+            <SelectField
+              name="Selecty"
+              label="Selec"
+              options={{
+                arti: 'Artificial surfaces',
+                agri: 'Agricultural areas',
+                forest: 'Forest & semi-natural areas',
+                wetlands: 'Wetlands',
+              }}
+            />
             {JSON.stringify(values, 0, 2)}
           </form>
         )

@@ -17,11 +17,11 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-function SelectInputFormWrap(props) {
+function SelectForm(props) {
   const classes = useStyles()
 
   const {
-    input: { name, value, onChange, ...restInput },
+    input: { name, ...restInput },
     meta,
     label,
     options,
@@ -37,10 +37,8 @@ function SelectInputFormWrap(props) {
     <FormControl fullWidth error={isError} className={classes.control}>
       <BaseSelect
         name={name}
-        value={value}
         inputProps={restInput}
         variant="outlined"
-        onChange={onChange}
         {...rest}
       >
         {Object.keys(options).map(option => {
@@ -59,7 +57,7 @@ function SelectInputFormWrap(props) {
   )
 }
 
-SelectInputFormWrap.propTypes = {
+SelectForm.propTypes = {
   label: PropTypes.string,
   input: formInputType.isRequired,
   meta: formMetaType.isRequired,
@@ -67,9 +65,9 @@ SelectInputFormWrap.propTypes = {
   icons: PropTypes.shape({}),
 }
 
-SelectInputFormWrap.defaultProps = {
+SelectForm.defaultProps = {
   label: null,
   icons: {},
 }
 
-export default SelectInputFormWrap
+export default SelectForm

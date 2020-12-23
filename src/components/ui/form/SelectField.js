@@ -3,9 +3,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Field } from 'react-final-form'
 import InputLabel from './InputLabel'
-import SelectInputFormWrap from './SelectInputFormWrap'
+import Select from './Select'
 
-function SelectInputForm({ name, label, validate, fieldProps, ...rest }) {
+function SelectField({ name, label, validate, fieldProps, ...rest }) {
   return (
     <>
       {label && <InputLabel>{label}</InputLabel>}
@@ -14,24 +14,24 @@ function SelectInputForm({ name, label, validate, fieldProps, ...rest }) {
         validate={validate}
         {...fieldProps}
         render={({ input, meta }) => (
-          <SelectInputFormWrap input={input} meta={meta} {...rest} />
+          <Select input={input} meta={meta} {...rest} />
         )}
       />
     </>
   )
 }
 
-SelectInputForm.propTypes = {
+SelectField.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string,
   validate: PropTypes.func,
   fieldProps: PropTypes.shape({}),
 }
 
-SelectInputForm.defaultProps = {
+SelectField.defaultProps = {
   label: null,
   validate: null,
   fieldProps: null,
 }
 
-export default SelectInputForm
+export default SelectField

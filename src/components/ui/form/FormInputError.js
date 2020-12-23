@@ -10,7 +10,7 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(0.5, 0),
     color: theme.palette.error.main,
 
-    '&>svg': {
+    '& > svg': {
       verticalAlign: 'middle',
       marginRight: 6,
     },
