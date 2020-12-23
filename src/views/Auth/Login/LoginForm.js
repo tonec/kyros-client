@@ -1,7 +1,6 @@
 import React from 'react'
 import { func } from 'prop-types'
-import { Form } from 'react-final-form'
-import { TextInputForm } from 'components/ui/form'
+import { Form, TextInputForm } from 'components/ui/form'
 import validate from './validate'
 
 function LoginForm({ handleOnSubmit }) {

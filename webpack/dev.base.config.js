@@ -10,12 +10,9 @@ module.exports = {
   context: path.resolve(__dirname, '..'),
 
   resolve: {
-    modules: [
-      'src',
-      'node_modules'
-    ],
+    modules: ['src', 'node_modules'],
     extensions: ['.json', '.js'],
-    alias: { 'react-dom': '@hot-loader/react-dom' }
+    alias: { 'react-dom': '@hot-loader/react-dom' },
   },
 
   devtool: 'inline-source-map',
@@ -26,7 +23,7 @@ module.exports = {
 
       const blockedFiles = [
         'node_modules/express/lib/view.js',
-        'node_modules/require_optional/index.js'
+        'node_modules/require_optional/index.js',
       ]
 
       blockedFiles.forEach(modulePath => {
@@ -36,7 +33,7 @@ module.exports = {
       })
 
       return block
-    }
+    },
   },
 
   module: {
@@ -44,7 +41,7 @@ module.exports = {
       {
         test: /\.js?$/,
         loader: 'babel-loader',
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
       {
         test: /\.(css)$/,
@@ -53,20 +50,20 @@ module.exports = {
             loader: MiniCssExtractPlugin.loader,
             options: {
               publicPath: config.paths.PUBLIC,
-              hmr: true
-            }
+              hmr: true,
+            },
           },
-          'css-loader'
-        ]
+          'css-loader',
+        ],
       },
       {
         test: /\.(woff|woff2)$/,
         loader: 'file-loader',
         options: {
           name: 'fonts/[name].[ext]',
-        }
-      }
-    ]
+        },
+      },
+    ],
   },
 
   plugins: [
@@ -77,7 +74,7 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: '[name].css',
       chunkFilename: '[id].css',
-      ignoreOrder: false
-    })
-  ]
+      ignoreOrder: false,
+    }),
+  ],
 }
