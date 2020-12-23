@@ -1,4 +1,4 @@
-export { default as CheckboxForm } from './CheckboxForm'
+export { default as CheckboxField } from './CheckboxField'
 export { default as Form } from './Form'
 export { default as FormControl } from './FormControl'
 export { default as FormGroup } from './FormGroup'

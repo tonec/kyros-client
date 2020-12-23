@@ -13,16 +13,14 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-function InputForm(props) {
+function InputForm({
+  input: { name, ...restInput },
+  meta,
+  label,
+  disabled,
+  ...rest
+}) {
   const classes = useStyles()
-
-  const {
-    input: { name, ...restInput },
-    meta,
-    label,
-    disabled,
-    ...rest
-  } = props
 
   const { error, touched } = meta
 

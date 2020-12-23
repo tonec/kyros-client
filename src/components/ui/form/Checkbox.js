@@ -3,9 +3,7 @@ import PropTypes from 'prop-types'
 import BaseCheckbox from '@material-ui/core/Checkbox'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 
-function CheckboxFormWrap(props) {
-  const { input, meta, label, ...rest } = props
-
+function CheckboxForm({ input, label, ...rest }) {
   return (
     <FormControlLabel
       label={label}
@@ -14,14 +12,13 @@ function CheckboxFormWrap(props) {
   )
 }
 
-CheckboxFormWrap.propTypes = {
+CheckboxForm.propTypes = {
   label: PropTypes.string,
   input: PropTypes.object.isRequired,
-  meta: PropTypes.object.isRequired,
 }
 
-CheckboxFormWrap.defaultProps = {
+CheckboxForm.defaultProps = {
   label: null,
 }
 
-export default CheckboxFormWrap
+export default CheckboxForm
