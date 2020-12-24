@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import cx from 'clsx'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from 'styles'
 import BaseDivider from '@material-ui/core/Divider'
 
 const useStyles = makeStyles(theme => ({

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { childrenType, maxWidthType } from 'types'
 import cx from 'clsx'
 import Helmet from 'react-helmet'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from 'styles'
 import { ConditionalWrap, Container } from '../ui'
 
 const useStyles = makeStyles({

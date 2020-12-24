@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes, { arrayOf, node } from 'prop-types'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from 'styles'
 import BaseDialog from '@material-ui/core/Dialog'
 import BaseDialogTitle from '@material-ui/core/DialogTitle'
 import BaseDialogContent from '@material-ui/core/DialogContent'

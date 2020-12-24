@@ -1,8 +1,8 @@
-import React, { useCallback } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import * as actions from '../../context/actions';
-import { useGlobalStore } from '../../context/GlobalStore';
-import Flash from './Flash';
+import React, { useCallback } from 'react'
+import { makeStyles } from 'styles'
+import * as actions from '../../context/actions'
+import { useGlobalStore } from '../../context/GlobalStore'
+import Flash from './Flash'
 
 const useStyles = makeStyles({
   container: {
@@ -14,19 +14,19 @@ const useStyles = makeStyles({
     maxWidth: 420,
     height: 0,
   },
-});
+})
 
 function FlashContainer() {
   const {
     dispatch,
     flash: { visible, status, message, dismissable, timeout },
-  } = useGlobalStore();
+  } = useGlobalStore()
 
-  const classes = useStyles();
+  const classes = useStyles()
 
   const hideFlash = useCallback(() => {
-    dispatch({ type: actions.HIDE_FLASH });
-  }, [dispatch]);
+    dispatch({ type: actions.HIDE_FLASH })
+  }, [dispatch])
 
   return (
     <div className={classes.container}>
@@ -41,7 +41,7 @@ function FlashContainer() {
         />
       )}
     </div>
-  );
+  )
 }
 
-export default FlashContainer;
+export default FlashContainer

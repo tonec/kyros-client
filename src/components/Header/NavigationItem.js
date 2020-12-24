@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { useHistory } from 'react-router-dom'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from 'styles'
 import { Anchor } from '../ui'
 
 const useStyles = makeStyles(theme => ({

@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { useLinkType } from 'types'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from 'styles'
 import BaseInput from '@material-ui/core/OutlinedInput'
 import ConditionalWrap from './ConditionalWrap'
 import FormControl from './form/FormControl'

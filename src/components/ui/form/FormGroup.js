@@ -1,6 +1,6 @@
 import React from 'react'
 import { childrenType } from 'types'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from 'styles'
 import BaseFormGroup from '@material-ui/core/FormGroup'
 
 const useStyles = makeStyles(theme => ({

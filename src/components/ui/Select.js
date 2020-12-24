@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { useLinkType } from 'types'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from 'styles'
 import BaseSelect from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
 import InputLabel from './form/InputLabel'

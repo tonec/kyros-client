@@ -1,7 +1,7 @@
 import React from 'react'
 import { useLocation, useHistory, useParams } from 'react-router-dom'
-import { makeStyles } from '@material-ui/core/styles'
-import { clearAuthData } from '../../utils/sessionStorage'
+import { makeStyles } from 'styles'
+import { clearAuthData } from 'utils/sessionStorage'
 import { Logo } from '../ui'
 import Navigation from './Navigation'
 

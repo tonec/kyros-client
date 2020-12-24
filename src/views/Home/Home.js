@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { appLoaded } from 'redux/modules/app/actions'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from 'styles'
 import { Button } from 'components/ui'
 
 const useStyles = makeStyles({

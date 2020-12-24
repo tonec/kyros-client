@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { childrenType } from 'types'
 import cx from 'clsx'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from 'styles'
 import BaseCard from '@material-ui/core/Card'
 
 const useStyles = makeStyles(theme => ({

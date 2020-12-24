@@ -3,7 +3,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { childrenType } from 'types'
 import cx from 'clsx'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from 'styles'
 import BasePopover from '@material-ui/core/Popover'
 import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state'
 

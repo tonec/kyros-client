@@ -1,8 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { childrenType } from 'types'
-import { makeStyles } from '@material-ui/core/styles'
-import { getColor } from 'utils'
+import { makeStyles, color } from 'styles'
 
 const width = ({ fullWidth }) => (fullWidth ? '100%' : 'auto')
 
@@ -21,10 +20,10 @@ const useStyles = makeStyles(theme => ({
       width,
       borderColor: ({ disabled, isError }) => {
         if (disabled) {
-          return getColor(theme, 'disabled')
+          return color(theme, 'disabled')
         }
 
-        return isError ? getColor(theme, 'error') : 'initial'
+        return isError ? color(theme, 'error') : 'initial'
       },
     },
   },

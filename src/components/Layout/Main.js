@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { childrenType, maxWidthType } from 'types'
 import cx from 'clsx'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from 'styles'
 import { ConditionalWrap, Container } from '../ui'
 import Header from '../Header/Header'
 

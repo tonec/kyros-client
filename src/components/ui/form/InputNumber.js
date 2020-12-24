@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import PropTypes, { oneOfType, string, func, number } from 'prop-types'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from 'styles'
 import BaseInput from '@material-ui/core/TextField'
 import ConditionalWrap from '../ConditionalWrap'
 import FormControl from './FormControl'

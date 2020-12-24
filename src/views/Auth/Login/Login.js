@@ -1,6 +1,6 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
 import { Card, Typography } from 'components/ui'
+import { makeStyles } from 'styles'
 import LoginForm from './LoginForm'
 
 const useStyles = makeStyles({

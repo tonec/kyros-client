@@ -1,5 +1,4 @@
-import { makeStyles } from '@material-ui/core/styles';
-import { getColor } from '../../utils';
+import { makeStyles, color } from 'styles'
 
 export default makeStyles(theme => ({
   root: {
@@ -10,7 +9,7 @@ export default makeStyles(theme => ({
     backgroundColor: '#fff',
     borderBottomWidth: 5,
     borderBottomStyle: 'solid',
-    borderBottomColor: ({ status }) => getColor(theme, status),
+    borderBottomColor: ({ status }) => color(theme, status),
     boxShadow: theme.shadows[1],
   },
 
@@ -24,7 +23,7 @@ export default makeStyles(theme => ({
       top: '50%',
       left: theme.spacing(2),
       transform: 'translateY(-50%)',
-      color: ({ status }) => getColor(theme, status),
+      color: ({ status }) => color(theme, status),
     },
   },
 
@@ -41,4 +40,4 @@ export default makeStyles(theme => ({
       cursor: 'pointer',
     },
   },
-}));
+}))

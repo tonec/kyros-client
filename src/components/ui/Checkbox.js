@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from 'styles'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import BaseCheckbox from '@material-ui/core/Checkbox'
 
