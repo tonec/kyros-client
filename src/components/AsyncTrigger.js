@@ -5,7 +5,7 @@ import { withRouter, Route } from 'react-router'
 import { trigger } from 'redial'
 import asyncMatchRoutes from 'helpers/asyncMatchRoutes'
 
-const AsyncConnect = ({ history, location, routes, store, children }) => {
+function AsyncTrigger({ history, location, routes, store, children }) {
   useEffect(() => {
     async function triggerFetch() {
       const { components, match, params } = await asyncMatchRoutes(
@@ -32,7 +32,7 @@ const AsyncConnect = ({ history, location, routes, store, children }) => {
   return <Route location={location} render={() => children} />
 }
 
-AsyncConnect.propTypes = {
+AsyncTrigger.propTypes = {
   children: childrenType.isRequired,
   history: PropTypes.objectOf(PropTypes.any).isRequired,
   location: PropTypes.objectOf(PropTypes.any).isRequired,
@@ -40,4 +40,4 @@ AsyncConnect.propTypes = {
   store: PropTypes.object.isRequired,
 }
 
-export default withRouter(AsyncConnect)
+export default withRouter(AsyncTrigger)

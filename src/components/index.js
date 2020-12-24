@@ -13,6 +13,6 @@ export { default as Main } from './Layout/Main'
 
 // Feature
 // export { default as AppBar } from './AppBar'
-export { default as AsyncConnect } from './AsyncConnect'
+export { default as AsyncTrigger } from './AsyncTrigger'
 // export { default as Header } from './Header'
 export { default as NotFound } from './NotFound'
