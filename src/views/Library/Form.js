@@ -46,6 +46,7 @@ function FormLibrary() {
                   label="Password"
                   name="password"
                   type="password"
+                  placeholder="Password"
                   autoComplete="current-password"
                   validate={validate.password}
                 />
@@ -56,7 +57,8 @@ function FormLibrary() {
 
                 <SelectField
                   name="Selecty"
-                  label="Selec"
+                  label="Select"
+                  value=""
                   options={{
                     arti: 'Artificial surfaces',
                     agri: 'Agricultural areas',

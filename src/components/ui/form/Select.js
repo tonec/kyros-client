@@ -51,8 +51,19 @@ function SelectForm(props) {
         name={name}
         inputProps={restInput}
         variant="outlined"
+        displayEmpty
+        renderValue={selected => {
+          if (selected.length === 0) {
+            return <em>Select...</em>
+          }
+
+          return selected
+        }}
         {...rest}
       >
+        <MenuItem value="">
+          <em>None</em>
+        </MenuItem>
         {Object.keys(options).map(option => {
           const Icon = icons[option]
 
