@@ -2,12 +2,15 @@ import { useEffect } from 'react'
 import { object } from 'prop-types'
 import { renderRoutes } from 'react-router-config'
 import { usePrevious } from 'hooks'
+import { useTheme, setTheme } from 'styles'
 
 import './assets/stylesheets/global.css'
 import './assets/stylesheets/reset.css'
 
 const App = ({ location, route }) => {
   const prevPathname = usePrevious(location.pathname)
+
+  setTheme(useTheme())
 
   useEffect(() => {
     const jssStyles = document.querySelector('#jss-server-side')

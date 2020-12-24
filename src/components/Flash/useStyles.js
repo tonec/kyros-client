@@ -9,7 +9,7 @@ export default makeStyles(theme => ({
     backgroundColor: '#fff',
     borderBottomWidth: 5,
     borderBottomStyle: 'solid',
-    borderBottomColor: ({ status }) => color(theme, status),
+    borderBottomColor: ({ status }) => color(status),
     boxShadow: theme.shadows[1],
   },
 
@@ -23,7 +23,7 @@ export default makeStyles(theme => ({
       top: '50%',
       left: theme.spacing(2),
       transform: 'translateY(-50%)',
-      color: ({ status }) => color(theme, status),
+      color: ({ status }) => color(status),
     },
   },
 

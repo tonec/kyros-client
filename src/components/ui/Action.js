@@ -33,7 +33,7 @@ const useStyles = makeStyles(theme => {
         if (disabled) {
           return theme.palette.grey[300]
         }
-        return variant === 'primary' ? color(theme, 'primary') : '#f9f9f9'
+        return variant === 'primary' ? color('primary') : '#f9f9f9'
       },
 
       '&:hover': {
@@ -41,9 +41,7 @@ const useStyles = makeStyles(theme => {
           if (disabled) {
             return theme.palette.grey[500]
           }
-          return variant === 'primary'
-            ? color(theme, 'white')
-            : color(theme, 'primary.dark')
+          return variant === 'primary' ? color('white') : color('primary.dark')
         },
       },
     },

@@ -20,10 +20,10 @@ const useStyles = makeStyles(theme => ({
       width,
       borderColor: ({ disabled, isError }) => {
         if (disabled) {
-          return color(theme, 'disabled')
+          return color('disabled')
         }
 
-        return isError ? color(theme, 'error') : 'initial'
+        return isError ? color('error') : 'initial'
       },
     },
   },

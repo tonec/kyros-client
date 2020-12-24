@@ -1,4 +1,10 @@
-export default (theme, variant) => {
+let theme = null
+
+export const setTheme = th => {
+  theme = th
+}
+
+export default variant => {
   switch (variant) {
     case 'primary':
       return theme.palette.primary.main
