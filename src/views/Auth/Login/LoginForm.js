@@ -21,13 +21,14 @@ function LoginForm({ handleOnSubmit }) {
               name="email"
               type="text"
               placeholder="Email"
-              autoCapitalize="off"
+              autoComplete="username"
               validate={validate.email}
             />
             <InputField
               label="Password"
               name="password"
               type="password"
+              autoComplete="current-password"
               validate={validate.password}
             />
             <CheckboxField name="checky" label="Checky" />
