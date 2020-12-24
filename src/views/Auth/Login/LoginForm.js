@@ -32,6 +32,7 @@ function LoginForm({ handleOnSubmit }) {
               validate={validate.password}
             />
             <CheckboxField name="checky" label="Checky" />
+            <CheckboxField name="checky" label="Checky" />
             <SelectField
               name="Selecty"
               label="Selec"
