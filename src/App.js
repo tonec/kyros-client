@@ -20,7 +20,7 @@ const App = ({ location, route }) => {
     if (location.pathname !== prevPathname) {
       window.scrollTo(0, 0)
     }
-  }, [location.pathname])
+  }, [location.pathname, prevPathname])
 
   return renderRoutes(route.routes)
 }
