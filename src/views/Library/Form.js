@@ -1,4 +1,5 @@
 import React from 'react'
+import { makeStyles } from 'styles'
 import {
   Card,
   Centered,
@@ -6,17 +7,26 @@ import {
   Form,
   InputField,
   SelectField,
+  TextareaField,
   RadioField,
 } from 'components'
 
 import validate from './validate'
 
+const useStyles = makeStyles({
+  card: {
+    width: 350,
+  },
+})
+
 function FormLibrary() {
+  const classes = useStyles()
+
   const handleOnSubmit = () => {}
 
   return (
     <Centered title="Form library">
-      <Card>
+      <Card className={classes.card}>
         <Form
           onSubmit={handleOnSubmit}
           initialValues={{ remember: true, checky: 1 }}
@@ -55,9 +65,15 @@ function FormLibrary() {
                   }}
                 />
 
-                <RadioField label="1" name="checky" value="1" />
+                <TextareaField
+                  label="Description needed"
+                  name="description"
+                  validate={validate.password}
+                />
 
-                <RadioField label="2" name="checky" value="2" />
+                <RadioField label="Radio 1" name="radio" value="1" />
+
+                <RadioField label="Radio 2" name="radio" value="2" />
 
                 {JSON.stringify(values, 0, 2)}
               </form>

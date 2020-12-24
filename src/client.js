@@ -11,6 +11,7 @@ import { Provider } from 'react-redux'
 import { trigger } from 'redial'
 import { HelmetProvider } from 'react-helmet-async'
 import { ThemeProvider } from '@material-ui/core/styles'
+import { CssBaseline } from '@material-ui/core'
 import createStore from 'redux/store'
 import asyncMatchRoutes from 'helpers/asyncMatchRoutes'
 import { AsyncTrigger } from 'components'
@@ -51,6 +52,7 @@ const hydrate = async () => {
     <Provider store={store}>
       <HelmetProvider>
         <ConnectedRouter history={history}>
+          <CssBaseline />
           <AsyncTrigger routes={routes} store={store}>
             <ThemeProvider theme={theme}>{renderRoutes(routes)}</ThemeProvider>
           </AsyncTrigger>

@@ -5,6 +5,7 @@ import { renderToString } from 'react-dom/server'
 import { Provider } from 'react-redux'
 import { renderRoutes } from 'react-router-config'
 import { ServerStyleSheets, ThemeProvider } from '@material-ui/core/styles'
+import { CssBaseline } from '@material-ui/core'
 import { ChunkExtractor } from '@loadable/server'
 import serialize from 'serialize-javascript'
 import { HelmetProvider } from 'react-helmet-async'
@@ -30,6 +31,7 @@ export default (req, store, routerContext) => {
       <Provider store={store}>
         <HelmetProvider context={helmetContext}>
           <StaticRouter location={req.originalUrl} context={routerContext}>
+            <CssBaseline />
             <AsyncTrigger routes={routes} store={store}>
               <ThemeProvider theme={theme}>
                 {renderRoutes(routes)}
