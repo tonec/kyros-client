@@ -1,11 +1,6 @@
 import React from 'react'
 import { func } from 'prop-types'
-import {
-  Form,
-  InputField,
-  CheckboxField,
-  SelectField,
-} from 'components/ui/form'
+import { Form, InputField, CheckboxField, SelectField } from 'components'
 import validate from './validate'
 
 function LoginForm({ handleOnSubmit }) {

@@ -1,7 +1,13 @@
 import React from 'react'
 import { Form } from 'react-final-form'
-import { Card, Centered } from 'components'
-import { CheckboxField, InputField, RadioField } from 'components/Form'
+import {
+  Card,
+  Centered,
+  CheckboxField,
+  InputField,
+  // RadioField,
+} from 'components'
+
 import validate from './validate'
 
 function FormLibrary() {
@@ -34,9 +40,9 @@ function FormLibrary() {
 
                 <CheckboxField label="dsdsd" name="remember" />
 
-                <RadioField label="1" name="checky" value="1" />
+                {/* <RadioField label="1" name="checky" value="1" /> */}
 
-                <RadioField label="2" name="checky" value="2" />
+                {/* <RadioField label="2" name="checky" value="2" /> */}
 
                 {JSON.stringify(values, 0, 2)}
               </form>

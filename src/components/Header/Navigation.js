@@ -3,7 +3,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { useLocation } from 'react-router-dom'
 import { makeStyles } from 'styles'
-import { AnalyticsIcon, MapIcon } from '../ui/icons'
 import NavigationItem from './NavigationItem'
 
 const useStyles = makeStyles({
@@ -25,13 +24,13 @@ function Navigation({ id }) {
       <NavigationItem
         label="Map"
         path="/"
-        icon={<MapIcon size={32} />}
+        // icon={<MapIcon size={32} />}
         active={pathname === '/'}
       />
       <NavigationItem
         label="Analytics"
         path="/users"
-        icon={<AnalyticsIcon size={32} />}
+        // icon={<AnalyticsIcon size={32} />}
         active={pathname === '/users'}
       />
     </ul>

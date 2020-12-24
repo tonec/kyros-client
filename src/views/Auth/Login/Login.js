@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Typography } from 'components/ui'
+import { Card, Typography } from 'components'
 import { makeStyles } from 'styles'
 import LoginForm from './LoginForm'
 
