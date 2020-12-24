@@ -3,6 +3,7 @@ import App from 'App'
 // import Home from 'views/Home/Home'
 import Login from 'views/Auth/Login'
 import Users from 'views/Users/UsersLoadable'
+import FormLibrary from 'views/Library/Form'
 
 export default [
   {
@@ -11,9 +12,7 @@ export default [
       { path: '/', exact: true, component: Login },
       // { path: '/login', component: Login },
       { path: '/users', component: Users },
-      // { path: '/clients', component: Users },
-      // { path: '/sometheing', component: Users },
-      // { path: '/form', component: FormLibrary },
+      { path: '/form', component: FormLibrary },
       // { component: NotFound },
     ],
   },

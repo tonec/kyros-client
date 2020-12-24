@@ -43,6 +43,7 @@ export { default as InputField } from './ui/form/InputField'
 export { default as InputFile } from './ui/form/InputFile'
 export { default as InputLabel } from './ui/form/InputLabel'
 export { default as InputNumber } from './ui/form/InputNumber'
+export { default as RadioField } from './ui/form/RadioField'
 export { default as SelectField } from './ui/form/SelectField'
 
 // Common

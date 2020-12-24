@@ -1,11 +1,12 @@
 import React from 'react'
-import { Form } from 'react-final-form'
 import {
   Card,
   Centered,
   CheckboxField,
+  Form,
   InputField,
-  // RadioField,
+  SelectField,
+  RadioField,
 } from 'components'
 
 import validate from './validate'
@@ -27,7 +28,7 @@ function FormLibrary() {
                   name="email"
                   type="text"
                   placeholder="Email"
-                  autoCapitalize="off"
+                  autoComplete="username"
                   validate={validate.email}
                 />
 
@@ -35,14 +36,28 @@ function FormLibrary() {
                   label="Password"
                   name="password"
                   type="password"
+                  autoComplete="current-password"
                   validate={validate.password}
                 />
 
-                <CheckboxField label="dsdsd" name="remember" />
+                <CheckboxField name="checkbox-1" label="Checkbox 1" />
 
-                {/* <RadioField label="1" name="checky" value="1" /> */}
+                <CheckboxField name="checkbox-2" label="Checkbox 2" />
 
-                {/* <RadioField label="2" name="checky" value="2" /> */}
+                <SelectField
+                  name="Selecty"
+                  label="Selec"
+                  options={{
+                    arti: 'Artificial surfaces',
+                    agri: 'Agricultural areas',
+                    forest: 'Forest & semi-natural areas',
+                    wetlands: 'Wetlands',
+                  }}
+                />
+
+                <RadioField label="1" name="checky" value="1" />
+
+                <RadioField label="2" name="checky" value="2" />
 
                 {JSON.stringify(values, 0, 2)}
               </form>
