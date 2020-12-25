@@ -1,9 +1,10 @@
+import get from 'lodash/get'
 import * as actions from './actions'
 
 export const initialState = {
   isFetching: false,
   user: null,
-  auth: null,
+  token: null,
   error: null,
 }
 
@@ -20,7 +21,7 @@ export default function reducer(state = initialState, action = {}) {
         ...state,
         isFetching: false,
         user: action.payload.user,
-        auth: action.payload.auth,
+        token: get(action.payload, 'auth.accessToken', null),
         error: null,
       }
 
@@ -29,7 +30,7 @@ export default function reducer(state = initialState, action = {}) {
         ...state,
         isFetching: false,
         user: null,
-        auth: null,
+        token: null,
         error: action.error && action.payload,
       }
 

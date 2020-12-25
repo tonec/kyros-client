@@ -38,3 +38,9 @@ export const maxWidthType = oneOfType([
   bool,
   oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
 ])
+
+export const userType = shape({
+  id: string.isRequired,
+  firstName: string.isRequired,
+  lastName: string.isRequired,
+})

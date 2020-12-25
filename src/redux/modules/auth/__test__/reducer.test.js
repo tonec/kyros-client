@@ -40,7 +40,7 @@ describe('app reducer', () => {
       ...initialState,
       isFetching: false,
       user: loginSuccessResponse.user,
-      auth: loginSuccessResponse.auth,
+      token: loginSuccessResponse.auth.accessToken,
     })
   })
 
@@ -54,8 +54,7 @@ describe('app reducer', () => {
     ).toEqual({
       ...initialState,
       isFetching: false,
-      errorObject: loginErrorResponse,
-      error: true,
+      error: loginErrorResponse,
     })
   })
 })
