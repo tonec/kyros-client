@@ -11,6 +11,7 @@ import { stringify, parse } from 'qs'
 import { trigger } from 'redial'
 import PrettyError from 'pretty-error'
 import asyncMatchRoutes from 'helpers/asyncMatchRoutes'
+import apiClient from 'helpers/apiClient'
 import render from 'helpers/render'
 import createStore from 'redux/store'
 import routes from './routes'
@@ -22,6 +23,7 @@ const MANIFEST = path.join(PUBLIC_PATH, 'manifest.json')
 
 const app = express()
 const pretty = new PrettyError()
+const client = apiClient()
 
 process.on('unhandledRejection', (reason, p) => {
   // eslint-disable-next-line no-console
@@ -45,7 +47,7 @@ app.get('*', async (req, res) => {
   const memHistory = createMemoryHistory({ initialEntries: [req.originalUrl] })
   const history = qhistory(memHistory, stringify, parse)
   const { components, match, params } = await asyncMatchRoutes(routes, req.path)
-  const store = createStore({ history, match, params })
+  const store = createStore({ client, history, match, params })
 
   const locals = {
     history,

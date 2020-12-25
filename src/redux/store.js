@@ -3,7 +3,7 @@ import { routerMiddleware } from 'connected-react-router'
 import apiMiddleware from './middleware/apiMiddleware'
 import rootReducer from './rootReducer'
 
-export default ({ history, match, params }) => {
+export default ({ client, history, match, params }) => {
   let composeEnhancers = compose
   let initialState = {}
 
@@ -14,13 +14,13 @@ export default ({ history, match, params }) => {
   }
 
   const middleware = [
-    apiMiddleware({ history, match, params }),
-    routerMiddleware(history)
+    apiMiddleware({ client, history, match, params }),
+    routerMiddleware(history),
   ]
 
   return createStore(
     rootReducer(history),
     initialState,
-    composeEnhancers(applyMiddleware(...middleware))
+    composeEnhancers(applyMiddleware(...middleware)),
   )
 }

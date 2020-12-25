@@ -1,5 +1,4 @@
-
 module.exports = {
-  HOST: 'localhost',
-  PORT: 3000
+  HOST: 'kyros-app.com',
+  PORT: 3000,
 }

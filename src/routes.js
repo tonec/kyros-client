@@ -1,7 +1,7 @@
 import App from 'App'
 // import { NotFound } from 'components'
 // import Home from 'views/Home/Home'
-import Login from 'views/Auth/Login'
+import Login from 'components/Auth/Login'
 import Users from 'views/Users/UsersLoadable'
 import FormLibrary from 'views/Library/Form'
 

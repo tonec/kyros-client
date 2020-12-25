@@ -1,6 +1,8 @@
 import React from 'react'
 import { Card, Typography } from 'components'
+import { useDispatch } from 'react-redux'
 import { makeStyles } from 'styles'
+import { login } from 'redux/modules/auth/actions'
 import LoginForm from './LoginForm'
 
 const useStyles = makeStyles({
@@ -10,10 +12,11 @@ const useStyles = makeStyles({
 })
 
 function Login() {
+  const dispatch = useDispatch()
   const classes = useStyles()
 
-  const handleOnSubmit = () => {
-    console.log('submit')
+  const handleOnSubmit = data => {
+    dispatch(login(data))
   }
 
   return (

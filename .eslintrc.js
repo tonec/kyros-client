@@ -36,5 +36,6 @@ module.exports = {
     browser: true,
     __CLIENT__: true,
     __SERVER__: true,
+    __DEVELOPMENT__: true,
   },
 }

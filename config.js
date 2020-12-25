@@ -9,7 +9,9 @@ module.exports = {
     PORT: env.PORT,
     app: configApp,
     paths: {
-      PUBLIC: PUBLIC_PATH
-    }
-  }
+      PUBLIC: PUBLIC_PATH,
+    },
+    apiHost: 'kyros-app.com',
+    apiPort: 8080,
+  },
 }

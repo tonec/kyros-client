@@ -1,13 +1,12 @@
 import React from 'react'
 import { func } from 'prop-types'
-import { Form, InputField, CheckboxField } from 'components'
+import { Button, Form, InputField, CheckboxField } from 'components'
 import validate from './validate'
 
 function LoginForm({ handleOnSubmit }) {
   return (
     <Form
       onSubmit={handleOnSubmit}
-      initialValues={{ remember: true, checky: true }}
       render={({ handleSubmit }) => {
         return (
           <form onSubmit={handleSubmit}>
@@ -29,6 +28,10 @@ function LoginForm({ handleOnSubmit }) {
             />
 
             <CheckboxField label="Remember me" name="remember" />
+
+            <Button type="submit" color="primary">
+              Log in
+            </Button>
           </form>
         )
       }}

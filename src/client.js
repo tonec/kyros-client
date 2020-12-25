@@ -14,6 +14,7 @@ import { ThemeProvider } from '@material-ui/core/styles'
 import { CssBaseline } from '@material-ui/core'
 import createStore from 'redux/store'
 import asyncMatchRoutes from 'helpers/asyncMatchRoutes'
+import apiClient from 'helpers/apiClient'
 import { AsyncTrigger } from 'components'
 import theme from 'theme'
 import routes from './routes'
@@ -24,13 +25,14 @@ window.addEventListener('unhandledrejection', (err, promise) => {
 })
 
 const history = qhistory(createBrowserHistory(), stringify, parse)
+const client = apiClient()
 
 const hydrate = async () => {
   const { components, match, params } = await asyncMatchRoutes(
     routes,
     history.location.pathname,
   )
-  const store = createStore({ history, match, params })
+  const store = createStore({ client, history, match, params })
 
   const locals = {
     history,
