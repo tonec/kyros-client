@@ -1,4 +1,6 @@
 /* eslint-disable no-console */
+import { showSuccess, showError } from 'redux/modules/flash/actions'
+
 export default ({ client, history, match, params }) => {
   return ({ dispatch, getState }) => next => action => {
     // Is thunk
@@ -6,7 +8,16 @@ export default ({ client, history, match, params }) => {
       return action(dispatch, getState)
     }
 
-    const { request, types, shouldRequest = () => true, inject = {} } = action
+    const {
+      request,
+      types,
+      shouldRequest = () => true,
+      inject = {},
+      flash = {
+        success: false,
+        error: undefined,
+      },
+    } = action
 
     // Is normal action
     if (!request) {
@@ -49,20 +60,37 @@ export default ({ client, history, match, params }) => {
     //  whether action promise is resolved/value is returned or rejected
     actionPromise
       .then(
-        payload =>
+        payload => {
           next({
             type: SUCCESS,
             payload: { ...inject, ...payload },
-          }),
-        error =>
+          })
+
+          if (flash.success) {
+            next(showSuccess(flash.success))
+          }
+        },
+
+        error => {
           next({
             type: FAIL,
             payload: { ...inject, ...error },
             error: true,
-          }),
+          })
+
+          if (flash.error === undefined) {
+            next(showError(error.message))
+          }
+
+          if (flash.error) {
+            next(showError(flash.error))
+          }
+
+          console.error('API error: ', error)
+        },
       )
       .catch(error => {
-        console.error('MIDDLEWARE ERROR:', error)
+        console.error('MIDDLEWARE ERROR: ', error)
         next({ type: FAIL, payload: { ...inject, ...error }, error: true })
       })
 

@@ -1,7 +1,9 @@
 import React, { useCallback } from 'react'
+import PropTypes from 'prop-types'
+import { statusTypes } from 'types'
+import { connect } from 'react-redux'
+import { hideFlash } from 'redux/modules/flash/actions'
 import { makeStyles } from 'styles'
-import * as actions from '../../context/actions'
-import { useGlobalStore } from '../../context/GlobalStore'
 import Flash from './Flash'
 
 const useStyles = makeStyles({
@@ -16,16 +18,18 @@ const useStyles = makeStyles({
   },
 })
 
-function FlashContainer() {
-  const {
-    dispatch,
-    flash: { visible, status, message, dismissable, timeout },
-  } = useGlobalStore()
-
+function FlashContainer({
+  visible,
+  status,
+  message,
+  dismissable,
+  timeout,
+  dispatch,
+}) {
   const classes = useStyles()
 
-  const hideFlash = useCallback(() => {
-    dispatch({ type: actions.HIDE_FLASH })
+  const handleDismiss = useCallback(() => {
+    dispatch(hideFlash())
   }, [dispatch])
 
   return (
@@ -37,11 +41,32 @@ function FlashContainer() {
           message={message}
           dismissable={dismissable}
           timeout={timeout}
-          hideFlash={hideFlash}
+          handleDismiss={handleDismiss}
         />
       )}
     </div>
   )
 }
 
-export default FlashContainer
+FlashContainer.propTypes = {
+  visible: PropTypes.bool,
+  status: statusTypes,
+  message: PropTypes.string,
+  dismissable: PropTypes.bool,
+  timeout: PropTypes.number,
+  dispatch: PropTypes.func.isRequired,
+}
+
+FlashContainer.defaultProps = {
+  visible: false,
+  status: 'success',
+  message: null,
+  dismissable: true,
+  timeout: null,
+}
+
+const mapState = ({ flash }) => ({
+  ...flash,
+})
+
+export default connect(mapState)(FlashContainer)

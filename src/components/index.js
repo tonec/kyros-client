@@ -53,5 +53,6 @@ export { default as TextareaField } from './ui/form/TextareaField'
 // Feature
 // export { default as AppBar } from './AppBar'
 export { default as AsyncTrigger } from './AsyncTrigger'
+export { default as Flash } from './Flash/FlashContainer'
 // export { default as Header } from './Header'
 export { default as NotFound } from './NotFound'
