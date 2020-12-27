@@ -60,8 +60,11 @@ app.get('*', async (req, res) => {
     const context = {}
     const content = render(req, store, history, context)
 
-    if (context.redirect) {
-      res.redirect(301, `${context.redirect}?redirect=${context.from}`)
+    if (context.url) {
+      res.redirect(
+        301,
+        `${context.url}?redirect=${context.location.state.from}`,
+      )
       return
     }
 
