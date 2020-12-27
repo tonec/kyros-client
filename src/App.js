@@ -30,11 +30,15 @@ const App = ({ location, route, user }) => {
   // Handle redirect for log in & log out
   useEffect(() => {
     if (!prevUser && user) {
-      history.push('/users')
+      if (location.query.redirect) {
+        history.push(location.query.redirect)
+      } else {
+        history.push('/users')
+      }
     } else if (prevUser && !user) {
       history.push('/login')
     }
-  }, [history, user, prevUser])
+  }, [history, location.query.redirect, user, prevUser])
 
   // Scroll to the top when navigating between pages
   useEffect(() => {
