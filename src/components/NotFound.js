@@ -1,8 +1,13 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { Box, Card, Container, Grid, Typography } from './ui'
 
-function NotFound() {
+function NotFound({ staticContext }) {
+  if (staticContext) {
+    staticContext.statusCode = 404
+  }
+
   return (
     <Container maxWidth="sm">
       <Grid container spacing={3}>
@@ -17,6 +22,14 @@ function NotFound() {
       </Grid>
     </Container>
   )
+}
+
+NotFound.propTypes = {
+  staticContext: PropTypes.object,
+}
+
+NotFound.defaultProps = {
+  staticContext: null,
 }
 
 export default NotFound

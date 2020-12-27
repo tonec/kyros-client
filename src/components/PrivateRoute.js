@@ -1,38 +1,53 @@
-/* eslint-disable react/forbid-prop-types */
-/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable react/prop-types */
 import React from 'react'
-import PropTypes, { arrayOf, node } from 'prop-types'
-import { Route, Redirect, useLocation } from 'react-router-dom'
-import { hasUploadPermissions } from '../utils/checkPermissions'
-import { useGlobalStore } from '../context/GlobalStore'
+import { compose } from 'redux'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
+import { getAuthUser } from 'redux/modules/auth/selectors'
 
-function PrivateRoute({ children, ...rest }) {
-  const location = useLocation()
-  const {
-    auth: { user },
-  } = useGlobalStore()
+function PrivateRoute(DecoratedComponent) {
+  return ({ staticContext, location, history, user }) => {
+    if (user) {
+      return <DecoratedComponent />
+    }
 
-  return (
-    <Route
-      {...rest}
-      render={() =>
-        hasUploadPermissions(user) ? (
-          children
-        ) : (
-          <Redirect
-            to={{
-              pathname: '/login',
-              state: { from: location },
-            }}
-          />
-        )
-      }
-    />
-  )
+    console.log('history', history)
+
+    staticContext.redirect = '/login'
+    staticContext.from = location.pathname + location.search
+
+    return null
+  }
 }
 
-PrivateRoute.propTypes = {
-  children: PropTypes.oneOfType([arrayOf(node), node]).isRequired,
-}
+// function PrivateRoute({ user, location, children, ...rest }) {
+//   return (
+//     <Route
+//       {...rest}
+//       render={() =>
+//         user ? (
+//           children
+//         ) : (
+//           <Redirect
+//             to={{
+//               pathname: '/login',
+//               state: { from: location },
+//             }}
+//           />
+//         )
+//       }
+//     />
+//   )
+// }
 
-export default PrivateRoute
+const mapState = state => ({
+  user: getAuthUser(state),
+})
+
+const ComposedPrivateRoute = compose(
+  connect(mapState),
+  withRouter,
+  PrivateRoute,
+)
+
+export default ComposedPrivateRoute

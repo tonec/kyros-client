@@ -52,14 +52,14 @@ const hydrate = async () => {
 
   ReactDOM.hydrate(
     <Provider store={store}>
-      <HelmetProvider>
-        <ConnectedRouter history={history}>
+      <ConnectedRouter history={history}>
+        <HelmetProvider>
           <CssBaseline />
           <AsyncTrigger routes={routes} store={store}>
             <ThemeProvider theme={theme}>{renderRoutes(routes)}</ThemeProvider>
           </AsyncTrigger>
-        </ConnectedRouter>
-      </HelmetProvider>
+        </HelmetProvider>
+      </ConnectedRouter>
     </Provider>,
     document.getElementById('content'),
   )

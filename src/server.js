@@ -57,17 +57,23 @@ app.get('*', async (req, res) => {
   }
 
   trigger('fetch', components, locals).then(() => {
-    const routerContext = {}
-    const appContent = render(req, store, history, routerContext)
+    const context = {}
+    const content = render(req, store, history, context)
 
-    if (routerContext.notFound) {
-      res.status(404)
+    if (context.redirect) {
+      res.redirect(301, `${context.redirect}?redirect=${context.from}`)
+      return
     }
 
-    res.send(appContent)
+    if (context.statusCode) {
+      res.status(context.statusCode)
+    }
+
+    res.send(content)
   })
 })
 
 app.listen(config.PORT, () => {
+  // eslint-disable-next-line no-console
   console.log(`Listening on port ${config.PORT}`)
 })

@@ -1,5 +1,5 @@
 import App from 'App'
-// import { NotFound } from 'components'
+import { NotFound, PrivateRoute } from 'components'
 // import Home from 'views/Home/Home'
 import Login from 'components/Auth/Login'
 import Users from 'components/Users/Users'
@@ -11,9 +11,9 @@ export default [
     routes: [
       { path: '/', exact: true, component: Login },
       { path: '/login', component: Login },
-      { path: '/users', component: Users },
+      { path: '/users', component: PrivateRoute(Users) },
       { path: '/form', component: FormLibrary },
-      // { component: NotFound },
+      { component: NotFound },
     ],
   },
 ]

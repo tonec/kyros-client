@@ -3,6 +3,7 @@ import React from 'react'
 import { StaticRouter } from 'react-router-dom'
 import { renderToString } from 'react-dom/server'
 import { Provider } from 'react-redux'
+import { ConnectedRouter } from 'connected-react-router'
 import { renderRoutes } from 'react-router-config'
 import { ServerStyleSheets, ThemeProvider } from '@material-ui/core/styles'
 import { CssBaseline } from '@material-ui/core'
@@ -14,7 +15,7 @@ import { AsyncTrigger } from 'components'
 import routes from '../routes'
 import Html from './Html'
 
-export default (req, store, routerContext) => {
+export default (req, store, history, context) => {
   if (!req) return Html({})
 
   const sheets = new ServerStyleSheets()
@@ -29,16 +30,18 @@ export default (req, store, routerContext) => {
   const jsx = extractor.collectChunks(
     sheets.collect(
       <Provider store={store}>
-        <HelmetProvider context={helmetContext}>
-          <StaticRouter location={req.originalUrl} context={routerContext}>
-            <CssBaseline />
-            <AsyncTrigger routes={routes} store={store}>
-              <ThemeProvider theme={theme}>
-                {renderRoutes(routes)}
-              </ThemeProvider>
-            </AsyncTrigger>
-          </StaticRouter>
-        </HelmetProvider>
+        <ConnectedRouter history={history}>
+          <HelmetProvider context={helmetContext}>
+            <StaticRouter location={req.originalUrl} context={context}>
+              <CssBaseline />
+              <AsyncTrigger routes={routes} store={store}>
+                <ThemeProvider theme={theme}>
+                  {renderRoutes(routes)}
+                </ThemeProvider>
+              </AsyncTrigger>
+            </StaticRouter>
+          </HelmetProvider>
+        </ConnectedRouter>
       </Provider>,
     ),
   )

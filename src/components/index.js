@@ -48,7 +48,7 @@ export { default as SelectField } from './ui/form/SelectField'
 export { default as TextareaField } from './ui/form/TextareaField'
 
 // Common
-// export { default as PrivateRoute } from './PrivateRoute'
+export { default as PrivateRoute } from './PrivateRoute'
 
 // Feature
 // export { default as AppBar } from './AppBar'
