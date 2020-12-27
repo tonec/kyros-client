@@ -1,9 +1,9 @@
 /* eslint-disable no-unreachable */
 import React from 'react'
 import PropTypes from 'prop-types'
-import { useLocation } from 'react-router-dom'
+// import { useLocation } from 'react-router-dom'
 import { makeStyles } from 'styles'
-import NavigationItem from './NavigationItem'
+// import NavigationItem from './NavigationItem'
 
 const useStyles = makeStyles({
   menu: {
@@ -17,11 +17,11 @@ const useStyles = makeStyles({
 function Navigation({ id }) {
   const classes = useStyles({ id })
 
-  const { pathname } = useLocation()
+  // const { pathname } = useLocation()
 
   return (
     <ul className={classes.menu} data-testid="header-menu">
-      <NavigationItem
+      {/* <NavigationItem
         label="Map"
         path="/"
         // icon={<MapIcon size={32} />}
@@ -32,7 +32,7 @@ function Navigation({ id }) {
         path="/users"
         // icon={<AnalyticsIcon size={32} />}
         active={pathname === '/users'}
-      />
+      /> */}
     </ul>
   )
 }
