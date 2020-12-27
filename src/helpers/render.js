@@ -14,7 +14,7 @@ import { AsyncTrigger } from 'components'
 import routes from '../routes'
 import Html from './Html'
 
-export default (req, store, history, routerContext) => {
+export default ({ req, store, history, routerContext }) => {
   if (!req) return Html({})
 
   const sheets = new ServerStyleSheets()

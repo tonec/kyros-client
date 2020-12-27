@@ -1,11 +1,13 @@
 import { createStore, applyMiddleware, compose } from 'redux'
 import { routerMiddleware } from 'connected-react-router'
+import { persistCombineReducers, createPersistoid } from 'redux-persist'
 import apiMiddleware from './middleware/apiMiddleware'
 import rootReducer from './rootReducer'
 
-export default ({ client, history, match, params }) => {
+export default ({ client, history, match, params, data, persistConfig }) => {
   let composeEnhancers = compose
-  let initialState = {}
+
+  let initialState = { ...data }
 
   if (__CLIENT__) {
     composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
@@ -18,9 +20,20 @@ export default ({ client, history, match, params }) => {
     routerMiddleware(history),
   ]
 
-  return createStore(
-    rootReducer(history),
+  const persisted = persistCombineReducers(persistConfig, rootReducer(history))
+
+  const store = createStore(
+    persisted,
     initialState,
     composeEnhancers(applyMiddleware(...middleware)),
   )
+
+  if (persistConfig) {
+    const persistoid = createPersistoid(persistConfig)
+    store.subscribe(() => {
+      persistoid.update(store.getState())
+    })
+  }
+
+  return store
 }

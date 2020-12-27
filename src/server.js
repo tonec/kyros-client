@@ -10,6 +10,9 @@ import qhistory from 'qhistory'
 import { stringify, parse } from 'qs'
 import { trigger } from 'redial'
 import PrettyError from 'pretty-error'
+import { getStoredState } from 'redux-persist'
+import { CookieStorage, NodeCookiesWrapper } from 'redux-persist-cookie-storage'
+import Cookies from 'cookies'
 import asyncMatchRoutes from 'helpers/asyncMatchRoutes'
 import apiClient from 'helpers/apiClient'
 import render from 'helpers/render'
@@ -44,10 +47,35 @@ app.use('/app-shell', (req, res) => {
 })
 
 app.get('*', async (req, res) => {
+  const cookieJar = new NodeCookiesWrapper(new Cookies(req, res))
+
+  const persistConfig = {
+    key: 'root',
+    storage: new CookieStorage(cookieJar),
+    stateReconciler: (inboundState, originalState) => originalState,
+    whitelist: ['auth'],
+  }
+
+  let preloadedState
+
+  try {
+    preloadedState = await getStoredState(persistConfig)
+  } catch (e) {
+    preloadedState = {}
+  }
+
   const memHistory = createMemoryHistory({ initialEntries: [req.originalUrl] })
   const history = qhistory(memHistory, stringify, parse)
   const { components, match, params } = await asyncMatchRoutes(routes, req.path)
-  const store = createStore({ client, history, match, params })
+
+  const store = createStore({
+    client,
+    history,
+    match,
+    params,
+    data: preloadedState,
+    persistConfig,
+  })
 
   const locals = {
     history,
@@ -58,7 +86,7 @@ app.get('*', async (req, res) => {
 
   trigger('fetch', components, locals).then(() => {
     const context = {}
-    const content = render(req, store, history, context)
+    const content = render({ req, store, history, context })
 
     if (context.url) {
       res.redirect(

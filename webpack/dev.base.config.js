@@ -15,7 +15,7 @@ module.exports = {
     alias: { 'react-dom': '@hot-loader/react-dom' },
   },
 
-  devtool: 'inline-source-map',
+  devtool: 'source-map',
 
   stats: {
     warningsFilter: warning => {

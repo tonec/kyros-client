@@ -8,6 +8,9 @@ import { stringify, parse } from 'qs'
 import { createBrowserHistory } from 'history'
 import { ConnectedRouter } from 'connected-react-router'
 import { Provider } from 'react-redux'
+import { getStoredState } from 'redux-persist'
+import { CookieStorage } from 'redux-persist-cookie-storage'
+import Cookies from 'cookies-js'
 import { trigger } from 'redial'
 import { HelmetProvider } from 'react-helmet-async'
 import { ThemeProvider } from '@material-ui/core/styles'
@@ -27,12 +30,30 @@ window.addEventListener('unhandledrejection', (err, promise) => {
 const history = qhistory(createBrowserHistory(), stringify, parse)
 const client = apiClient()
 
+const persistConfig = {
+  key: 'root',
+  storage: new CookieStorage(Cookies),
+  stateReconciler(inboundState, originalState) {
+    return originalState
+  },
+  whitelist: ['auth'],
+}
+
 const hydrate = async () => {
+  const preloadedState = await getStoredState(persistConfig)
+
   const { components, match, params } = await asyncMatchRoutes(
     routes,
     history.location.pathname,
   )
-  const store = createStore({ client, history, match, params })
+  const store = createStore({
+    client,
+    history,
+    match,
+    params,
+    data: { ...preloadedState, ...window.INITIAL_STATE },
+    persistConfig,
+  })
 
   const locals = {
     history,
