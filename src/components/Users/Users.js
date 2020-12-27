@@ -1,31 +1,27 @@
-import React, { Component } from 'react'
-import { array } from 'prop-types'
+import React from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { Layout } from 'components'
+import { Main } from 'components'
 
-class Users extends Component {
-  static propTypes = {
-    users: array,
-  }
-
-  static defaultProps = {
-    users: [],
-  }
-
-  renderUsers() {
-    const { users } = this.props
-
+function Users({ users }) {
+  const renderUsers = () => {
     return users.map(user => <li key={user.id}>{user.name}</li>)
   }
 
-  render() {
-    return (
-      <Layout title="Users">
-        <h2>Users lists:</h2>
-        <ul>{this.renderUsers()}</ul>
-      </Layout>
-    )
-  }
+  return (
+    <Main title="Users">
+      <h2>Users lists:</h2>
+      <ul>{renderUsers()}</ul>
+    </Main>
+  )
+}
+
+Users.propTypes = {
+  users: PropTypes.array,
+}
+
+Users.defaultProps = {
+  users: [],
 }
 
 const mapState = ({ user }) => ({ users: user })
