@@ -1,18 +1,19 @@
 import { useEffect } from 'react'
 import PropTypes from 'prop-types'
-import get from 'lodash/get'
+// import get from 'lodash/get'
 import { userType } from 'types'
 import { renderRoutes } from 'react-router-config'
 import { connect } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { usePrevious } from 'hooks'
+import { setAppLoaded } from 'redux/modules/app/actions'
 import { getAuthUser } from 'redux/modules/auth/selectors'
 import { useTheme, setTheme } from 'styles'
 
 import './assets/stylesheets/global.css'
 import './assets/stylesheets/reset.css'
 
-const App = ({ location, route, user }) => {
+function App({ dispatch, location, route, user }) {
   const history = useHistory()
   const prevPathname = usePrevious(location.pathname)
   const prevUser = usePrevious(user)
@@ -20,13 +21,16 @@ const App = ({ location, route, user }) => {
   // Adds the theme object to the theme helpers
   setTheme(useTheme())
 
-  // Remove server rendered styles
+  // Remove server rendered styles and set app loaded
   useEffect(() => {
     const jssStyles = document.querySelector('#jss-server-side')
+
     if (jssStyles) {
       jssStyles.parentElement.removeChild(jssStyles)
     }
-  }, [])
+
+    dispatch(setAppLoaded())
+  }, [dispatch])
 
   // Handle redirect for log in & log out
   useEffect(() => {
