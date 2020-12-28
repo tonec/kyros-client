@@ -1,63 +1,78 @@
-import { useEffect } from 'react'
+import { Component } from 'react'
 import PropTypes from 'prop-types'
-// import get from 'lodash/get'
+import get from 'lodash/get'
 import { userType } from 'types'
+import { compose } from 'redux'
 import { renderRoutes } from 'react-router-config'
 import { connect } from 'react-redux'
-import { useHistory } from 'react-router-dom'
-import { usePrevious } from 'hooks'
-import { setAppLoaded } from 'redux/modules/app/actions'
+import { setIsFirstLoad } from 'redux/modules/app/actions'
 import { getAuthUser } from 'redux/modules/auth/selectors'
-import { useTheme, setTheme } from 'styles'
+import { setTheme, withTheme } from 'styles'
 
 import './assets/stylesheets/global.css'
 import './assets/stylesheets/reset.css'
 
-function App({ dispatch, location, route, user }) {
-  const history = useHistory()
-  const prevPathname = usePrevious(location.pathname)
-  const prevUser = usePrevious(user)
+class App extends Component {
+  constructor(props) {
+    super(props)
 
-  // Adds the theme object to the theme helpers
-  setTheme(useTheme())
+    setTheme(props.theme)
 
-  // Remove server rendered styles and set app loaded
-  useEffect(() => {
+    this.state = {
+      prevProps: props,
+    }
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    const { history, location } = nextProps
+    const { prevProps } = prevState
+
+    // On login or else on logout
+    if (!prevProps.user && nextProps.user) {
+      const redirect = get(location, 'state.from')
+      history.push(redirect || '/home')
+    } else if (prevProps.user && !nextProps.user) {
+      history.push('/login')
+    }
+
+    return {
+      prevProps: nextProps,
+    }
+  }
+
+  componentDidMount() {
+    const { dispatch } = this.props
+
     const jssStyles = document.querySelector('#jss-server-side')
 
     if (jssStyles) {
       jssStyles.parentElement.removeChild(jssStyles)
     }
 
-    dispatch(setAppLoaded())
-  }, [dispatch])
+    dispatch(setIsFirstLoad())
+  }
 
-  // Handle redirect for log in & log out
-  useEffect(() => {
-    // if (!prevUser && user) {
-    //   if (get(location, 'state.from')) {
-    //     history.push(location.state.from)
-    //   } else {
-    //     history.push('/users')
-    //   }
-    // } else if (prevUser && !user) {
-    //   history.push('/login')
-    // }
-  }, [history, location, user, prevUser])
+  componentDidUpdate(prevProps) {
+    const { location } = this.props
 
-  // Scroll to the top when navigating between pages
-  useEffect(() => {
-    if (location.pathname !== prevPathname) {
+    if (location.pathname !== prevProps.location.pathname) {
       window.scrollTo(0, 0)
     }
-  }, [location.pathname, prevPathname])
+  }
 
-  return renderRoutes(route.routes)
+  render() {
+    const { route } = this.props
+
+    return renderRoutes(route.routes)
+  }
 }
 
 App.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired,
   location: PropTypes.object.isRequired,
   route: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
   user: userType,
 }
 
@@ -71,4 +86,4 @@ const mapState = state => {
   }
 }
 
-export default connect(mapState)(App)
+export default compose(withTheme, connect(mapState))(App)

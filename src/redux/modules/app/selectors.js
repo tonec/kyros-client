@@ -1,6 +1,8 @@
 import get from 'lodash/get'
 
-export const getAppLoaded = ({ app }) => app.appLoaded
+export const getIsFirstLoad = ({ app }) => app.isFirstLoad
+
+export const getIsLoginDataFetched = ({ app }) => app.loginDataFetched
 
 export const getQuery = ({ router }) => get(router, 'location.query')
 

@@ -7,7 +7,7 @@ import { withRouter, Route } from 'react-router-dom'
 import { trigger } from 'redial'
 import { usePrevious } from 'hooks'
 import asyncMatchRoutes from 'helpers/asyncMatchRoutes'
-import { getAppLoaded } from 'redux/modules/app/selectors'
+import { getIsFirstLoad } from 'redux/modules/app/selectors'
 
 function AsyncTrigger({
   history,
@@ -15,7 +15,7 @@ function AsyncTrigger({
   routes,
   store,
   children,
-  appLoaded,
+  isFirstLoad,
 }) {
   const prevPathname = usePrevious(location.pathname)
 
@@ -42,10 +42,10 @@ function AsyncTrigger({
       }
     }
 
-    if (!appLoaded && navigated) {
+    if (!isFirstLoad && navigated) {
       triggerFetch()
     }
-  }, [history, location.pathname, prevPathname, routes, store, appLoaded])
+  }, [history, location.pathname, prevPathname, routes, store, isFirstLoad])
 
   return <Route location={location} render={() => children} />
 }
@@ -56,11 +56,11 @@ AsyncTrigger.propTypes = {
   location: PropTypes.objectOf(PropTypes.any).isRequired,
   routes: PropTypes.array.isRequired,
   store: PropTypes.object.isRequired,
-  appLoaded: PropTypes.bool.isRequired,
+  isFirstLoad: PropTypes.bool.isRequired,
 }
 
 const mapState = state => ({
-  appLoaded: getAppLoaded(state),
+  isFirstLoad: getIsFirstLoad(state),
 })
 
 export default compose(connect(mapState), withRouter)(AsyncTrigger)

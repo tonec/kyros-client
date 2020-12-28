@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { useLocation, useParams } from 'react-router-dom'
+import { useHistory, useLocation, useParams } from 'react-router-dom'
 import { logout } from 'redux/modules/auth/actions'
 import { makeStyles } from 'styles'
 import { Logo } from '../ui'
@@ -24,12 +24,14 @@ const useStyles = makeStyles({
 
 export default function Header() {
   const dispatch = useDispatch()
+  const history = useHistory()
   const { pathname } = useLocation()
   const { id } = useParams()
 
   const classes = useStyles()
 
   const handleLogout = () => {
+    history.push('/login')
     dispatch(logout())
   }
 

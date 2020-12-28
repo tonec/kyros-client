@@ -9,7 +9,7 @@ describe('api reducer', () => {
       }),
     ).toEqual({
       ...initialState,
-      appLoaded: false,
+      isFirstLoad: false,
     })
   })
 })
