@@ -39,14 +39,13 @@ const persistConfig = {
   whitelist: ['auth'],
 }
 
-const hydrate = async _routes => {
+const hydrate = async () => {
   const preloadedState = await getStoredState(persistConfig)
 
   const { components, match, params } = await asyncMatchRoutes(
     routes,
     history.location.pathname,
   )
-
   const store = createStore({
     client,
     history,
@@ -88,12 +87,11 @@ const hydrate = async _routes => {
 }
 
 loadableReady(() => {
-  hydrate(routes)
+  hydrate()
 })
 
 if (process.env.NODE_ENV === 'development') {
   module.hot.accept('./routes', () => {
-    const nextRoutes = require('./routes').default
-    hydrate(nextRoutes)
+    hydrate()
   })
 }

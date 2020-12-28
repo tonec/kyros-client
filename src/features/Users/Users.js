@@ -30,7 +30,7 @@ const mapState = ({ user }) => ({ users: user })
 
 const hooks = {
   fetch: async () => {
-    console.log('fetc')
+    console.log('fetcs')
   },
   defer: async () => {
     console.log('defer')
