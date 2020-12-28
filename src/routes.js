@@ -3,7 +3,7 @@ import { NotFound, PrivateRoute } from 'components'
 // import Home from 'views/Home/Home'
 import Login from 'components/Auth/Login'
 import Users from 'components/Users/Users'
-import FormLibrary from 'views/Library/Form'
+import FormLibrary from 'features/Library/Form'
 
 export default [
   {
