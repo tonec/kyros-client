@@ -11,7 +11,7 @@ export default [
     routes: [
       { path: '/', exact: true, component: Login },
       { path: '/login', component: Login },
-      { path: '/users', component: PrivateRoute(Users) },
+      { path: '/users', component: PrivateRoute(Users), loadData: 'asaas' },
       { path: '/form', component: FormLibrary },
       { component: NotFound },
     ],

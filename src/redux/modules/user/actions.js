@@ -1,12 +1,20 @@
-import axios from 'axios'
+/*
+ * Actions
+ * * * * */
 
-export const FETCH_USERS = 'fetch_users'
+const prefix = '@user'
 
-export const fetchUsers = () => async dispatch => {
-  const response = await axios.get('https://jsonplaceholder.typicode.com/users')
+export const FETCH_USERS = `${prefix}/FETCH_USERS`
+export const FETCH_USERS_SUCCESS = `${prefix}/FETCH_USERS_SUCCESS`
+export const FETCH_USERS_FAIL = `${prefix}/FETCH_USERS_FAIL`
 
-  dispatch({
-    type: FETCH_USERS,
-    payload: response
-  })
+/*
+ * Action creators
+ * * * * * * * * */
+
+export function fetchUsers() {
+  return {
+    types: [FETCH_USERS, FETCH_USERS_SUCCESS, FETCH_USERS_FAIL],
+    request: ({ client }) => client.get('user'),
+  }
 }
