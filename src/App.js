@@ -16,7 +16,7 @@ const App = ({ location, route, user }) => {
   const prevPathname = usePrevious(location.pathname)
   const prevUser = usePrevious(user)
 
-  // Curry theme helpers with the theme object
+  // Adds the theme object to the theme helpers
   setTheme(useTheme())
 
   // Remove server rendered styles
