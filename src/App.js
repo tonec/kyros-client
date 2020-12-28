@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import PropTypes from 'prop-types'
+import get from 'lodash/get'
 import { userType } from 'types'
 import { renderRoutes } from 'react-router-config'
 import { connect } from 'react-redux'
@@ -30,15 +31,15 @@ const App = ({ location, route, user }) => {
   // Handle redirect for log in & log out
   useEffect(() => {
     if (!prevUser && user) {
-      if (location.query.redirect) {
-        history.push(location.query.redirect)
+      if (get(location, 'state.from')) {
+        history.push(location.state.from)
       } else {
         history.push('/users')
       }
     } else if (prevUser && !user) {
       history.push('/login')
     }
-  }, [history, location.query.redirect, user, prevUser])
+  }, [history, location, user, prevUser])
 
   // Scroll to the top when navigating between pages
   useEffect(() => {
