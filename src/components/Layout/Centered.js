@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { childrenType, maxWidthType } from 'types'
 import { makeStyles } from 'styles'
-import { Flash } from 'components'
+import Flash from '../Flash/FlashContainer'
 import Base from './Base'
 
 const useStyles = makeStyles({
