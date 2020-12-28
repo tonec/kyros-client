@@ -28,7 +28,7 @@ export default function ({
         <div id="content">${content}</div>
         ${
           initialState &&
-          `<script>window.INITIAL_STATE = ${initialState}</script>`
+          `<script>window.PRELOADED=true;window.INITIAL_STATE = ${initialState}</script>`
         }
         ${scripts}
       </body>

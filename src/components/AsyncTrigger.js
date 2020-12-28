@@ -27,7 +27,7 @@ function AsyncTrigger({ history, location, routes, store, children }) {
       }
     }
     triggerFetch()
-  }, [location.pathname])
+  }, [history, location.pathname, routes, store])
 
   return <Route location={location} render={() => children} />
 }

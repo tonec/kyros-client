@@ -63,8 +63,10 @@ const hydrate = async () => {
     location: history.location,
   }
 
-  if (window.INITIAL_STATE) {
-    delete window.INITIAL_STATE
+  console.log('window.PRELOADED', window.PRELOADED)
+
+  if (window.PRELOADED) {
+    delete window.PRELOADED
   } else {
     trigger('fetch', components, locals)
   }

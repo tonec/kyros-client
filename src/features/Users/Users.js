@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { compose } from 'redux'
 import { connect } from 'react-redux'
+import { provideHooks } from 'redial'
 import { Main } from 'components'
 
 function Users({ users }) {
@@ -26,4 +28,13 @@ Users.defaultProps = {
 
 const mapState = ({ user }) => ({ users: user })
 
-export default connect(mapState)(Users)
+const hooks = {
+  fetch: async () => {
+    console.log('fetch')
+  },
+  defer: async () => {
+    console.log('defer')
+  },
+}
+
+export default compose(provideHooks(hooks), connect(mapState))(Users)

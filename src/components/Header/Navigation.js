@@ -24,6 +24,18 @@ function Navigation({ id, handleLogout }) {
     <ul className={classes.menu} data-testid="header-menu">
       <NavigationItem
         label="Log out"
+        path="/home"
+        icon={<Icon variant="home" size={32} />}
+        active={pathname === '/home'}
+      />
+      <NavigationItem
+        label="Users"
+        path="/users"
+        icon={<Icon variant="home" size={32} />}
+        active={pathname === '/users'}
+      />
+      <NavigationItem
+        label="Log out"
         icon={<Icon variant="logout" size={32} />}
         handleClick={handleLogout}
       />
