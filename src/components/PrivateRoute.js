@@ -25,9 +25,11 @@ function PrivateRoute(DecoratedComponent) {
   return hoistStatics(Wrapper, DecoratedComponent)
 }
 
-const mapState = state => ({
-  user: getAuthUser(state),
-})
+const mapState = state => {
+  return {
+    user: getAuthUser(state),
+  }
+}
 
 const ComposedPrivateRoute = compose(
   connect(mapState),

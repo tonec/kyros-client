@@ -11,7 +11,7 @@ export default ({ client, history, match, params, data, persistConfig }) => {
 
   if (__CLIENT__) {
     composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
-    initialState = window.INITIAL_STATE
+    initialState = { ...initialState, ...window.INITIAL_STATE }
     delete window.INITIAL_STATE
   }
 
@@ -32,6 +32,17 @@ export default ({ client, history, match, params, data, persistConfig }) => {
     const persistoid = createPersistoid(persistConfig)
     store.subscribe(() => {
       persistoid.update(store.getState())
+    })
+  }
+
+  if (__DEVELOPMENT__ && module.hot) {
+    module.hot.accept('./rootReducer', () => {
+      let reducer = require('./rootReducer')
+      reducer = combine(
+        (reducer.__esModule ? reducer.default : reducer)(history),
+        persistConfig,
+      )
+      store.replaceReducer(reducer)
     })
   }
 

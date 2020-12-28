@@ -17,7 +17,7 @@ module.exports = merge(baseConfig, {
 
   output: {
     filename: 'bundle.js',
-    path: path.resolve(ROOT_DIRECTORY, 'build')
+    path: path.resolve(ROOT_DIRECTORY, 'build'),
   },
 
   module: {
@@ -32,18 +32,19 @@ module.exports = merge(baseConfig, {
               name: '[name]-[hash].[ext]',
               useRelativePath: false,
               publicPath: config.paths.PUBLIC,
-              emitFile: false
+              emitFile: false,
             },
           },
         ],
-      }
-    ]
+      },
+    ],
   },
 
   plugins: [
     new webpack.DefinePlugin({
       __CLIENT__: false,
-      __SERVER__: true
-    })
-  ]
+      __SERVER__: true,
+      __DEVELOPMENT__: true,
+    }),
+  ],
 })
