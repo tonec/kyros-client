@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 import { createStore, applyMiddleware, compose } from 'redux'
 import { routerMiddleware } from 'connected-react-router'
 import { persistCombineReducers, createPersistoid } from 'redux-persist'
@@ -32,17 +33,6 @@ export default ({ client, history, match, params, data, persistConfig }) => {
     const persistoid = createPersistoid(persistConfig)
     store.subscribe(() => {
       persistoid.update(store.getState())
-    })
-  }
-
-  if (__DEVELOPMENT__ && module.hot) {
-    module.hot.accept('./rootReducer', () => {
-      let reducer = require('./rootReducer')
-      reducer = combine(
-        (reducer.__esModule ? reducer.default : reducer)(history),
-        persistConfig,
-      )
-      store.replaceReducer(reducer)
     })
   }
 
