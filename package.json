@@ -45,6 +45,7 @@
     "grommet-icons": "^4.5.0",
     "helmet": "^3.23.3",
     "history": "^4.10.1",
+    "hoist-non-react-statics": "^3.3.2",
     "immutable": "^4.0.0-rc.12",
     "jest": "^26.6.3",
     "lodash": "^4.17.20",
