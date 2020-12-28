@@ -1,7 +1,7 @@
 import App from 'App'
 import { NotFound, PrivateRoute } from 'components'
 // import Home from 'views/Home/Home'
-import Login from 'components/Auth/Login'
+import Login from 'features/Auth/Login'
 import Users from 'components/Users/Users'
 import FormLibrary from 'features/Library/Form'
 
