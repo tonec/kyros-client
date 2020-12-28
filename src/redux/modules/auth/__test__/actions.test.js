@@ -11,3 +11,11 @@ describe('login action creator', () => {
     expect(actions.login().types).toEqual(expectedTypes)
   })
 })
+
+describe('logout action creator', () => {
+  it('dispatches the correct action type', () => {
+    const expectedType = { type: actions.LOGOUT }
+
+    expect(actions.logout()).toEqual(expectedType)
+  })
+})

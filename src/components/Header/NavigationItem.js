@@ -57,7 +57,7 @@ function NavigationItem({ path, icon, active, disabled, handleClick }) {
 NavigationItem.propTypes = {
   path: PropTypes.string,
   icon: PropTypes.element,
-  active: PropTypes.bool.isRequired,
+  active: PropTypes.bool,
   disabled: PropTypes.bool,
   handleClick: PropTypes.func,
 }
@@ -65,6 +65,7 @@ NavigationItem.propTypes = {
 NavigationItem.defaultProps = {
   path: '',
   icon: null,
+  active: false,
   disabled: false,
   handleClick: null,
 }

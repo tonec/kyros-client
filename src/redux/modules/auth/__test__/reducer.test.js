@@ -19,7 +19,7 @@ const loginErrorResponse = {
 }
 
 describe('app reducer', () => {
-  it('handles LOGIN action', () => {
+  it('LOGIN action', () => {
     expect(
       reducer(initialState, {
         type: actions.LOGIN,
@@ -30,7 +30,7 @@ describe('app reducer', () => {
     })
   })
 
-  it('handles LOGIN_SUCCESS action', () => {
+  it('LOGIN_SUCCESS action', () => {
     expect(
       reducer(initialState, {
         type: actions.LOGIN_SUCCESS,
@@ -44,7 +44,7 @@ describe('app reducer', () => {
     })
   })
 
-  it('handles LOGIN_FAIL action', () => {
+  it('LOGIN_FAIL action', () => {
     expect(
       reducer(initialState, {
         type: actions.LOGIN_FAIL,
@@ -57,4 +57,19 @@ describe('app reducer', () => {
       error: loginErrorResponse,
     })
   })
+})
+
+it('LOGOUT action', () => {
+  const state = {
+    ...initialState,
+    isFetching: false,
+    user: loginSuccessResponse.user,
+    token: loginSuccessResponse.auth.accessToken,
+  }
+
+  expect(
+    reducer(state, {
+      type: actions.LOGOUT,
+    }),
+  ).toEqual(initialState)
 })

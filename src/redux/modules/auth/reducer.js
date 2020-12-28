@@ -34,6 +34,9 @@ export default function reducer(state = initialState, action = {}) {
         error: action.error && action.payload,
       }
 
+    case actions.LOGOUT:
+      return initialState
+
     default:
       return state
   }
