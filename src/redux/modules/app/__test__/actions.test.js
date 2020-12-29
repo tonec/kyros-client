@@ -1,7 +1,7 @@
 import * as actions from '../actions'
 
 describe('api actions', () => {
-  it('should dispatch the correct action for isFirstLoad', () => {
+  it('FIRST_LOAD', () => {
     const expectedActions = { type: actions.FIRST_LOAD }
 
     expect(actions.setIsFirstLoad()).toEqual(expectedActions)

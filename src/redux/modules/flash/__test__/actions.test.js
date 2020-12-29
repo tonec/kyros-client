@@ -1,7 +1,7 @@
 import * as actions from '../actions'
 
-describe('showFlash action creator', () => {
-  it('dispatches the correct action type', () => {
+describe('showFlash actions', () => {
+  it('SHOW', () => {
     const expected = {
       type: actions.SHOW,
       status: 'info',
@@ -13,5 +13,11 @@ describe('showFlash action creator', () => {
     expect(actions.showFlash('info', 'Test error message', true, 3000)).toEqual(
       expected,
     )
+  })
+
+  it('HIDE', () => {
+    const expectedActions = { type: actions.HIDE }
+
+    expect(actions.hideFlash()).toEqual(expectedActions)
   })
 })

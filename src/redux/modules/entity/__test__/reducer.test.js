@@ -3,7 +3,7 @@ import reducer, { initialState } from '../reducer'
 import * as actions from '../../api/actions'
 
 describe('entity reducer', () => {
-  it('should handle RECEIVED and add new entity to state', () => {
+  it('adds new entities', () => {
     expect(
       reducer(initialState, {
         type: actions.RECEIVED,
@@ -20,7 +20,7 @@ describe('entity reducer', () => {
     })
   })
 
-  it('should merge new entities to those that are existing', () => {
+  it('merges new entities with existing', () => {
     let store = reducer(initialState, {
       type: actions.RECEIVED,
       message: addUser1,
@@ -43,7 +43,7 @@ describe('entity reducer', () => {
     })
   })
 
-  it('should remove entities that have been removed', () => {
+  it('removes entities', () => {
     let store = reducer(initialState, {
       type: actions.RECEIVED,
       message: addUser1,

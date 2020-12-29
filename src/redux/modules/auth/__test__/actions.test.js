@@ -1,7 +1,7 @@
 import * as actions from '../actions'
 
-describe('login action creator', () => {
-  it('dispatches the correct action types', () => {
+describe('Auth actions', () => {
+  it('LOGIN', () => {
     const expectedTypes = [
       actions.LOGIN,
       actions.LOGIN_SUCCESS,
@@ -10,10 +10,8 @@ describe('login action creator', () => {
 
     expect(actions.login().types).toEqual(expectedTypes)
   })
-})
 
-describe('logout action creator', () => {
-  it('dispatches the correct action type', () => {
+  it('LOGOUT', () => {
     const expectedType = { type: actions.LOGOUT }
 
     expect(actions.logout()).toEqual(expectedType)

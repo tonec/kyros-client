@@ -2,7 +2,7 @@ import reducer, { initialState } from '../reducer'
 import * as actions from '../actions'
 
 describe('Flash reducer', () => {
-  it('SHOW action', () => {
+  it('SHOW', () => {
     expect(
       reducer(initialState, {
         type: actions.SHOW,
@@ -21,7 +21,7 @@ describe('Flash reducer', () => {
     })
   })
 
-  it('HIDE action', () => {
+  it('HIDE', () => {
     expect(
       reducer(
         {
