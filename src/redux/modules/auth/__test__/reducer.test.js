@@ -40,7 +40,6 @@ describe('app reducer', () => {
       ...initialState,
       isFetching: false,
       user: loginSuccessResponse.user,
-      token: loginSuccessResponse.auth.accessToken,
     })
   })
 
@@ -64,7 +63,6 @@ it('LOGOUT action', () => {
     ...initialState,
     isFetching: false,
     user: loginSuccessResponse.user,
-    token: loginSuccessResponse.auth.accessToken,
   }
 
   expect(

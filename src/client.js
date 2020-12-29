@@ -66,10 +66,20 @@ const hydrate = async () => {
   if (window.PRELOADED) {
     delete window.PRELOADED
   } else {
-    trigger('fetch', components, locals)
+    try {
+      await trigger('fetch', components, locals)
+    } catch (error) {
+      // Failed fetch requests should be logged via redux actions
+      // console.log(error)
+    }
   }
 
-  trigger('defer', components, locals)
+  try {
+    await trigger('defer', components, locals)
+  } catch (error) {
+    // Failed defer requests should be logged via redux actions
+    // console.log(error)
+  }
 
   ReactDOM.hydrate(
     <Provider store={store}>

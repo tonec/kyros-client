@@ -1,9 +1,29 @@
-import { FETCH_USERS } from './actions'
+import * as actions from './actions'
 
-export default (state = [], action) => {
+const initialState = {
+  isFetching: false,
+}
+
+export default (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_USERS:
-      return action.payload.data
+    case actions.FETCH_USERS:
+      return {
+        ...state,
+        isFetching: true,
+      }
+
+    case actions.FETCH_USERS_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+      }
+
+    case actions.FETCH_USERS_FAIL:
+      return {
+        ...state,
+        isFetching: false,
+      }
+
     default:
       return state
   }

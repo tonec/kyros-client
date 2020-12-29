@@ -1,3 +1,5 @@
+import { saveAuthData, clearAuthData } from 'utils/sessionStorage'
+
 /*
  * Actions
  * * * * */
@@ -17,11 +19,21 @@ export const LOGOUT = `${prefix}/LOGOUT`
 export function login(data) {
   return {
     types: [LOGIN, LOGIN_SUCCESS, LOGIN_FAIL],
-    request: ({ client }) => client.post('auth/login', data),
+    request: async ({ client }) => {
+      try {
+        const response = await client.post('auth/login', data)
+        saveAuthData(response)
+        return Promise.resolve(response)
+      } catch (error) {
+        return Promise.reject(error)
+      }
+    },
   }
 }
 
 export function logout() {
+  clearAuthData()
+
   return {
     type: LOGOUT,
   }

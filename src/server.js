@@ -26,7 +26,6 @@ const MANIFEST = path.join(PUBLIC_PATH, 'manifest.json')
 
 const app = express()
 const pretty = new PrettyError()
-const client = apiClient()
 
 process.on('unhandledRejection', (reason, p) => {
   // eslint-disable-next-line no-console
@@ -48,6 +47,7 @@ app.use('/app-shell', (req, res) => {
 
 app.get('*', async (req, res) => {
   const cookieJar = new NodeCookiesWrapper(new Cookies(req, res))
+  const client = apiClient(req)
 
   const persistConfig = {
     key: 'root',
@@ -84,24 +84,26 @@ app.get('*', async (req, res) => {
     params,
   }
 
-  trigger('fetch', components, locals).then(() => {
-    const context = {}
-    const content = render({ req, store, history, context })
+  try {
+    await trigger('fetch', components, locals)
+  } catch (error) {
+    // Failed fetch requests should be logged via redux actions
+    // console.log(error)
+  }
 
-    if (context.url) {
-      res.redirect(
-        301,
-        `${context.url}?redirect=${context.location.state.from}`,
-      )
-      return
-    }
+  const context = {}
+  const content = render({ req, store, history, context })
 
-    if (context.statusCode) {
-      res.status(context.statusCode)
-    }
+  if (context.url) {
+    res.redirect(301, `${context.url}?redirect=${context.location.state.from}`)
+    return
+  }
 
-    res.send(content)
-  })
+  if (context.statusCode) {
+    res.status(context.statusCode)
+  }
+
+  res.send(content)
 })
 
 app.listen(config.PORT, () => {

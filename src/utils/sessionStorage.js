@@ -1,7 +1,7 @@
 import { TOKEN_KEY, USER_KEY } from './constants'
 
 export const saveAuthData = data => {
-  sessionStorage.setItem(TOKEN_KEY, data.auth_token)
+  sessionStorage.setItem(TOKEN_KEY, data.auth.accessToken)
   sessionStorage.setItem(USER_KEY, JSON.stringify(data.user))
 }
 

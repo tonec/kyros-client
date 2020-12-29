@@ -85,8 +85,6 @@ export default ({ client, history, match, params }) => {
           if (flash.error) {
             next(showError(flash.error))
           }
-
-          console.error('API error: ', error)
         },
       )
       .catch(error => {

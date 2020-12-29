@@ -1,2 +1,2 @@
-export const TOKEN_KEY = 'authenticityToken'
+export const TOKEN_KEY = 'accessToken'
 export const USER_KEY = 'user'

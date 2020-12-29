@@ -21,13 +21,23 @@ export default function axiosClient(req) {
         if (req.header('cookie')) {
           conf.headers.Cookie = req.header('cookie')
         }
-        if (req.header('authorization')) {
-          conf.headers.authorization = req.header('authorization')
+
+        console.log('req.header', req)
+
+        // if (req.header('authorization')) {
+        //   conf.headers.authorization = req.header('authorization')
+        // }
+
+        if (token) {
+          instance.defaults.headers.common.Authorization = token
+        } else {
+          // deleting the token from header
+          delete instance.defaults.headers.common.Authorization
         }
       }
 
       if (token) {
-        conf.headers.authorization = token
+        conf.headers.authorization = 'token'
       }
 
       return conf
