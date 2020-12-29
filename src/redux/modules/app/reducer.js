@@ -4,7 +4,6 @@ import * as types from './actions'
 
 export const initialState = {
   isFirstLoad: true,
-  loginDataFetched: false,
   pathHistory: [],
   previousPath: null,
 }
@@ -19,12 +18,6 @@ export default function reducer(state = initialState, action = {}) {
       return {
         ...state,
         isFirstLoad: false,
-      }
-
-    case types.LOGIN_DATA_FETCHED:
-      return {
-        ...state,
-        loginDataFetched: true,
       }
 
     case LOCATION_CHANGE:
