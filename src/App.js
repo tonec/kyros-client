@@ -11,6 +11,7 @@ import { setTheme, withTheme } from 'styles'
 
 import './assets/stylesheets/global.css'
 import './assets/stylesheets/reset.css'
+import './assets/stylesheets/nprogress.css'
 
 class App extends Component {
   constructor(props) {

@@ -4,6 +4,7 @@ import { childrenType } from 'types'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { withRouter, Route } from 'react-router-dom'
+import NProgress from 'nprogress'
 import { trigger } from 'redial'
 import { usePrevious } from 'hooks'
 import asyncMatchRoutes from 'helpers/asyncMatchRoutes'
@@ -18,6 +19,8 @@ function AsyncTrigger({
   isFirstLoad,
 }) {
   const prevPathname = usePrevious(location.pathname)
+
+  NProgress.configure({ trickleSpeed: 200 })
 
   useEffect(() => {
     const navigated = location.pathname !== prevPathname
@@ -40,9 +43,12 @@ function AsyncTrigger({
       if (__CLIENT__) {
         await trigger('defer', components, locals)
       }
+
+      NProgress.done()
     }
 
     if (!isFirstLoad && navigated) {
+      NProgress.start()
       triggerFetch()
     }
   }, [history, location.pathname, prevPathname, routes, store, isFirstLoad])

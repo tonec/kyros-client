@@ -22,6 +22,7 @@ export default function ({
         <link rel="manifest" href="/manifest.json" />
         ${process.env.NODE_ENV !== 'development' ? registerSW() : ''}
         ${links}
+        <link rel="stylesheet" href="/dist/main.css" />
         <style id="jss-server-side">${styles}</style>
       </head>
       <body>
