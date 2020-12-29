@@ -19,10 +19,10 @@ describe('api actions', () => {
     expect(actions.connected()).toEqual(expectedActions)
   })
 
-  it('should dispatch the correct action for MESSAGE', () => {
-    const expectedActions = { type: actions.MESSAGE }
+  it('should dispatch the correct action for RECEIVED', () => {
+    const expectedActions = { type: actions.RECEIVED }
 
-    expect(actions.message()).toEqual(expectedActions)
+    expect(actions.received()).toEqual(expectedActions)
   })
 
   it('should dispatch the correct action for CLOSED', () => {

@@ -7,11 +7,11 @@ import { RECEIVED } from '../api/actions'
 import { LOGOUT } from '../auth/actions'
 import normalized from './schema'
 
+// eslint-disable-next-line consistent-return
 function mergeCopyArrays(objValue, srcValue) {
   if (isArray(objValue)) {
     return srcValue
   }
-  return null
 }
 
 export const initialState = {}
