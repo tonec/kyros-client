@@ -41,15 +41,15 @@ export default function reducer(state = initialState, action = {}) {
 
       if (message && message.action === 'remove') {
         const entity = message.entity.toLowerCase()
-        const { _id } = message.meta
+        const { id } = message.meta
 
         return {
           ...state,
           [entity]: {
             ...state[entity],
-            byId: immutable.del(state[entity].byId, `${_id}`),
+            byId: immutable.del(state[entity].byId, `${id}`),
             allIds: [
-              ...state[entity].allIds.filter(entityId => entityId !== _id),
+              ...state[entity].allIds.filter(entityId => entityId !== id),
             ],
           },
         }
