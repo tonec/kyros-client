@@ -14,7 +14,7 @@ export default function reducer(state = initialState, action = {}) {
   const nextPath = get(action, 'payload.pathname')
 
   switch (action.type) {
-    case types.LOADED:
+    case types.FIRST_LOAD:
       return {
         ...state,
         isFirstLoad: false,

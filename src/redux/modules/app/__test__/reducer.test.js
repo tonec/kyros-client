@@ -2,10 +2,10 @@ import reducer, { initialState } from '../reducer'
 import * as actions from '../actions'
 
 describe('api reducer', () => {
-  it('should handle LOADED', () => {
+  it('should handle FIRST_LOAD', () => {
     expect(
       reducer(initialState, {
-        type: actions.LOADED,
+        type: actions.FIRST_LOAD,
       }),
     ).toEqual({
       ...initialState,
