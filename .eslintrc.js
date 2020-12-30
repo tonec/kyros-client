@@ -9,6 +9,7 @@ module.exports = {
     es6: true,
   },
   rules: {
+    'no-shadow': 'off',
     'react/forbid-prop-types': 'off',
     'react/jsx-closing-tag-location': 'off',
     'react/jsx-filename-extension': 'off',
