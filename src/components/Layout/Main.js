@@ -4,6 +4,7 @@ import { childrenType, maxWidthType } from 'types'
 import cx from 'clsx'
 import { makeStyles } from 'styles'
 import { ConditionalWrap, Container } from '../ui'
+import Flash from '../Flash/FlashContainer'
 import Header from '../Header/Header'
 
 const useStyles = makeStyles({
@@ -32,6 +33,7 @@ function Main({ children, maxWidth, className, container }) {
       >
         <div className={classes.inner}>{children}</div>
       </ConditionalWrap>
+      <Flash />
     </div>
   )
 }
