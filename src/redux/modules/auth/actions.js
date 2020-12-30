@@ -39,7 +39,7 @@ export function login(data) {
 }
 
 export function logout() {
-  Cookies.remove(TOKEN_KEY)
+  Cookies.expire(TOKEN_KEY)
 
   return {
     type: LOGOUT,
