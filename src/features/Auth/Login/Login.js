@@ -1,7 +1,5 @@
 import React from 'react'
-import get from 'lodash/get'
 import { useDispatch } from 'react-redux'
-import { useHistory } from 'react-router'
 import { login } from 'redux/modules/auth/actions'
 import { makeStyles } from 'styles'
 import { Card, Typography } from 'components'
@@ -15,7 +13,6 @@ const useStyles = makeStyles({
 
 function Login() {
   const dispatch = useDispatch()
-  const history = useHistory()
   const classes = useStyles()
 
   const handleOnSubmit = data => {
