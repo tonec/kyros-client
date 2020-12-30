@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import { showSuccess, showError } from 'redux/modules/flash/actions'
+import { RECEIVED } from 'redux/modules/api/actions'
 
 export default ({ client, history, match, params }) => {
   return ({ dispatch, getState }) => next => action => {
@@ -64,6 +65,11 @@ export default ({ client, history, match, params }) => {
           next({
             type: SUCCESS,
             payload: { ...inject, ...payload },
+          })
+
+          next({
+            type: RECEIVED,
+            payload,
           })
 
           if (flash.success) {

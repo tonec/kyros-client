@@ -17,13 +17,13 @@ function mergeCopyArrays(objValue, srcValue) {
 export const initialState = {}
 
 export default function reducer(state = initialState, action = {}) {
-  const { message } = action
+  const { payload } = action
 
   switch (action.type) {
     case RECEIVED:
-      if (message && message.action === 'store') {
-        const entity = message.entity.toLowerCase()
-        const data = normalized(message)
+      if (payload && payload.action === 'store') {
+        const entity = payload.entity.toLowerCase()
+        const data = normalized(payload)
         const byId = data.entities[entity]
         const allIds = data.result.entities
 
@@ -39,9 +39,9 @@ export default function reducer(state = initialState, action = {}) {
         })
       }
 
-      if (message && message.action === 'remove') {
-        const entity = message.entity.toLowerCase()
-        const { id } = message.meta
+      if (payload && payload.action === 'remove') {
+        const entity = payload.entity.toLowerCase()
+        const { id } = payload.meta
 
         return {
           ...state,
