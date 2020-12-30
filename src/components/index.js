@@ -49,6 +49,7 @@ export { default as SelectField } from './ui/form/SelectField'
 export { default as TextareaField } from './ui/form/TextareaField'
 
 // Common
+export { default as AuthRedirect } from './AuthRedirect'
 export { default as PrivateRoute } from './PrivateRoute'
 
 // Feature
