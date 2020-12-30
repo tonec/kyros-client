@@ -7,7 +7,7 @@ describe('entity reducer', () => {
     expect(
       reducer(initialState, {
         type: actions.RECEIVED,
-        message: addUser1,
+        payload: addUser1,
       }),
     ).toEqual({
       ...initialState,
@@ -23,12 +23,12 @@ describe('entity reducer', () => {
   it('merges new entities with existing', () => {
     let store = reducer(initialState, {
       type: actions.RECEIVED,
-      message: addUser1,
+      payload: addUser1,
     })
 
     store = reducer(store, {
       type: actions.RECEIVED,
-      message: addUser2,
+      payload: addUser2,
     })
 
     expect(store).toEqual({
@@ -46,17 +46,17 @@ describe('entity reducer', () => {
   it('removes entities', () => {
     let store = reducer(initialState, {
       type: actions.RECEIVED,
-      message: addUser1,
+      payload: addUser1,
     })
 
     store = reducer(store, {
       type: actions.RECEIVED,
-      message: addUser2,
+      payload: addUser2,
     })
 
     store = reducer(store, {
       type: actions.RECEIVED,
-      message: removeUser2,
+      payload: removeUser2,
     })
 
     expect(store).toEqual({

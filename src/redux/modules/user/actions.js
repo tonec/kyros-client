@@ -4,9 +4,9 @@
 
 const prefix = '@user'
 
-export const FETCH_USERS = `${prefix}/FETCH_USERS`
-export const FETCH_USERS_SUCCESS = `${prefix}/FETCH_USERS_SUCCESS`
-export const FETCH_USERS_FAIL = `${prefix}/FETCH_USERS_FAIL`
+export const FETCH = `${prefix}/FETCH`
+export const FETCH_SUCCESS = `${prefix}/FETCH_SUCCESS`
+export const FETCH_FAIL = `${prefix}/FETCH_FAIL`
 
 /*
  * Action creators
@@ -14,7 +14,7 @@ export const FETCH_USERS_FAIL = `${prefix}/FETCH_USERS_FAIL`
 
 export function fetchUsers() {
   return {
-    types: [FETCH_USERS, FETCH_USERS_SUCCESS, FETCH_USERS_FAIL],
+    types: [FETCH, FETCH_SUCCESS, FETCH_FAIL],
     request: ({ client }) => client.get('user'),
   }
 }
