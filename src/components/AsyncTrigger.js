@@ -38,10 +38,18 @@ function AsyncTrigger({
         params,
       }
 
-      await trigger('fetch', components, locals)
+      try {
+        await trigger('fetch', components, locals)
+      } catch (error) {
+        //
+      }
 
       if (__CLIENT__) {
-        await trigger('defer', components, locals)
+        try {
+          await trigger('defer', components, locals)
+        } catch (error) {
+          //
+        }
       }
 
       NProgress.done()

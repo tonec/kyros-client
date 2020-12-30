@@ -58,9 +58,7 @@ export default function reducer(state = initialState, action = {}) {
       return state
 
     case LOGOUT:
-      return {
-        ...initialState,
-      }
+      return initialState
 
     default:
       return state
