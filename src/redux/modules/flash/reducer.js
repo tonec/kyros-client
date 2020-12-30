@@ -1,3 +1,4 @@
+import { LOCATION_CHANGE } from 'react-router-redux'
 import * as actions from './actions'
 
 export const initialState = {
@@ -21,9 +22,8 @@ export default function reducer(state = initialState, action = {}) {
       }
 
     case actions.HIDE:
-      return {
-        ...initialState,
-      }
+    case LOCATION_CHANGE:
+      return initialState
 
     default:
       return state
