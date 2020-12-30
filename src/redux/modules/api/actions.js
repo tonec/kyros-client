@@ -1,6 +1,6 @@
 /*
-* Actions
-* * * * */
+ * Actions
+ * * * * */
 
 const prefix = '@api'
 
@@ -8,10 +8,10 @@ const prefix = '@api'
 export const CONNECT = `${prefix}/CONNECT`
 export const DISCONNECT = `${prefix}/DISCONNECT`
 
-// clientMiddleware dispatches these actions
+// middleware dispatches these actions
+export const RECEIVED = `${prefix}/RECEIVED`
 export const CONNECTED = `${prefix}/CONNECTED`
 export const SENT = `${prefix}/SENT`
-export const RECEIVED = `${prefix}/RECEIVED`
 export const ERROR = `${prefix}/ERROR`
 export const COMPLETE = `${prefix}/COMPLETE`
 export const CLOSED = `${prefix}/CLOSED`
@@ -21,59 +21,60 @@ export const IS_ONLINE = `${prefix}/IS_ONLINE`
 export const IS_OFFLINE = `${prefix}/IS_OFFLINE`
 
 /*
-* Action creators
-* * * * * * * * */
+ * Action creators
+ * * * * * * * * */
+
+// Message received from api (Dispatched by middleware)
+export const received = payload => {
+  return {
+    type: RECEIVED,
+    payload,
+  }
+}
 
 // Connect to WebSocket
 export const connect = () => ({
-  type: CONNECT
+  type: CONNECT,
 })
 
 // Disconnect from WebSocket
 export const disconnect = () => ({
-  type: DISCONNECT
+  type: DISCONNECT,
 })
 
 // WebSocket has connected (Dispatched by middleware)
 export const connected = () => ({
-  type: CONNECTED
+  type: CONNECTED,
 })
 
 //  Message sent to WebSocket (Dispatched by middleware)
 export const sent = message => ({
   type: SENT,
-  message
+  message,
 })
-
-// Message received by WebSocket (Dispatched by middleware)
-export const received = message => {
-  return {
-    type: RECEIVED,
-    message
-  }
-}
 
 // WebSocket closed (Dispatched by middleware)
 export const closed = () => ({
-  type: CLOSED
+  type: CLOSED,
 })
 
 // WebSocket observable received error (Dispatched by middleware)
 export const error = err => ({
-  type: ERROR, err
+  type: ERROR,
+  err,
 })
 
 // WebSocket observeble received complete (Dispatched by middleware)
 export const complete = () => ({
-  type: COMPLETE
+  type: COMPLETE,
 })
 
 // Device is online
 export const isOnline = () => ({
-  type: IS_ONLINE
+  type: IS_ONLINE,
 })
 
 // Device is offline
 export const isOffline = () => ({
-  type: IS_OFFLINE
+  type: IS_OFFLINE,
 })
