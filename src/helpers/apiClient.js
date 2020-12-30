@@ -22,8 +22,6 @@ export default function axiosClient(req) {
           conf.headers.Cookie = req.header('cookie')
         }
 
-        console.log('req.header', req)
-
         // if (req.header('authorization')) {
         //   conf.headers.authorization = req.header('authorization')
         // }
