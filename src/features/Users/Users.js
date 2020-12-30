@@ -9,7 +9,6 @@ import { getFullName } from 'utils/entity'
 import { Main } from 'components'
 
 function Users({ users }) {
-  console.log('users', users)
   const renderUsers = () => {
     return users.map(user => <li key={user.id}>{getFullName(user)}</li>)
   }
