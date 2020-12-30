@@ -12,7 +12,7 @@ import { trigger } from 'redial'
 import PrettyError from 'pretty-error'
 import { getStoredState } from 'redux-persist'
 import { CookieStorage, NodeCookiesWrapper } from 'redux-persist-cookie-storage'
-import Cookies from 'utils/nodeCookies'
+import Cookies from 'cookies'
 import asyncMatchRoutes from 'helpers/asyncMatchRoutes'
 import apiClient from 'helpers/apiClient'
 import render from 'helpers/render'
@@ -51,7 +51,9 @@ app.get('*', async (req, res) => {
 
   const persistConfig = {
     key: 'root',
-    storage: new CookieStorage(cookieJar),
+    storage: new CookieStorage(cookieJar, {
+      setCookieOptions: { httpOnly: false },
+    }),
     stateReconciler: (inboundState, originalState) => originalState,
     whitelist: ['auth'],
   }
