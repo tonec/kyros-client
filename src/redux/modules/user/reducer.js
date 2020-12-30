@@ -1,4 +1,4 @@
-import * as actions from './actions'
+import * as types from './actions'
 
 export const initialState = {
   isFetching: false,
@@ -6,19 +6,19 @@ export const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case actions.FETCH:
+    case types.FETCH:
       return {
         ...state,
         isFetching: true,
       }
 
-    case actions.FETCH_SUCCESS:
+    case types.FETCH_SUCCESS:
       return {
         ...state,
         isFetching: false,
       }
 
-    case actions.FETCH_FAIL:
+    case types.FETCH_FAIL:
       return {
         ...state,
         isFetching: false,

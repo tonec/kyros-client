@@ -14,6 +14,7 @@ export const FETCH_FAIL = `${prefix}/FETCH_FAIL`
 
 export function fetchUsers() {
   return {
+    key: 'user',
     types: [FETCH, FETCH_SUCCESS, FETCH_FAIL],
     request: ({ client }) => client.get('user'),
   }

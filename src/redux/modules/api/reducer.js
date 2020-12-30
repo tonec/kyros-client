@@ -3,7 +3,8 @@ import * as types from './actions'
 export const initialState = {
   connecting: false,
   connected: false,
-  online: true
+  online: true,
+  isFetching: {},
 }
 
 export default function reducer(state = initialState, action = {}) {
@@ -11,32 +12,32 @@ export default function reducer(state = initialState, action = {}) {
     case types.CONNECT:
       return {
         ...state,
-        connecting: true
+        connecting: true,
       }
 
     case types.CONNECTED:
       return {
         ...state,
         connecting: false,
-        connected: true
+        connected: true,
       }
 
     case types.CLOSED:
       return {
         ...state,
-        connected: false
+        connected: false,
       }
 
     case types.IS_ONLINE:
       return {
         ...state,
-        online: true
+        online: true,
       }
 
     case types.IS_OFFLINE:
       return {
         ...state,
-        online: false
+        online: false,
       }
 
     default:

@@ -1,4 +1,4 @@
-import * as actions from './actions'
+import * as types from './actions'
 
 export const initialState = {
   isFetching: false,
@@ -8,13 +8,13 @@ export const initialState = {
 
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
-    case actions.LOGIN:
+    case types.LOGIN:
       return {
         ...state,
         isFetching: true,
       }
 
-    case actions.LOGIN_SUCCESS:
+    case types.LOGIN_SUCCESS:
       return {
         ...state,
         isFetching: false,
@@ -22,7 +22,7 @@ export default function reducer(state = initialState, action = {}) {
         error: null,
       }
 
-    case actions.LOGIN_FAIL:
+    case types.LOGIN_FAIL:
       return {
         ...state,
         isFetching: false,
@@ -30,7 +30,7 @@ export default function reducer(state = initialState, action = {}) {
         error: action.error && action.payload,
       }
 
-    case actions.LOGOUT:
+    case types.LOGOUT:
       return initialState
 
     default:
