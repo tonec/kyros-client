@@ -1,4 +1,4 @@
-import immutable from 'object-path-immutable'
+import { del } from 'object-path-immutable'
 import merge from 'lodash/merge'
 import mergeWith from 'lodash/mergeWith'
 import isArray from 'lodash/isArray'
@@ -47,7 +47,7 @@ export default function reducer(state = initialState, action = {}) {
           ...state,
           [entity]: {
             ...state[entity],
-            byId: immutable.del(state[entity].byId, `${id}`),
+            byId: del(state[entity].byId, `${id}`),
             allIds: [
               ...state[entity].allIds.filter(entityId => entityId !== id),
             ],
