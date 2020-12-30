@@ -1,4 +1,6 @@
-import { saveAuthData, clearAuthData } from 'utils/sessionStorage'
+import Cookies from 'cookies-js'
+import get from 'lodash/get'
+import { TOKEN_KEY } from 'utils/constants'
 
 /*
  * Actions
@@ -22,7 +24,12 @@ export function login(data) {
     request: async ({ client }) => {
       try {
         const response = await client.post('auth/login', data)
-        saveAuthData(response)
+        const accessToken = get(response, 'auth.accessToken')
+
+        if (accessToken) {
+          Cookies.set(TOKEN_KEY, accessToken)
+        }
+
         return Promise.resolve(response)
       } catch (error) {
         return Promise.reject(error)
@@ -32,7 +39,7 @@ export function login(data) {
 }
 
 export function logout() {
-  clearAuthData()
+  Cookies.remove(TOKEN_KEY)
 
   return {
     type: LOGOUT,

@@ -30,7 +30,7 @@ Users.defaultProps = {
 const mapState = ({ user }) => ({ users: user })
 
 const hooks = {
-  fetch: ({ store }) => store.dispatch(fetchUsers()),
+  defer: ({ store }) => store.dispatch(fetchUsers()),
 }
 
 export default compose(provideHooks(hooks), connect(mapState))(Users)

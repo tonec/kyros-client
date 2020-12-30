@@ -31,7 +31,7 @@ const history = qhistory(createBrowserHistory(), stringify, parse)
 const client = apiClient()
 
 const persistConfig = {
-  key: 'root',
+  key: 'kyros',
   storage: new CookieStorage(Cookies),
   stateReconciler(inboundState, originalState) {
     return originalState

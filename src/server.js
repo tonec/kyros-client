@@ -50,7 +50,7 @@ app.get('*', async (req, res) => {
   const client = apiClient(req)
 
   const persistConfig = {
-    key: 'root',
+    key: 'kyros',
     storage: new CookieStorage(cookieJar, {
       setCookieOptions: { httpOnly: false },
     }),
