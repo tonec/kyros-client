@@ -1,33 +1,34 @@
-/* eslint-disable global-require */
-import { createStore, applyMiddleware, compose } from 'redux'
+import { configureStore } from '@reduxjs/toolkit'
 import { routerMiddleware } from 'connected-react-router'
 import { persistCombineReducers, createPersistoid } from 'redux-persist'
 import apiMiddleware from './middleware/apiMiddleware'
 import rootReducer from './rootReducer'
 
 export default ({ client, history, match, params, data, persistConfig }) => {
-  let composeEnhancers = compose
-
-  let initialState = { ...data }
+  let preloadedState = { ...data }
 
   if (__CLIENT__) {
-    composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
-    initialState = { ...initialState, ...window.INITIAL_STATE }
+    preloadedState = { ...preloadedState, ...window.INITIAL_STATE }
     delete window.INITIAL_STATE
   }
 
-  const middleware = [
-    apiMiddleware({ client, history, match, params }),
-    routerMiddleware(history),
-  ]
+  const middleware = getDefaultMiddleware =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActionPaths: ['request'],
+      },
+    }).concat([
+      apiMiddleware({ client, history, match, params }),
+      routerMiddleware(history),
+    ])
 
   const persisted = persistCombineReducers(persistConfig, rootReducer(history))
 
-  const store = createStore(
-    persisted,
-    initialState,
-    composeEnhancers(applyMiddleware(...middleware)),
-  )
+  const store = configureStore({
+    reducer: persisted,
+    middleware,
+    preloadedState,
+  })
 
   if (persistConfig) {
     const persistoid = createPersistoid(persistConfig)
