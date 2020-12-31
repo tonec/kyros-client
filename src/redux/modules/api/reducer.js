@@ -4,7 +4,6 @@ export const initialState = {
   connecting: false,
   connected: false,
   online: true,
-  isFetching: {},
 }
 
 export default function reducer(state = initialState, action = {}) {
