@@ -1,9 +1,10 @@
 import { fk } from 'utils'
 import * as types from './actions'
+import { LOGOUT } from '../auth/actions'
 
 export const initialState = {
   isFetching: false,
-  visibleUsers: null,
+  visibleUsers: [],
 }
 
 export default (state = initialState, action) => {
@@ -27,6 +28,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isFetching: false,
+      }
+
+    case LOGOUT:
+      return {
+        ...initialState,
       }
 
     default:

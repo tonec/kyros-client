@@ -62,12 +62,12 @@ export default ({ client, history, match, params }) => {
     actionPromise
       .then(
         payload => {
+          next(received(payload))
+
           next({
             type: SUCCESS,
             payload: { ...inject, ...payload },
           })
-
-          next(received(payload))
 
           if (flash.success) {
             next(showSuccess(flash.success))

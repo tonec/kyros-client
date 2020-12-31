@@ -31,7 +31,9 @@ export default function reducer(state = initialState, action = {}) {
       }
 
     case types.LOGOUT:
-      return initialState
+      return {
+        ...initialState,
+      }
 
     default:
       return state
