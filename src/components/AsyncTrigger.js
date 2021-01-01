@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { childrenType } from 'types'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
+import { createStructuredSelector } from 'reselect'
 import { withRouter, Route } from 'react-router-dom'
 import NProgress from 'nprogress'
 import { trigger } from 'redial'
@@ -73,8 +74,8 @@ AsyncTrigger.propTypes = {
   isFirstLoad: PropTypes.bool.isRequired,
 }
 
-const mapState = state => ({
-  isFirstLoad: getIsFirstLoad(state),
+const mapState = createStructuredSelector({
+  isFirstLoad: getIsFirstLoad,
 })
 
 export default compose(connect(mapState), withRouter)(AsyncTrigger)

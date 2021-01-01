@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import get from 'lodash/get'
 import { userType } from 'types'
 import { compose } from 'redux'
+import { createStructuredSelector } from 'reselect'
 import { renderRoutes } from 'react-router-config'
 import { connect } from 'react-redux'
 import { setIsFirstLoad } from 'redux/modules/app/actions'
@@ -81,10 +82,8 @@ App.defaultProps = {
   user: null,
 }
 
-const mapState = state => {
-  return {
-    user: getAuthUser(state),
-  }
-}
+const mapState = createStructuredSelector({
+  user: getAuthUser,
+})
 
 export default compose(withTheme, connect(mapState))(App)

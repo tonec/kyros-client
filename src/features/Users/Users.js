@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { provideHooks } from 'redial'
+import { createStructuredSelector } from 'reselect'
 import { fetchUsers } from 'redux/modules/user/actions'
 import { isFetching, getVisibleUsers } from 'redux/modules/user/selectors'
 import { getFullName } from 'utils/entity'
@@ -34,9 +35,9 @@ Users.defaultProps = {
   users: null,
 }
 
-const mapState = state => ({
-  isFetching: isFetching(state),
-  users: getVisibleUsers(state),
+const mapState = createStructuredSelector({
+  isFetching,
+  users: getVisibleUsers,
 })
 
 const hooks = {
