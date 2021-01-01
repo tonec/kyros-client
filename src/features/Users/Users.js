@@ -9,8 +9,6 @@ import { getFullName } from 'utils/entity'
 import { Main } from 'components'
 
 function Users({ isFetching, users }) {
-  console.log('users', users)
-  console.log('isFetching', isFetching)
   if (isFetching) {
     return null
   }
