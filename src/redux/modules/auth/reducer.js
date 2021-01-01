@@ -1,3 +1,4 @@
+import createReducer from '../../createReducer'
 import * as types from './actions'
 
 export const initialState = {
@@ -6,36 +7,25 @@ export const initialState = {
   error: null,
 }
 
-export default function reducer(state = initialState, action = {}) {
-  switch (action.type) {
-    case types.LOGIN:
-      return {
-        ...state,
-        isFetching: true,
-      }
+export default createReducer(initialState, {
+  [types.LOGIN]: state => ({
+    ...state,
+    isFetching: true,
+  }),
 
-    case types.LOGIN_SUCCESS:
-      return {
-        ...state,
-        isFetching: false,
-        user: action.payload.user,
-        error: null,
-      }
+  [types.LOGIN_SUCCESS]: (state, { payload }) => ({
+    ...state,
+    isFetching: false,
+    user: payload.user,
+    error: null,
+  }),
 
-    case types.LOGIN_FAIL:
-      return {
-        ...state,
-        isFetching: false,
-        user: null,
-        error: action.error && action.payload,
-      }
+  [types.LOGIN_FAIL]: (state, { payload, error }) => ({
+    ...state,
+    isFetching: false,
+    user: null,
+    error: error && payload,
+  }),
 
-    case types.LOGOUT:
-      return {
-        ...initialState,
-      }
-
-    default:
-      return state
-  }
-}
+  [types.LOGOUT]: () => initialState,
+})

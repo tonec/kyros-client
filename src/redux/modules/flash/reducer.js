@@ -1,4 +1,5 @@
 import { LOCATION_CHANGE } from 'react-router-redux'
+import createReducer from '../../createReducer'
 import * as actions from './actions'
 
 export const initialState = {
@@ -9,23 +10,17 @@ export const initialState = {
   timeout: null,
 }
 
-export default function reducer(state = initialState, action = {}) {
-  switch (action.type) {
-    case actions.SHOW:
-      return {
-        ...state,
-        visible: true,
-        status: action.status,
-        message: action.message,
-        dismissable: action.dismissable,
-        timeout: action.timeout,
-      }
+export default createReducer(initialState, {
+  [actions.SHOW]: (state, action) => ({
+    ...state,
+    visible: true,
+    status: action.status,
+    message: action.message,
+    dismissable: action.dismissable,
+    timeout: action.timeout,
+  }),
 
-    case actions.HIDE:
-    case LOCATION_CHANGE:
-      return initialState
+  [actions.HIDE]: () => initialState,
 
-    default:
-      return state
-  }
-}
+  [LOCATION_CHANGE]: () => initialState,
+})

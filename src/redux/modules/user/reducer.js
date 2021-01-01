@@ -1,4 +1,5 @@
 import { fk } from 'utils'
+import createReducer from '../../createReducer'
 import * as types from './actions'
 import { LOGOUT } from '../auth/actions'
 
@@ -7,35 +8,22 @@ export const initialState = {
   visibleUsers: [],
 }
 
-export default (state = initialState, action) => {
-  const { payload } = action
+export default createReducer(initialState, {
+  [types.FETCH]: state => ({
+    ...state,
+    isFetching: true,
+  }),
 
-  switch (action.type) {
-    case types.FETCH:
-      return {
-        ...state,
-        isFetching: true,
-      }
+  [types.FETCH_SUCCESS]: (state, { payload }) => ({
+    ...state,
+    isFetching: false,
+    visibleUsers: payload.data.entities.map(fk('id')),
+  }),
 
-    case types.FETCH_SUCCESS:
-      return {
-        ...state,
-        isFetching: false,
-        visibleUsers: payload.data.entities.map(fk('id')),
-      }
+  [types.FETCH_FAIL]: state => ({
+    ...state,
+    isFetching: false,
+  }),
 
-    case types.FETCH_FAIL:
-      return {
-        ...state,
-        isFetching: false,
-      }
-
-    case LOGOUT:
-      return {
-        ...initialState,
-      }
-
-    default:
-      return state
-  }
-}
+  [LOGOUT]: () => initialState,
+})
