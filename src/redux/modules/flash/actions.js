@@ -1,3 +1,5 @@
+import { createAction } from '@reduxjs/toolkit'
+
 /*
  * Actions
  * * * * */
@@ -11,26 +13,21 @@ export const HIDE = `${prefix}/HIDE`
  * Action creators
  * * * * * * * * */
 
-export function showFlash(status, message, dismissable, timeout) {
-  return {
-    type: SHOW,
-    status,
-    message,
-    dismissable,
-    timeout,
-  }
+export function showFlash({ status, message, dismissable, timeout }) {
+  return { type: SHOW, status, message, dismissable, timeout }
 }
 
 export function showError(message) {
-  return showFlash('error', message, true)
+  return showFlash({ status: 'error', message, dismissable: true })
 }
 
 export function showSuccess(message) {
-  return showFlash('success', message, false, 2000)
+  return showFlash({
+    status: 'success',
+    message,
+    dismissable: false,
+    timeout: 2000,
+  })
 }
 
-export function hideFlash() {
-  return {
-    type: HIDE,
-  }
-}
+export const hideFlash = createAction(HIDE)

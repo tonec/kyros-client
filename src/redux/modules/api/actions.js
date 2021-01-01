@@ -1,3 +1,5 @@
+import { createAction } from '@reduxjs/toolkit'
+
 /*
  * Actions
  * * * * */
@@ -25,56 +27,31 @@ export const IS_OFFLINE = `${prefix}/IS_OFFLINE`
  * * * * * * * * */
 
 // Message received from api (Dispatched by middleware)
-export const received = payload => {
-  return {
-    type: RECEIVED,
-    payload,
-  }
-}
+export const received = createAction(RECEIVED)
 
 // Connect to WebSocket
-export const connect = () => ({
-  type: CONNECT,
-})
+export const connect = createAction(CONNECT)
 
 // Disconnect from WebSocket
-export const disconnect = () => ({
-  type: DISCONNECT,
-})
+export const disconnect = createAction(DISCONNECT)
 
 // WebSocket has connected (Dispatched by middleware)
-export const connected = () => ({
-  type: CONNECTED,
-})
+export const connected = createAction(CONNECTED)
 
 //  Message sent to WebSocket (Dispatched by middleware)
-export const sent = message => ({
-  type: SENT,
-  message,
-})
+export const sent = createAction(SENT)
 
 // WebSocket closed (Dispatched by middleware)
-export const closed = () => ({
-  type: CLOSED,
-})
+export const closed = createAction(CLOSED)
 
 // WebSocket observable received error (Dispatched by middleware)
-export const error = err => ({
-  type: ERROR,
-  err,
-})
+export const error = createAction(ERROR)
 
 // WebSocket observeble received complete (Dispatched by middleware)
-export const complete = () => ({
-  type: COMPLETE,
-})
+export const complete = createAction(COMPLETE)
 
 // Device is online
-export const isOnline = () => ({
-  type: IS_ONLINE,
-})
+export const isOnline = createAction(IS_ONLINE)
 
 // Device is offline
-export const isOffline = () => ({
-  type: IS_OFFLINE,
-})
+export const isOffline = createAction(IS_OFFLINE)

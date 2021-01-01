@@ -1,3 +1,5 @@
+import { createAction } from '@reduxjs/toolkit'
+
 /*
  * Actions
  * * * * */
@@ -10,6 +12,4 @@ export const FIRST_LOAD = `${prefix}/FIRST_LOAD`
  * Action creators
  * * * * * * * * */
 
-export const setIsFirstLoad = () => ({
-  type: FIRST_LOAD,
-})
+export const setIsFirstLoad = createAction(FIRST_LOAD)
