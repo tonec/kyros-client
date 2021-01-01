@@ -41,7 +41,7 @@ const mapState = createStructuredSelector({
 })
 
 const hooks = {
-  fetch: ({ store }) => store.dispatch(fetchUsers()),
+  defer: ({ store }) => store.dispatch(fetchUsers()),
 }
 
 export default compose(provideHooks(hooks), connect(mapState))(Users)
