@@ -2,7 +2,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { makeStyles } from 'styles'
-import { Icon } from 'components'
+import { Icon } from '../ui'
 import NavigationItem from './NavigationItem'
 
 const useStyles = makeStyles({

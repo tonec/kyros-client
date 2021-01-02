@@ -5,6 +5,7 @@ import cx from 'clsx'
 import Helmet from 'react-helmet'
 import { makeStyles } from 'styles'
 import { ConditionalWrap, Container } from '../ui'
+import Header from '../Header/Header'
 
 const useStyles = makeStyles({
   wrap: {
@@ -17,6 +18,7 @@ function BaseLayout({
   title,
   maxWidth,
   classNameWrap,
+  header,
   container,
   classNameContainer,
 }) {
@@ -25,6 +27,7 @@ function BaseLayout({
   return (
     <div className={cx(classes.wrap, classNameWrap)}>
       <Helmet title={title} />
+      {header && <Header />}
       <ConditionalWrap
         condition={container}
         wrap={child => (
@@ -42,6 +45,7 @@ function BaseLayout({
 BaseLayout.propTypes = {
   children: childrenType.isRequired,
   title: PropTypes.string.isRequired,
+  header: PropTypes.bool,
   container: PropTypes.bool,
   maxWidth: maxWidthType,
   classNameWrap: PropTypes.string,
@@ -50,6 +54,7 @@ BaseLayout.propTypes = {
 
 BaseLayout.defaultProps = {
   maxWidth: false,
+  header: false,
   container: false,
   classNameWrap: null,
   classNameContainer: null,

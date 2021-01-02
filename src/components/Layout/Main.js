@@ -5,7 +5,6 @@ import cx from 'clsx'
 import { makeStyles } from 'styles'
 import Base from './Base'
 import Flash from '../Flash/FlashContainer'
-import Header from '../Header/Header'
 
 const useStyles = makeStyles({
   wrap: {
@@ -14,7 +13,7 @@ const useStyles = makeStyles({
   },
   container: {
     display: 'flex',
-    flexDirection: 'row',
+    flexDirection: 'column',
     position: 'relative',
     width: '100%',
     marginLeft: 56,
@@ -31,8 +30,8 @@ function Main({ children, title, maxWidth, className }) {
       classNameWrap={cx(classes.wrap, className)}
       classNameContainer={classes.container}
       container
+      header
     >
-      <Header />
       {children}
       <Flash />
     </Base>

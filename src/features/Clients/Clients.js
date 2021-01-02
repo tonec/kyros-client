@@ -1,12 +1,15 @@
 import React from 'react'
 import { provideHooks } from 'redial'
 import { fetchClients } from 'redux/modules/client/actions'
-import { Main } from 'components'
+import { Main, PageHeader } from 'components'
 import ClientsTableContainer from './ClientsTableContainer'
 
 function Clients() {
+  const title = 'Clients'
+
   return (
-    <Main title="Clients">
+    <Main title={title}>
+      <PageHeader title={title} />
       <ClientsTableContainer />
     </Main>
   )

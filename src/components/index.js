@@ -50,6 +50,7 @@ export { default as TextareaField } from './ui/form/TextareaField'
 
 // Common
 export { default as AuthRedirect } from './AuthRedirect'
+export { default as PageHeader } from './PageHeader/PageHeader'
 export { default as PrivateRoute } from './PrivateRoute'
 
 // Feature
