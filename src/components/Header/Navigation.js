@@ -1,7 +1,6 @@
 /* eslint-disable no-unreachable */
 import React from 'react'
 import PropTypes from 'prop-types'
-import { useLocation } from 'react-router-dom'
 import { makeStyles } from 'styles'
 import { Icon } from 'components'
 import NavigationItem from './NavigationItem'
@@ -18,21 +17,27 @@ const useStyles = makeStyles({
 function Navigation({ id, handleLogout }) {
   const classes = useStyles({ id })
 
-  const { pathname } = useLocation()
-
   return (
     <ul className={classes.menu} data-testid="header-menu">
       <NavigationItem
         label="Log out"
         path="/home"
         icon={<Icon variant="home" size={32} />}
-        active={pathname === '/home'}
       />
       <NavigationItem
-        label="Users"
-        path="/users"
-        icon={<Icon variant="home" size={32} />}
-        active={pathname === '/users'}
+        label="Schedule"
+        path="/schedule"
+        icon={<Icon variant="schedule" size={32} />}
+      />
+      <NavigationItem
+        label="Team"
+        path="/team"
+        icon={<Icon variant="team" size={32} />}
+      />
+      <NavigationItem
+        label="Report"
+        path="/reports"
+        icon={<Icon variant="report" size={32} />}
       />
       <NavigationItem
         label="Log out"

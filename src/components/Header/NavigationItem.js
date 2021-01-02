@@ -27,9 +27,13 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-function NavigationItem({ path, icon, active, disabled, handleClick }) {
-  const classes = useStyles({ active, disabled })
+function NavigationItem({ path, icon, disabled, handleClick }) {
   const history = useHistory()
+
+  const { pathname } = history.location
+  const active = pathname === path
+
+  const classes = useStyles({ active, disabled })
 
   const onClick = event => {
     event.preventDefault()
@@ -57,7 +61,6 @@ function NavigationItem({ path, icon, active, disabled, handleClick }) {
 NavigationItem.propTypes = {
   path: PropTypes.string,
   icon: PropTypes.element,
-  active: PropTypes.bool,
   disabled: PropTypes.bool,
   handleClick: PropTypes.func,
 }
@@ -65,7 +68,6 @@ NavigationItem.propTypes = {
 NavigationItem.defaultProps = {
   path: '',
   icon: null,
-  active: false,
   disabled: false,
   handleClick: null,
 }
