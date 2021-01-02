@@ -59,6 +59,7 @@ function ClientsTable({
           {data.length > 0 &&
             data.map(item => (
               <ClientsTableRow
+                hover
                 key={item.id}
                 item={item}
                 columns={columns}
