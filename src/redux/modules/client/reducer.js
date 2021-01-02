@@ -17,7 +17,7 @@ export default createReducer(initialState, {
   [types.CREATE_SUCCESS]: (state, { payload }) => ({
     ...state,
     visibleClients: state.visibleClients.concat([
-      get(payload, 'data.entities.id'),
+      get(payload, 'data.entities[0].id'),
     ]),
   }),
 
