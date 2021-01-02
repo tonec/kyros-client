@@ -4,7 +4,6 @@ import { childrenType, maxWidthType } from 'types'
 import cx from 'clsx'
 import { makeStyles } from 'styles'
 import Base from './Base'
-import Flash from '../Flash/FlashContainer'
 
 const useStyles = makeStyles({
   wrap: {
@@ -33,7 +32,6 @@ function Main({ children, title, maxWidth, className }) {
       header
     >
       {children}
-      <Flash />
     </Base>
   )
 }

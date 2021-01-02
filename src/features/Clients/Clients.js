@@ -1,21 +1,19 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { provideHooks } from 'redial'
+import { useDispatch } from 'react-redux'
 import { fetchClients } from 'redux/modules/client/actions'
+import { openModal } from 'redux/modules/modal/actions'
 import { Button, Main, PageHeader } from 'components'
 import ClientsTableContainer from './ClientsTableContainer'
-import ClientDialog from '../Client/ClientDialog'
+import ClientModal from '../Client/ClientModal'
 
 function Clients() {
+  const dispatch = useDispatch()
+
   const title = 'Clients'
 
-  const [isOpen, setIsOpen] = useState(false)
-
-  const handleClose = () => {
-    setIsOpen(false)
-  }
-
   const handleCreateClient = () => {
-    setIsOpen(true)
+    dispatch(openModal())
   }
 
   const headerActions = () => {
@@ -30,7 +28,7 @@ function Clients() {
     <Main title={title}>
       <PageHeader title={title} renderActions={headerActions} />
       <ClientsTableContainer />
-      <ClientDialog isOpen={isOpen} handleClose={handleClose} />
+      <ClientModal />
     </Main>
   )
 }

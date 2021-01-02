@@ -1,6 +1,6 @@
 import * as actions from '../actions'
 
-describe('showFlash actions', () => {
+describe('flash actions', () => {
   it('SHOW', () => {
     const expected = {
       type: actions.SHOW,

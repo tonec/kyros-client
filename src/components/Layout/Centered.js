@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { childrenType, maxWidthType } from 'types'
 import cx from 'clsx'
 import { makeStyles } from 'styles'
-import Flash from '../Flash/FlashContainer'
 import Base from './Base'
 
 const useStyles = makeStyles({
@@ -26,7 +25,6 @@ function Centered({ children, title, maxWidth, className, container }) {
       container={container}
     >
       {children}
-      <Flash />
     </Base>
   )
 }

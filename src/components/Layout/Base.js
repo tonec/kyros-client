@@ -5,6 +5,7 @@ import cx from 'clsx'
 import Helmet from 'react-helmet'
 import { makeStyles } from 'styles'
 import { ConditionalWrap, Container } from '../ui'
+import Flash from '../Flash/FlashContainer'
 import Header from '../Header/Header'
 
 const useStyles = makeStyles({
@@ -38,6 +39,7 @@ function BaseLayout({
       >
         {children}
       </ConditionalWrap>
+      <Flash />
     </div>
   )
 }

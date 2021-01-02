@@ -5,6 +5,7 @@ import auth from './modules/auth/reducer'
 import client from './modules/client/reducer'
 import entity from './modules/entity/reducer'
 import flash from './modules/flash/reducer'
+import modal from './modules/modal/reducer'
 import user from './modules/user/reducer'
 
 export default history => ({
@@ -15,5 +16,6 @@ export default history => ({
   client,
   entity,
   flash,
+  modal,
   user,
 })
