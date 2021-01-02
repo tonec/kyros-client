@@ -47,7 +47,13 @@ function ClientsTableRow({ columns, item, handleRowClick, handleDeleteClick }) {
 
   return (
     // eslint-disable-next-line react/jsx-props-no-spreading
-    <Row key={item.id} {...rowProps} style={rowStyle} testid={`row-${item.id}`}>
+    <Row
+      key={item.id}
+      {...rowProps}
+      style={rowStyle}
+      testid={`row-${item.id}`}
+      hover
+    >
       {columns.map(column => {
         if (column.key === 'actions') {
           return (

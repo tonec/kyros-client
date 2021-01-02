@@ -5,6 +5,7 @@ import button from './overrides/button'
 import input from './overrides/input'
 import formControlLabel from './overrides/formControlLabel'
 import label from './overrides/label'
+import tableRow from './overrides/tableRow'
 
 const theme = createMuiTheme({
   palette,
@@ -14,6 +15,7 @@ const theme = createMuiTheme({
     MuiOutlinedInput: input,
     MuiFormControlLabel: formControlLabel,
     MuiFormLabel: label,
+    MuiTableRow: tableRow,
   },
 })
 
