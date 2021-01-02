@@ -4,9 +4,11 @@ import { connect } from 'react-redux'
 import { createClient } from 'redux/modules/client/actions'
 import ClientForm from './ClientForm'
 
-function ClientFormContainer({ dispatch }) {
+function ClientFormContainer({ dispatch, handleClose }) {
   const handleOnSubmit = data => {
-    dispatch(createClient(data))
+    dispatch(createClient(data)).then(() => {
+      handleClose()
+    })
   }
 
   return <ClientForm handleOnSubmit={handleOnSubmit} />
@@ -14,6 +16,7 @@ function ClientFormContainer({ dispatch }) {
 
 ClientFormContainer.propTypes = {
   dispatch: PropTypes.func.isRequired,
+  handleClose: PropTypes.func.isRequired,
 }
 
 const mapState = () => ({})

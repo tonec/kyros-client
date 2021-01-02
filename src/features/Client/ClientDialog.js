@@ -6,7 +6,7 @@ import ClientFormContainer from './ClientFormContainer'
 function ClientDialog({ isOpen, handleClose }) {
   return (
     <Dialog title="Create client" open={isOpen} onClose={handleClose}>
-      <ClientFormContainer />
+      <ClientFormContainer handleClose={handleClose} />
     </Dialog>
   )
 }
