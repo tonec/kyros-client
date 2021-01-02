@@ -95,6 +95,6 @@ export default ({ client, history, match, params }) => {
         next({ type: FAIL, payload: { ...inject, ...error }, error: true })
       })
 
-    return actionPromise
+    return actionPromise.catch(error => console.error('API error: ', error))
   }
 }
