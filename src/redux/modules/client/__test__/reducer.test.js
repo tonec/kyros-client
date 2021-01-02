@@ -34,7 +34,7 @@ describe('client reducer', () => {
       ...initialState,
       visibleClients: fetchClientsResponse.data.entities
         .map(fk('id'))
-        .concat([createClientResponse.data.entities.id]),
+        .concat([createClientResponse.data.entities[0].id]),
     })
   })
 })
