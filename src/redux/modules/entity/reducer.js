@@ -28,6 +28,7 @@ export default createReducer(initialState, {
       return merge({}, state, {
         [entity]: merge({}, state[entity], {
           byId: mergeWith(
+            {},
             state[entity] && state[entity].byId,
             byId,
             mergeCopyArrays,
