@@ -46,3 +46,10 @@ export const userType = shape({
   firstName: string.isRequired,
   lastName: string.isRequired,
 })
+
+export const clientType = shape({
+  id: string.isRequired,
+  name: string.isRequired,
+})
+
+export const clientsType = arrayOf(clientType)

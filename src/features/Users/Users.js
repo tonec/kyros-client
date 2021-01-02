@@ -4,8 +4,9 @@ import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { provideHooks } from 'redial'
 import { createStructuredSelector } from 'reselect'
+import { isFetchingUsers } from 'redux/modules/fetch/selectors'
 import { fetchUsers } from 'redux/modules/user/actions'
-import { isFetching, getVisibleUsers } from 'redux/modules/user/selectors'
+import { getVisibleUsers } from 'redux/modules/user/selectors'
 import { getFullName } from 'utils/entity'
 import { Main } from 'components'
 
@@ -36,7 +37,7 @@ Users.defaultProps = {
 }
 
 const mapState = createStructuredSelector({
-  isFetching,
+  isFetchingUsers,
   users: getVisibleUsers,
 })
 

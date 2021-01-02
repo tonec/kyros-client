@@ -22,7 +22,7 @@ const Home = () => {
   const classes = useStyles()
 
   return (
-    <Main title="Users">
+    <Main title="Home">
       <Button className={classes.button}>Click me</Button>
       <Button className={classes.button1}>Click me</Button>
       <Button className={classes.button2}>Click me</Button>

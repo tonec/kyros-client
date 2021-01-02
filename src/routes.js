@@ -3,6 +3,7 @@ import { AuthRedirect, NotFound, PrivateRoute } from 'components'
 import Home from 'features/Home/Home'
 import Login from 'features/Auth/Login'
 import Users from 'features/Users/Users'
+import Clients from 'features/Clients/Clients'
 import FormLibrary from 'features/Library/Form'
 
 export default [
@@ -15,6 +16,7 @@ export default [
       { path: '/schedule', component: PrivateRoute(Home) },
       { path: '/team', component: PrivateRoute(Users) },
       { path: '/reports', component: PrivateRoute(Users) },
+      { path: '/clients', component: PrivateRoute(Clients) },
       { path: '/form', component: FormLibrary },
       { component: NotFound },
     ],

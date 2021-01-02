@@ -13,7 +13,7 @@ function AuthRedirect(DecoratedComponent) {
       return <DecoratedComponent />
     }
 
-    return <Redirect to="/home" />
+    return <Redirect to="/clients" />
   }
 
   return hoistStatics(Wrapper, DecoratedComponent)
