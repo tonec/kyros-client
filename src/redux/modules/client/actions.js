@@ -28,5 +28,6 @@ export function createClient(data) {
     types: [CREATE, CREATE_SUCCESS, CREATE_FAIL],
     request: ({ client }) => client.post('client', data),
     flash: { success: 'Client created!' },
+    closeModal: true,
   }
 }

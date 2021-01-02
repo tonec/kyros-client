@@ -6,10 +6,12 @@ describe('Modal reducer', () => {
     expect(
       reducer(initialState, {
         type: actions.OPEN,
+        id: 'modalId',
       }),
     ).toEqual({
       ...initialState,
       open: true,
+      id: 'modalId',
     })
   })
 

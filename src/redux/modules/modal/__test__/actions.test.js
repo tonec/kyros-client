@@ -4,9 +4,10 @@ describe('modal actions', () => {
   it('OPEN', () => {
     const expected = {
       type: actions.OPEN,
+      id: 'modalId',
     }
 
-    expect(actions.openModal()).toEqual(expected)
+    expect(actions.openModal('modalId')).toEqual(expected)
   })
 
   it('CLOSE', () => {

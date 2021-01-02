@@ -4,10 +4,12 @@ import { childrenType } from 'types'
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 import { closeModal } from 'redux/modules/modal/actions'
-import { getModalOpen } from 'redux/modules/modal/selectors'
+import { getModalId, getModalOpen } from 'redux/modules/modal/selectors'
 import { Dialog } from '../ui'
 
-function ModalContainer({ children, open, dispatch }) {
+function Modal({ children, id, open, dispatch, name }) {
+  if (id !== name) return null
+
   const handleClose = () => {
     dispatch(closeModal())
   }
@@ -19,14 +21,21 @@ function ModalContainer({ children, open, dispatch }) {
   )
 }
 
-ModalContainer.propTypes = {
+Modal.propTypes = {
   children: childrenType.isRequired,
+  id: PropTypes.string,
   open: PropTypes.bool.isRequired,
   dispatch: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
+}
+
+Modal.defaultProps = {
+  id: null,
 }
 
 const mapState = createStructuredSelector({
+  id: getModalId,
   open: getModalOpen,
 })
 
-export default connect(mapState)(ModalContainer)
+export default connect(mapState)(Modal)

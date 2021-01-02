@@ -13,8 +13,8 @@ export const CLOSE = `${prefix}/CLOSE`
  * Action creators
  * * * * * * * * */
 
-export function openModal() {
-  return { type: OPEN }
+export function openModal(id) {
+  return { type: OPEN, id }
 }
 
 export const closeModal = createAction(CLOSE)

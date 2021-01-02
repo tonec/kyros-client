@@ -1,3 +1,2 @@
 export const getModalOpen = ({ modal }) => modal.open
-
-export default null
+export const getModalId = ({ modal }) => modal.id

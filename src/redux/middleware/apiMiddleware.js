@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import { showSuccess, showError } from 'redux/modules/flash/actions'
+import { closeModal as closeModalAction } from 'redux/modules/modal/actions'
 import { received } from 'redux/modules/app/actions'
 
 export default ({ client, history, match, params }) => {
@@ -18,6 +19,7 @@ export default ({ client, history, match, params }) => {
         success: false,
         error: undefined,
       },
+      closeModal,
     } = action
 
     // Is normal action
@@ -71,6 +73,10 @@ export default ({ client, history, match, params }) => {
 
           if (flash.success) {
             next(showSuccess(flash.success))
+          }
+
+          if (closeModal) {
+            next(closeModalAction())
           }
         },
 

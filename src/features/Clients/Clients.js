@@ -13,7 +13,7 @@ function Clients() {
   const title = 'Clients'
 
   const handleCreateClient = () => {
-    dispatch(openModal())
+    dispatch(openModal('client'))
   }
 
   const headerActions = () => {

@@ -4,12 +4,14 @@ import * as actions from './actions'
 
 export const initialState = {
   open: false,
+  id: null,
 }
 
 export default createReducer(initialState, {
-  [actions.OPEN]: state => ({
+  [actions.OPEN]: (state, { id }) => ({
     ...state,
     open: true,
+    id,
   }),
 
   [actions.CLOSE]: () => initialState,

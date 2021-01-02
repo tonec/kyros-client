@@ -4,7 +4,7 @@ import ClientFormContainer from './ClientFormContainer'
 
 function ClientModal() {
   return (
-    <Modal>
+    <Modal name="client">
       <ClientFormContainer />
     </Modal>
   )
