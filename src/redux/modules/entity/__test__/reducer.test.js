@@ -1,6 +1,6 @@
 import { addUser1, addUser2, removeUser2 } from 'test/data/user'
 import reducer, { initialState } from '../reducer'
-import * as actions from '../../api/actions'
+import * as actions from '../../app/actions'
 
 describe('entity reducer', () => {
   it('adds new entities', () => {

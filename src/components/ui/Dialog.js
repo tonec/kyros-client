@@ -28,7 +28,6 @@ function DialogTitle({ children, onClose, ...props }) {
   const classes = useStylesTitle()
 
   return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
     <BaseDialogTitle disableTypography className={classes.root} {...props}>
       <Typography variant="h3">{children}</Typography>
       {onClose ? (

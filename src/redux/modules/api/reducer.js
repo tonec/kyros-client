@@ -1,36 +1,68 @@
-import createReducer from '../../createReducer'
-import * as types from './actions'
-
 export const initialState = {
-  connecting: false,
-  connected: false,
-  online: true,
+  create: {},
+  fetch: {},
 }
 
-export default createReducer(initialState, {
-  [types.CONNECT]: state => ({
-    ...state,
-    connecting: true,
-  }),
+export default function (state = initialState, action = {}) {
+  const typeSplit = action.type.split('/')
+  const entity = typeSplit[0].replace('@', '')
 
-  [types.CONNECTED]: state => ({
-    ...state,
-    connecting: false,
-    connected: true,
-  }),
+  switch (typeSplit[1]) {
+    case 'CREATE':
+      return {
+        ...state,
+        create: {
+          ...state.create,
+          [entity]: true,
+        },
+      }
 
-  [types.CLOSED]: state => ({
-    ...state,
-    connected: false,
-  }),
+    case 'CREATE_SUCCESS':
+      return {
+        ...state,
+        create: {
+          ...state.create,
+          [entity]: false,
+        },
+      }
 
-  [types.IS_ONLINE]: state => ({
-    ...state,
-    online: true,
-  }),
+    case 'CREATE_FAIL':
+      return {
+        ...state,
+        create: {
+          ...state.create,
+          [entity]: false,
+        },
+      }
 
-  [types.IS_OFFLINE]: state => ({
-    ...state,
-    online: false,
-  }),
-})
+    case 'FETCH':
+      return {
+        ...state,
+        fetch: {
+          ...state.fetch,
+          [entity]: true,
+        },
+      }
+
+    case 'FETCH_SUCCESS':
+      return {
+        ...state,
+        fetch: {
+          ...state.fetch,
+          [entity]: false,
+        },
+      }
+
+    case 'FETCH_FAIL':
+      return {
+        ...state,
+        fetch: {
+          ...state.fetch,
+          [entity]: false,
+        },
+      }
+
+    default:
+      return state
+  }
+}

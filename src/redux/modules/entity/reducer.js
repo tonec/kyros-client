@@ -4,7 +4,7 @@ import mergeWith from 'lodash/mergeWith'
 import isArray from 'lodash/isArray'
 import union from 'lodash/union'
 import createReducer from '../../createReducer'
-import { RECEIVED } from '../api/actions'
+import { RECEIVED } from '../app/actions'
 import { LOGOUT } from '../auth/actions'
 import normalized from './schema'
 

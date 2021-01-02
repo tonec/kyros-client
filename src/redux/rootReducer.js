@@ -4,7 +4,6 @@ import app from './modules/app/reducer'
 import auth from './modules/auth/reducer'
 import client from './modules/client/reducer'
 import entity from './modules/entity/reducer'
-import fetch from './modules/fetch/reducer'
 import flash from './modules/flash/reducer'
 import user from './modules/user/reducer'
 
@@ -15,7 +14,6 @@ export default history => ({
   auth,
   client,
   entity,
-  fetch,
   flash,
   user,
 })

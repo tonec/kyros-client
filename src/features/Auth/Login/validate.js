@@ -1,8 +1,6 @@
 import { required, email } from 'utils/validation'
 
-const validation = {
+export default {
   email: value => required(value) || email(value),
   password: required,
 }
-
-export default validation

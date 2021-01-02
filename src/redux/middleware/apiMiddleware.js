@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import { showSuccess, showError } from 'redux/modules/flash/actions'
-import { received } from 'redux/modules/api/actions'
+import { received } from 'redux/modules/app/actions'
 
 export default ({ client, history, match, params }) => {
   return ({ dispatch, getState }) => next => action => {

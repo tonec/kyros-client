@@ -1,4 +1,7 @@
+import get from 'lodash/get'
 
-export const isConnecting = ({ api }) => api.connecting
-export const isConnected = ({ api }) => api.connected
-export const isOnline = ({ api }) => api.online
+export const isCreatingClient = ({ api }) => get(api, 'create.client')
+export const isCreatingUser = ({ api }) => get(api, 'create.user')
+
+export const isFetchingClients = ({ api }) => get(api, 'fetch.client')
+export const isFetchingUsers = ({ api }) => get(api, 'fetch.user')

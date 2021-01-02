@@ -1,4 +1,22 @@
-export default {
+export const createClientResponse = {
+  action: 'store',
+  entity: 'client',
+  meta: {
+    entityCount: 1,
+  },
+  data: {
+    entities: [
+      {
+        name: 'Test client',
+        createdAt: '2021-01-02T19:58:30.360Z',
+        updatedAt: '2021-01-02T19:58:30.360Z',
+        id: '5ff0d0663a330417e4df960b',
+      },
+    ],
+  },
+}
+
+export const fetchClientsResponse = {
   action: 'store',
   entity: 'client',
   meta: {
