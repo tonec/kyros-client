@@ -7,7 +7,7 @@ import { createStructuredSelector } from 'reselect'
 import { removeQS } from 'utils'
 import { MODAL_QUERY_PARAMS } from 'utils/constants'
 import { getQuery } from 'redux/modules/app/selectors'
-import { Dialog } from '../ui'
+import { Dialog } from './ui'
 
 function Modal({ children, dispatch, name, query }) {
   const { modalKey = '', modalState = {} } = query

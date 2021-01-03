@@ -50,13 +50,13 @@ export { default as TextareaField } from './ui/form/TextareaField'
 
 // Common
 export { default as AuthRedirect } from './AuthRedirect'
-export { default as PageHeader } from './PageHeader/PageHeader'
+export { default as PageHeader } from './PageHeader'
 export { default as PrivateRoute } from './PrivateRoute'
 
 // Feature
 // export { default as AppBar } from './AppBar'
 export { default as AsyncTrigger } from './AsyncTrigger'
 export { default as Flash } from './Flash/FlashContainer'
-export { default as Modal } from './Modal/Modal'
+export { default as Modal } from './Modal'
 // export { default as Header } from './Header'
 export { default as NotFound } from './NotFound'

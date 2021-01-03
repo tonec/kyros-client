@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { makeStyles } from 'styles'
-import { Typography } from '../ui'
+import { Typography } from './ui'
 
 const useStyles = makeStyles(theme => ({
   pageHeader: {
