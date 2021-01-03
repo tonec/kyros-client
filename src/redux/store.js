@@ -13,14 +13,17 @@ export default ({ client, history, match, params, data, persistConfig }) => {
   }
 
   const middleware = getDefaultMiddleware =>
-    getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActionPaths: ['request'],
-      },
-    }).concat([
+    [
       apiMiddleware({ client, history, match, params }),
       routerMiddleware(history),
-    ])
+    ].concat(
+      getDefaultMiddleware({
+        thunk: false,
+        serializableCheck: {
+          ignoredActionPaths: ['request'],
+        },
+      }),
+    )
 
   const persisted = persistCombineReducers(persistConfig, rootReducer(history))
 

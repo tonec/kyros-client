@@ -44,7 +44,7 @@ ClientsTableContainer.propTypes = {
 }
 
 ClientsTableContainer.defaultProps = {
-  isFetchingClients: false,
+  isFetchingClients: true,
   clients: null,
 }
 

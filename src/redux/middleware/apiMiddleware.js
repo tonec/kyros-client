@@ -7,7 +7,7 @@ export default ({ client, history, match, params }) => {
   return ({ dispatch, getState }) => next => action => {
     // Is thunk
     if (typeof action === 'function') {
-      return action(dispatch, getState)
+      return action({ history, match, params, dispatch, getState })
     }
 
     const {

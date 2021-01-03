@@ -1,2 +1,2 @@
 export const getModalOpen = ({ modal }) => modal.open
-export const getModalId = ({ modal }) => modal.id
+export const getModalKey = ({ modal }) => modal.modalKey

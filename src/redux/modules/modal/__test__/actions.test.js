@@ -1,13 +1,39 @@
+import configureStore from 'redux-mock-store'
+import apiMiddleware from 'redux/middleware/apiMiddleware'
 import * as actions from '../actions'
+
+const client = () => null
+const history = {}
+const match = {}
+const params = {}
+
+const middlewares = [apiMiddleware({ client, history, match, params })]
+const mockStore = configureStore(middlewares)
 
 describe('modal actions', () => {
   it('OPEN', () => {
-    const expected = {
-      type: actions.OPEN,
-      id: 'modalId',
-    }
+    const expected = [
+      {
+        type: '@@router/CALL_HISTORY_METHOD',
+        payload: {
+          args: [{ search: 'modalKey=modalKey' }],
+          method: 'push',
+        },
+      },
+      {
+        type: actions.OPEN,
+        modalKey: 'modalKey',
+      },
+    ]
 
-    expect(actions.openModal('modalId')).toEqual(expected)
+    const store = mockStore({})
+    const { dispatch } = store
+
+    dispatch(actions.openModal('modalKey'))
+
+    const acts = store.getActions()
+
+    expect(acts).toEqual(expected)
   })
 
   it('CLOSE', () => {
