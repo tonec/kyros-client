@@ -1,3 +1,4 @@
 export const TOKEN_KEY = 'accessToken'
 
-export default null
+// Modal query params
+export const MODAL_QUERY_PARAMS = ['modalKey', 'modalView', 'modalState']

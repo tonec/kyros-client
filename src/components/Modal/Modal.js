@@ -1,41 +1,45 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { childrenType } from 'types'
+import { compose } from 'redux'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
 import { createStructuredSelector } from 'reselect'
-import { closeModal } from 'redux/modules/modal/actions'
-import { getModalKey, getModalOpen } from 'redux/modules/modal/selectors'
+import { removeQS } from 'utils'
+import { MODAL_QUERY_PARAMS } from 'utils/constants'
+import { getQuery } from 'redux/modules/app/selectors'
 import { Dialog } from '../ui'
 
-function Modal({ children, modalKey, open, dispatch, name }) {
+function Modal({ children, dispatch, name, query }) {
+  const { modalKey = '', modalState = {} } = query
+
   if (modalKey !== name) return null
 
+  const open = Boolean(modalKey)
+
   const handleClose = () => {
-    dispatch(closeModal())
+    removeQS(dispatch, MODAL_QUERY_PARAMS)
   }
 
   return (
     <Dialog title="Create client" open={open} onClose={handleClose}>
-      {children}
+      {children({ modalState })}
     </Dialog>
   )
 }
 
 Modal.propTypes = {
-  children: childrenType.isRequired,
-  modalKey: PropTypes.string,
-  open: PropTypes.bool.isRequired,
+  children: PropTypes.func.isRequired,
   dispatch: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
+  query: PropTypes.object,
 }
 
 Modal.defaultProps = {
-  modalKey: null,
+  query: null,
 }
 
 const mapState = createStructuredSelector({
-  modalKey: getModalKey,
-  open: getModalOpen,
+  query: getQuery,
 })
 
-export default connect(mapState)(Modal)
+export default compose(connect(mapState), withRouter)(Modal)

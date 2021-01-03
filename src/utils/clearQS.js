@@ -1,16 +1,20 @@
 import { push, replace } from 'react-router-redux'
 
-export default (dispatch, history = false) => {
+export default (dispatch, keepHistory = false) => {
   if (typeof window === 'undefined') return
 
-  if (history) {
-    dispatch(push({
-      search: ''
-    }))
+  if (keepHistory) {
+    dispatch(
+      push({
+        search: '',
+      }),
+    )
     return
   }
 
-  dispatch(replace({
-    search: ''
-  }))
+  dispatch(
+    replace({
+      search: '',
+    }),
+  )
 }

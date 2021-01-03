@@ -14,26 +14,15 @@ export const CLOSE = `${prefix}/CLOSE`
  * Action creators
  * * * * * * * * */
 
-export function openModal(modalKey, options = {}) {
+export function openModal(modalKey, state = {}) {
   return ({ dispatch }) => {
     const queryStringObject = { modalKey }
-
-    const { view, state, history = true } = options
-
-    if (view) {
-      queryStringObject.modalView = view
-    }
 
     if (state) {
       queryStringObject.modalState = state
     }
 
-    addQS(dispatch, queryStringObject, history)
-
-    dispatch({
-      type: OPEN,
-      modalKey,
-    })
+    return addQS(dispatch, queryStringObject)
   }
 }
 

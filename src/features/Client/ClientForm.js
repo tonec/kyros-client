@@ -3,9 +3,10 @@ import PropTypes from 'prop-types'
 import { Button, Form, InputField } from 'components'
 import validate from './validate'
 
-function ClientForm({ handleOnSubmit }) {
+function ClientForm({ initialValues, handleOnSubmit }) {
   return (
     <Form
+      initialValues={initialValues}
       onSubmit={handleOnSubmit}
       render={({ handleSubmit }) => {
         return (
@@ -29,7 +30,12 @@ function ClientForm({ handleOnSubmit }) {
 }
 
 ClientForm.propTypes = {
+  initialValues: PropTypes.object,
   handleOnSubmit: PropTypes.func.isRequired,
+}
+
+ClientForm.defaultProps = {
+  initialValues: {},
 }
 
 export default ClientForm

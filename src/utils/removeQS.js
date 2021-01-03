@@ -1,12 +1,21 @@
 import { push, replace } from 'react-router-redux'
 import { stringify, parse } from 'qs'
 
-export default (dispatch, queryObject, keepHistory = false) => {
+export default (dispatch, queryKey, keepHistory = false) => {
   if (typeof window === 'undefined') return
 
   const newQuery = {
     ...parse(window.location.search, { ignoreQueryPrefix: true }),
-    ...queryObject,
+  }
+
+  if (Array.isArray(queryKey)) {
+    queryKey.forEach(key => {
+      delete newQuery[key]
+    })
+  }
+
+  if (typeof queryKey === 'string') {
+    delete newQuery[queryKey]
   }
 
   if (keepHistory) {
