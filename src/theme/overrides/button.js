@@ -3,7 +3,7 @@ import { grey } from '@material-ui/core/colors'
 export default {
   contained: {
     boxShadow: 'none',
-    borderRadius: '25px',
+    borderRadius: '4px',
   },
 
   containedPrimary: {
