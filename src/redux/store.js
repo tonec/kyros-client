@@ -40,5 +40,14 @@ export default ({ client, history, match, params, data, persistConfig }) => {
     })
   }
 
+  if (process.env.NODE_ENV === 'development') {
+    module.hot.accept('./rootReducer', () => {
+      // eslint-disable-next-line global-require
+      const reducer = require('./rootReducer').default
+      const persisted = persistCombineReducers(persistConfig, reducer(history))
+      store.replaceReducer(persisted)
+    })
+  }
+
   return store
 }
