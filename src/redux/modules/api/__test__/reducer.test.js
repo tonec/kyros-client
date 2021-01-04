@@ -1,6 +1,6 @@
 import reducer, { initialState } from '../reducer'
 
-describe('app reducer', () => {
+describe('api reducer', () => {
   it('CREATE', () => {
     expect(
       reducer(initialState, {
@@ -66,6 +66,73 @@ describe('app reducer', () => {
     })
   })
 
+  it('UPDATE', () => {
+    expect(
+      reducer(initialState, {
+        type: '@entity/UPDATE',
+      }),
+    ).toEqual({
+      ...initialState,
+      crud: {
+        entity: true,
+      },
+    })
+  })
+
+  it('UPDATE SUCCESS', () => {
+    const state = reducer(initialState, {
+      type: '@entity/UPDATE',
+    })
+
+    expect(
+      reducer(state, {
+        type: '@entity/UPDATE_SUCCESS',
+      }),
+    ).toEqual({
+      ...state,
+      crud: {
+        entity: false,
+      },
+    })
+  })
+
+  it('UPDATE FAIL', () => {
+    const state = reducer(initialState, {
+      type: '@entity/UPDATE',
+    })
+
+    expect(
+      reducer(state, {
+        type: '@entity/UPDATE_FAIL',
+      }),
+    ).toEqual({
+      ...state,
+      crud: {
+        entity: false,
+      },
+    })
+  })
+
+  it('UPDATE multiple', () => {
+    let state = reducer(initialState, {
+      type: '@entity1/UPDATE',
+    })
+
+    state = reducer(state, {
+      type: '@entity2/UPDATE',
+    })
+
+    expect(state).toEqual({
+      ...initialState,
+      crud: {
+        entity1: true,
+        entity2: true,
+      },
+    })
+  })
+
+  //
+
   it('DELETE', () => {
     expect(
       reducer(initialState, {
@@ -113,7 +180,7 @@ describe('app reducer', () => {
     })
   })
 
-  it('CREATE multiple', () => {
+  it('DELETE multiple', () => {
     let state = reducer(initialState, {
       type: '@entity1/CREATE',
     })
@@ -130,8 +197,6 @@ describe('app reducer', () => {
       },
     })
   })
-
-  //
 
   it('FETCH', () => {
     expect(

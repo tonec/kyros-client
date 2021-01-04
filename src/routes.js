@@ -17,6 +17,7 @@ export default [
       { path: '/team', component: PrivateRoute(Users) },
       { path: '/reports', component: PrivateRoute(Users) },
       { path: '/clients', component: PrivateRoute(Clients) },
+      { path: '/client/:id', component: PrivateRoute(Clients) },
       { path: '/form', component: FormLibrary },
       { component: NotFound },
     ],

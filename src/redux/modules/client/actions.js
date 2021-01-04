@@ -12,6 +12,10 @@ export const CREATE = `${prefix}/CREATE`
 export const CREATE_SUCCESS = `${prefix}/CREATE_SUCCESS`
 export const CREATE_FAIL = `${prefix}/CREATE_FAIL`
 
+export const UPDATE = `${prefix}/UPDATE`
+export const UPDATE_SUCCESS = `${prefix}/UPDATE_SUCCESS`
+export const UPDATE_FAIL = `${prefix}/UPDATE_FAIL`
+
 export const DELETE = `${prefix}/DELETE`
 export const DELETE_SUCCESS = `${prefix}/DELETE_SUCCESS`
 export const DELETE_FAIL = `${prefix}/DELETE_FAIL`
@@ -32,6 +36,15 @@ export function createClient(data) {
     types: [CREATE, CREATE_SUCCESS, CREATE_FAIL],
     request: ({ client }) => client.post('client', data),
     flash: { success: 'Client created!' },
+    closeModal: true,
+  }
+}
+
+export function updateClient(data) {
+  return {
+    types: [UPDATE, UPDATE_SUCCESS, UPDATE_FAIL],
+    request: ({ client }) => client.patch('client', data),
+    flash: { success: 'Client updated!' },
     closeModal: true,
   }
 }

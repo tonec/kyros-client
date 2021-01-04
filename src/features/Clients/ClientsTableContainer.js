@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { clientsType } from 'types'
 import { connect } from 'react-redux'
+import { useHistory } from 'react-router'
 import { createStructuredSelector } from 'reselect'
 import { deleteClient } from 'redux/modules/client/actions'
 import { openModal } from 'redux/modules/modal/actions'
@@ -11,14 +12,14 @@ import { Loader } from 'components'
 import ClientsTable from './ClientsTable'
 
 function ClientsTableContainer({ dispatch, isFetchingClients, clients }) {
+  const history = useHistory()
+
   if (isFetchingClients) {
     return <Loader />
   }
 
-  console.log('clients', clients)
-
   const handleRowClick = client => {
-    console.log('client')
+    history.push(`/client/${client.id}`)
   }
 
   const handleEdit = client => {

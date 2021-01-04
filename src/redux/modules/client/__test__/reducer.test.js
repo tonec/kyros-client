@@ -5,6 +5,7 @@ import {
 } from 'test/data/clientResponse'
 import reducer, { initialState } from '../reducer'
 import * as actions from '../actions'
+import { RECEIVED } from '../../app/actions'
 
 describe('client reducer', () => {
   it('FETCH_SUCCESS', () => {
@@ -27,7 +28,7 @@ describe('client reducer', () => {
 
     expect(
       reducer(state, {
-        type: actions.CREATE_SUCCESS,
+        type: RECEIVED,
         payload: createClientResponse,
       }),
     ).toEqual({

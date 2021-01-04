@@ -1,4 +1,5 @@
 import { del } from 'object-path-immutable'
+import get from 'lodash/get'
 import merge from 'lodash/merge'
 import mergeWith from 'lodash/mergeWith'
 import isArray from 'lodash/isArray'
@@ -40,7 +41,9 @@ export default createReducer(initialState, {
 
     if (payload && payload.action === 'remove') {
       const entity = payload.entity.toLowerCase()
-      const { id } = payload.data.entities[0]
+      const id = get(payload, 'data.entities[0].id')
+
+      if (!id) return state
 
       return {
         ...state,

@@ -9,6 +9,7 @@ export default function (state = initialState, action = {}) {
 
   switch (typeSplit[1]) {
     case 'CREATE':
+    case 'UPDATE':
     case 'DELETE':
       return {
         ...state,
@@ -19,6 +20,7 @@ export default function (state = initialState, action = {}) {
       }
 
     case 'CREATE_SUCCESS':
+    case 'UPDATE_SUCCESS':
     case 'DELETE_SUCCESS':
       return {
         ...state,
@@ -29,6 +31,7 @@ export default function (state = initialState, action = {}) {
       }
 
     case 'CREATE_FAIL':
+    case 'UPDATE_FAIL':
     case 'DELETE_FAIL':
       return {
         ...state,
