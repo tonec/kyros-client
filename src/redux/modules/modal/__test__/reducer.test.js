@@ -6,25 +6,28 @@ describe('Modal reducer', () => {
     expect(
       reducer(initialState, {
         type: actions.OPEN,
-        modalKey: 'modalKey',
+        payload: {
+          modalKey: 'modalKey',
+          modalState: { id: '1234', view: 'edit' },
+        },
       }),
     ).toEqual({
       ...initialState,
-      open: true,
       modalKey: 'modalKey',
+      modalState: { id: '1234', view: 'edit' },
     })
   })
 
   it('CLOSE', () => {
+    const state = reducer(initialState, {
+      type: actions.OPEN,
+      payload: { modalKey: 'modalKey', state: { id: '1234', view: 'edit' } },
+    })
+
     expect(
-      reducer(
-        {
-          open: true,
-        },
-        {
-          type: actions.CLOSE,
-        },
-      ),
+      reducer(state, {
+        type: actions.CLOSE,
+      }),
     ).toEqual(initialState)
   })
 })

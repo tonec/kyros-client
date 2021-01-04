@@ -5,7 +5,9 @@ import ClientFormContainer from './ClientFormContainer'
 function ClientModal() {
   return (
     <Modal name="client">
-      {({ modalState: { view, id } }) => {
+      {state => {
+        const { id, view } = state
+
         if (view === 'view') {
           return <p>View</p>
         }
