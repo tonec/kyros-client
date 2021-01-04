@@ -10,7 +10,7 @@ const params = {}
 const middlewares = [apiMiddleware({ client, history, match, params })]
 const mockStore = configureStore(middlewares)
 
-describe('modal actions - useRedux: false', () => {
+describe('modal actions - useQS: true', () => {
   it('OPEN', () => {
     const expected = [
       {
@@ -23,6 +23,13 @@ describe('modal actions - useRedux: false', () => {
             },
           ],
           method: 'replace',
+        },
+      },
+      {
+        type: actions.OPEN,
+        payload: {
+          modalKey: 'modalKey',
+          modalState: { id: '1234', view: 'edit' },
         },
       },
     ]
@@ -47,6 +54,9 @@ describe('modal actions - useRedux: false', () => {
         type: '@@router/CALL_HISTORY_METHOD',
         payload: { args: [{ search: '' }], method: 'replace' },
       },
+      {
+        type: actions.CLOSE,
+      },
     ]
 
     const store = mockStore({})
@@ -60,7 +70,7 @@ describe('modal actions - useRedux: false', () => {
   })
 })
 
-describe('modal actions - useRedux: true', () => {
+describe('modal actions - useQS: false', () => {
   it('OPEN', () => {
     const expected = [
       {
@@ -77,7 +87,7 @@ describe('modal actions - useRedux: true', () => {
 
     dispatch(
       actions.openModal('modalKey', {
-        useRedux: true,
+        useQS: false,
         state: { id: '1234', view: 'edit' },
       }),
     )
@@ -93,7 +103,7 @@ describe('modal actions - useRedux: true', () => {
     const store = mockStore({})
     const { dispatch } = store
 
-    dispatch(actions.closeModal(true))
+    dispatch(actions.closeModal(false))
 
     const acts = store.getActions()
 
