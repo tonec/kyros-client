@@ -16,14 +16,6 @@ function Clients() {
     dispatch(openModal('client'))
   }
 
-  const handleRowClick = client => {
-    dispatch(
-      openModal('client', {
-        state: { id: client.id, view: 'edit' },
-      }),
-    )
-  }
-
   const headerActions = () => {
     return (
       <Button color="primary" onClick={handleCreateClient}>
@@ -35,7 +27,7 @@ function Clients() {
   return (
     <Main title={title}>
       <PageHeader title={title} renderActions={headerActions} />
-      <ClientsTableContainer handleRowClick={handleRowClick} />
+      <ClientsTableContainer />
       <ClientModal />
     </Main>
   )

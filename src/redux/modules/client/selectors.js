@@ -11,6 +11,7 @@ export const getAllClients = createSelector([clientEntities], clientEntities =>
 )
 
 export const getClient = (state, id) => {
+  if (!id) return null
   return clientEntities(state).byId[id]
 }
 

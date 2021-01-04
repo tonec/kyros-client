@@ -40,7 +40,7 @@ export default createReducer(initialState, {
 
     if (payload && payload.action === 'remove') {
       const entity = payload.entity.toLowerCase()
-      const { id } = payload.meta
+      const { id } = payload.data.entities[0]
 
       return {
         ...state,

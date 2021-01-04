@@ -1,5 +1,5 @@
 export const initialState = {
-  create: {},
+  crud: {},
   fetch: {},
 }
 
@@ -9,28 +9,31 @@ export default function (state = initialState, action = {}) {
 
   switch (typeSplit[1]) {
     case 'CREATE':
+    case 'DELETE':
       return {
         ...state,
-        create: {
-          ...state.create,
+        crud: {
+          ...state.crud,
           [entity]: true,
         },
       }
 
     case 'CREATE_SUCCESS':
+    case 'DELETE_SUCCESS':
       return {
         ...state,
-        create: {
-          ...state.create,
+        crud: {
+          ...state.crud,
           [entity]: false,
         },
       }
 
     case 'CREATE_FAIL':
+    case 'DELETE_FAIL':
       return {
         ...state,
-        create: {
-          ...state.create,
+        crud: {
+          ...state.crud,
           [entity]: false,
         },
       }

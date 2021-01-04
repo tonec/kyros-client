@@ -12,6 +12,10 @@ export const CREATE = `${prefix}/CREATE`
 export const CREATE_SUCCESS = `${prefix}/CREATE_SUCCESS`
 export const CREATE_FAIL = `${prefix}/CREATE_FAIL`
 
+export const DELETE = `${prefix}/DELETE`
+export const DELETE_SUCCESS = `${prefix}/DELETE_SUCCESS`
+export const DELETE_FAIL = `${prefix}/DELETE_FAIL`
+
 /*
  * Action creators
  * * * * * * * * */
@@ -29,5 +33,13 @@ export function createClient(data) {
     request: ({ client }) => client.post('client', data),
     flash: { success: 'Client created!' },
     closeModal: true,
+  }
+}
+
+export function deleteClient(id) {
+  return {
+    types: [DELETE, DELETE_SUCCESS, DELETE_FAIL],
+    request: ({ client }) => client.delete(`client/${id}`),
+    flash: { success: 'Client deleted!' },
   }
 }

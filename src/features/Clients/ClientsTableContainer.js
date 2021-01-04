@@ -3,14 +3,34 @@ import PropTypes from 'prop-types'
 import { clientsType } from 'types'
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
+import { deleteClient } from 'redux/modules/client/actions'
+import { openModal } from 'redux/modules/modal/actions'
 import { isFetchingClients } from 'redux/modules/api/selectors'
 import { getVisibleClients } from 'redux/modules/client/selectors'
 import { Loader } from 'components'
 import ClientsTable from './ClientsTable'
 
-function ClientsTableContainer({ isFetchingClients, clients, handleRowClick }) {
+function ClientsTableContainer({ dispatch, isFetchingClients, clients }) {
   if (isFetchingClients) {
     return <Loader />
+  }
+
+  console.log('clients', clients)
+
+  const handleRowClick = client => {
+    console.log('client')
+  }
+
+  const handleEdit = client => {
+    dispatch(
+      openModal('client', {
+        state: { id: client.id, view: 'edit' },
+      }),
+    )
+  }
+
+  const handleDelete = client => {
+    dispatch(deleteClient(client.id))
   }
 
   const columns = [
@@ -18,21 +38,24 @@ function ClientsTableContainer({ isFetchingClients, clients, handleRowClick }) {
       key: 'name',
       name: 'Client name',
     },
+    { key: 'actions' },
   ]
 
   return (
     <ClientsTable
       columns={columns}
       data={clients}
+      handleEditClick={handleEdit}
+      handleDeleteClick={handleDelete}
       handleRowClick={handleRowClick}
     />
   )
 }
 
 ClientsTableContainer.propTypes = {
+  dispatch: PropTypes.func.isRequired,
   isFetchingClients: PropTypes.bool,
   clients: clientsType,
-  handleRowClick: PropTypes.func.isRequired,
 }
 
 ClientsTableContainer.defaultProps = {

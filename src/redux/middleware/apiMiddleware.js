@@ -76,7 +76,7 @@ export default ({ client, history, match, params }) => {
           }
 
           if (closeModal) {
-            next(closeModalAction())
+            next(closeModalAction()({ dispatch }))
           }
         },
 

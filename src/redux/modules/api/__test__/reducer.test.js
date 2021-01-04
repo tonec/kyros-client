@@ -8,7 +8,7 @@ describe('app reducer', () => {
       }),
     ).toEqual({
       ...initialState,
-      create: {
+      crud: {
         entity: true,
       },
     })
@@ -25,7 +25,7 @@ describe('app reducer', () => {
       }),
     ).toEqual({
       ...state,
-      create: {
+      crud: {
         entity: false,
       },
     })
@@ -42,7 +42,7 @@ describe('app reducer', () => {
       }),
     ).toEqual({
       ...state,
-      create: {
+      crud: {
         entity: false,
       },
     })
@@ -59,12 +59,79 @@ describe('app reducer', () => {
 
     expect(state).toEqual({
       ...initialState,
-      create: {
+      crud: {
         entity1: true,
         entity2: true,
       },
     })
   })
+
+  it('DELETE', () => {
+    expect(
+      reducer(initialState, {
+        type: '@entity/DELETE',
+      }),
+    ).toEqual({
+      ...initialState,
+      crud: {
+        entity: true,
+      },
+    })
+  })
+
+  it('DELETE SUCCESS', () => {
+    const state = reducer(initialState, {
+      type: '@entity/DELETE',
+    })
+
+    expect(
+      reducer(state, {
+        type: '@entity/DELETE_SUCCESS',
+      }),
+    ).toEqual({
+      ...state,
+      crud: {
+        entity: false,
+      },
+    })
+  })
+
+  it('DELETE FAIL', () => {
+    const state = reducer(initialState, {
+      type: '@entity/DELETE',
+    })
+
+    expect(
+      reducer(state, {
+        type: '@entity/DELETE_FAIL',
+      }),
+    ).toEqual({
+      ...state,
+      crud: {
+        entity: false,
+      },
+    })
+  })
+
+  it('CREATE multiple', () => {
+    let state = reducer(initialState, {
+      type: '@entity1/CREATE',
+    })
+
+    state = reducer(state, {
+      type: '@entity2/CREATE',
+    })
+
+    expect(state).toEqual({
+      ...initialState,
+      crud: {
+        entity1: true,
+        entity2: true,
+      },
+    })
+  })
+
+  //
 
   it('FETCH', () => {
     expect(
