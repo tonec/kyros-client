@@ -3,15 +3,15 @@ import createReducer from '../../createReducer'
 import * as actions from './actions'
 
 export const initialState = {
-  open: false,
   modalKey: null,
+  modalState: {},
 }
 
 export default createReducer(initialState, {
-  [actions.OPEN]: (state, { modalKey }) => ({
+  [actions.OPEN]: (state, { payload }) => ({
     ...state,
-    open: true,
-    modalKey,
+    modalKey: payload.modalKey,
+    modalState: payload.modalState || {},
   }),
 
   [actions.CLOSE]: () => initialState,
