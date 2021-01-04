@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { clientType } from 'types'
 import { connect } from 'react-redux'
-import { createClient } from 'redux/modules/client/actions'
+import { createClient, updateClient } from 'redux/modules/client/actions'
 import { closeModal } from 'redux/modules/modal/actions'
 import { getClient } from 'redux/modules/client/selectors'
 import ClientForm from './ClientForm'
@@ -15,7 +15,11 @@ function ClientFormContainer({ dispatch, client }) {
   }
 
   const handleOnSubmit = data => {
-    dispatch(createClient(data))
+    if (isEdit) {
+      dispatch(updateClient(client.id, data))
+    } else {
+      dispatch(createClient(data))
+    }
   }
 
   let initialValues = {}

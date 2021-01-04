@@ -40,10 +40,10 @@ export function createClient(data) {
   }
 }
 
-export function updateClient(data) {
+export function updateClient(id, data) {
   return {
     types: [UPDATE, UPDATE_SUCCESS, UPDATE_FAIL],
-    request: ({ client }) => client.patch('client', data),
+    request: ({ client }) => client.patch(`client/${id}`, data),
     flash: { success: 'Client updated!' },
     closeModal: true,
   }
