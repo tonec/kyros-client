@@ -17,7 +17,11 @@ function Clients() {
   }
 
   const handleRowClick = client => {
-    dispatch(openModal('client', { state: { id: client.id, view: 'edit' } }))
+    dispatch(
+      openModal('client', {
+        state: { id: client.id, view: 'edit' },
+      }),
+    )
   }
 
   const headerActions = () => {

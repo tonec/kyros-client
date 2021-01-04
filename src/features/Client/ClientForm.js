@@ -1,14 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Button, Form, InputField } from 'components'
+import { Button, ButtonsSpacer, Form, InputField } from 'components'
 import validate from './validate'
 
-function ClientForm({ initialValues, handleOnSubmit }) {
+function ClientForm({ isEdit, initialValues, handleCancel, handleOnSubmit }) {
   return (
     <Form
       initialValues={initialValues}
       onSubmit={handleOnSubmit}
-      render={({ handleSubmit }) => {
+      render={({ submitting, pristine, handleSubmit }) => {
         return (
           <form onSubmit={handleSubmit}>
             <InputField
@@ -19,9 +19,19 @@ function ClientForm({ initialValues, handleOnSubmit }) {
               validate={validate.name}
             />
 
-            <Button type="submit" color="primary">
-              Create client
-            </Button>
+            <ButtonsSpacer>
+              <Button type="button" color="secondary" onClick={handleCancel}>
+                Cancel
+              </Button>
+
+              <Button
+                type="submit"
+                color="primary"
+                disabled={submitting || pristine}
+              >
+                {isEdit ? 'Save' : 'Create'}
+              </Button>
+            </ButtonsSpacer>
           </form>
         )
       }}
@@ -30,11 +40,14 @@ function ClientForm({ initialValues, handleOnSubmit }) {
 }
 
 ClientForm.propTypes = {
+  isEdit: PropTypes.bool,
   initialValues: PropTypes.object,
+  handleCancel: PropTypes.func.isRequired,
   handleOnSubmit: PropTypes.func.isRequired,
 }
 
 ClientForm.defaultProps = {
+  isEdit: false,
   initialValues: {},
 }
 
