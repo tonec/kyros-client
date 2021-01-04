@@ -14,16 +14,16 @@ export const CLOSE = `${prefix}/CLOSE`
  * Action creators
  * * * * * * * * */
 
-export function openModal(modalKey, { state, useRedux = false } = {}) {
+export function openModal(modalKey, { state, useQS = true } = {}) {
   return ({ dispatch }) => {
-    if (!useRedux) {
+    if (useQS) {
       const queryStringObject = { modalKey }
 
       if (state) {
         queryStringObject.modalState = state
       }
 
-      return addQS(dispatch, queryStringObject)
+      addQS(dispatch, queryStringObject)
     }
 
     return dispatch({
@@ -36,10 +36,10 @@ export function openModal(modalKey, { state, useRedux = false } = {}) {
   }
 }
 
-export function closeModal(useRedux = false) {
+export function closeModal(useQS = true) {
   return ({ dispatch }) => {
-    if (!useRedux) {
-      return removeQS(dispatch, MODAL_QUERY_PARAMS)
+    if (useQS) {
+      removeQS(dispatch, MODAL_QUERY_PARAMS)
     }
 
     return dispatch({
