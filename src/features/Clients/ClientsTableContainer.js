@@ -19,7 +19,7 @@ function ClientsTableContainer({ dispatch, isFetchingClients, clients }) {
   }
 
   const handleRowClick = client => {
-    history.push(`/client/${client.id}`)
+    history.push(`/client/${client.id}/schedule`)
   }
 
   const handleEdit = client => {

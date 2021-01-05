@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { useHistory, useLocation, useParams } from 'react-router-dom'
+import { Link, useHistory, useLocation } from 'react-router-dom'
 import { logout } from 'redux/modules/auth/actions'
 import { makeStyles } from 'styles'
 import { Logo } from '../ui'
@@ -26,7 +26,6 @@ export default function Header() {
   const dispatch = useDispatch()
   const history = useHistory()
   const { pathname } = useLocation()
-  const { id } = useParams()
 
   const classes = useStyles()
 
@@ -37,11 +36,11 @@ export default function Header() {
 
   return (
     <div className={classes.header} data-testid="header">
-      <Logo size={48} className={classes.logo} />
+      <Link to="/clients">
+        <Logo size={48} className={classes.logo} />
+      </Link>
 
-      {pathname !== '/login' && (
-        <Navigation id={id} handleLogout={handleLogout} />
-      )}
+      {pathname !== '/login' && <Navigation handleLogout={handleLogout} />}
     </div>
   )
 }

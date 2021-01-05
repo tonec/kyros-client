@@ -1,6 +1,7 @@
 /* eslint-disable no-unreachable */
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Switch, Route, useParams } from 'react-router'
 import { makeStyles } from 'styles'
 import { Icon } from '../ui'
 import NavigationItem from './NavigationItem'
@@ -14,47 +15,45 @@ const useStyles = makeStyles({
   },
 })
 
-function Navigation({ id, handleLogout }) {
-  const classes = useStyles({ id })
+function Navigation({ handleLogout }) {
+  const classes = useStyles()
+  const { clientId } = useParams()
 
   return (
     <ul className={classes.menu} data-testid="header-menu">
-      <NavigationItem
-        label="Log out"
-        path="/home"
-        icon={<Icon variant="home" size={32} />}
-      />
-      <NavigationItem
-        label="Schedule"
-        path="/schedule"
-        icon={<Icon variant="schedule" size={32} />}
-      />
-      <NavigationItem
-        label="Team"
-        path="/team"
-        icon={<Icon variant="team" size={32} />}
-      />
-      <NavigationItem
-        label="Report"
-        path="/reports"
-        icon={<Icon variant="report" size={32} />}
-      />
-      <NavigationItem
-        label="Log out"
-        icon={<Icon variant="logout" size={32} />}
-        handleClick={handleLogout}
-      />
+      <Switch>
+        <Route path="/client/:id">
+          <NavigationItem
+            label="Schedule"
+            path={`/client/${clientId}/schedule`}
+            icon={<Icon variant="schedule" />}
+          />
+          <NavigationItem
+            label="People"
+            path={`/client/${clientId}/people`}
+            icon={<Icon variant="people" />}
+          />
+          <NavigationItem
+            label="Report"
+            path={`/client/${clientId}/reports`}
+            icon={<Icon variant="report" />}
+          />
+          <NavigationItem
+            label="Log out"
+            icon={<Icon variant="logout" />}
+            handleClick={handleLogout}
+          />
+        </Route>
+      </Switch>
     </ul>
   )
 }
 
 Navigation.propTypes = {
-  id: PropTypes.string,
   handleLogout: PropTypes.func,
 }
 
 Navigation.defaultProps = {
-  id: null,
   handleLogout: null,
 }
 

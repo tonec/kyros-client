@@ -8,28 +8,28 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import HomeIcon from '@material-ui/icons/Home'
 import PeopleIcon from '@material-ui/icons/People'
 
-function Icon({ variant, className }) {
+function Icon({ variant, className, size }) {
   switch (variant) {
     case 'delete':
-      return <DeleteIcon className={className} />
+      return <DeleteIcon className={className} fontSize={size} />
 
     case 'edit':
-      return <EditIcon className={className} />
+      return <EditIcon className={className} fontSize={size} />
 
     case 'home':
-      return <HomeIcon className={className} />
+      return <HomeIcon className={className} fontSize={size} />
 
     case 'logout':
-      return <ExitToAppIcon className={className} />
+      return <ExitToAppIcon className={className} fontSize={size} />
 
     case 'report':
-      return <AssessmentIcon className={className} />
+      return <AssessmentIcon className={className} fontSize={size} />
 
     case 'schedule':
-      return <DateRangeIcon className={className} />
+      return <DateRangeIcon className={className} fontSize={size} />
 
-    case 'team':
-      return <PeopleIcon className={className} />
+    case 'people':
+      return <PeopleIcon className={className} fontSize={size} />
 
     default:
       return null
@@ -39,10 +39,12 @@ function Icon({ variant, className }) {
 Icon.propTypes = {
   variant: PropTypes.string.isRequired,
   className: PropTypes.string,
+  size: PropTypes.oneOf(['default', 'small', 'large']),
 }
 
 Icon.defaultProps = {
   className: null,
+  size: 'default',
 }
 
 export default Icon
