@@ -4,7 +4,7 @@ import { persistCombineReducers, createPersistoid } from 'redux-persist'
 import apiMiddleware from './middleware/apiMiddleware'
 import rootReducer from './rootReducer'
 
-export default ({ client, history, match, params, data, persistConfig }) => {
+export default ({ client, history, data, persistConfig }) => {
   let preloadedState = { ...data }
 
   if (__CLIENT__) {
@@ -13,10 +13,7 @@ export default ({ client, history, match, params, data, persistConfig }) => {
   }
 
   const middleware = getDefaultMiddleware =>
-    [
-      apiMiddleware({ client, history, match, params }),
-      routerMiddleware(history),
-    ].concat(
+    [apiMiddleware({ client, history }), routerMiddleware(history)].concat(
       getDefaultMiddleware({
         thunk: false,
         serializableCheck: {

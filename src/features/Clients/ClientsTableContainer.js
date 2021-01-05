@@ -4,8 +4,8 @@ import { clientsType } from 'types'
 import { connect } from 'react-redux'
 import { useHistory } from 'react-router'
 import { createStructuredSelector } from 'reselect'
+import { openModal } from 'utils/modalQS'
 import { deleteClient } from 'redux/modules/client/actions'
-import { openModal } from 'redux/modules/modal/actions'
 import { isFetchingClients } from 'redux/modules/api/selectors'
 import { getVisibleClients } from 'redux/modules/client/selectors'
 import { Loader } from 'components'
@@ -23,11 +23,9 @@ function ClientsTableContainer({ dispatch, isFetchingClients, clients }) {
   }
 
   const handleEdit = client => {
-    dispatch(
-      openModal('client', {
-        state: { id: client.id, view: 'edit' },
-      }),
-    )
+    openModal('client', {
+      state: { id: client.id, view: 'edit' },
+    })
   }
 
   const handleDelete = client => {

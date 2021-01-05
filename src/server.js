@@ -73,8 +73,6 @@ app.get('*', async (req, res) => {
   const store = createStore({
     client,
     history,
-    match,
-    params,
     data: preloadedState,
     persistConfig,
   })

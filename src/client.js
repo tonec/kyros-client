@@ -3,9 +3,6 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { renderRoutes } from 'react-router-config'
 import { loadableReady } from '@loadable/component'
-import qhistory from 'qhistory'
-import { stringify, parse } from 'qs'
-import { createBrowserHistory } from 'history'
 import { ConnectedRouter } from 'connected-react-router'
 import { Provider } from 'react-redux'
 import { getStoredState } from 'redux-persist'
@@ -18,6 +15,7 @@ import { CssBaseline } from '@material-ui/core'
 import createStore from 'redux/store'
 import asyncMatchRoutes from 'helpers/asyncMatchRoutes'
 import apiClient from 'helpers/apiClient'
+import history from 'utils/history'
 import { AsyncTrigger } from 'components'
 import theme from 'theme'
 import routes from './routes'
@@ -27,7 +25,6 @@ window.addEventListener('unhandledrejection', (err, promise) => {
   console.log('Unhandled promise rejection: ', err, promise)
 })
 
-const history = qhistory(createBrowserHistory(), stringify, parse)
 const client = apiClient()
 
 const persistConfig = {
@@ -39,69 +36,74 @@ const persistConfig = {
   whitelist: ['auth'],
 }
 
-const hydrate = async () => {
+;(async () => {
   const preloadedState = await getStoredState(persistConfig)
 
-  const { components, match, params } = await asyncMatchRoutes(
-    routes,
-    history.location.pathname,
-  )
   const store = createStore({
     client,
     history,
-    match,
-    params,
+    match: {},
+    params: {},
     data: { ...preloadedState, ...window.INITIAL_STATE },
     persistConfig,
   })
 
-  const locals = {
-    history,
-    store,
-    match,
-    params,
-    location: history.location,
-  }
+  const hydrate = async () => {
+    const { components, match, params } = await asyncMatchRoutes(
+      routes,
+      history.location.pathname,
+    )
 
-  if (window.PRELOADED) {
-    delete window.PRELOADED
-  } else {
+    const locals = {
+      history,
+      store,
+      match,
+      params,
+      location: history.location,
+    }
+
+    if (window.PRELOADED) {
+      delete window.PRELOADED
+    } else {
+      try {
+        await trigger('fetch', components, locals)
+      } catch (error) {
+        // Failed fetch requests should be logged via redux actions
+        // console.log(error)
+      }
+    }
+
     try {
-      await trigger('fetch', components, locals)
+      await trigger('defer', components, locals)
     } catch (error) {
-      // Failed fetch requests should be logged via redux actions
+      // Failed defer requests should be logged via redux actions
       // console.log(error)
     }
+
+    ReactDOM.hydrate(
+      <Provider store={store}>
+        <ConnectedRouter history={history}>
+          <HelmetProvider>
+            <CssBaseline />
+            <AsyncTrigger routes={routes} store={store}>
+              <ThemeProvider theme={theme}>
+                {renderRoutes(routes)}
+              </ThemeProvider>
+            </AsyncTrigger>
+          </HelmetProvider>
+        </ConnectedRouter>
+      </Provider>,
+      document.getElementById('content'),
+    )
   }
 
-  try {
-    await trigger('defer', components, locals)
-  } catch (error) {
-    // Failed defer requests should be logged via redux actions
-    // console.log(error)
-  }
-
-  ReactDOM.hydrate(
-    <Provider store={store}>
-      <ConnectedRouter history={history}>
-        <HelmetProvider>
-          <CssBaseline />
-          <AsyncTrigger routes={routes} store={store}>
-            <ThemeProvider theme={theme}>{renderRoutes(routes)}</ThemeProvider>
-          </AsyncTrigger>
-        </HelmetProvider>
-      </ConnectedRouter>
-    </Provider>,
-    document.getElementById('content'),
-  )
-}
-
-loadableReady(() => {
-  hydrate()
-})
-
-if (process.env.NODE_ENV === 'development') {
-  module.hot.accept('./routes', () => {
+  loadableReady(() => {
     hydrate()
   })
-}
+
+  if (process.env.NODE_ENV === 'development') {
+    module.hot.accept('./routes', () => {
+      hydrate()
+    })
+  }
+})()

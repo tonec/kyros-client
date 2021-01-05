@@ -3,11 +3,11 @@ import { showSuccess, showError } from 'redux/modules/flash/actions'
 import { closeModal as closeModalAction } from 'redux/modules/modal/actions'
 import { received } from 'redux/modules/app/actions'
 
-export default ({ client, history, match, params }) => {
+export default ({ client, history }) => {
   return ({ dispatch, getState }) => next => action => {
     // Is thunk
     if (typeof action === 'function') {
-      return action({ history, match, params, dispatch, getState })
+      return action({ history, dispatch, getState })
     }
 
     const {
@@ -53,8 +53,6 @@ export default ({ client, history, match, params }) => {
     const actionPromise = request({
       client,
       history,
-      match,
-      params,
       dispatch,
       getState,
     })

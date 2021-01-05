@@ -1,15 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { compose } from 'redux'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router'
 import { createStructuredSelector } from 'reselect'
-import { closeModal } from 'redux/modules/modal/actions'
+import { closeModal } from 'utils/modalQS'
 import { getModalKey, getModalState } from 'redux/modules/modal/selectors'
 import { getQuery } from 'redux/modules/app/selectors'
 import { Dialog } from './ui'
 
-function Modal({ children, dispatch, name, modalKey, modalState, query }) {
+function Modal({ children, name, modalKey, modalState, query }) {
   const { modalKey: modalKeyQS, modalState: modalStateQS } = query
 
   const key = modalKeyQS || modalKey
@@ -20,7 +18,7 @@ function Modal({ children, dispatch, name, modalKey, modalState, query }) {
   const open = Boolean(key)
 
   const handleClose = () => {
-    dispatch(closeModal())
+    closeModal()
   }
 
   return (
@@ -32,7 +30,6 @@ function Modal({ children, dispatch, name, modalKey, modalState, query }) {
 
 Modal.propTypes = {
   children: PropTypes.func.isRequired,
-  dispatch: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
   modalKey: PropTypes.string,
   modalState: PropTypes.object,
@@ -51,4 +48,4 @@ const mapState = createStructuredSelector({
   modalState: getModalState,
 })
 
-export default compose(connect(mapState), withRouter)(Modal)
+export default connect(mapState)(Modal)
