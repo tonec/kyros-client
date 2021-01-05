@@ -1,7 +1,7 @@
 import { stringify, parse } from 'qs'
 import history from './history'
 
-export function add(queryObject, keepHistory = false) {
+export function add(queryObject, keepHistory = true) {
   if (typeof window === 'undefined') return
 
   const newQuery = {
@@ -21,7 +21,7 @@ export function add(queryObject, keepHistory = false) {
   })
 }
 
-export function remove(queryKey, keepHistory = false) {
+export function remove(queryKey, keepHistory = true) {
   if (typeof window === 'undefined') return
 
   const newQuery = {
@@ -50,7 +50,7 @@ export function remove(queryKey, keepHistory = false) {
   })
 }
 
-export function clear(keepHistory = false) {
+export function clear(keepHistory = true) {
   if (typeof window === 'undefined') return
 
   if (keepHistory) {
