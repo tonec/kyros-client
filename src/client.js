@@ -42,8 +42,6 @@ const persistConfig = {
   const store = createStore({
     client,
     history,
-    match: {},
-    params: {},
     data: { ...preloadedState, ...window.INITIAL_STATE },
     persistConfig,
   })
