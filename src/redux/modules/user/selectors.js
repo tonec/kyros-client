@@ -9,6 +9,7 @@ export const getAllUsers = createSelector([userEntities], userEntities =>
 )
 
 export const getUser = (state, id) => {
+  if (!id) return null
   return userEntities(state).byId[id]
 }
 

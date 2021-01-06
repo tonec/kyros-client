@@ -1,48 +1,37 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import { compose } from 'redux'
-import { connect } from 'react-redux'
 import { provideHooks } from 'redial'
-import { createStructuredSelector } from 'reselect'
-import { isFetchingUsers } from 'redux/modules/api/selectors'
+import { openModal } from 'utils/modalQS'
 import { fetchUsers } from 'redux/modules/user/actions'
-import { getVisibleUsers } from 'redux/modules/user/selectors'
-import { getFullName } from 'utils/entity'
-import { Main } from 'components'
+import { Button, Main, PageHeader } from 'components'
+import UsersTableContainer from './UsersTableContainer'
+import UserModal from '../User/UserModal'
 
-function Users({ isFetching, users }) {
-  if (isFetching) {
-    return null
+function Users() {
+  const title = 'Users'
+
+  const handleCreateUser = () => {
+    openModal('user')
+  }
+
+  const headerActions = () => {
+    return (
+      <Button color="primary" onClick={handleCreateUser}>
+        Create user
+      </Button>
+    )
   }
 
   return (
-    <Main title="Users">
-      <h2>Users lists:</h2>
-      <ul>
-        {users.length > 0 &&
-          users.map(user => <li key={user.id}>{getFullName(user)}</li>)}
-      </ul>
+    <Main title={title}>
+      <PageHeader title={title} renderActions={headerActions} />
+      <UsersTableContainer />
+      <UserModal />
     </Main>
   )
 }
-
-Users.propTypes = {
-  isFetching: PropTypes.bool,
-  users: PropTypes.array,
-}
-
-Users.defaultProps = {
-  isFetching: false,
-  users: null,
-}
-
-const mapState = createStructuredSelector({
-  isFetchingUsers,
-  users: getVisibleUsers,
-})
 
 const hooks = {
   fetch: ({ store }) => store.dispatch(fetchUsers()),
 }
 
-export default compose(provideHooks(hooks), connect(mapState))(Users)
+export default provideHooks(hooks)(Users)

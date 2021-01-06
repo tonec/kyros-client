@@ -7,7 +7,7 @@ import { getModalKey, getModalState } from 'redux/modules/modal/selectors'
 import { getQuery } from 'redux/modules/app/selectors'
 import { Dialog } from './ui'
 
-function Modal({ children, name, modalKey, modalState, query }) {
+function Modal({ children, title, name, modalKey, modalState, query }) {
   const { modalKey: modalKeyQS, modalState: modalStateQS } = query
 
   const key = modalKeyQS || modalKey
@@ -22,7 +22,7 @@ function Modal({ children, name, modalKey, modalState, query }) {
   }
 
   return (
-    <Dialog title="Create client" open={open} onClose={handleClose}>
+    <Dialog title={title} open={open} onClose={handleClose}>
       {children(state)}
     </Dialog>
   )
@@ -30,6 +30,7 @@ function Modal({ children, name, modalKey, modalState, query }) {
 
 Modal.propTypes = {
   children: PropTypes.func.isRequired,
+  title: PropTypes.string,
   name: PropTypes.string.isRequired,
   modalKey: PropTypes.string,
   modalState: PropTypes.object,
@@ -37,6 +38,7 @@ Modal.propTypes = {
 }
 
 Modal.defaultProps = {
+  title: null,
   modalKey: null,
   modalState: null,
   query: null,

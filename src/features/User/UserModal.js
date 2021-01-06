@@ -1,10 +1,10 @@
 import React from 'react'
 import { Modal } from 'components'
-import ClientFormContainer from './ClientFormContainer'
+import UserFormContainer from './UserFormContainer'
 
-function ClientModal() {
+function UserModal() {
   return (
-    <Modal name="client" title="Create client">
+    <Modal name="user" title="Create user">
       {state => {
         const { id, view } = state
 
@@ -13,13 +13,13 @@ function ClientModal() {
         }
 
         if (view === 'edit') {
-          return <ClientFormContainer clientId={id} />
+          return <UserFormContainer clientId={id} />
         }
 
-        return <ClientFormContainer />
+        return <UserFormContainer />
       }}
     </Modal>
   )
 }
 
-export default ClientModal
+export default UserModal

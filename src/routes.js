@@ -11,6 +11,7 @@ export default [
     component: App,
     routes: [
       { path: '/login', component: AuthRedirect(Login) },
+      { path: '/user/:userId/schedule', component: PrivateRoute(Schedule) },
       { path: '/client/:clientId/schedule', component: PrivateRoute(Schedule) },
       { path: '/client/:clientId/people', component: PrivateRoute(Users) },
       { path: '/client/:clientId/reports', component: PrivateRoute(Users) },
