@@ -7,7 +7,6 @@ import BaseSelect from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
 import FormControl from './FormControl'
 import InputLabel from './InputLabel'
-import FormInputError from './FormInputError'
 
 const useStyles = makeStyles(theme => ({
   control: {
@@ -40,6 +39,7 @@ function SelectForm(props) {
       fullWidth
       disabled={disabled}
       error={isError}
+      error={error}
       className={classes.control}
     >
       {label && (
@@ -75,7 +75,6 @@ function SelectForm(props) {
           )
         })}
       </BaseSelect>
-      {isError && <FormInputError error={error} />}
     </FormControl>
   )
 }

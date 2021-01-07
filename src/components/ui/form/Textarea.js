@@ -5,7 +5,6 @@ import { makeStyles } from 'styles'
 import BaseTextarea from '@material-ui/core/TextareaAutosize'
 import FormControl from './FormControl'
 import InputLabel from './InputLabel'
-import FormInputError from './FormInputError'
 
 const useStyles = makeStyles(theme => ({
   control: {
@@ -37,6 +36,7 @@ function TextareaForm({
       fullWidth
       disabled={disabled}
       isError={isError}
+      error={error}
       className={classes.control}
     >
       {label && (
@@ -51,7 +51,6 @@ function TextareaForm({
         {...restInput}
         {...rest}
       />
-      {isError && <FormInputError error={error} />}
     </FormControl>
   )
 }

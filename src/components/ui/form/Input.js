@@ -5,7 +5,6 @@ import { makeStyles } from 'styles'
 import BaseInput from '@material-ui/core/OutlinedInput'
 import FormControl from './FormControl'
 import InputLabel from './InputLabel'
-import FormInputError from './FormInputError'
 
 const useStyles = makeStyles(theme => ({
   control: {
@@ -31,6 +30,7 @@ function InputForm({
       fullWidth
       disabled={disabled}
       isError={isError}
+      error={error}
       className={classes.control}
     >
       {label && (
@@ -45,7 +45,6 @@ function InputForm({
         error={isError}
         {...rest}
       />
-      {isError && <FormInputError error={error} />}
     </FormControl>
   )
 }
