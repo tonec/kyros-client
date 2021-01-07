@@ -1,11 +1,14 @@
 import React from 'react'
 import { makeStyles } from 'styles'
 import {
+  Button,
+  ButtonsSpacer,
   Card,
   Centered,
   CheckboxField,
   Form,
   InputField,
+  Hrule,
   SelectField,
   TextareaField,
   RadioField,
@@ -31,6 +34,7 @@ function FormLibrary() {
         <Typography variant="h1" gutterBottom>
           Main heading
         </Typography>
+        <Hrule />
         <Form
           onSubmit={handleOnSubmit}
           initialValues={{ remember: true, checky: 1 }}
@@ -80,6 +84,15 @@ function FormLibrary() {
                 <RadioField label="Radio 1" name="radio" value="1" />
 
                 <RadioField label="Radio 2" name="radio" value="2" />
+
+                <ButtonsSpacer>
+                  <Button type="submit" color="default">
+                    Cancel
+                  </Button>
+                  <Button type="submit" color="primary">
+                    Submit
+                  </Button>
+                </ButtonsSpacer>
 
                 {JSON.stringify(values, 0, 2)}
               </form>

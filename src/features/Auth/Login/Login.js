@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { login } from 'redux/modules/auth/actions'
 import { makeStyles } from 'styles'
-import { Card, Typography } from 'components'
+import { Card, Hrule, Typography } from 'components'
 import LoginForm from './LoginForm'
 
 const useStyles = makeStyles({
@@ -24,6 +24,7 @@ function Login() {
       <Typography variant="h1" gutterBottom>
         Log in
       </Typography>
+      <Hrule />
       <LoginForm handleOnSubmit={handleOnSubmit} />
     </Card>
   )

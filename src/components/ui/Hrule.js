@@ -3,14 +3,16 @@ import { makeStyles } from 'styles'
 import Divider from './Divider'
 
 const useStyles = makeStyles(theme => ({
-  root: {
+  hrule: {
     margin: theme.spacing(2, 0),
   },
 }))
 
 function Hrule() {
   const classes = useStyles()
-  return <Divider component="hr" variant="fullWidth" classes={classes} />
+  return (
+    <Divider component="hr" variant="fullWidth" className={classes.hrule} />
+  )
 }
 
 export default Hrule

@@ -1,6 +1,6 @@
 import React from 'react'
 import { func } from 'prop-types'
-import { Button, Form, InputField, CheckboxField } from 'components'
+import { Button, ButtonsSpacer, Form, InputField } from 'components'
 import validate from './validate'
 
 function LoginForm({ handleOnSubmit }) {
@@ -27,11 +27,11 @@ function LoginForm({ handleOnSubmit }) {
               validate={validate.password}
             />
 
-            <CheckboxField label="Remember me" name="remember" />
-
-            <Button type="submit" color="primary">
-              Log in
-            </Button>
+            <ButtonsSpacer>
+              <Button type="submit" color="primary">
+                Log in
+              </Button>
+            </ButtonsSpacer>
           </form>
         )
       }}

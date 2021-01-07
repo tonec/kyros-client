@@ -7,8 +7,8 @@ const width = ({ fullWidth }) => (fullWidth ? '100%' : 'auto')
 
 const useStyles = makeStyles(theme => ({
   control: {
-    margin: theme.spacing(1, 0, 0),
-    padding: theme.spacing(0, 0, 3),
+    margin: theme.spacing(0.5, 0, 0),
+    padding: theme.spacing(0, 0, 2.5),
 
     width,
 

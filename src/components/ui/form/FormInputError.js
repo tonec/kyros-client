@@ -1,19 +1,19 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { makeStyles } from 'styles'
-import ErrorIcon from '@material-ui/icons/Error'
+import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline'
 import Typography from '../Typography'
 
 const useStyles = makeStyles(theme => ({
   errorContainer: {
     position: 'absolute',
-    margin: theme.spacing(0.2, 0),
     color: theme.palette.error.main,
 
     '& > svg': {
       verticalAlign: 'middle',
-      marginRight: 6,
-      fontSize: 20,
+      marginRight: 2,
+      marginTop: -2,
+      fontSize: 15,
     },
   },
 }))
@@ -23,7 +23,7 @@ function FormInputError({ error }) {
 
   return (
     <div className={classes.errorContainer}>
-      <ErrorIcon type="exclaimation-circle" />
+      <ErrorOutlineIcon />
       <Typography variant="caption" className={classes.text}>
         {error}
       </Typography>
