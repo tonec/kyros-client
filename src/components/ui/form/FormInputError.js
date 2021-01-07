@@ -7,12 +7,13 @@ import Typography from '../Typography'
 const useStyles = makeStyles(theme => ({
   errorContainer: {
     position: 'absolute',
-    margin: theme.spacing(0.5, 0),
+    margin: theme.spacing(0.2, 0),
     color: theme.palette.error.main,
 
     '& > svg': {
       verticalAlign: 'middle',
       marginRight: 6,
+      fontSize: 20,
     },
   },
 }))

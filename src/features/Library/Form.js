@@ -9,6 +9,7 @@ import {
   SelectField,
   TextareaField,
   RadioField,
+  Typography,
 } from 'components'
 
 import validate from './validate'
@@ -27,6 +28,9 @@ function FormLibrary() {
   return (
     <Centered title="Form library">
       <Card className={classes.card}>
+        <Typography variant="h1" gutterBottom>
+          Main heading
+        </Typography>
         <Form
           onSubmit={handleOnSubmit}
           initialValues={{ remember: true, checky: 1 }}

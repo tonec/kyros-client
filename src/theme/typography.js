@@ -1,29 +1,24 @@
 export default {
   h1: {
-    fontSize: 30,
+    fontSize: '2.5rem',
   },
-
   h2: {
-    fontSize: 26,
+    fontSize: '2.1rem',
   },
-
   h3: {
-    fontSize: 20,
+    fontSize: '1.8rem',
     fontWeight: 300,
   },
-
   h4: {
-    fontSize: 18,
+    fontSize: '1.6rem',
     fontWeight: 300,
   },
-
   h5: {
-    fontSize: 16,
-    fontWeight: 600,
+    fontSize: '1.4rem',
+    fontWeight: 300,
   },
-
   h6: {
-    fontSize: 14,
-    fontWeight: 600,
+    fontSize: '1.2rem',
+    fontWeight: 400,
   },
 }

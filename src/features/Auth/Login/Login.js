@@ -21,7 +21,9 @@ function Login() {
 
   return (
     <Card className={classes.card}>
-      <Typography variant="h1">Log in</Typography>
+      <Typography variant="h1" gutterBottom>
+        Log in
+      </Typography>
       <LoginForm handleOnSubmit={handleOnSubmit} />
     </Card>
   )

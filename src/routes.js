@@ -5,6 +5,7 @@ import Users from 'features/Users/Users'
 import Clients from 'features/Clients/Clients'
 import Schedule from 'features/Schedule/Schedule'
 import FormLibrary from 'features/Library/Form'
+import TypeLibrary from 'features/Library/Type'
 
 export default [
   {
@@ -18,6 +19,7 @@ export default [
       { path: '/client/:clientId', component: PrivateRoute(Schedule) },
       { path: '/clients', component: PrivateRoute(Clients) },
       { path: '/form', component: FormLibrary },
+      { path: '/type', component: TypeLibrary },
       { path: '/', exact: true, component: AuthRedirect(Login) },
       { component: NotFound },
     ],

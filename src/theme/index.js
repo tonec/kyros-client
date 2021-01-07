@@ -1,7 +1,8 @@
-import { createMuiTheme } from '@material-ui/core/styles'
+import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles'
 import palette from './palette'
 import typography from './typography'
 import button from './overrides/button'
+import checkbox from './overrides/checkbox'
 import input from './overrides/input'
 import formControlLabel from './overrides/formControlLabel'
 import label from './overrides/label'
@@ -12,6 +13,7 @@ const theme = createMuiTheme({
   typography,
   overrides: {
     MuiButton: button,
+    MuiCheckbox: checkbox,
     MuiOutlinedInput: input,
     MuiFormControlLabel: formControlLabel,
     MuiFormLabel: label,
@@ -19,4 +21,4 @@ const theme = createMuiTheme({
   },
 })
 
-export default theme
+export default responsiveFontSizes(theme)
