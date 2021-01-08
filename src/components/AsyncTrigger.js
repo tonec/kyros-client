@@ -1,77 +1,98 @@
-import React, { useEffect } from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { childrenType } from 'types'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 import { withRouter, Route } from 'react-router-dom'
-import NProgress from 'nprogress'
-import { trigger } from 'redial'
-import { usePrevious } from 'hooks'
-import asyncMatchRoutes from 'helpers/asyncMatchRoutes'
 import { getIsFirstLoad } from 'redux/modules/app/selectors'
 
-function AsyncTrigger({
-  history,
-  location,
-  routes,
-  store,
-  children,
-  isFirstLoad,
-}) {
-  const prevPathname = usePrevious(location.pathname)
+class AsyncTrigger extends Component {
+  constructor(props) {
+    super(props)
 
-  NProgress.configure({ trickleSpeed: 200 })
+    this.state = {
+      needTrigger: false,
+      location: null,
+      previousLocation: null,
+    }
+  }
 
-  useEffect(() => {
-    const navigated = location.pathname !== prevPathname
+  static getDerivedStateFromProps(nextProps, prevState) {
+    const { location } = prevState
 
-    async function triggerFetch() {
-      const { components, match, params } = await asyncMatchRoutes(
-        routes,
-        location.pathname,
-      )
+    const {
+      location: { pathname },
+    } = nextProps
 
-      const locals = {
-        history,
-        store,
-        match,
-        params,
+    const navigated = !location || pathname !== location.pathname
+
+    if (navigated) {
+      return {
+        needTrigger: true,
+        location: nextProps.location,
+        previousLocation: location || nextProps.location,
       }
-
-      try {
-        await trigger('fetch', components, locals)
-      } catch (error) {
-        //
-      }
-
-      if (__CLIENT__) {
-        try {
-          await trigger('defer', components, locals)
-        } catch (error) {
-          //
-        }
-      }
-
-      NProgress.done()
     }
 
-    if (!isFirstLoad && navigated) {
-      NProgress.start()
-      triggerFetch()
-    }
-  }, [history, location.pathname, prevPathname, routes, store, isFirstLoad])
+    return null
+  }
 
-  return <Route location={location} render={() => children} />
+  componentDidMount() {
+    this.mounted = true
+
+    this.trigger()
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    const { previousLocation } = this.state
+    return nextState.previousLocation !== previousLocation
+  }
+
+  componentDidUpdate() {
+    this.trigger()
+  }
+
+  componentWillUnmount() {
+    this.mounted = false
+  }
+
+  trigger = () => {
+    const { trigger, location } = this.props
+    const { needTrigger } = this.state
+
+    if (needTrigger) {
+      this.safeSetState({ needTrigger: false }, () => {
+        trigger(location.pathname)
+          // eslint-disable-next-line no-console
+          .catch(err => console.log('Failure in RouterTrigger:', err))
+          .then(() => {
+            this.safeSetState({ previousLocation: null })
+          })
+      })
+    }
+  }
+
+  safeSetState(nextState, callback) {
+    if (this.mounted) {
+      this.setState(nextState, callback)
+    }
+  }
+
+  render() {
+    const { children, location } = this.props
+    const { previousLocation } = this.state
+
+    return (
+      <Route location={previousLocation || location} render={() => children} />
+    )
+  }
 }
 
 AsyncTrigger.propTypes = {
   children: childrenType.isRequired,
-  history: PropTypes.objectOf(PropTypes.any).isRequired,
-  location: PropTypes.objectOf(PropTypes.any).isRequired,
-  routes: PropTypes.array.isRequired,
-  store: PropTypes.object.isRequired,
-  isFirstLoad: PropTypes.bool.isRequired,
+  location: PropTypes.object.isRequired,
+  trigger: PropTypes.func.isRequired,
 }
 
 const mapState = createStructuredSelector({

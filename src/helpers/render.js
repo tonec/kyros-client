@@ -10,7 +10,6 @@ import { ChunkExtractor } from '@loadable/server'
 import serialize from 'serialize-javascript'
 import { HelmetProvider } from 'react-helmet-async'
 import theme from 'theme'
-import { AsyncTrigger } from 'components'
 import routes from '../routes'
 import Html from './Html'
 
@@ -32,11 +31,7 @@ export default ({ req, store, history, routerContext }) => {
         <HelmetProvider context={helmetContext}>
           <StaticRouter location={history.location} context={routerContext}>
             <CssBaseline />
-            <AsyncTrigger routes={routes} store={store}>
-              <ThemeProvider theme={theme}>
-                {renderRoutes(routes)}
-              </ThemeProvider>
-            </AsyncTrigger>
+            <ThemeProvider theme={theme}>{renderRoutes(routes)}</ThemeProvider>
           </StaticRouter>
         </HelmetProvider>
       </Provider>,

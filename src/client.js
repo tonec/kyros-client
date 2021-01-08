@@ -12,6 +12,7 @@ import { trigger } from 'redial'
 import { HelmetProvider } from 'react-helmet-async'
 import { ThemeProvider } from '@material-ui/core/styles'
 import { CssBaseline } from '@material-ui/core'
+import NProgress from 'nprogress'
 import createStore from 'redux/store'
 import asyncMatchRoutes from 'helpers/asyncMatchRoutes'
 import apiClient from 'helpers/apiClient'
@@ -46,10 +47,12 @@ const persistConfig = {
     persistConfig,
   })
 
-  const hydrate = async () => {
+  const triggerHooks = async (routes, pathname) => {
+    NProgress.start()
+
     const { components, match, params } = await asyncMatchRoutes(
       routes,
-      history.location.pathname,
+      pathname,
     )
 
     const locals = {
@@ -78,16 +81,22 @@ const persistConfig = {
       // console.log(error)
     }
 
+    NProgress.done()
+  }
+
+  const hydrate = async () => {
     ReactDOM.hydrate(
       <Provider store={store}>
         <ConnectedRouter history={history}>
           <HelmetProvider>
             <CssBaseline />
-            <AsyncTrigger routes={routes} store={store}>
-              <ThemeProvider theme={theme}>
+            <ThemeProvider theme={theme}>
+              <AsyncTrigger
+                trigger={pathname => triggerHooks(routes, pathname)}
+              >
                 {renderRoutes(routes)}
-              </ThemeProvider>
-            </AsyncTrigger>
+              </AsyncTrigger>
+            </ThemeProvider>
           </HelmetProvider>
         </ConnectedRouter>
       </Provider>,
