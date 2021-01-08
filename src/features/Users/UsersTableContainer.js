@@ -8,14 +8,13 @@ import { openModal } from 'utils/modalQS'
 import { deleteUser } from 'redux/modules/user/actions'
 import { isFetchingUsers } from 'redux/modules/api/selectors'
 import { getVisibleUsers } from 'redux/modules/user/selectors'
-import { Loader } from 'components'
 import UsersTable from './UsersTable'
 
 function UsersTableContainer({ dispatch, isFetchingUsers, users }) {
   const history = useHistory()
 
   if (isFetchingUsers) {
-    return <Loader />
+    return null
   }
 
   const handleRowClick = user => {

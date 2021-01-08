@@ -8,14 +8,13 @@ import { openModal } from 'utils/modalQS'
 import { deleteClient } from 'redux/modules/client/actions'
 import { isFetchingClients } from 'redux/modules/api/selectors'
 import { getVisibleClients } from 'redux/modules/client/selectors'
-import { Loader } from 'components'
 import ClientsTable from './ClientsTable'
 
 function ClientsTableContainer({ dispatch, isFetchingClients, clients }) {
   const history = useHistory()
 
   if (isFetchingClients) {
-    return <Loader />
+    return null
   }
 
   const handleRowClick = client => {
