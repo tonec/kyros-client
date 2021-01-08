@@ -108,7 +108,10 @@ const persistConfig = {
     hydrate()
   })
 
-  if (process.env.NODE_ENV === 'development') {
-    module.hot.accept()
+  if (module.hot) {
+    module.hot.accept('./routes', () => {
+      const nextRoutes = require('./routes')
+      hydrate(nextRoutes.__esModule ? nextRoutes.default : nextRoutes)
+    })
   }
 })()

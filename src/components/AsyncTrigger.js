@@ -5,6 +5,7 @@ import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 import { withRouter, Route } from 'react-router-dom'
+import { hot } from 'react-hot-loader/root'
 import { getIsFirstLoad } from 'redux/modules/app/selectors'
 
 class AsyncTrigger extends Component {
@@ -99,4 +100,4 @@ const mapState = createStructuredSelector({
   isFirstLoad: getIsFirstLoad,
 })
 
-export default compose(connect(mapState), withRouter)(AsyncTrigger)
+export default compose(connect(mapState), withRouter, hot)(AsyncTrigger)
