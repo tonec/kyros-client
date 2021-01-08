@@ -6,6 +6,7 @@ import DeleteIcon from '@material-ui/icons/Delete'
 import EditIcon from '@material-ui/icons/Edit'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import HomeIcon from '@material-ui/icons/Home'
+import MoreHorizIcon from '@material-ui/icons/MoreHoriz'
 import PeopleIcon from '@material-ui/icons/People'
 
 function Icon({ variant, className, size }) {
@@ -21,6 +22,9 @@ function Icon({ variant, className, size }) {
 
     case 'logout':
       return <ExitToAppIcon className={className} fontSize={size} />
+
+    case 'more':
+      return <MoreHorizIcon className={className} fontSize={size} />
 
     case 'report':
       return <AssessmentIcon className={className} fontSize={size} />

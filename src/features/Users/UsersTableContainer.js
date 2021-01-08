@@ -4,13 +4,11 @@ import { usersType } from 'types'
 import { connect } from 'react-redux'
 import { useHistory } from 'react-router'
 import { createStructuredSelector } from 'reselect'
-import { openModal } from 'utils/modalQS'
-import { deleteUser } from 'redux/modules/user/actions'
 import { isFetchingUsers } from 'redux/modules/api/selectors'
 import { getVisibleUsers } from 'redux/modules/user/selectors'
 import UsersTable from './UsersTable'
 
-function UsersTableContainer({ dispatch, isFetchingUsers, users }) {
+function UsersTableContainer({ isFetchingUsers, users }) {
   const history = useHistory()
 
   if (isFetchingUsers) {
@@ -19,16 +17,6 @@ function UsersTableContainer({ dispatch, isFetchingUsers, users }) {
 
   const handleRowClick = user => {
     history.push(`/user/${user.id}/schedule`)
-  }
-
-  const handleEdit = user => {
-    openModal('user', {
-      state: { id: user.id, view: 'edit' },
-    })
-  }
-
-  const handleDelete = user => {
-    dispatch(deleteUser(user.id))
   }
 
   const columns = [
@@ -47,15 +35,12 @@ function UsersTableContainer({ dispatch, isFetchingUsers, users }) {
     <UsersTable
       columns={columns}
       data={users}
-      handleEditClick={handleEdit}
-      handleDeleteClick={handleDelete}
       handleRowClick={handleRowClick}
     />
   )
 }
 
 UsersTableContainer.propTypes = {
-  dispatch: PropTypes.func.isRequired,
   isFetchingUsers: PropTypes.bool,
   users: usersType,
 }

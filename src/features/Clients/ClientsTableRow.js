@@ -1,45 +1,24 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles'
-import { Icon, IconButton, Table } from 'components'
+import { Table } from 'components'
+import ClientsTableRowActions from './ClientsTableRowActions'
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   actions: {
-    padding: 0,
     textAlign: 'right',
+    padding: theme.spacing(0),
   },
-})
+}))
 
 const { Row, Cell } = Table
 
-function ClientsTableRow({
-  columns,
-  item,
-  handleRowClick,
-  handleEditClick,
-  handleDeleteClick,
-}) {
+function ClientsTableRow({ columns, item, handleRowClick }) {
   const classes = useStyles()
 
   const onRowClick = () => {
     if (typeof handleRowClick === 'function') {
       handleRowClick(item)
-    }
-  }
-
-  const onEdit = e => {
-    e.stopPropagation()
-
-    if (typeof handleEditClick === 'function') {
-      handleEditClick(item)
-    }
-  }
-
-  const onDelete = e => {
-    e.stopPropagation()
-
-    if (typeof handleDeleteClick === 'function') {
-      handleDeleteClick(item)
     }
   }
 
@@ -76,12 +55,7 @@ function ClientsTableRow({
               testid={`cell-${item.id}-${column.key}`}
               onClick={onRowClick}
             >
-              <IconButton aria-label="edit" onClick={onEdit}>
-                <Icon variant="edit" />
-              </IconButton>
-              <IconButton aria-label="delete" onClick={onDelete}>
-                <Icon variant="delete" />
-              </IconButton>
+              <ClientsTableRowActions client={item} />
             </Cell>
           )
         }
@@ -103,17 +77,13 @@ function ClientsTableRow({
 ClientsTableRow.propTypes = {
   columns: PropTypes.arrayOf(PropTypes.object),
   item: PropTypes.shape({ id: PropTypes.string }),
-  handleEditClick: PropTypes.func,
   handleRowClick: PropTypes.func,
-  handleDeleteClick: PropTypes.func,
 }
 
 ClientsTableRow.defaultProps = {
   columns: [],
   item: null,
   handleRowClick: null,
-  handleEditClick: null,
-  handleDeleteClick: null,
 }
 
 export default ClientsTableRow

@@ -28,8 +28,6 @@ function UsersTable({
   fallbackText,
   isFetching,
   handleRowClick,
-  handleEditClick,
-  handleDeleteClick,
 }) {
   const classes = useStyles()
 
@@ -64,8 +62,6 @@ function UsersTable({
                 item={item}
                 columns={columns}
                 handleRowClick={handleRowClick}
-                handleEditClick={handleEditClick}
-                handleDeleteClick={handleDeleteClick}
               />
             ))}
           {data.length === 0 && (
@@ -87,8 +83,6 @@ UsersTable.propTypes = {
   fallbackText: PropTypes.string,
   isFetching: PropTypes.bool,
   handleRowClick: PropTypes.func,
-  handleEditClick: PropTypes.func,
-  handleDeleteClick: PropTypes.func,
 }
 
 UsersTable.defaultProps = {
@@ -96,8 +90,6 @@ UsersTable.defaultProps = {
   fallbackText: 'No data to display',
   isFetching: false,
   handleRowClick: null,
-  handleEditClick: null,
-  handleDeleteClick: null,
 }
 
 export default UsersTable

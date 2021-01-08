@@ -4,8 +4,12 @@ import PropTypes from 'prop-types'
 import { childrenType } from 'types'
 import cx from 'clsx'
 import { makeStyles } from 'styles'
-import BasePopover from '@material-ui/core/Popover'
-import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state'
+import PopupState, {
+  bindTrigger,
+  bindHover,
+  bindPopover,
+} from 'material-ui-popup-state'
+import BasePopover from 'material-ui-popup-state/HoverPopover'
 
 const useStyles = makeStyles({
   triggerWrap: {
@@ -22,6 +26,7 @@ function Popover({
   renderTrigger,
   anchorOrigin,
   transformOrigin,
+  bindType,
 }) {
   const classes = useStyles()
 
@@ -37,6 +42,8 @@ function Popover({
     event.nativeEvent.stopImmediatePropagation()
   }
 
+  const boundTrigger = bindType === 'hover' ? bindHover : bindTrigger
+
   return (
     <PopupState variant="popover" popupId="demo-popup-popover">
       {popupState => (
@@ -45,7 +52,7 @@ function Popover({
             <button
               type="button"
               className={cx(classes.triggerWrap, triggerWrapClassName)}
-              {...bindTrigger(popupState)}
+              {...boundTrigger(popupState)}
             >
               {renderTrigger()}
             </button>
@@ -77,6 +84,7 @@ Popover.propTypes = {
     vertical: PropTypes.string,
     horizontal: PropTypes.string,
   }),
+  bindType: PropTypes.oneOf(['click', 'hover']),
 }
 
 Popover.defaultProps = {
@@ -89,6 +97,7 @@ Popover.defaultProps = {
     vertical: 'bottom',
     horizontal: 'center',
   },
+  bindType: 'hover',
 }
 
 export default Popover

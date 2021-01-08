@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles'
-import { Icon, IconButton, Table } from 'components'
+import { Table } from 'components'
+import UsersTableRowActions from './UsersTableRowActions'
 
 const useStyles = makeStyles({
   actions: {
@@ -12,34 +13,12 @@ const useStyles = makeStyles({
 
 const { Row, Cell } = Table
 
-function UsersTableRow({
-  columns,
-  item,
-  handleRowClick,
-  handleEditClick,
-  handleDeleteClick,
-}) {
+function UsersTableRow({ columns, item, handleRowClick }) {
   const classes = useStyles()
 
   const onRowClick = () => {
     if (typeof handleRowClick === 'function') {
       handleRowClick(item)
-    }
-  }
-
-  const onEdit = e => {
-    e.stopPropagation()
-
-    if (typeof handleEditClick === 'function') {
-      handleEditClick(item)
-    }
-  }
-
-  const onDelete = e => {
-    e.stopPropagation()
-
-    if (typeof handleDeleteClick === 'function') {
-      handleDeleteClick(item)
     }
   }
 
@@ -76,12 +55,7 @@ function UsersTableRow({
               testid={`cell-${item.id}-${column.key}`}
               onClick={onRowClick}
             >
-              <IconButton aria-label="edit" onClick={onEdit}>
-                <Icon variant="edit" />
-              </IconButton>
-              <IconButton aria-label="delete" onClick={onDelete}>
-                <Icon variant="delete" />
-              </IconButton>
+              <UsersTableRowActions user={item} />
             </Cell>
           )
         }
@@ -103,17 +77,13 @@ function UsersTableRow({
 UsersTableRow.propTypes = {
   columns: PropTypes.arrayOf(PropTypes.object),
   item: PropTypes.shape({ id: PropTypes.string }),
-  handleEditClick: PropTypes.func,
   handleRowClick: PropTypes.func,
-  handleDeleteClick: PropTypes.func,
 }
 
 UsersTableRow.defaultProps = {
   columns: [],
   item: null,
   handleRowClick: null,
-  handleEditClick: null,
-  handleDeleteClick: null,
 }
 
 export default UsersTableRow
