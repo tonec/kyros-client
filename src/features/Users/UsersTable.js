@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import cx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
-import { Loader, Table } from 'components'
+import { Card, Loader, Table } from 'components'
 import UsersTableRow from './UsersTableRow'
 
 const useStyles = makeStyles(theme => ({
@@ -41,38 +41,42 @@ function UsersTable({
 
   return (
     <Container>
-      <Table>
-        <Head>
-          <Row>
-            {columns.map(column => (
-              <Cell
-                key={column.key}
-                className={cx({ [classes.actions]: column.key === 'actions' })}
-              >
-                {column.name}
-              </Cell>
-            ))}
-          </Row>
-        </Head>
-        <Body>
-          {data.length > 0 &&
-            data.map(item => (
-              <UsersTableRow
-                key={item.id}
-                item={item}
-                columns={columns}
-                handleRowClick={handleRowClick}
-              />
-            ))}
-          {data.length === 0 && (
+      <Card flush>
+        <Table>
+          <Head>
             <Row>
-              <Cell colSpan={columns.length} align="center">
-                {fallbackText}
-              </Cell>
+              {columns.map(column => (
+                <Cell
+                  key={column.key}
+                  className={cx({
+                    [classes.actions]: column.key === 'actions',
+                  })}
+                >
+                  {column.name}
+                </Cell>
+              ))}
             </Row>
-          )}
-        </Body>
-      </Table>
+          </Head>
+          <Body>
+            {data.length > 0 &&
+              data.map(item => (
+                <UsersTableRow
+                  key={item.id}
+                  item={item}
+                  columns={columns}
+                  handleRowClick={handleRowClick}
+                />
+              ))}
+            {data.length === 0 && (
+              <Row>
+                <Cell colSpan={columns.length} align="center">
+                  {fallbackText}
+                </Cell>
+              </Row>
+            )}
+          </Body>
+        </Table>
+      </Card>
     </Container>
   )
 }
