@@ -1,4 +1,5 @@
 /* eslint-disable no-console */
+import { closeModal as closeModalQS } from 'utils/modalQS'
 import { showSuccess, showError } from 'redux/modules/flash/actions'
 import { closeModal as closeModalAction } from 'redux/modules/modal/actions'
 import { received } from 'redux/modules/app/actions'
@@ -74,7 +75,8 @@ export default ({ client, history }) => {
           }
 
           if (closeModal) {
-            next(closeModalAction()({ dispatch }))
+            closeModalQS()
+            next(closeModalAction())
           }
         },
 
