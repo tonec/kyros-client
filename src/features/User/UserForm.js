@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Button, ButtonsSpacer, Form, InputField } from 'components'
+import { Button, ButtonsSpacer, Form, Grid, InputField } from 'components'
 import validate from './validate'
 
 function UserForm({ isEdit, initialValues, handleCancel, handleOnSubmit }) {
@@ -11,13 +11,58 @@ function UserForm({ isEdit, initialValues, handleCancel, handleOnSubmit }) {
       render={({ submitting, pristine, handleSubmit }) => {
         return (
           <form onSubmit={handleSubmit}>
-            <InputField
-              label="Client name"
-              name="name"
-              type="text"
-              placeholder="Client name"
-              validate={validate.name}
-            />
+            <Grid container spacing={3}>
+              <Grid item xs={12} sm={6}>
+                <InputField
+                  label="First name"
+                  name="firstName"
+                  type="text"
+                  validate={validate.firstName}
+                />
+
+                <InputField
+                  label="Last name"
+                  name="lastName"
+                  type="text"
+                  validate={validate.lastName}
+                />
+
+                <InputField
+                  label="Email"
+                  name="email"
+                  type="text"
+                  validate={validate.email}
+                />
+
+                <InputField
+                  label="Phone"
+                  name="phone"
+                  type="text"
+                  validate={validate.phone}
+                />
+
+                <InputField label="Rate" name="rate" type="number" />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <InputField label="Address" name="address1" type="text" />
+
+                <InputField name="address2" type="text" />
+
+                <InputField placeholder="City" name="city" type="text" />
+
+                <InputField
+                  placeholder="Postcode"
+                  name="postcode"
+                  type="text"
+                />
+
+                <InputField
+                  label="Date of birth"
+                  name="dateOfBirth"
+                  type="text"
+                />
+              </Grid>
+            </Grid>
 
             <ButtonsSpacer>
               <Button type="button" color="secondary" onClick={handleCancel}>

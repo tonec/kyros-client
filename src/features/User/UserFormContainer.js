@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { userType } from 'types'
 import { connect } from 'react-redux'
+import { getInitialValues } from 'utils'
 import { createUser, updateUser } from 'redux/modules/user/actions'
 import { closeModal } from 'redux/modules/modal/actions'
 import { getUser } from 'redux/modules/user/selectors'
@@ -25,9 +26,7 @@ function UserFormContainer({ dispatch, user }) {
   let initialValues = {}
 
   if (user) {
-    initialValues = {
-      name: user.name,
-    }
+    initialValues = getInitialValues(user)
   }
 
   return (

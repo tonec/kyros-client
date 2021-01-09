@@ -13,7 +13,7 @@ function UserModal() {
         }
 
         if (view === 'edit') {
-          return <UserFormContainer clientId={id} />
+          return <UserFormContainer userId={id} />
         }
 
         return <UserFormContainer />

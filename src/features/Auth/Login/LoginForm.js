@@ -14,7 +14,6 @@ function LoginForm({ handleOnSubmit }) {
               label="Email"
               name="email"
               type="text"
-              placeholder="Email"
               autoComplete="username"
               validate={validate.email}
             />
