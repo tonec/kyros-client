@@ -8,7 +8,7 @@ function ClientForm({ isEdit, initialValues, handleCancel, handleOnSubmit }) {
     <Form
       initialValues={initialValues}
       onSubmit={handleOnSubmit}
-      render={({ submitting, pristine, handleSubmit }) => {
+      render={({ submitting, pristine, handleSubmit, hasValidationErrors }) => {
         return (
           <form onSubmit={handleSubmit}>
             <InputField
@@ -17,17 +17,18 @@ function ClientForm({ isEdit, initialValues, handleCancel, handleOnSubmit }) {
               type="text"
               placeholder="Client name"
               validate={validate.name}
+              required
             />
 
             <ButtonsSpacer>
-              <Button type="button" color="secondary" onClick={handleCancel}>
+              <Button type="button" onClick={handleCancel}>
                 Cancel
               </Button>
 
               <Button
                 type="submit"
                 color="primary"
-                disabled={submitting || pristine}
+                disabled={submitting || pristine || hasValidationErrors}
               >
                 {isEdit ? 'Save' : 'Create'}
               </Button>

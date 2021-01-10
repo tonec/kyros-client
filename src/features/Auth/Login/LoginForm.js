@@ -7,7 +7,7 @@ function LoginForm({ handleOnSubmit }) {
   return (
     <Form
       onSubmit={handleOnSubmit}
-      render={({ handleSubmit }) => {
+      render={({ submitting, pristine, handleSubmit, hasValidationErrors }) => {
         return (
           <form onSubmit={handleSubmit}>
             <InputField
@@ -27,7 +27,11 @@ function LoginForm({ handleOnSubmit }) {
             />
 
             <ButtonsSpacer>
-              <Button type="submit" color="primary">
+              <Button
+                type="submit"
+                color="primary"
+                disabled={submitting || pristine || hasValidationErrors}
+              >
                 Log in
               </Button>
             </ButtonsSpacer>

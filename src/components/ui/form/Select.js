@@ -25,6 +25,7 @@ function SelectForm(props) {
     meta,
     label,
     disabled,
+    required,
     options,
     icons,
     ...rest
@@ -38,13 +39,14 @@ function SelectForm(props) {
     <FormControl
       fullWidth
       disabled={disabled}
-      error={isError}
+      isError={isError}
       error={error}
       className={classes.control}
     >
       {label && (
         <InputLabel htmlFor={name} disabled={disabled}>
           {label}
+          {required && <span> *</span>}
         </InputLabel>
       )}
       <BaseSelect
@@ -82,6 +84,7 @@ function SelectForm(props) {
 SelectForm.propTypes = {
   label: PropTypes.string,
   disabled: PropTypes.bool,
+  required: PropTypes.bool,
   input: formInputType.isRequired,
   meta: formMetaType.isRequired,
   options: PropTypes.shape({}).isRequired,
@@ -91,6 +94,7 @@ SelectForm.propTypes = {
 SelectForm.defaultProps = {
   label: null,
   disabled: false,
+  required: false,
   icons: {},
 }
 

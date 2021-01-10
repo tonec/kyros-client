@@ -1,6 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Button, ButtonsSpacer, Form, Grid, InputField } from 'components'
+import { PERMISSIONS_OPTIONS } from 'utils/constants'
+import {
+  Button,
+  ButtonsSpacer,
+  CheckboxField,
+  Form,
+  Grid,
+  Hrule,
+  InputField,
+  SelectField,
+} from 'components'
 import validate from './validate'
 
 function UserForm({ isEdit, initialValues, handleCancel, handleOnSubmit }) {
@@ -8,7 +18,7 @@ function UserForm({ isEdit, initialValues, handleCancel, handleOnSubmit }) {
     <Form
       initialValues={initialValues}
       onSubmit={handleOnSubmit}
-      render={({ submitting, pristine, handleSubmit }) => {
+      render={({ submitting, pristine, handleSubmit, hasValidationErrors }) => {
         return (
           <form onSubmit={handleSubmit}>
             <Grid container spacing={3}>
@@ -18,6 +28,7 @@ function UserForm({ isEdit, initialValues, handleCancel, handleOnSubmit }) {
                   name="firstName"
                   type="text"
                   validate={validate.firstName}
+                  required
                 />
 
                 <InputField
@@ -25,54 +36,56 @@ function UserForm({ isEdit, initialValues, handleCancel, handleOnSubmit }) {
                   name="lastName"
                   type="text"
                   validate={validate.lastName}
+                  required
                 />
+              </Grid>
 
+              <Grid item xs={12} sm={6}>
                 <InputField
                   label="Email"
                   name="email"
                   type="text"
                   validate={validate.email}
+                  required
                 />
 
                 <InputField
-                  label="Phone"
-                  name="phone"
-                  type="text"
-                  validate={validate.phone}
-                />
-
-                <InputField label="Rate" name="rate" type="number" />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <InputField label="Address" name="address1" type="text" />
-
-                <InputField name="address2" type="text" />
-
-                <InputField placeholder="City" name="city" type="text" />
-
-                <InputField
-                  placeholder="Postcode"
-                  name="postcode"
-                  type="text"
-                />
-
-                <InputField
-                  label="Date of birth"
-                  name="dateOfBirth"
-                  type="text"
+                  label="Password"
+                  name="password"
+                  type="password"
+                  validate={validate.password}
+                  required
                 />
               </Grid>
             </Grid>
 
+            <Hrule />
+
+            <Grid container spacing={3}>
+              <Grid item xs={12} sm={6}>
+                <SelectField
+                  name="permissions"
+                  label="Permissions"
+                  options={PERMISSIONS_OPTIONS}
+                  validate={validate.permissions}
+                  required
+                />
+              </Grid>
+
+              <Grid item xs={12} sm={6}>
+                <CheckboxField name="super" label="Super user" />
+              </Grid>
+            </Grid>
+
             <ButtonsSpacer>
-              <Button type="button" color="secondary" onClick={handleCancel}>
+              <Button type="button" onClick={handleCancel}>
                 Cancel
               </Button>
 
               <Button
                 type="submit"
                 color="primary"
-                disabled={submitting || pristine}
+                disabled={submitting || pristine || hasValidationErrors}
               >
                 {isEdit ? 'Save' : 'Create'}
               </Button>

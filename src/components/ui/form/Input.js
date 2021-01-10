@@ -17,6 +17,7 @@ function InputForm({
   meta,
   label,
   disabled,
+  required,
   ...rest
 }) {
   const classes = useStyles()
@@ -36,6 +37,7 @@ function InputForm({
       {label && (
         <InputLabel htmlFor={name} disabled={disabled}>
           {label}
+          {required && <span> *</span>}
         </InputLabel>
       )}
       <BaseInput
@@ -52,6 +54,7 @@ function InputForm({
 InputForm.propTypes = {
   label: PropTypes.string,
   disabled: PropTypes.bool,
+  required: PropTypes.bool,
   input: formInputType.isRequired,
   meta: formMetaType.isRequired,
 }
@@ -59,6 +62,7 @@ InputForm.propTypes = {
 InputForm.defaultProps = {
   label: null,
   disabled: false,
+  required: false,
 }
 
 export default InputForm

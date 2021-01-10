@@ -1,5 +1,9 @@
-import { required } from 'utils/validation'
+import { required, email } from 'utils/validation'
 
 export default {
-  name: required,
+  firstName: required,
+  lastName: required,
+  email: value => email(value) || required(value),
+  password: required,
+  permissions: required,
 }
