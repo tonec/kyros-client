@@ -1,6 +1,6 @@
 import React from 'react'
 import { provideHooks } from 'redial'
-import { openModal } from 'utils/modalQS'
+import { openModal } from 'helpers/modalQS'
 import { fetchClients } from 'redux/modules/client/actions'
 import { Button, Main, PageHeader } from 'components'
 import ClientsTableContainer from './ClientsTableContainer'

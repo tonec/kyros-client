@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { closeModal as closeModalQS } from 'utils/modalQS'
+import { closeModal as closeModalQS } from 'helpers/modalQS'
 import { showSuccess, showError } from 'redux/modules/flash/actions'
 import { closeModal as closeModalAction } from 'redux/modules/modal/actions'
 import { received } from 'redux/modules/app/actions'

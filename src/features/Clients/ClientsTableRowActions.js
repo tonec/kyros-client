@@ -2,7 +2,7 @@ import React from 'react'
 import { clientType } from 'types'
 import { useDispatch } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles'
-import { openModal } from 'utils/modalQS'
+import { openModal } from 'helpers/modalQS'
 import { deleteClient } from 'redux/modules/client/actions'
 import { ConfirmAction, Icon, IconButton, Popover } from 'components'
 

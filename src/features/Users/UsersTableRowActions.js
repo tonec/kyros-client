@@ -2,7 +2,7 @@ import React from 'react'
 import { userType } from 'types'
 import { useDispatch } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles'
-import { openModal } from 'utils/modalQS'
+import { openModal } from 'helpers/modalQS'
 import { deleteUser } from 'redux/modules/user/actions'
 import { ConfirmAction, Icon, IconButton, Popover } from 'components'
 

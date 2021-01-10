@@ -1,5 +1,5 @@
-import { MODAL_QUERY_PARAMS } from './constants'
-import { add, remove } from './qs'
+import { MODAL_QUERY_PARAMS } from 'utils/constants'
+import { add, remove } from 'utils/qs'
 
 export function openModal(modalKey, { state } = {}) {
   const queryStringObject = { modalKey }
