@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles'
 import { openModal } from 'utils/modalQS'
 import { deleteUser } from 'redux/modules/user/actions'
-import { Icon, IconButton, Popover } from 'components'
+import { ConfirmAction, Icon, IconButton, Popover } from 'components'
 
 const useStyles = makeStyles(theme => ({
   actions: {
@@ -52,12 +52,17 @@ function UsersTableRowActions({ user }) {
           </span>
         )}
       >
-        <IconButton aria-label="Edit client" onClick={onEdit}>
+        <IconButton aria-label="Edit user" onClick={onEdit}>
           <Icon variant="edit" />
         </IconButton>
-        <IconButton aria-label="Delete client" onClick={onDelete}>
-          <Icon variant="delete" />
-        </IconButton>
+
+        <ConfirmAction title="Are you sure?" action="Delete user">
+          {confirm => (
+            <IconButton aria-label="Delete user" onClick={confirm(onDelete)}>
+              <Icon variant="delete" />
+            </IconButton>
+          )}
+        </ConfirmAction>
       </Popover>
     </div>
   )

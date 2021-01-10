@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles'
 import { openModal } from 'utils/modalQS'
 import { deleteClient } from 'redux/modules/client/actions'
-import { Icon, IconButton, Popover } from 'components'
+import { ConfirmAction, Icon, IconButton, Popover } from 'components'
 
 const useStyles = makeStyles(theme => ({
   actions: {
@@ -13,7 +13,6 @@ const useStyles = makeStyles(theme => ({
   },
   triggerWrap: {
     lineHeight: '48px',
-    '& > span': {},
   },
   trigger: {
     display: 'block',
@@ -55,9 +54,14 @@ function ClientsTableRowActions({ client }) {
         <IconButton aria-label="Edit client" onClick={onEdit}>
           <Icon variant="edit" />
         </IconButton>
-        <IconButton aria-label="Delete client" onClick={onDelete}>
-          <Icon variant="delete" />
-        </IconButton>
+
+        <ConfirmAction title="Are you sure?" action="Delete client">
+          {confirm => (
+            <IconButton aria-label="Delete client" onClick={confirm(onDelete)}>
+              <Icon variant="delete" />
+            </IconButton>
+          )}
+        </ConfirmAction>
       </Popover>
     </div>
   )

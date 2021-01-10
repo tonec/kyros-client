@@ -23,6 +23,7 @@ function Button({
   variant,
   to,
   isWrapped,
+  autoFocus,
   classes,
   className,
   testid,
@@ -45,6 +46,7 @@ function Button({
         type={type}
         variant={variant}
         to={to}
+        autoFocus={autoFocus}
         classes={classes}
         onClick={onClick}
         data-testid={testid}
@@ -67,6 +69,7 @@ Button.propTypes = {
   variant: PropTypes.string,
   to: PropTypes.string,
   isWrapped: PropTypes.bool,
+  autoFocus: PropTypes.bool,
   classes: PropTypes.objectOf(PropTypes.string),
   testid: PropTypes.string,
   onClick: PropTypes.func,
@@ -81,6 +84,7 @@ Button.defaultProps = {
   variant: 'contained',
   to: null,
   isWrapped: false,
+  autoFocus: false,
   classes: {},
   className: '',
   testid: null,
