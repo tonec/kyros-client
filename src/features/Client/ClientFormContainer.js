@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { clientType } from 'types'
 import { connect } from 'react-redux'
+import { closeModal } from 'utils/modalQS'
 import { createClient, updateClient } from 'redux/modules/client/actions'
-import { closeModal } from 'redux/modules/modal/actions'
 import { getClient } from 'redux/modules/client/selectors'
 import ClientForm from './ClientForm'
 
@@ -11,7 +11,7 @@ function ClientFormContainer({ dispatch, client }) {
   const isEdit = Boolean(client)
 
   const handleCancel = () => {
-    dispatch(closeModal())
+    closeModal()
   }
 
   const handleOnSubmit = data => {

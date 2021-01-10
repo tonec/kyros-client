@@ -2,7 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
-import { closeModal } from 'utils/modalQS'
+import { closeModal as closeModalQS } from 'utils/modalQS'
+import { closeModal } from 'redux/modules/modal/actions'
 import { getModalKey, getModalState } from 'redux/modules/modal/selectors'
 import { getQuery } from 'redux/modules/app/selectors'
 import { Dialog } from './ui'
@@ -19,6 +20,7 @@ function Modal({ children, title, name, modalKey, modalState, query }) {
 
   const handleClose = () => {
     closeModal()
+    closeModalQS()
   }
 
   return (
