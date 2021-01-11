@@ -1,18 +1,8 @@
 import React from 'react'
-import { provideHooks } from 'redial'
-import { Main } from 'components'
 import ScheduleHeader from './ScheduleHeader'
 
 function Schedule() {
-  const title = 'Schedule'
-
-  return (
-    <Main title={title}>
-      <ScheduleHeader />
-    </Main>
-  )
+  return <ScheduleHeader />
 }
 
-const hooks = {}
-
-export default provideHooks(hooks)(Schedule)
+export default Schedule

@@ -1,16 +1,8 @@
 import React from 'react'
-import { provideHooks } from 'redial'
-import { Main } from 'components'
-import ScheduleHeader from './ScheduleHeader'
+import Schedule from './Schedule'
 
-function Schedule() {
-  const title = 'Schedule'
-
-  const $timescale = useLink('week')
-
-  return <ScheduleHeader />
+function ScheduleContainer() {
+  return <Schedule />
 }
 
-const hooks = {}
-
-export default provideHooks(hooks)(Schedule)
+export default ScheduleContainer

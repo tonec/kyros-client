@@ -1,9 +1,9 @@
 import App from 'App'
 import { AuthRedirect, NotFound, PrivateRoute } from 'components'
 import Login from 'features/Auth/Login'
-import Users from 'features/Users/Users'
-import Clients from 'features/Clients/Clients'
-import Schedule from 'features/Schedule/Schedule'
+import Users from 'features/Users'
+import Clients from 'features/Clients'
+import Schedule from 'features/Schedule'
 import FormLibrary from 'features/Library/Form'
 import TypeLibrary from 'features/Library/Type'
 
