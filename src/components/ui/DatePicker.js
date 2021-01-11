@@ -25,7 +25,6 @@ function DatePicker({
 
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
-      <InputLabel>{label}</InputLabel>
       <KeyboardDatePicker
         autoOk
         fullWidth

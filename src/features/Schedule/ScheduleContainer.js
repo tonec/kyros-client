@@ -6,11 +6,9 @@ import ScheduleHeader from './ScheduleHeader'
 function Schedule() {
   const title = 'Schedule'
 
-  return (
-    <Main title={title}>
-      <ScheduleHeader />
-    </Main>
-  )
+  const $timescale = useLink('week')
+
+  return <ScheduleHeader />
 }
 
 const hooks = {}

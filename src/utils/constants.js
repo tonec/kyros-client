@@ -11,3 +11,13 @@ export const PERMISSIONS_OPTIONS = {
   reception: 'Reception',
   host: 'Host',
 }
+
+// Schedule view timescales
+export const TIMESCALES = ['day', 'week', 'fortnight', 'month']
+
+export const TIMESCALES_OPTIONS = {
+  day: 'Day',
+  week: 'Week',
+  fortnight: '2 weeks',
+  month: 'Month',
+}
