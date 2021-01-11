@@ -1,3 +1,2 @@
 export { default as usePrevious } from './usePrevious'
-
-export default () => null
+export { default as useTraceUpdate } from './useTraceUpdate'
