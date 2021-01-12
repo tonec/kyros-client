@@ -1,22 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { useLinkType } from 'types'
-import { makeStyles } from 'styles'
 import BaseSelect from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
 import InputLabel from './form/InputLabel'
-
-const useStyles = makeStyles(theme => ({
-  control: {
-    margin: theme.spacing(2, 0, 0),
-  },
-  icon: {
-    marginRight: 4,
-  },
-  menuItem: {
-    fontSize: 12,
-  },
-}))
 
 function Select({
   label,
@@ -30,8 +17,6 @@ function Select({
   onChange,
   onBlur,
 }) {
-  const classes = useStyles()
-
   const handleOnChange = e => {
     if ($value) {
       $value.set(e.target.value)
@@ -60,13 +45,8 @@ function Select({
           const Icon = icons[option]
 
           return (
-            <MenuItem
-              key={option}
-              value={option}
-              className={classes.menuItem}
-              aria-label={options[option]}
-            >
-              {Icon && <Icon size={14} className={classes.icon} />}
+            <MenuItem key={option} value={option} aria-label={options[option]}>
+              {Icon && <Icon size={14} />}
               {options[option]}
             </MenuItem>
           )
