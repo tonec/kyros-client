@@ -97,10 +97,10 @@ export default ({ client, history }) => {
         },
       )
       .catch(error => {
-        console.error('MIDDLEWARE ERROR: ', error)
+        console.log('MIDDLEWARE ERROR: ', error)
         next({ type: FAIL, payload: { ...inject, ...error }, error: true })
       })
 
-    return actionPromise.catch(error => console.error('API error: ', error))
+    return actionPromise.catch(error => console.log('API error: ', error))
   }
 }

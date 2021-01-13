@@ -49,7 +49,7 @@ function Button({
         autoFocus={autoFocus}
         classes={classes}
         onClick={onClick}
-        data-testid={testid}
+        data-testid={testid || type}
       >
         {children}
       </BaseButton>

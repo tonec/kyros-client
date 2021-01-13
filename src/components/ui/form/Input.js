@@ -42,7 +42,7 @@ function InputForm({
       )}
       <BaseInput
         name={name}
-        inputProps={restInput}
+        inputProps={{ ...restInput, 'data-testid': `input-${name}` }}
         disabled={disabled}
         error={isError}
         {...rest}
