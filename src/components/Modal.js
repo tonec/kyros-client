@@ -12,7 +12,7 @@ function Modal({ children, title, name, modalKey, modalState, query }) {
   const { modalKey: modalKeyQS, modalState: modalStateQS } = query
 
   const key = modalKeyQS || modalKey
-  const state = modalStateQS || modalState
+  const state = modalStateQS || modalState || {}
 
   if (key !== name) return null
 

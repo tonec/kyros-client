@@ -35,6 +35,7 @@ function UsersTableContainer({ isFetchingUsers, users }) {
     <UsersTable
       columns={columns}
       data={users}
+      fallbackText="No users created. Click 'Add user' above to create one."
       handleRowClick={handleRowClick}
     />
   )

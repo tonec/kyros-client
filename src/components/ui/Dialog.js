@@ -62,7 +62,7 @@ function Dialog({ children, title, open, testid, onClose }) {
       onClose={onClose}
       aria-labelledby="simple-dialog-title"
       open={open}
-      data-testid={testid}
+      data-testid={`modal-${title.toLowerCase().replace(' ', '-')}`}
     >
       {title && (
         <DialogTitle id="simple-dialog-title" onClose={onClose}>

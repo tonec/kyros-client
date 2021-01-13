@@ -31,6 +31,7 @@ function ClientsTableContainer({ isFetchingClients, clients }) {
     <ClientsTable
       columns={columns}
       data={clients}
+      fallbackText="No clients created. Click 'Add client' above to create one."
       handleRowClick={handleRowClick}
     />
   )
