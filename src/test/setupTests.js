@@ -9,14 +9,15 @@ import { Provider } from 'react-redux'
 import configureStore from 'redux-mock-store'
 import { render } from '@testing-library/react'
 import apiMiddleware from 'redux/middleware/apiMiddleware'
-import reducer from '../redux/rootReducer'
+import reducer from 'redux/rootReducer'
 
 export function renderWith(
   ui,
   {
     route = '/login',
     history = createMemoryHistory({ initialEntries: [route] }),
-    initialState,
+    state,
+    query,
     client = {
       get: () => ({}),
       post: () => ({}),
@@ -31,7 +32,13 @@ export function renderWith(
     }),
   ])
 
-  const store = createStore(() => reducer(history), initialState)
+  const initialState = reducer(history)
+
+  initialState.router = {
+    location: { query: query || {} },
+  }
+
+  const store = createStore({ ...initialState, ...state })
 
   function Wrapper({ children }) {
     return (
