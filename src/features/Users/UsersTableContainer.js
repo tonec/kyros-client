@@ -46,7 +46,7 @@ UsersTableContainer.propTypes = {
 }
 
 UsersTableContainer.defaultProps = {
-  isFetchingUsers: true,
+  isFetchingUsers: false,
   users: null,
 }
 
