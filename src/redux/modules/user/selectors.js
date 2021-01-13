@@ -15,6 +15,8 @@ export const getUser = (state, id) => {
 
 export const getVisibleUsers = createSelector(
   [visibleUsers, userEntities],
-  (visibleUsers, userEntities) =>
-    visibleUsers.map(id => get(userEntities, `byId[${id}]`)),
+  (visibleUsers, userEntities) => {
+    if (!visibleUsers) return []
+    return visibleUsers.map(id => get(userEntities, `byId[${id}]`))
+  },
 )
