@@ -4,7 +4,7 @@ import { renderWith } from 'test/setupTests'
 import Login from '..'
 
 describe('Login', () => {
-  it('displays error on unsuccessful auth', async () => {
+  it('dispatches correct actions on unsuccessful auth', async () => {
     const client = {
       post: () =>
         Promise.reject({ code: 'Unauthorized', message: 'User not found' }),
