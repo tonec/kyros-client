@@ -23,10 +23,12 @@ class AsyncTrigger extends Component {
     const { location } = prevState
 
     const {
-      location: { pathname },
+      location: { pathname, search },
     } = nextProps
 
-    const navigated = !location || pathname !== location.pathname
+    const navigated =
+      !location ||
+      `${pathname}${search}` !== `${location.pathname}${location.search}`
 
     if (navigated) {
       return {
