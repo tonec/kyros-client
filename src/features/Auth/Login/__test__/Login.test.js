@@ -6,8 +6,12 @@ import Login from '..'
 describe('Login', () => {
   it('dispatches correct actions on unsuccessful auth', async () => {
     const client = {
-      post: () =>
-        Promise.reject({ code: 'Unauthorized', message: 'User not found' }),
+      post: () => {
+        return Promise.reject({
+          code: 'Unauthorized',
+          message: 'User not found',
+        })
+      },
     }
 
     const { getByTestId, store } = renderWith(<Login />, { client })

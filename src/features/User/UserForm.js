@@ -49,13 +49,15 @@ function UserForm({ isEdit, initialValues, handleCancel, handleOnSubmit }) {
                   required
                 />
 
-                <InputField
-                  label="Password"
-                  name="password"
-                  type="password"
-                  validate={validate.password}
-                  required
-                />
+                {!isEdit && (
+                  <InputField
+                    label="Password"
+                    name="password"
+                    type="password"
+                    validate={validate.password}
+                    required
+                  />
+                )}
               </Grid>
             </Grid>
 
