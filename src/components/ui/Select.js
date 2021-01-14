@@ -11,6 +11,7 @@ function Select({
   options,
   icons,
   $value,
+  value,
   inputProps,
   className,
   disabled,
@@ -27,6 +28,8 @@ function Select({
     }
   }
 
+  const val = $value ? $value.value : value
+
   return (
     <>
       {label && <InputLabel>{label}</InputLabel>}
@@ -35,7 +38,7 @@ function Select({
         placeholder={placeholder}
         disabled={disabled}
         className={className}
-        value={$value.value}
+        value={val}
         inputProps={{ ...inputProps }}
         variant="outlined"
         onChange={handleOnChange}
