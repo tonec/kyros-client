@@ -92,11 +92,8 @@ class AsyncTrigger extends Component {
 
   render() {
     const { children, location } = this.props
-    const { previousLocation } = this.state
 
-    return (
-      <Route location={previousLocation || location} render={() => children} />
-    )
+    return <Route location={location} render={() => children} />
   }
 }
 
