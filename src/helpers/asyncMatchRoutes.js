@@ -4,7 +4,7 @@ function getComponents(match) {
   return match
     .map(v => v.route.component)
     .reduce(async (result, component) => {
-      if (component.preload) {
+      if (component && component.preload) {
         const res = await component.preload()
         const ret = [...(await result), component, ...[].concat(res)]
         return ret
