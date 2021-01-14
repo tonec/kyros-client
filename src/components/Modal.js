@@ -8,6 +8,14 @@ import { getModalKey, getModalState } from 'redux/modules/modal/selectors'
 import { getQuery } from 'redux/modules/app/selectors'
 import { Dialog } from './ui'
 
+const getTitleString = (title, state) => {
+  if (typeof title === 'string') return title
+
+  const view = state.view || 'create'
+
+  return title[view] || title.create || null
+}
+
 function Modal({ children, title, name, modalKey, modalState, query }) {
   const { modalKey: modalKeyQS, modalState: modalStateQS } = query
 
@@ -16,6 +24,7 @@ function Modal({ children, title, name, modalKey, modalState, query }) {
 
   if (key !== name) return null
 
+  const titleString = getTitleString(title, state)
   const open = Boolean(key)
 
   const handleClose = () => {
@@ -24,7 +33,7 @@ function Modal({ children, title, name, modalKey, modalState, query }) {
   }
 
   return (
-    <Dialog title={title} open={open} onClose={handleClose}>
+    <Dialog title={titleString} open={open} onClose={handleClose}>
       {children(state)}
     </Dialog>
   )
@@ -32,7 +41,7 @@ function Modal({ children, title, name, modalKey, modalState, query }) {
 
 Modal.propTypes = {
   children: PropTypes.func.isRequired,
-  title: PropTypes.string,
+  title: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   name: PropTypes.string.isRequired,
   modalKey: PropTypes.string,
   modalState: PropTypes.object,

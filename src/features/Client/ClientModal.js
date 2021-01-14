@@ -3,8 +3,13 @@ import { Modal } from 'components'
 import ClientFormContainer from './ClientFormContainer'
 
 function ClientModal() {
+  const title = {
+    create: 'Create client',
+    edit: 'Edit client',
+  }
+
   return (
-    <Modal name="client" title="Create client">
+    <Modal name="client" title={title}>
       {state => {
         const { id, view } = state
 

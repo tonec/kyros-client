@@ -3,8 +3,13 @@ import { Modal } from 'components'
 import UserFormContainer from './UserFormContainer'
 
 function UserModal() {
+  const title = {
+    create: 'Create user',
+    edit: 'Edit user',
+  }
+
   return (
-    <Modal name="user" title="Create user">
+    <Modal name="user" title={title}>
       {state => {
         const { id, view } = state
 
