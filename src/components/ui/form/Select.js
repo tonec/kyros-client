@@ -51,7 +51,7 @@ function SelectForm(props) {
       )}
       <BaseSelect
         name={name}
-        inputProps={restInput}
+        inputProps={{ ...restInput, 'data-testid': `input-${name}` }}
         variant="outlined"
         displayEmpty
         renderValue={selected => {
