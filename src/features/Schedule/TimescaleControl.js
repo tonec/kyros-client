@@ -1,8 +1,9 @@
 import React from 'react'
+import { useLocation } from 'react-router'
 import { useLink } from 'valuelink'
 import { makeStyles } from 'styles'
 import { TIMESCALES_OPTIONS } from 'utils/constants'
-import { getScheduleDays } from 'services/date'
+import { add } from 'utils/qs'
 import { DatePicker, Select } from 'components'
 
 const useStyles = makeStyles({
@@ -14,14 +15,18 @@ const useStyles = makeStyles({
 
 function TimescaleControl() {
   const classes = useStyles()
-  const $timescale = useLink('week')
+  const location = useLocation()
   const $date = useLink()
 
-  console.log('getScheduleDays', getScheduleDays($timescale.value))
+  const handleChange = event => {
+    add({ ts: event.target.value })
+  }
+
+  const ts = location.query.ts || 'week'
 
   return (
     <div className={classes.control}>
-      <Select $value={$timescale} options={TIMESCALES_OPTIONS} />
+      <Select value={ts} options={TIMESCALES_OPTIONS} onChange={handleChange} />
       <DatePicker $value={$date} margin="none" />
     </div>
   )
