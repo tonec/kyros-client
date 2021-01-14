@@ -57,12 +57,22 @@ const useStylesDialog = makeStyles({
 function Dialog({ children, title, open, testid, onClose }) {
   const classes = useStylesDialog()
 
+  let testId = 'modal'
+
+  if (title) {
+    testId = `modal-${title.toLowerCase().replace(' ', '-')}`
+  }
+
+  if (testid) {
+    testId = testid
+  }
+
   return (
     <BaseDialog
       onClose={onClose}
       aria-labelledby="simple-dialog-title"
       open={open}
-      data-testid={`modal-${title.toLowerCase().replace(' ', '-')}`}
+      data-testid={testId}
     >
       {title && (
         <DialogTitle id="simple-dialog-title" onClose={onClose}>
