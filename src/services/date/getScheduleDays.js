@@ -8,7 +8,7 @@ export default timescale => {
 
   switch (timescale) {
     case 'day':
-      return now
+      return [now]
 
     case 'week':
       return eachDay({
