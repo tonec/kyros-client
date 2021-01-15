@@ -10,6 +10,7 @@ import {
   shape,
   string,
 } from 'prop-types'
+import { TIMESCALES } from 'utils/constants'
 
 export const childrenType = oneOfType([arrayOf(node), node])
 
@@ -55,3 +56,5 @@ export const clientType = shape({
 })
 
 export const clientsType = arrayOf(clientType)
+
+export const timescaleType = oneOf(TIMESCALES)
