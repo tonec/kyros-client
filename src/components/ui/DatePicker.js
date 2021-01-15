@@ -1,13 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { isValid } from 'date-fns'
+import isValid from 'date-fns/isValid'
 import DateFnsUtils from '@date-io/date-fns'
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
 } from '@material-ui/pickers'
 import { useLinkType } from 'types'
-import InputLabel from './form/InputLabel'
 
 function DatePicker({
   label,
