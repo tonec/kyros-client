@@ -6,14 +6,14 @@ import { Card, Loader, Table } from 'components'
 import UsersTableRow from './UsersTableRow'
 
 const useStyles = makeStyles(theme => ({
+  container: {
+    margin: theme.spacing(0, 2),
+  },
   loader: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     height: 72,
-  },
-  wrap: {
-    marginTop: theme.spacing(4),
   },
   actions: {
     textAlign: 'right',
@@ -40,7 +40,7 @@ function UsersTable({
   }
 
   return (
-    <Container>
+    <Container className={classes.container}>
       <Card flush>
         <Table>
           <Head>

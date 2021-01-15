@@ -10,6 +10,7 @@ const useStyles = makeStyles({
   header: {
     display: 'flex',
     position: 'fixed',
+    zIndex: 10,
     top: 0,
     left: 0,
     flexDirection: 'column',

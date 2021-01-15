@@ -11,10 +11,6 @@ import ClientsTable from './ClientsTable'
 function ClientsTableContainer({ isFetchingClients, clients }) {
   const history = useHistory()
 
-  if (isFetchingClients) {
-    return null
-  }
-
   const handleRowClick = client => {
     history.push(`/client/${client.id}/schedule`)
   }
@@ -31,6 +27,7 @@ function ClientsTableContainer({ isFetchingClients, clients }) {
     <ClientsTable
       columns={columns}
       data={clients}
+      isFetching={isFetchingClients}
       fallbackText="No clients created. Click 'Add client' above to create one."
       handleRowClick={handleRowClick}
     />

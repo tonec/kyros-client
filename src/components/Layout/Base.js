@@ -11,6 +11,7 @@ import Header from '../Header/Header'
 const useStyles = makeStyles({
   wrap: {
     display: 'flex',
+    height: '100%',
   },
 })
 

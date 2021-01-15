@@ -11,10 +11,6 @@ import UsersTable from './UsersTable'
 function UsersTableContainer({ isFetchingUsers, users }) {
   const history = useHistory()
 
-  if (isFetchingUsers) {
-    return null
-  }
-
   const handleRowClick = user => {
     history.push(`/user/${user.id}/schedule`)
   }
@@ -35,6 +31,7 @@ function UsersTableContainer({ isFetchingUsers, users }) {
     <UsersTable
       columns={columns}
       data={users}
+      isFetching={isFetchingUsers}
       fallbackText="No users created. Click 'Add user' above to create one."
       handleRowClick={handleRowClick}
     />
