@@ -8,12 +8,14 @@ import ScheduleHeader from './ScheduleHeader'
 import Schedule from './Schedule'
 
 function ScheduleContainer({ query }) {
-  const days = getScheduleDays(query.ts || 'week')
+  const timescale = query.ts || 'week'
+
+  const days = getScheduleDays(timescale)
 
   return (
     <>
       <ScheduleHeader />
-      <Schedule days={days} />
+      <Schedule days={days} timescale={timescale} />
     </>
   )
 }
