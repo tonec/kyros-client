@@ -13,13 +13,13 @@ export default timescale => {
     case 'week':
       return eachDay({
         start: now,
-        end: addDays(now, 7),
+        end: addDays(now, 6),
       })
 
     case 'fortnight':
       return eachDay({
         start: now,
-        end: addDays(now, 14),
+        end: addDays(now, 13),
       })
 
     case 'month':
