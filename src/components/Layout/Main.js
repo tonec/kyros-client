@@ -15,7 +15,7 @@ const useStyles = makeStyles({
     flexDirection: 'column',
     position: 'relative',
     width: '100%',
-    marginLeft: 32,
+    marginLeft: 56,
   },
 })
 

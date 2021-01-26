@@ -4,7 +4,7 @@ import { childrenType, maxWidthType } from 'types'
 import cx from 'clsx'
 import Helmet from 'react-helmet'
 import { makeStyles } from 'styles'
-import { ConditionalWrap, Container } from '../ui'
+import { ConditionalWrap } from '../ui'
 import Flash from '../Flash/FlashContainer'
 import Header from '../Header/Header'
 
@@ -12,6 +12,9 @@ const useStyles = makeStyles({
   wrap: {
     display: 'flex',
     height: '100%',
+  },
+  container: {
+    maxWith: ({ maxWidth }) => maxWidth,
   },
 })
 
@@ -24,7 +27,7 @@ function BaseLayout({
   container,
   classNameContainer,
 }) {
-  const classes = useStyles()
+  const classes = useStyles({ maxWidth })
 
   return (
     <div className={cx(classes.wrap, classNameWrap)}>
@@ -33,9 +36,9 @@ function BaseLayout({
       <ConditionalWrap
         condition={container}
         wrap={child => (
-          <Container className={classNameContainer} maxWidth={maxWidth}>
+          <div className={cx(classes.container, classNameContainer)}>
             {child}
-          </Container>
+          </div>
         )}
       >
         {children}

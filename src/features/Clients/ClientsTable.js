@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const { Container, Head, Body, Row, Cell } = Table
+const { Head, Body, Row, Cell } = Table
 
 function ClientsTable({
   columns,
@@ -34,7 +34,7 @@ function ClientsTable({
   }
 
   return (
-    <Container className={classes.container}>
+    <div className={classes.container}>
       <Card flush>
         <Table>
           <Head>
@@ -71,7 +71,7 @@ function ClientsTable({
           </Body>
         </Table>
       </Card>
-    </Container>
+    </div>
   )
 }
 

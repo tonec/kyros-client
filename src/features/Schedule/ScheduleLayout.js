@@ -1,6 +1,6 @@
 import React from 'react'
 import { childrenType, timescaleType } from 'types'
-import { makeStyles } from 'styles'
+import { makeStyles, color } from 'styles'
 
 const borderStyle = theme => `1px solid ${theme.palette.grey[400]}`
 
@@ -22,6 +22,7 @@ const useStyles = makeStyles(theme => ({
     borderLeft: borderStyle(theme),
     borderTop: borderStyle(theme),
     height: '100%',
+    backgroundColor: color('white'),
   },
 }))
 
