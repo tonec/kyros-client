@@ -1,13 +1,13 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { ThemeProvider } from '@material-ui/core/styles'
-import theme from 'theme'
+import theme from './theme'
 import { renderRoutes } from 'react-router-config'
 import routes from './routes'
 
-function Main() {
+function Main(): ReactNode {
   React.useEffect(() => {
     const jssStyles = document.querySelector('#jss-server-side')
-    if (jssStyles) {
+    if (jssStyles && jssStyles.parentElement) {
       jssStyles.parentElement.removeChild(jssStyles)
     }
   }, [])

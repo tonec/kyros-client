@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path')
 const webpack = require('webpack')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
@@ -11,7 +12,7 @@ module.exports = {
 
   resolve: {
     modules: ['src', 'node_modules'],
-    extensions: ['.json', '.js'],
+    extensions: ['.json', '.js', '.ts', '.tsx'],
     alias: { 'react-dom': '@hot-loader/react-dom' },
   },
 
@@ -39,7 +40,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js?$/,
+        test: /\.(js|ts|tsx)?$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
       },
