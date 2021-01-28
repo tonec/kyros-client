@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { ReactElement } from 'react'
 import { useDispatch } from 'react-redux'
-import { login } from 'redux/modules/auth/actions'
-import { makeStyles } from 'styles'
-import { Card, Hrule, Typography } from 'components'
+import { login } from '../../../redux/modules/auth/actions'
+import { makeStyles } from '../../../styles'
+import { Card, Hrule, Typography } from '../../../components'
 import LoginForm from './LoginForm'
 
 const useStyles = makeStyles({
@@ -11,11 +11,16 @@ const useStyles = makeStyles({
   },
 })
 
-function Login() {
+export interface Values {
+  email: string
+  password: string
+}
+
+function Login(): ReactElement {
   const dispatch = useDispatch()
   const classes = useStyles()
 
-  const handleOnSubmit = data => {
+  const handleOnSubmit = (data: Values) => {
     dispatch(login(data))
   }
 

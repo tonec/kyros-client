@@ -1,25 +1,37 @@
-import { fk } from 'utils'
+import { PayloadAction } from '@reduxjs/toolkit'
+import { fk } from '../../../utils'
 import createReducer from '../../createReducer'
 import * as types from './actions'
 import { RECEIVED } from '../app/actions'
 import { LOGOUT } from '../auth/actions'
+import { User } from '../../../types'
 
-export const initialState = {
+type Payload = PayloadAction<{
+  action: string
+  entity: string
+  data: { entities: User[] }
+}>
+
+interface IUserState {
+  visibleUsers: string[]
+}
+
+export const initialState: IUserState = {
   visibleUsers: [],
 }
 
 export default createReducer(initialState, {
-  [types.FETCH_SUCCESS]: (state, { payload }) => ({
+  [types.FETCH_SUCCESS]: (state: IUserState, { payload }: Payload) => ({
     ...state,
     visibleUsers: payload.data.entities.map(fk('id')),
   }),
 
-  [RECEIVED]: (state, { payload }) => {
+  [RECEIVED]: (state: IUserState, { payload }: Payload) => {
     if (payload.action === 'store' && payload.entity === 'user') {
       return {
         ...state,
         visibleUsers: state.visibleUsers.concat(
-          payload.data.entities.reduce((acc, user) => {
+          payload.data.entities.reduce((acc: string[], user) => {
             if (!state.visibleUsers.includes(user.id)) {
               return acc.concat(user.id)
             }

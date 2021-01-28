@@ -1,10 +1,14 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { childrenType } from 'types'
-import { makeStyles, color } from 'styles'
+import React, { ReactElement, ReactNode } from 'react'
+import { makeStyles, color } from '../../../styles'
 import FormInputError from './FormInputError'
 
-const width = ({ fullWidth }) => (fullWidth ? '100%' : 'auto')
+interface UseStylesProps {
+  fullWidth: boolean
+  disabled: boolean
+  isError: boolean
+}
+
+const width = ({ fullWidth }: UseStylesProps) => (fullWidth ? '100%' : 'auto')
 
 const useStyles = makeStyles(theme => ({
   control: {
@@ -20,7 +24,7 @@ const useStyles = makeStyles(theme => ({
 
     '& input': {
       width,
-      borderColor: ({ disabled, isError }) => {
+      borderColor: ({ disabled, isError }: UseStylesProps) => {
         if (disabled) {
           return color('disabled')
         }
@@ -31,7 +35,21 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-function FormControl({ children, fullWidth, disabled, isError, error }) {
+interface Props {
+  children: ReactNode
+  disabled: boolean
+  isError: boolean
+  error: string
+  fullWidth: boolean
+}
+
+function FormControl({
+  children,
+  fullWidth,
+  disabled,
+  isError,
+  error,
+}: Props): ReactElement {
   const classes = useStyles({ fullWidth, disabled, isError })
 
   return (
@@ -40,21 +58,6 @@ function FormControl({ children, fullWidth, disabled, isError, error }) {
       {isError && <FormInputError error={error} />}
     </div>
   )
-}
-
-FormControl.propTypes = {
-  children: childrenType.isRequired,
-  disabled: PropTypes.bool,
-  isError: PropTypes.bool,
-  error: PropTypes.string,
-  fullWidth: PropTypes.bool,
-}
-
-FormControl.defaultProps = {
-  disabled: false,
-  isError: false,
-  error: null,
-  fullWidth: false,
 }
 
 export default FormControl

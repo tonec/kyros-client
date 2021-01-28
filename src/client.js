@@ -37,10 +37,11 @@ const persistConfig = {
   whitelist: ['auth'],
 }
 
+let store
 ;(async () => {
   const preloadedState = await getStoredState(persistConfig)
 
-  const store = createStore({
+  store = createStore({
     client,
     history,
     data: { ...preloadedState, ...window.INITIAL_STATE },

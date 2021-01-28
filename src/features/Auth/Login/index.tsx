@@ -1,8 +1,8 @@
-import React from 'react'
-import { Centered } from 'components'
+import React, { ReactNode } from 'react'
+import { Centered } from '../../../components'
 import Login from './Login'
 
-function LoginView() {
+function LoginView(): ReactNode {
   return (
     <Centered title="Log in">
       <Login />

@@ -1,3 +1,4 @@
+import { AxiosInstance, AxiosPromise } from 'axios'
 import {
   arrayOf,
   bool,
@@ -10,7 +11,7 @@ import {
   shape,
   string,
 } from 'prop-types'
-import { TIMESCALES } from 'utils/constants'
+import { TIMESCALES } from '../utils/constants'
 
 export const childrenType = oneOfType([arrayOf(node), node])
 
@@ -58,3 +59,16 @@ export const clientType = shape({
 export const clientsType = arrayOf(clientType)
 
 export const timescaleType = oneOf(TIMESCALES)
+
+export type User = {
+  id: string
+  firstName: string
+  lastName: string
+}
+
+export interface IAPIAction {
+  types: [string, string, string]
+  request: ({ client }: { client: AxiosInstance }) => AxiosPromise
+  flash?: { success?: string; error?: string }
+  closeModal?: boolean
+}

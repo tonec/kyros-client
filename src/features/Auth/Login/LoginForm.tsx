@@ -1,9 +1,13 @@
-import React from 'react'
-import { func } from 'prop-types'
-import { Button, ButtonsSpacer, Form, InputField } from 'components'
+import React, { ReactElement } from 'react'
+import { Values } from './Login'
+import { Button, ButtonsSpacer, Form, InputField } from '../../../components'
 import validate from './validate'
 
-function LoginForm({ handleOnSubmit }) {
+interface Props {
+  handleOnSubmit: (data: Values) => void
+}
+
+function LoginForm({ handleOnSubmit }: Props): ReactElement {
   return (
     <Form
       onSubmit={handleOnSubmit}
@@ -40,10 +44,6 @@ function LoginForm({ handleOnSubmit }) {
       }}
     />
   )
-}
-
-LoginForm.propTypes = {
-  handleOnSubmit: func.isRequired,
 }
 
 export default LoginForm
