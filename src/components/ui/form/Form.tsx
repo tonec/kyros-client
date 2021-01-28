@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { ComponentProps } from 'react'
 import PropTypes from 'prop-types'
 import { Form as BaseForm } from 'react-final-form'
 
-function Form({ onSubmit, initialValues, render }) {
+type Props = ComponentProps<typeof BaseForm>
+
+function Form({ onSubmit, initialValues, render }: Props): JSX.Element {
   return (
     <BaseForm
       onSubmit={onSubmit}

@@ -1,36 +1,35 @@
 import React, { ComponentProps } from 'react'
 import { Field } from 'react-final-form'
-import BaseInput from '@material-ui/core/OutlinedInput'
-import Input from './Input'
-
-type InputProps = ComponentProps<typeof BaseInput>
+import BaseSelect from '@material-ui/core/Select'
+import Select from './Select'
 
 type FieldProps = ComponentProps<typeof Field>
 
+type SelectProps = ComponentProps<typeof BaseSelect>
+
 type OwnProps = {
-  label: string
+  options: Record<string, unknown>
 }
 
-type Props = InputProps & FieldProps & OwnProps
+type Props = FieldProps & SelectProps & OwnProps
 
-function InputField({
+function SelectField({
   name,
-  type,
   validate,
   fieldProps,
+  options,
   ...rest
 }: Props): JSX.Element {
   return (
     <Field
       name={name}
-      type={type}
       validate={validate}
       {...fieldProps}
       render={({ input, meta }) => (
-        <Input input={input} meta={meta} {...rest} />
+        <Select ffInput={input} meta={meta} options={options} {...rest} />
       )}
     />
   )
 }
 
-export default InputField
+export default SelectField

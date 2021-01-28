@@ -1,8 +1,17 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { makeStyles } from 'styles'
+import React, { ComponentProps } from 'react'
+import { FieldInputProps } from 'react-final-form'
 import BaseCheckbox from '@material-ui/core/Checkbox'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
+import { makeStyles } from '../../../styles'
+
+type CheckboxProps = ComponentProps<typeof BaseCheckbox>
+
+type OwnProps = {
+  input: FieldInputProps<string, HTMLElement>
+  label: string
+}
+
+type Props = CheckboxProps & OwnProps
 
 const useStyles = makeStyles({
   label: {
@@ -10,7 +19,7 @@ const useStyles = makeStyles({
   },
 })
 
-function CheckboxForm({ input, label, ...rest }) {
+function CheckboxForm({ input, label, ...rest }: Props): JSX.Element {
   const classes = useStyles()
 
   return (
@@ -20,15 +29,6 @@ function CheckboxForm({ input, label, ...rest }) {
       control={<BaseCheckbox color="primary" {...input} {...rest} />}
     />
   )
-}
-
-CheckboxForm.propTypes = {
-  label: PropTypes.string,
-  input: PropTypes.object.isRequired,
-}
-
-CheckboxForm.defaultProps = {
-  label: null,
 }
 
 export default CheckboxForm

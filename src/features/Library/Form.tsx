@@ -1,5 +1,5 @@
 import React from 'react'
-import { makeStyles } from 'styles'
+import { makeStyles } from '../../styles'
 import {
   Button,
   ButtonsSpacer,
@@ -13,8 +13,7 @@ import {
   TextareaField,
   RadioField,
   Typography,
-} from 'components'
-
+} from '../../components'
 import validate from './validate'
 
 const useStyles = makeStyles({
@@ -23,10 +22,10 @@ const useStyles = makeStyles({
   },
 })
 
-function FormLibrary() {
+function FormLibrary(): JSX.Element {
   const classes = useStyles()
 
-  const handleOnSubmit = () => {}
+  const handleOnSubmit = (): void => undefined
 
   return (
     <Centered title="Form library">
@@ -94,7 +93,7 @@ function FormLibrary() {
                   </Button>
                 </ButtonsSpacer>
 
-                {JSON.stringify(values, 0, 2)}
+                {JSON.stringify(values, null, 2)}
               </form>
             )
           }}

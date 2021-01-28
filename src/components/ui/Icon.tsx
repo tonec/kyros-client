@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import AssessmentIcon from '@material-ui/icons/Assessment'
 import DateRangeIcon from '@material-ui/icons/DateRange'
 import DeleteIcon from '@material-ui/icons/Delete'
@@ -9,7 +8,17 @@ import HomeIcon from '@material-ui/icons/Home'
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz'
 import PeopleIcon from '@material-ui/icons/People'
 
-function Icon({ variant, className, size }) {
+type Props = {
+  variant: string
+  className?: string
+  size?: 'default' | 'small' | 'large'
+}
+
+function Icon({
+  variant,
+  className,
+  size = 'default',
+}: Props): JSX.Element | null {
   switch (variant) {
     case 'delete':
       return <DeleteIcon className={className} fontSize={size} />
@@ -38,17 +47,6 @@ function Icon({ variant, className, size }) {
     default:
       return null
   }
-}
-
-Icon.propTypes = {
-  variant: PropTypes.string.isRequired,
-  className: PropTypes.string,
-  size: PropTypes.oneOf(['default', 'small', 'large']),
-}
-
-Icon.defaultProps = {
-  className: null,
-  size: 'default',
 }
 
 export default Icon
