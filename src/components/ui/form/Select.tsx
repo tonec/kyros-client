@@ -16,7 +16,7 @@ const useStyles = makeStyles({
 type SelectProps = ComponentProps<typeof BaseSelect>
 
 type OwnProps = {
-  ffInput: FieldInputProps<string, HTMLElement>
+  fieldInput: FieldInputProps<string, HTMLElement>
   meta: FieldMetaState<string>
   options: Record<string, unknown>
   icons?: Record<string, unknown>
@@ -24,19 +24,17 @@ type OwnProps = {
 
 type Props = SelectProps & OwnProps
 
-function SelectForm(props: Props): JSX.Element {
+function SelectForm({
+  fieldInput: { name, ...restInput },
+  meta,
+  label,
+  disabled,
+  required,
+  options,
+  icons = {},
+  ...rest
+}: Props): JSX.Element {
   const classes = useStyles()
-
-  const {
-    ffInput: { name, ...restInput },
-    meta,
-    label,
-    disabled,
-    required,
-    options,
-    icons = {},
-    ...rest
-  } = props
 
   const { error, touched } = meta
 

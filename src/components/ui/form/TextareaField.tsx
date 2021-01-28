@@ -1,22 +1,22 @@
 import React, { ComponentProps } from 'react'
 import { Field } from 'react-final-form'
-import BaseSelect from '@material-ui/core/Select'
-import Select from './Select'
-type SelectProps = ComponentProps<typeof BaseSelect>
+import BaseTextarea from '@material-ui/core/TextareaAutosize'
+import Textarea from './Textarea'
+
+type InputProps = ComponentProps<typeof BaseTextarea>
 
 type FieldProps = ComponentProps<typeof Field>
 
 type OwnProps = {
-  options: Record<string, unknown>
+  label: string
 }
 
-type Props = SelectProps & FieldProps & OwnProps
+type Props = InputProps & FieldProps & OwnProps
 
-function SelectField({
+function TextareaField({
   name,
   validate,
   fieldProps,
-  options,
   ...rest
 }: Props): JSX.Element {
   return (
@@ -25,10 +25,10 @@ function SelectField({
       validate={validate}
       {...fieldProps}
       render={({ input, meta }) => (
-        <Select fieldInput={input} meta={meta} options={options} {...rest} />
+        <Textarea fieldInput={input} meta={meta} {...rest} />
       )}
     />
   )
 }
 
-export default SelectField
+export default TextareaField

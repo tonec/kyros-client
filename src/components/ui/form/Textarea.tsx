@@ -1,8 +1,7 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { formInputType, formMetaType } from 'types'
-import { makeStyles } from 'styles'
+import React, { ComponentProps } from 'react'
+import { FieldInputProps, FieldMetaState } from 'react-final-form'
 import BaseTextarea from '@material-ui/core/TextareaAutosize'
+import { makeStyles } from '../../../styles'
 import FormControl from './FormControl'
 import InputLabel from './InputLabel'
 
@@ -18,13 +17,23 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
+type InputProps = ComponentProps<typeof BaseTextarea>
+
+type OwnProps = {
+  fieldInput: FieldInputProps<string, HTMLElement>
+  meta: FieldMetaState<string>
+  label: string
+}
+
+type Props = InputProps & OwnProps
+
 function TextareaForm({
-  input: { name, ...restInput },
+  fieldInput: { name, ...restInput },
   meta,
   label,
   disabled,
   ...rest
-}) {
+}: Props): JSX.Element {
   const classes = useStyles()
 
   const { error, touched } = meta
@@ -32,13 +41,7 @@ function TextareaForm({
   const isError = Boolean(error) && touched
 
   return (
-    <FormControl
-      fullWidth
-      disabled={disabled}
-      isError={isError}
-      error={error}
-      className={classes.control}
-    >
+    <FormControl fullWidth disabled={disabled} isError={isError} error={error}>
       {label && (
         <InputLabel htmlFor={name} disabled={disabled}>
           {label}
@@ -53,18 +56,6 @@ function TextareaForm({
       />
     </FormControl>
   )
-}
-
-TextareaForm.propTypes = {
-  label: PropTypes.string,
-  disabled: PropTypes.bool,
-  input: formInputType.isRequired,
-  meta: formMetaType.isRequired,
-}
-
-TextareaForm.defaultProps = {
-  label: null,
-  disabled: false,
 }
 
 export default TextareaForm

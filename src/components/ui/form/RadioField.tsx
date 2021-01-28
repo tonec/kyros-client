@@ -1,9 +1,9 @@
 import React, { ComponentProps } from 'react'
 import { Field } from 'react-final-form'
-import BaseInput from '@material-ui/core/OutlinedInput'
-import Input from './Input'
+import BaseRadio from '@material-ui/core/Radio'
+import Radio from './Radio'
 
-type InputProps = ComponentProps<typeof BaseInput>
+type InputProps = ComponentProps<typeof BaseRadio>
 
 type FieldProps = ComponentProps<typeof Field>
 
@@ -13,24 +13,24 @@ type OwnProps = {
 
 type Props = InputProps & FieldProps & OwnProps
 
-function InputField({
+function RadioField({
   name,
-  type,
-  validate,
+  label,
+  value,
   fieldProps,
   ...rest
 }: Props): JSX.Element {
   return (
     <Field
       name={name}
-      type={type}
-      validate={validate}
+      type="radio"
+      value={value}
       {...fieldProps}
-      render={({ input, meta }) => (
-        <Input fieldInput={input} meta={meta} {...rest} />
+      render={({ input }) => (
+        <Radio fieldInput={input} label={label} {...rest} />
       )}
     />
   )
 }
 
-export default InputField
+export default RadioField
