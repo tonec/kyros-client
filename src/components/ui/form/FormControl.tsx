@@ -1,11 +1,11 @@
-import React, { ReactElement, ReactNode } from 'react'
+import React, { ReactNode } from 'react'
 import { makeStyles, color } from '../../../styles'
 import FormInputError from './FormInputError'
 
-interface UseStylesProps {
-  fullWidth: boolean
-  disabled: boolean
-  isError: boolean
+type UseStylesProps = {
+  fullWidth?: boolean
+  disabled?: boolean
+  isError?: boolean
 }
 
 const width = ({ fullWidth }: UseStylesProps) => (fullWidth ? '100%' : 'auto')
@@ -37,19 +37,19 @@ const useStyles = makeStyles(theme => ({
 
 interface Props {
   children: ReactNode
-  disabled: boolean
-  isError: boolean
+  fullWidth?: boolean
+  disabled?: boolean
+  isError?: boolean
   error: string
-  fullWidth: boolean
 }
 
 function FormControl({
   children,
-  fullWidth,
-  disabled,
-  isError,
+  fullWidth = false,
+  disabled = false,
+  isError = false,
   error,
-}: Props): ReactElement {
+}: Props): JSX.Element {
   const classes = useStyles({ fullWidth, disabled, isError })
 
   return (

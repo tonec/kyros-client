@@ -1,8 +1,8 @@
-import React, { ReactElement } from 'react'
+import React from 'react'
 import { Field } from 'react-final-form'
 import Input from './Input'
 
-interface Props {
+type Props = {
   name: string
   type: string
   label?: string
@@ -17,7 +17,7 @@ function InputField({
   validate,
   fieldProps,
   ...rest
-}: Props): ReactElement {
+}: Props): JSX.Element {
   return (
     <Field
       name={name}

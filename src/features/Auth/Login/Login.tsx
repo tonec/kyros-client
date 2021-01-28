@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import React from 'react'
 import { useDispatch } from 'react-redux'
 import { login } from '../../../redux/modules/auth/actions'
 import { makeStyles } from '../../../styles'
@@ -16,7 +16,7 @@ export interface Values {
   password: string
 }
 
-function Login(): ReactElement {
+function Login(): JSX.Element {
   const dispatch = useDispatch()
   const classes = useStyles()
 

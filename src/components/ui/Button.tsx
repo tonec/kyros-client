@@ -1,94 +1,45 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { childrenType } from 'types'
-import cx from 'clsx'
-import { Link } from 'react-router-dom'
-import { makeStyles } from '../../styles'
+import React, { ComponentProps, ReactNode } from 'react'
 import BaseButton from '@material-ui/core/Button'
-import ConditionalWrap from './ConditionalWrap'
-import FormControl from './form/FormControl'
 
-const useStyles = makeStyles(theme => ({
-  control: {
-    margin: theme.spacing(2, 0),
-  },
-}))
+type ButtonProps = ComponentProps<typeof BaseButton>
+
+type OwnProps = {
+  children: ReactNode
+  testid?: string
+}
+
+type Props = ButtonProps & OwnProps
 
 function Button({
   children,
-  color,
-  component,
-  disabled,
-  type,
-  variant,
-  to,
-  isWrapped,
-  autoFocus,
+  color = 'default',
+  disabled = false,
+  type = 'button',
+  variant = 'contained',
+  autoFocus = false,
   classes,
   className,
   testid,
   onClick,
-}) {
-  const compClasses = useStyles({ color })
-
+}: Props): JSX.Element {
   return (
-    <ConditionalWrap
-      condition={isWrapped}
-      wrap={child => (
-        <FormControl className={compClasses.control}>{child}</FormControl>
-      )}
+    <BaseButton
+      className={className}
+      color={color}
+      disabled={disabled}
+      type={type}
+      variant={variant}
+      autoFocus={autoFocus}
+      classes={classes}
+      onClick={onClick}
+      data-testid={testid || type}
     >
-      <BaseButton
-        className={cx(compClasses.button, className)}
-        color={color}
-        component={to ? Link : component}
-        disabled={disabled}
-        type={type}
-        variant={variant}
-        to={to}
-        autoFocus={autoFocus}
-        classes={classes}
-        onClick={onClick}
-        data-testid={testid || type}
-      >
-        {children}
-      </BaseButton>
-    </ConditionalWrap>
+      {children}
+    </BaseButton>
   )
 }
 
 // Used in ButtonsSpacer!
 Button.displayName = 'Button'
-
-Button.propTypes = {
-  children: childrenType.isRequired,
-  color: PropTypes.string,
-  component: PropTypes.string,
-  disabled: PropTypes.bool,
-  type: PropTypes.string,
-  variant: PropTypes.string,
-  to: PropTypes.string,
-  isWrapped: PropTypes.bool,
-  autoFocus: PropTypes.bool,
-  classes: PropTypes.objectOf(PropTypes.string),
-  testid: PropTypes.string,
-  onClick: PropTypes.func,
-  className: PropTypes.string,
-}
-
-Button.defaultProps = {
-  color: 'default',
-  component: 'button',
-  disabled: false,
-  type: 'button',
-  variant: 'contained',
-  to: null,
-  isWrapped: false,
-  autoFocus: false,
-  classes: {},
-  className: '',
-  testid: null,
-  onClick: null,
-}
 
 export default Button

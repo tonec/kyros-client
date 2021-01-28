@@ -1,17 +1,10 @@
-import React, { ReactElement } from 'react'
+import React from 'react'
 import BaseInput from '@material-ui/core/OutlinedInput'
 import { FieldInputProps, FieldMetaState } from 'react-final-form'
-import { makeStyles } from '../../../styles'
 import FormControl from './FormControl'
 import InputLabel from './InputLabel'
 
-const useStyles = makeStyles(theme => ({
-  control: {
-    margin: theme.spacing(2, 0, 0),
-  },
-}))
-
-interface Props {
+type Props = {
   input: FieldInputProps<string, HTMLElement>
   meta: FieldMetaState<string>
   label?: string
@@ -26,23 +19,13 @@ function InputForm({
   disabled,
   required,
   ...rest
-}: Props): ReactElement {
-  const classes = useStyles()
-
-  console.log('rest', rest)
-
+}: Props): JSX.Element {
   const { error, touched } = meta
 
   const isError = Boolean(error) && touched
 
   return (
-    <FormControl
-      fullWidth
-      disabled={disabled}
-      isError={isError}
-      error={error}
-      className={classes.control}
-    >
+    <FormControl fullWidth disabled={disabled} isError={isError} error={error}>
       {label && (
         <InputLabel htmlFor={name} disabled={disabled}>
           {label}

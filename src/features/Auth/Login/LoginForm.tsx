@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import React from 'react'
 import { Values } from './Login'
 import { Button, ButtonsSpacer, Form, InputField } from '../../../components'
 import validate from './validate'
@@ -7,7 +7,7 @@ interface Props {
   handleOnSubmit: (data: Values) => void
 }
 
-function LoginForm({ handleOnSubmit }: Props): ReactElement {
+function LoginForm({ handleOnSubmit }: Props): JSX.Element {
   return (
     <Form
       onSubmit={handleOnSubmit}
