@@ -1,16 +1,13 @@
-import React, { ComponentProps } from 'react'
+import React, { ComponentPropsWithoutRef } from 'react'
 import { Field } from 'react-final-form'
 import BaseInput from '@material-ui/core/OutlinedInput'
 import Input from './Input'
 
-type InputProps = ComponentProps<typeof BaseInput>
-
-type FieldProps = ComponentProps<typeof Field>
-
+type InputProps = ComponentPropsWithoutRef<typeof BaseInput>
+type FieldProps = ComponentPropsWithoutRef<typeof Field>
 type OwnProps = {
   label: string
 }
-
 type Props = InputProps & FieldProps & OwnProps
 
 function InputField({

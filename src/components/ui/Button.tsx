@@ -1,7 +1,7 @@
-import React, { ComponentProps, ReactNode } from 'react'
+import React, { ComponentPropsWithoutRef, ReactNode } from 'react'
 import BaseButton from '@material-ui/core/Button'
 
-type ButtonProps = ComponentProps<typeof BaseButton>
+type ButtonProps = ComponentPropsWithoutRef<typeof BaseButton>
 
 type OwnProps = {
   children: ReactNode

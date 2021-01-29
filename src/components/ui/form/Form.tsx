@@ -1,8 +1,8 @@
-import React, { ComponentProps } from 'react'
+import React, { ComponentPropsWithoutRef } from 'react'
 import PropTypes from 'prop-types'
 import { Form as BaseForm } from 'react-final-form'
 
-type Props = ComponentProps<typeof BaseForm>
+type Props = ComponentPropsWithoutRef<typeof BaseForm>
 
 function Form({ onSubmit, initialValues, render }: Props): JSX.Element {
   return (

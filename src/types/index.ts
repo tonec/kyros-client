@@ -66,7 +66,7 @@ export type User = {
   lastName: string
 }
 
-export interface IAPIAction {
+export interface APIAction {
   types: [string, string, string]
   request: ({ client }: { client: AxiosInstance }) => AxiosPromise
   flash?: { success?: string; error?: string }

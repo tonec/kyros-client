@@ -1,16 +1,13 @@
-import React, { ComponentProps } from 'react'
+import React, { ComponentPropsWithoutRef } from 'react'
 import { Field } from 'react-final-form'
 import BaseTextarea from '@material-ui/core/TextareaAutosize'
 import Textarea from './Textarea'
 
-type InputProps = ComponentProps<typeof BaseTextarea>
-
-type FieldProps = ComponentProps<typeof Field>
-
+type InputProps = ComponentPropsWithoutRef<typeof BaseTextarea>
+type FieldProps = ComponentPropsWithoutRef<typeof Field>
 type OwnProps = {
   label: string
 }
-
 type Props = InputProps & FieldProps & OwnProps
 
 function TextareaField({

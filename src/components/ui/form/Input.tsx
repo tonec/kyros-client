@@ -1,17 +1,15 @@
-import React, { ComponentProps } from 'react'
+import React, { ComponentPropsWithoutRef } from 'react'
 import { FieldInputProps, FieldMetaState } from 'react-final-form'
 import BaseInput from '@material-ui/core/OutlinedInput'
 import FormControl from './FormControl'
 import InputLabel from './InputLabel'
 
-type InputProps = ComponentProps<typeof BaseInput>
-
+type InputProps = ComponentPropsWithoutRef<typeof BaseInput>
 type OwnProps = {
   fieldInput: FieldInputProps<string, HTMLElement>
   meta: FieldMetaState<string>
   label: string
 }
-
 type Props = InputProps & OwnProps
 
 function InputForm({

@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { makeStyles } from 'styles'
 import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline'
 import Typography from '../Typography'
@@ -18,21 +17,19 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-function FormInputError({ error }) {
+type Props = {
+  error: string
+}
+
+function FormInputError({ error }: Props): JSX.Element {
   const classes = useStyles()
 
   return (
     <div className={classes.errorContainer}>
       <ErrorOutlineIcon />
-      <Typography variant="caption" className={classes.text}>
-        {error}
-      </Typography>
+      <Typography variant="caption">{error}</Typography>
     </div>
   )
-}
-
-FormInputError.propTypes = {
-  error: PropTypes.string.isRequired,
 }
 
 export default FormInputError

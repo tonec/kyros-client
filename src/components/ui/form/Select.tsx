@@ -1,5 +1,4 @@
-/* eslint-disable react/jsx-props-no-spreading */
-import React, { ComponentProps, ReactNode } from 'react'
+import React, { ComponentPropsWithoutRef, ReactNode } from 'react'
 import { FieldInputProps, FieldMetaState } from 'react-final-form'
 import BaseSelect from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
@@ -13,15 +12,13 @@ const useStyles = makeStyles({
   },
 })
 
-type SelectProps = ComponentProps<typeof BaseSelect>
-
+type SelectProps = ComponentPropsWithoutRef<typeof BaseSelect>
 type OwnProps = {
   fieldInput: FieldInputProps<string, HTMLElement>
   meta: FieldMetaState<string>
   options: Record<string, unknown>
   icons?: Record<string, unknown>
 }
-
 type Props = SelectProps & OwnProps
 
 function SelectForm({

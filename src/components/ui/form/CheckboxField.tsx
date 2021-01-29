@@ -1,12 +1,10 @@
-import React, { ComponentProps } from 'react'
+import React, { ComponentPropsWithoutRef } from 'react'
 import { Field } from 'react-final-form'
 import BaseCheckbox from '@material-ui/core/Checkbox'
 import Checkbox from './Checkbox'
 
-type CheckboxProps = ComponentProps<typeof BaseCheckbox>
-
-type FieldProps = ComponentProps<typeof Field>
-
+type CheckboxProps = ComponentPropsWithoutRef<typeof BaseCheckbox>
+type FieldProps = ComponentPropsWithoutRef<typeof Field>
 type Props = CheckboxProps & FieldProps
 
 function CheckboxField({

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Values } from './Login'
-import { Button, ButtonsSpacer, Form, InputField } from '../../../components'
+import { Button, ButtonsSpacer, Form, InputField } from 'components'
 import validate from './validate'
 
 interface Props {

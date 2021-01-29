@@ -1,8 +1,8 @@
-import React, { ComponentProps } from 'react'
+import React, { ComponentPropsWithoutRef } from 'react'
 import { FieldInputProps } from 'react-final-form'
 import BaseRadio from '@material-ui/core/Radio'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
-import { makeStyles } from '../../../styles'
+import { makeStyles } from 'styles'
 
 const useStyles = makeStyles({
   label: {
@@ -10,13 +10,11 @@ const useStyles = makeStyles({
   },
 })
 
-type InputProps = ComponentProps<typeof BaseRadio>
-
+type InputProps = ComponentPropsWithoutRef<typeof BaseRadio>
 type OwnProps = {
   fieldInput: FieldInputProps<string, HTMLElement>
   label: string
 }
-
 type Props = InputProps & OwnProps
 
 function RadioForm({ fieldInput, label, ...rest }: Props): JSX.Element {

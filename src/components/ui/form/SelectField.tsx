@@ -1,15 +1,13 @@
-import React, { ComponentProps } from 'react'
+import React, { ComponentPropsWithoutRef } from 'react'
 import { Field } from 'react-final-form'
 import BaseSelect from '@material-ui/core/Select'
 import Select from './Select'
-type SelectProps = ComponentProps<typeof BaseSelect>
 
-type FieldProps = ComponentProps<typeof Field>
-
+type SelectProps = ComponentPropsWithoutRef<typeof BaseSelect>
+type FieldProps = ComponentPropsWithoutRef<typeof Field>
 type OwnProps = {
   options: Record<string, unknown>
 }
-
 type Props = SelectProps & FieldProps & OwnProps
 
 function SelectField({

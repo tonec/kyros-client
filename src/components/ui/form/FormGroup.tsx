@@ -1,5 +1,4 @@
-import React from 'react'
-import { childrenType } from 'types'
+import React, { ComponentPropsWithoutRef } from 'react'
 import { makeStyles } from 'styles'
 import BaseFormGroup from '@material-ui/core/FormGroup'
 
@@ -9,14 +8,12 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-function FormGroup({ children }) {
+type Props = ComponentPropsWithoutRef<typeof BaseFormGroup>
+
+function FormGroup({ children }: Props): JSX.Element {
   const classes = useStyles()
 
   return <BaseFormGroup className={classes.control}>{children}</BaseFormGroup>
-}
-
-FormGroup.propTypes = {
-  children: childrenType.isRequired,
 }
 
 export default FormGroup

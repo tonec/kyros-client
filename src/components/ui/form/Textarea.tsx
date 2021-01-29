@@ -1,7 +1,7 @@
-import React, { ComponentProps } from 'react'
+import React, { ComponentPropsWithoutRef } from 'react'
 import { FieldInputProps, FieldMetaState } from 'react-final-form'
 import BaseTextarea from '@material-ui/core/TextareaAutosize'
-import { makeStyles } from '../../../styles'
+import { makeStyles } from 'styles'
 import FormControl from './FormControl'
 import InputLabel from './InputLabel'
 
@@ -17,14 +17,12 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-type InputProps = ComponentProps<typeof BaseTextarea>
-
+type InputProps = ComponentPropsWithoutRef<typeof BaseTextarea>
 type OwnProps = {
   fieldInput: FieldInputProps<string, HTMLElement>
   meta: FieldMetaState<string>
   label: string
 }
-
 type Props = InputProps & OwnProps
 
 function TextareaForm({

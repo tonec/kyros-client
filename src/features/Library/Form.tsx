@@ -1,5 +1,5 @@
 import React from 'react'
-import { makeStyles } from '../../styles'
+import { makeStyles } from 'styles'
 import {
   Button,
   ButtonsSpacer,
@@ -13,7 +13,7 @@ import {
   TextareaField,
   RadioField,
   Typography,
-} from '../../components'
+} from 'components'
 import validate from './validate'
 
 const useStyles = makeStyles({

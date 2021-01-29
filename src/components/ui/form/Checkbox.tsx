@@ -1,16 +1,14 @@
-import React, { ComponentProps } from 'react'
+import React, { ComponentPropsWithoutRef } from 'react'
 import { FieldInputProps } from 'react-final-form'
 import BaseCheckbox from '@material-ui/core/Checkbox'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
-import { makeStyles } from '../../../styles'
+import { makeStyles } from 'styles'
 
-type CheckboxProps = ComponentProps<typeof BaseCheckbox>
-
+type CheckboxProps = ComponentPropsWithoutRef<typeof BaseCheckbox>
 type OwnProps = {
   input: FieldInputProps<string, HTMLElement>
   label: string
 }
-
 type Props = CheckboxProps & OwnProps
 
 const useStyles = makeStyles({

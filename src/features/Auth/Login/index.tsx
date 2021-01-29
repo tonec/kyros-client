@@ -1,5 +1,5 @@
 import React from 'react'
-import { Centered } from '../../../components'
+import { Centered } from 'components'
 import Login from './Login'
 
 function LoginView(): JSX.Element {
