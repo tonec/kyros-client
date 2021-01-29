@@ -12,15 +12,13 @@ const SRC_DIRECTORY = path.resolve(ROOT_DIRECTORY, 'src')
 
 module.exports = merge(baseConfig, {
   entry: {
-    main: [
-      path.resolve(ROOT_DIRECTORY, 'src/client.js')
-    ]
+    main: [path.resolve(ROOT_DIRECTORY, 'src/client.tsx')],
   },
 
   output: {
     path: DIST_DIRECTORY,
     filename: '[name]-[hash].js',
-    publicPath: config.paths.PUBLIC
+    publicPath: config.paths.PUBLIC,
   },
 
   module: {
@@ -34,18 +32,18 @@ module.exports = merge(baseConfig, {
               limit: 8192,
               name: '[name]-[hash].[ext]',
               useRelativePath: false,
-              publicPath: config.paths.PUBLIC
+              publicPath: config.paths.PUBLIC,
             },
           },
         ],
-      }
-    ]
+      },
+    ],
   },
 
   plugins: [
     new webpack.DefinePlugin({
       __CLIENT__: true,
-      __SERVER__: false
+      __SERVER__: false,
     }),
 
     new LoadablePlugin(),
@@ -56,7 +54,7 @@ module.exports = merge(baseConfig, {
       include: ['/', /\.js$/, /\.css$/, /\.svg$/],
       templatedURLs: {
         '/': new Date().toString(),
-      }
+      },
     }),
-  ]
+  ],
 })

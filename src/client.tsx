@@ -1,7 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+///<reference types="webpack-env" />
 import 'babel-polyfill'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { renderRoutes } from 'react-router-config'
+import { renderRoutes, RouteConfig } from 'react-router-config'
 import { loadableReady } from '@loadable/component'
 import { ConnectedRouter } from 'connected-react-router'
 import { Provider } from 'react-redux'
@@ -13,42 +15,42 @@ import { HelmetProvider } from 'react-helmet-async'
 import { ThemeProvider } from '@material-ui/core/styles'
 import { CssBaseline } from '@material-ui/core'
 import NProgress from 'nprogress'
-import createStore from 'redux/store'
-import asyncMatchRoutes from 'helpers/asyncMatchRoutes'
-import apiClient from 'helpers/apiClient'
-import history from 'utils/history'
-import { AsyncTrigger } from 'components'
-import theme from 'theme'
+import createStore from './redux/store'
+import asyncMatchRoutes from './helpers/asyncMatchRoutes'
+import apiClient from './helpers/apiClient'
+import history from './utils/history'
+import { AsyncTrigger } from './components'
+import theme from './theme'
 import routes from './routes'
 
-window.addEventListener('unhandledrejection', (err, promise) => {
-  // eslint-disable-next-line no-console
-  console.log('Unhandled promise rejection: ', err, promise)
-})
+declare const window: any
+
+window.onunhandledrejection = (event: PromiseRejectionEvent) => {
+  console.warn(`UNHANDLED PROMISE REJECTION: ${event.reason}`)
+}
 
 const client = apiClient()
 
 const persistConfig = {
   key: 'kyros',
   storage: new CookieStorage(Cookies),
-  stateReconciler(inboundState, originalState) {
+  stateReconciler(inboundState: any, originalState: any) {
     return originalState
   },
   whitelist: ['auth'],
 }
 
-let store
 ;(async () => {
   const preloadedState = await getStoredState(persistConfig)
 
-  store = createStore({
+  const store = createStore({
     client,
     history,
     data: { ...preloadedState, ...window.INITIAL_STATE },
     persistConfig,
   })
 
-  const triggerHooks = async (routes, pathname) => {
+  const triggerHooks = async (routes: RouteConfig[], pathname: string) => {
     NProgress.start()
 
     const { components, match, params } = await asyncMatchRoutes(
@@ -93,7 +95,7 @@ let store
             <CssBaseline />
             <ThemeProvider theme={theme}>
               <AsyncTrigger
-                trigger={pathname => triggerHooks(routes, pathname)}
+                trigger={(pathname: string) => triggerHooks(routes, pathname)}
               >
                 {renderRoutes(routes)}
               </AsyncTrigger>
@@ -111,8 +113,7 @@ let store
 
   if (module.hot) {
     module.hot.accept('./routes', () => {
-      const nextRoutes = require('./routes')
-      hydrate(nextRoutes.__esModule ? nextRoutes.default : nextRoutes)
+      hydrate()
     })
   }
 })()
