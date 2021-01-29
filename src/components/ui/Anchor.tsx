@@ -1,22 +1,34 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { childrenType } from 'types'
+import React, {
+  CSSProperties,
+  MouseEvent,
+  KeyboardEvent,
+  ReactNode,
+} from 'react'
 import createChainedFunction from 'utils/createChainedFunction'
 
-function isTrivialHref(href) {
+function isTrivialHref(href: string) {
   return !href || href.trim() === '#'
 }
 
+type Props = {
+  href?: string
+  tabIndex?: number
+  disabled?: boolean
+  onKeyDown?: (...args: any) => void
+  children: ReactNode
+  onClick?: (event: MouseEvent | KeyboardEvent) => void
+}
+
 function Anchor({
-  href,
-  tabIndex,
-  disabled,
+  href = '',
+  tabIndex = 0,
+  disabled = false,
   onKeyDown,
   children,
   onClick,
   ...props
-}) {
-  const handleClick = event => {
+}: Props): JSX.Element {
+  const handleClick = (event: MouseEvent | KeyboardEvent) => {
     if (disabled || isTrivialHref(href)) {
       event.preventDefault()
     }
@@ -31,7 +43,7 @@ function Anchor({
     }
   }
 
-  const handleKeyDown = event => {
+  const handleKeyDown = (event: KeyboardEvent) => {
     if (event.key === ' ') {
       event.preventDefault()
       handleClick(event)
@@ -40,7 +52,7 @@ function Anchor({
 
   let setTabIndex = tabIndex || 1
   let hreference = href
-  let style = { cursor: 'pointer' }
+  let style: CSSProperties = { pointerEvents: 'auto', cursor: 'pointer' }
 
   if (isTrivialHref(hreference)) {
     hreference = '#'
@@ -63,25 +75,6 @@ function Anchor({
       {children}
     </a>
   )
-}
-
-Anchor.propTypes = {
-  href: PropTypes.string,
-  onClick: PropTypes.func,
-  onKeyDown: PropTypes.func,
-  disabled: PropTypes.bool,
-  tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  className: PropTypes.string,
-  children: childrenType.isRequired,
-}
-
-Anchor.defaultProps = {
-  href: '',
-  onClick: null,
-  onKeyDown: null,
-  disabled: false,
-  tabIndex: 0,
-  className: '',
 }
 
 export default Anchor

@@ -60,6 +60,28 @@ export const clientsType = arrayOf(clientType)
 
 export const timescaleType = oneOf(TIMESCALES)
 
+type Spacings =
+  | 'm'
+  | 'mt'
+  | 'mr'
+  | 'mb'
+  | 'ml'
+  | 'mx'
+  | 'my'
+  | 'p'
+  | 'pt'
+  | 'pr'
+  | 'pb'
+  | 'pl'
+  | 'px'
+  | 'py'
+
+export type Spacing =
+  | {
+      [P in Spacings]: number | string
+    }
+  | undefined
+
 export type User = {
   id: string
   firstName: string

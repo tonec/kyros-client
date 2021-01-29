@@ -1,11 +1,14 @@
 import React from 'react'
-import { childrenType } from 'types'
 import ExpansionPanel from '@material-ui/core/ExpansionPanel'
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary'
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 
-function AccordionSummary({ children }) {
+type AccordionSummaryProps = {
+  children: React.ReactNode
+}
+
+function AccordionSummary({ children }: AccordionSummaryProps): JSX.Element {
   return (
     <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
       {children}
@@ -13,27 +16,25 @@ function AccordionSummary({ children }) {
   )
 }
 
-AccordionSummary.propTypes = {
-  children: childrenType.isRequired,
+type AccordionDetailsProps = {
+  children: React.ReactNode
 }
 
-function AccordionDetails({ children }) {
+function AccordionDetails({ children }: AccordionDetailsProps): JSX.Element {
   return <ExpansionPanelDetails>{children}</ExpansionPanelDetails>
 }
 
-AccordionDetails.propTypes = {
-  children: childrenType.isRequired,
+type AccordionPanelProps = {
+  children: React.ReactElement
 }
 
-function AccordionPanel({ children }) {
+function AccordionPanel({ children }: AccordionPanelProps): JSX.Element {
   return <ExpansionPanel square>{children}</ExpansionPanel>
 }
 
-AccordionPanel.propTypes = {
-  children: childrenType.isRequired,
+function Accordion(): null {
+  return null
 }
-
-function Accordion() {}
 
 Accordion.Panel = AccordionPanel
 Accordion.Summary = AccordionSummary

@@ -1,9 +1,11 @@
-/* eslint-disable react/button-has-type */
 import React from 'react'
-import PropTypes from 'prop-types'
-import { childrenType } from 'types'
 import cx from 'clsx'
 import { makeStyles, color } from 'styles'
+
+type UseStylesProps = {
+  variant?: string
+  disabled?: boolean
+}
 
 const useStyles = makeStyles(theme => {
   return {
@@ -18,18 +20,17 @@ const useStyles = makeStyles(theme => {
       width: '100%',
       boxShadow: '0px -1px 1px 0px rgba(122, 133, 135, 0.25)',
 
-      cursor: ({ disabled }) => (disabled ? 'initial' : 'pointer'),
+      cursor: ({ disabled }: UseStylesProps) =>
+        disabled ? 'initial' : 'pointer',
 
-      color: ({ variant, disabled }) => {
+      color: ({ variant, disabled }: UseStylesProps) => {
         if (disabled) {
           return theme.palette.grey[500]
         }
-        return variant === 'primary'
-          ? color(theme, 'white')
-          : color(theme, 'primary')
+        return variant === 'primary' ? color('white') : color('primary')
       },
 
-      backgroundColor: ({ variant, disabled }) => {
+      backgroundColor: ({ variant, disabled }: UseStylesProps) => {
         if (disabled) {
           return theme.palette.grey[300]
         }
@@ -37,7 +38,7 @@ const useStyles = makeStyles(theme => {
       },
 
       '&:hover': {
-        color: ({ variant, disabled }) => {
+        color: ({ variant, disabled }: UseStylesProps) => {
           if (disabled) {
             return theme.palette.grey[500]
           }
@@ -48,7 +49,23 @@ const useStyles = makeStyles(theme => {
   }
 })
 
-function Action({ children, type, variant, disabled, className, onClick }) {
+type Props = {
+  children: React.ReactNode
+  type?: 'button' | 'reset' | 'submit' | undefined
+  variant?: 'primary' | 'secondary'
+  disabled?: boolean
+  className?: string
+  onClick: () => void
+}
+
+function Action({
+  children,
+  type = 'button',
+  variant = 'primary',
+  disabled = false,
+  className,
+  onClick,
+}: Props): JSX.Element {
   const classes = useStyles({ variant, disabled })
 
   return (
@@ -61,23 +78,6 @@ function Action({ children, type, variant, disabled, className, onClick }) {
       {children}
     </button>
   )
-}
-
-Action.propTypes = {
-  children: childrenType.isRequired,
-  type: PropTypes.string,
-  variant: PropTypes.oneOf(['primary', 'secondary']),
-  disabled: PropTypes.bool,
-  className: PropTypes.string,
-  onClick: PropTypes.func,
-}
-
-Action.defaultProps = {
-  type: 'button',
-  variant: 'primary',
-  disabled: false,
-  className: null,
-  onClick: null,
 }
 
 export default Action
