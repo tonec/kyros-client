@@ -1,14 +1,10 @@
 import React, { ComponentPropsWithoutRef, ReactNode } from 'react'
 import BaseButton from '@material-ui/core/Button'
 
-type ButtonProps = ComponentPropsWithoutRef<typeof BaseButton>
-
-type OwnProps = {
+type Props = ComponentPropsWithoutRef<typeof BaseButton> & {
   children: ReactNode
   testid?: string
 }
-
-type Props = ButtonProps & OwnProps
 
 function Button({
   children,

@@ -17,13 +17,11 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-type InputProps = ComponentPropsWithoutRef<typeof BaseTextarea>
-type OwnProps = {
+type Props = ComponentPropsWithoutRef<typeof BaseTextarea> & {
   fieldInput: FieldInputProps<string, HTMLElement>
   meta: FieldMetaState<string>
   label: string
 }
-type Props = InputProps & OwnProps
 
 function TextareaForm({
   fieldInput: { name, ...restInput },

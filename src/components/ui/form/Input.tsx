@@ -4,13 +4,11 @@ import BaseInput from '@material-ui/core/OutlinedInput'
 import FormControl from './FormControl'
 import InputLabel from './InputLabel'
 
-type InputProps = ComponentPropsWithoutRef<typeof BaseInput>
-type OwnProps = {
+type Props = ComponentPropsWithoutRef<typeof BaseInput> & {
   fieldInput: FieldInputProps<string, HTMLElement>
   meta: FieldMetaState<string>
   label: string
 }
-type Props = InputProps & OwnProps
 
 function InputForm({
   fieldInput: { name, ...restInput },

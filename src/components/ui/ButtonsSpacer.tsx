@@ -1,18 +1,21 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import { childrenType } from 'types'
 import cx from 'clsx'
+import { ReactElementWithDisplayName } from 'types'
 import { makeStyles } from 'styles'
+
+type UseStyleProps = {
+  variant: 'left' | 'center' | 'right'
+}
 
 const useContainerStyles = makeStyles(() => ({
   container: {
-    textAlign: ({ variant }) => variant,
+    textAlign: ({ variant }: UseStyleProps) => variant,
   },
 }))
 
 const useButtonStyles = makeStyles(theme => ({
   root: {
-    margin: ({ variant }) => {
+    margin: ({ variant }: UseStyleProps) => {
       if (variant === 'left') return theme.spacing(0, 2, 0, 0)
       if (variant === 'right') return theme.spacing(0, 0, 0, 2)
       return theme.spacing(0, 1)
@@ -20,18 +23,28 @@ const useButtonStyles = makeStyles(theme => ({
   },
 }))
 
-function ButtonsSpacer({ children, variant, className }) {
+type Props = {
+  children: React.ReactNode
+  variant?: 'left' | 'right' | 'center'
+  className?: string
+}
+
+function ButtonsSpacer({
+  children,
+  variant = 'right',
+  className,
+}: Props): JSX.Element {
   const containerClasses = useContainerStyles({ variant })
   const buttonClasses = useButtonStyles({ variant })
 
-  const els = React.Children.toArray(children)
+  const els = React.Children.toArray(children) as ReactElementWithDisplayName[]
 
-  const allAreButtons = Object.keys(els).every(child => {
-    return els[child].type.displayName === 'Button'
+  const allAreButtons = els.every(child => {
+    console.log('child', child)
+    return child.type.displayName === 'Button'
   })
 
   if (!allAreButtons) {
-    // eslint-disable-next-line no-console
     console.warn(
       "Warning ButtonSpacer has children that aren't Button components",
     )
@@ -44,17 +57,6 @@ function ButtonsSpacer({ children, variant, className }) {
   return (
     <div className={cx(containerClasses.container, className)}>{newEls}</div>
   )
-}
-
-ButtonsSpacer.propTypes = {
-  children: childrenType.isRequired,
-  variant: PropTypes.oneOf(['left', 'right', 'center']),
-  className: PropTypes.string,
-}
-
-ButtonsSpacer.defaultProps = {
-  variant: 'right',
-  className: '',
 }
 
 export default ButtonsSpacer

@@ -3,12 +3,10 @@ import React, { ComponentPropsWithoutRef } from 'react'
 import { Spacing } from 'types'
 import BaseBox from '@material-ui/core/Box'
 
-type BoxProps = ComponentPropsWithoutRef<typeof BaseBox>
-type OwnProps = {
+type Props = ComponentPropsWithoutRef<typeof BaseBox> & {
   children: React.ReactNode
   spacing: Spacing
 }
-type Props = BoxProps & OwnProps
 
 function Box({
   children,

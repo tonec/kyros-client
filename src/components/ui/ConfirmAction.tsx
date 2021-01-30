@@ -1,12 +1,27 @@
-import React, { useState } from 'react'
-import PropTypes from 'prop-types'
+import React, { MouseEvent, useState } from 'react'
 import ConfirmationDialog from './ConfirmationDialog'
 
-function ConfirmAction({ children, title, content, action }) {
-  const [open, setOpen] = useState(false)
-  const [callback, setCallback] = useState()
+type Props = {
+  children: (...args: any) => React.ReactNode
+  title?: string
+  content?: string
+  action?: string
+}
 
-  const openConfirmationDialog = callback => event => {
+type Callback = (event?: MouseEvent) => void
+
+function ConfirmAction({
+  children,
+  title,
+  content,
+  action,
+}: Props): JSX.Element {
+  const [open, setOpen] = useState(false)
+  const [callback, setCallback] = useState<Callback>()
+
+  const openConfirmationDialog = (callback: Callback) => (
+    event: MouseEvent,
+  ) => {
     event.preventDefault()
     event.persist()
 
@@ -19,7 +34,9 @@ function ConfirmAction({ children, title, content, action }) {
   }
 
   const handleConfirm = () => {
-    callback()
+    if (typeof callback === 'function') {
+      callback()
+    }
     setOpen(false)
   }
 
@@ -36,13 +53,6 @@ function ConfirmAction({ children, title, content, action }) {
       />
     </>
   )
-}
-
-ConfirmAction.propTypes = {
-  children: PropTypes.func.isRequired,
-  title: PropTypes.string,
-  content: PropTypes.string,
-  action: PropTypes.string,
 }
 
 ConfirmAction.defaultProps = {

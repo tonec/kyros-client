@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ComponentPropsWithoutRef } from 'react'
 import PropTypes from 'prop-types'
 import cx from 'clsx'
 import { makeStyles } from 'styles'
@@ -10,15 +10,15 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-function Divider({ component, variant, gutterBottom, className }) {
+type Props = ComponentPropsWithoutRef<typeof BaseDivider> & {
+  gutterBottom: boolean
+}
+
+function Divider({ variant, gutterBottom, className }: Props): JSX.Element {
   const classes = useStyles({ gutterBottom })
 
   return (
-    <BaseDivider
-      component={component}
-      variant={variant}
-      className={cx(classes.root, className)}
-    />
+    <BaseDivider variant={variant} className={cx(classes.root, className)} />
   )
 }
 
@@ -30,7 +30,6 @@ Divider.propTypes = {
 }
 
 Divider.defaultProps = {
-  component: 'hr',
   variant: 'fullWidth',
   gutterBottom: false,
   className: null,

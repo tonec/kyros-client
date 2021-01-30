@@ -10,12 +10,10 @@ const useStyles = makeStyles({
   },
 })
 
-type InputProps = ComponentPropsWithoutRef<typeof BaseRadio>
-type OwnProps = {
+type Props = ComponentPropsWithoutRef<typeof BaseRadio> & {
   fieldInput: FieldInputProps<string, HTMLElement>
   label: string
 }
-type Props = InputProps & OwnProps
 
 function RadioForm({ fieldInput, label, ...rest }: Props): JSX.Element {
   const classes = useStyles()

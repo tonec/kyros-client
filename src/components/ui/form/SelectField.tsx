@@ -3,12 +3,10 @@ import { Field } from 'react-final-form'
 import BaseSelect from '@material-ui/core/Select'
 import Select from './Select'
 
-type SelectProps = ComponentPropsWithoutRef<typeof BaseSelect>
-type FieldProps = ComponentPropsWithoutRef<typeof Field>
-type OwnProps = {
-  options: Record<string, unknown>
-}
-type Props = SelectProps & FieldProps & OwnProps
+type Props = ComponentPropsWithoutRef<typeof BaseSelect> &
+  ComponentPropsWithoutRef<typeof Field> & {
+    options: Record<string, unknown>
+  }
 
 function SelectField({
   name,

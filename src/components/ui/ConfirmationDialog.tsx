@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { makeStyles } from 'styles'
 import Button from './Button'
 import ButtonsSpacer from './ButtonsSpacer'
@@ -12,14 +11,23 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
+type Props = {
+  title?: string
+  content?: string
+  action?: string
+  open?: boolean
+  handleCancel: () => void
+  handleConfirm: () => void
+}
+
 function ConfirmationDialog({
-  title,
-  content,
-  action,
-  open,
+  title = 'Are you sure?',
+  content = '',
+  action = 'Confirm',
+  open = false,
   handleCancel,
   handleConfirm,
-}) {
+}: Props): JSX.Element {
   const classes = useStyles()
 
   return (
@@ -39,22 +47,6 @@ function ConfirmationDialog({
       </ButtonsSpacer>
     </Dialog>
   )
-}
-
-ConfirmationDialog.propTypes = {
-  title: PropTypes.string,
-  content: PropTypes.string,
-  action: PropTypes.string,
-  open: PropTypes.bool,
-  handleCancel: PropTypes.func.isRequired,
-  handleConfirm: PropTypes.func.isRequired,
-}
-
-ConfirmationDialog.defaultProps = {
-  title: 'Are you sure?',
-  content: null,
-  open: false,
-  action: 'Confirm',
 }
 
 export default ConfirmationDialog

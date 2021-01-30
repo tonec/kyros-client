@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes, { arrayOf, node } from 'prop-types'
 import { makeStyles } from 'styles'
 import BaseDialog from '@material-ui/core/Dialog'
 import BaseDialogTitle from '@material-ui/core/DialogTitle'
@@ -9,7 +8,6 @@ import BaseDialogActions from '@material-ui/core/DialogActions'
 import IconButton from '@material-ui/core/IconButton'
 import CloseIcon from '@material-ui/icons/Close'
 import Typography from '@material-ui/core/Typography'
-import { childrenType } from 'types'
 
 const useStylesTitle = makeStyles(theme => ({
   root: {
@@ -24,7 +22,16 @@ const useStylesTitle = makeStyles(theme => ({
   },
 }))
 
-function DialogTitle({ children, onClose, ...props }) {
+type DialogTitleProps = {
+  children: React.ReactNode
+  onClose: () => void
+}
+
+function DialogTitle({
+  children,
+  onClose,
+  ...props
+}: DialogTitleProps): JSX.Element {
   const classes = useStylesTitle()
 
   return (
@@ -43,18 +50,27 @@ function DialogTitle({ children, onClose, ...props }) {
   )
 }
 
-DialogTitle.propTypes = {
-  children: PropTypes.oneOfType([arrayOf(node), node]).isRequired,
-  onClose: PropTypes.func.isRequired,
-}
-
 const useStylesDialog = makeStyles({
   content: {
     minWidth: 324,
   },
 })
 
-function Dialog({ children, title, open, testid, onClose }) {
+type DialogProps = {
+  children: React.ReactNode
+  title: string
+  open: boolean
+  testid: string
+  onClose: () => void
+}
+
+function Dialog({
+  children,
+  title,
+  open,
+  testid,
+  onClose,
+}: DialogProps): JSX.Element {
   const classes = useStylesDialog()
 
   let testId = 'modal'
@@ -68,35 +84,13 @@ function Dialog({ children, title, open, testid, onClose }) {
   }
 
   return (
-    <BaseDialog
-      onClose={onClose}
-      aria-labelledby="simple-dialog-title"
-      open={open}
-      data-testid={testId}
-    >
-      {title && (
-        <DialogTitle id="simple-dialog-title" onClose={onClose}>
-          {title}
-        </DialogTitle>
-      )}
+    <BaseDialog onClose={onClose} open={open} data-testid={testId}>
+      {title && <DialogTitle onClose={onClose}>{title}</DialogTitle>}
       <BaseDialogContent className={classes.content} dividers>
         {children}
       </BaseDialogContent>
     </BaseDialog>
   )
-}
-
-Dialog.propTypes = {
-  children: childrenType.isRequired,
-  title: PropTypes.string,
-  onClose: PropTypes.func.isRequired,
-  open: PropTypes.bool.isRequired,
-  testid: PropTypes.string,
-}
-
-Dialog.defaultProps = {
-  title: null,
-  testid: null,
 }
 
 Dialog.DialogContentText = BaseDialogContentText

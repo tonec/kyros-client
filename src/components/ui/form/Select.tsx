@@ -12,14 +12,12 @@ const useStyles = makeStyles({
   },
 })
 
-type SelectProps = ComponentPropsWithoutRef<typeof BaseSelect>
-type OwnProps = {
+type Props = ComponentPropsWithoutRef<typeof BaseSelect> & {
   fieldInput: FieldInputProps<string, HTMLElement>
   meta: FieldMetaState<string>
   options: Record<string, unknown>
   icons?: Record<string, unknown>
 }
-type Props = SelectProps & OwnProps
 
 function SelectForm({
   fieldInput: { name, ...restInput },

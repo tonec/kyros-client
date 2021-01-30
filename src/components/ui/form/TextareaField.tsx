@@ -3,12 +3,10 @@ import { Field } from 'react-final-form'
 import BaseTextarea from '@material-ui/core/TextareaAutosize'
 import Textarea from './Textarea'
 
-type InputProps = ComponentPropsWithoutRef<typeof BaseTextarea>
-type FieldProps = ComponentPropsWithoutRef<typeof Field>
-type OwnProps = {
-  label: string
-}
-type Props = InputProps & FieldProps & OwnProps
+type Props = ComponentPropsWithoutRef<typeof BaseTextarea> &
+  ComponentPropsWithoutRef<typeof Field> & {
+    label: string
+  }
 
 function TextareaField({
   name,

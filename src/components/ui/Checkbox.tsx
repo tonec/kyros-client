@@ -1,5 +1,5 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { ChangeEvent, ComponentPropsWithoutRef } from 'react'
+import { UseLink } from 'types'
 import { makeStyles } from 'styles'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import BaseCheckbox from '@material-ui/core/Checkbox'
@@ -10,18 +10,31 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-function Checkbox({ name, label, $value, checked, disabled, onChange }) {
+type Props = ComponentPropsWithoutRef<typeof BaseCheckbox> & {
+  label?: string
+  $value: UseLink & { value: boolean }
+  onChange: (event: ChangeEvent) => void
+}
+
+function Checkbox({
+  name,
+  label,
+  $value,
+  checked,
+  disabled = false,
+  onChange,
+}: Props): JSX.Element {
   const classes = useStyles()
 
   const val = $value ? $value.value : checked
 
-  const handleOnChange = e => {
+  const handleOnChange = (event: ChangeEvent) => {
     if ($value) {
-      $value.set(value => !value)
+      $value.set((value: boolean) => !value)
     }
 
     if (typeof onChange === 'function') {
-      onChange(e)
+      onChange(event)
     }
   }
 
@@ -54,28 +67,6 @@ function Checkbox({ name, label, $value, checked, disabled, onChange }) {
       label={label}
     />
   )
-}
-
-Checkbox.propTypes = {
-  name: PropTypes.string.isRequired,
-  label: PropTypes.string,
-  $value: PropTypes.shape({
-    value: PropTypes.oneOfType([PropTypes.bool]),
-    set: PropTypes.func,
-    check: PropTypes.func,
-    error: PropTypes.string,
-  }),
-  checked: PropTypes.bool,
-  disabled: PropTypes.bool,
-  onChange: PropTypes.func,
-}
-
-Checkbox.defaultProps = {
-  label: null,
-  $value: null,
-  checked: undefined,
-  disabled: false,
-  onChange: null,
 }
 
 export default Checkbox

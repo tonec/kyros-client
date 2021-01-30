@@ -1,3 +1,4 @@
+import React from 'react'
 import { AxiosInstance, AxiosPromise } from 'axios'
 import {
   arrayOf,
@@ -82,6 +83,13 @@ export type Spacing =
     }
   | undefined
 
+export interface UseLink {
+  value: string | number | boolean | Date
+  set: (...args: any) => void
+  check: () => void
+  error: string
+}
+
 export type User = {
   id: string
   firstName: string
@@ -93,4 +101,10 @@ export interface APIAction {
   request: ({ client }: { client: AxiosInstance }) => AxiosPromise
   flash?: { success?: string; error?: string }
   closeModal?: boolean
+}
+
+export type ReactElementWithDisplayName = React.ReactElement & {
+  type: {
+    displayName: string
+  }
 }

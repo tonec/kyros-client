@@ -1,17 +1,14 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { useLinkType } from 'types'
-import { makeStyles } from 'styles'
+import React, { ChangeEvent, ComponentPropsWithoutRef } from 'react'
+import { UseLink } from 'types'
 import BaseInput from '@material-ui/core/OutlinedInput'
 import ConditionalWrap from './ConditionalWrap'
 import FormControl from './form/FormControl'
 import InputLabel from './form/InputLabel'
 
-const useStyles = makeStyles(theme => ({
-  control: {
-    margin: theme.spacing(2, 0, 0),
-  },
-}))
+type Props = ComponentPropsWithoutRef<typeof BaseInput> & {
+  $value: UseLink
+  isWrapped: boolean
+}
 
 function Input({
   name,
@@ -26,20 +23,18 @@ function Input({
   disabled,
   onChange,
   onBlur,
-}) {
-  const classes = useStyles()
-
-  const handleOnChange = e => {
+}: Props): JSX.Element {
+  const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
     if ($value) {
-      $value.set(e.target.value)
+      $value.set((event.target as HTMLInputElement).value)
     }
 
     if (typeof onChange === 'function') {
-      onChange(e)
+      onChange(event)
     }
   }
 
-  const error = $value ? $value.error : null
+  const error = $value ? $value.error : ''
 
   return (
     <>
@@ -47,7 +42,7 @@ function Input({
       <ConditionalWrap
         condition={isWrapped}
         wrap={child => (
-          <FormControl fullWidth={fullWidth} className={classes.control}>
+          <FormControl fullWidth={fullWidth} error={error}>
             {child}
           </FormControl>
         )}
@@ -67,35 +62,6 @@ function Input({
       </ConditionalWrap>
     </>
   )
-}
-
-Input.propTypes = {
-  name: PropTypes.string.isRequired,
-  placeholder: PropTypes.string,
-  label: PropTypes.string,
-  type: PropTypes.string,
-  $value: useLinkType,
-  inputProps: PropTypes.object,
-  disabled: PropTypes.bool,
-  isWrapped: PropTypes.bool,
-  fullWidth: PropTypes.bool,
-  className: PropTypes.string,
-  onChange: PropTypes.func,
-  onBlur: PropTypes.func,
-}
-
-Input.defaultProps = {
-  placeholder: null,
-  label: null,
-  type: 'text',
-  $value: null,
-  inputProps: {},
-  disabled: false,
-  isWrapped: false,
-  fullWidth: false,
-  className: null,
-  onChange: null,
-  onBlur: null,
 }
 
 export default Input

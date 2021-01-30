@@ -1,22 +1,32 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import { UseLink } from 'types'
 import isValid from 'date-fns/isValid'
 import DateFnsUtils from '@date-io/date-fns'
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
 } from '@material-ui/pickers'
-import { useLinkType } from 'types'
+import { MaterialUiPickersDate } from '@material-ui/pickers/typings/date'
+import { ParsableDate } from '@material-ui/pickers/constants/prop-types'
+
+type Props = {
+  label: string
+  $value: UseLink & { value: ParsableDate }
+  variant: 'inline' | 'dialog' | 'static' | undefined
+  format: string
+  margin: 'normal' | 'none' | 'dense' | undefined
+  disableToolbar: boolean
+}
 
 function DatePicker({
   label,
   $value,
-  variant,
-  format,
-  margin,
-  disableToolbar,
-}) {
-  const handleDateChange = date => {
+  variant = 'inline',
+  format = 'yyyy-MM-dd',
+  margin = 'normal',
+  disableToolbar = true,
+}: Props): JSX.Element {
+  const handleDateChange = (date: MaterialUiPickersDate) => {
     if (isValid(date)) {
       $value.set(date)
     }
@@ -40,24 +50,6 @@ function DatePicker({
       />
     </MuiPickersUtilsProvider>
   )
-}
-
-DatePicker.propTypes = {
-  label: PropTypes.string,
-  $value: useLinkType,
-  variant: PropTypes.string,
-  format: PropTypes.string,
-  margin: PropTypes.string,
-  disableToolbar: PropTypes.bool,
-}
-
-DatePicker.defaultProps = {
-  label: null,
-  $value: null,
-  variant: 'inline',
-  format: 'yyyy-MM-dd',
-  margin: 'normal',
-  disableToolbar: true,
 }
 
 export default DatePicker

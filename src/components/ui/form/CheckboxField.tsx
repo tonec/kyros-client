@@ -3,9 +3,8 @@ import { Field } from 'react-final-form'
 import BaseCheckbox from '@material-ui/core/Checkbox'
 import Checkbox from './Checkbox'
 
-type CheckboxProps = ComponentPropsWithoutRef<typeof BaseCheckbox>
-type FieldProps = ComponentPropsWithoutRef<typeof Field>
-type Props = CheckboxProps & FieldProps
+type Props = ComponentPropsWithoutRef<typeof BaseCheckbox> &
+  ComponentPropsWithoutRef<typeof Field>
 
 function CheckboxField({
   name,
