@@ -2,7 +2,11 @@ import React from 'react'
 import { childrenType } from 'types'
 import BaseTableHead from '@material-ui/core/TableHead'
 
-function TableHead({ children }) {
+type Props = {
+  children: React.ReactNode
+}
+
+function TableHead({ children }: Props): JSX.Element {
   return <BaseTableHead>{children}</BaseTableHead>
 }
 

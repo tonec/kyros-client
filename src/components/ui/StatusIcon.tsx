@@ -1,11 +1,15 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import InfoIcon from '@material-ui/icons/Info'
 import WarningIcon from '@material-ui/icons/Warning'
 import ErrorIcon from '@material-ui/icons/Error'
 import CheckCircleIcon from '@material-ui/icons/CheckCircle'
 
-const StatusIcon = ({ status, className }) => {
+type Props = {
+  status: 'info' | 'warning' | 'error' | 'success'
+  className: string
+}
+
+const StatusIcon = ({ status, className }: Props): JSX.Element | null => {
   switch (status) {
     case 'info':
       return <InfoIcon data-testid="icon-info" className={className} />
@@ -24,15 +28,6 @@ const StatusIcon = ({ status, className }) => {
     default:
       return null
   }
-}
-
-StatusIcon.propTypes = {
-  status: PropTypes.oneOf(['info', 'warning', 'error', 'success']).isRequired,
-  className: PropTypes.string,
-}
-
-StatusIcon.defaultProps = {
-  className: null,
 }
 
 export default StatusIcon

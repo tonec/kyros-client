@@ -5,7 +5,7 @@ import BaseBox from '@material-ui/core/Box'
 
 type Props = ComponentPropsWithoutRef<typeof BaseBox> & {
   children: React.ReactNode
-  spacing: Spacing
+  spacing?: Spacing
 }
 
 function Box({

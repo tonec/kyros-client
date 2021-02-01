@@ -1,5 +1,4 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { ComponentPropsWithoutRef } from 'react'
 import { makeStyles } from 'styles'
 import CircularProgress from '@material-ui/core/CircularProgress'
 
@@ -12,7 +11,9 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-function Loader({ color }) {
+type Props = ComponentPropsWithoutRef<typeof CircularProgress>
+
+function Loader({ color }: Props): JSX.Element {
   const classes = useStyles()
 
   return (
@@ -20,14 +21,6 @@ function Loader({ color }) {
       <CircularProgress color={color} />
     </div>
   )
-}
-
-Loader.propTypes = {
-  color: PropTypes.string,
-}
-
-Loader.defaultProps = {
-  color: 'primary',
 }
 
 export default Loader

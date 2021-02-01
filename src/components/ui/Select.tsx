@@ -1,9 +1,14 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { useLinkType } from 'types'
+import React, { ChangeEvent, ComponentPropsWithoutRef, ReactNode } from 'react'
+import { UseLink } from 'types'
 import BaseSelect from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
 import InputLabel from './form/InputLabel'
+
+type Props = ComponentPropsWithoutRef<typeof BaseSelect> & {
+  options: Record<string, string>
+  icons?: Record<string, unknown>
+  $value: UseLink
+}
 
 function Select({
   label,
@@ -17,14 +22,17 @@ function Select({
   disabled,
   onChange,
   onBlur,
-}) {
-  const handleOnChange = e => {
+}: Props): JSX.Element {
+  const handleOnChange = (
+    event: ChangeEvent<{ name?: string | undefined; value: unknown }>,
+    child: ReactNode,
+  ) => {
     if ($value) {
-      $value.set(e.target.value)
+      $value.set(event.target.value)
     }
 
     if (typeof onChange === 'function') {
-      onChange(e)
+      onChange(event, child)
     }
   }
 
@@ -45,7 +53,7 @@ function Select({
         onBlur={onBlur}
       >
         {Object.keys(options).map(option => {
-          const Icon = icons[option]
+          const Icon = icons && (icons[option] as React.ElementType)
 
           return (
             <MenuItem key={option} value={option} aria-label={options[option]}>
@@ -57,33 +65,6 @@ function Select({
       </BaseSelect>
     </>
   )
-}
-
-Select.propTypes = {
-  placeholder: PropTypes.string,
-  label: PropTypes.string,
-  options: PropTypes.shape({}).isRequired,
-  icons: PropTypes.shape({}),
-  $value: useLinkType,
-  value: PropTypes.string,
-  inputProps: PropTypes.object,
-  disabled: PropTypes.bool,
-  className: PropTypes.string,
-  onChange: PropTypes.func,
-  onBlur: PropTypes.func,
-}
-
-Select.defaultProps = {
-  placeholder: null,
-  label: null,
-  icons: {},
-  $value: null,
-  value: '',
-  inputProps: {},
-  disabled: false,
-  className: null,
-  onChange: null,
-  onBlur: null,
 }
 
 export default Select

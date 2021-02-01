@@ -1,6 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import { childrenType } from 'types'
 import cx from 'clsx'
 import { makeStyles } from 'styles'
 
@@ -17,7 +15,21 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-function SvgIcon({ viewBox, children, style, size, className }) {
+type Props = {
+  viewBox?: string
+  children: React.ReactNode
+  style?: Record<string, string>
+  size?: number
+  className?: string
+}
+
+function SvgIcon({
+  viewBox = '0 0 24 24',
+  children,
+  style,
+  size,
+  className,
+}: Props): JSX.Element {
   const classes = useStyles()
 
   const styles = { ...style }
@@ -36,21 +48,6 @@ function SvgIcon({ viewBox, children, style, size, className }) {
       {children}
     </svg>
   )
-}
-
-SvgIcon.propTypes = {
-  viewBox: PropTypes.string,
-  children: childrenType.isRequired,
-  style: PropTypes.shape({}),
-  size: PropTypes.number,
-  className: PropTypes.string,
-}
-
-SvgIcon.defaultProps = {
-  viewBox: '0 0 24 24',
-  style: {},
-  size: null,
-  className: null,
 }
 
 export default SvgIcon

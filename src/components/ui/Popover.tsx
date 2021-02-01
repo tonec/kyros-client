@@ -1,7 +1,4 @@
-/* eslint-disable react/jsx-props-no-spreading */
-import React from 'react'
-import PropTypes from 'prop-types'
-import { childrenType } from 'types'
+import React, { ComponentPropsWithoutRef, MouseEvent } from 'react'
 import cx from 'clsx'
 import { makeStyles } from 'styles'
 import PopupState, {
@@ -20,17 +17,23 @@ const useStyles = makeStyles({
   },
 })
 
+type Props = ComponentPropsWithoutRef<typeof BasePopover> & {
+  triggerWrapClassName?: string
+  renderTrigger: () => React.ReactNode
+  bindType?: 'click' | 'hover'
+}
+
 function Popover({
   children,
   triggerWrapClassName,
   renderTrigger,
   anchorOrigin,
   transformOrigin,
-  bindType,
-}) {
+  bindType = 'hover',
+}: Props): JSX.Element {
   const classes = useStyles()
 
-  const preventBubbling = event => {
+  const preventBubbling = (event: MouseEvent) => {
     if (!event) return
 
     event.preventDefault()
@@ -70,34 +73,6 @@ function Popover({
       )}
     </PopupState>
   )
-}
-
-Popover.propTypes = {
-  children: childrenType.isRequired,
-  triggerWrapClassName: PropTypes.string,
-  renderTrigger: PropTypes.func.isRequired,
-  anchorOrigin: PropTypes.shape({
-    vertical: PropTypes.string,
-    horizontal: PropTypes.string,
-  }),
-  transformOrigin: PropTypes.shape({
-    vertical: PropTypes.string,
-    horizontal: PropTypes.string,
-  }),
-  bindType: PropTypes.oneOf(['click', 'hover']),
-}
-
-Popover.defaultProps = {
-  triggerWrapClassName: null,
-  anchorOrigin: {
-    vertical: 'bottom',
-    horizontal: 'center',
-  },
-  transformOrigin: {
-    vertical: 'bottom',
-    horizontal: 'center',
-  },
-  bindType: 'hover',
 }
 
 export default Popover
