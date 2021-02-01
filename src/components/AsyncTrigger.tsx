@@ -1,15 +1,30 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { childrenType } from 'types'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
-import { withRouter, Route } from 'react-router-dom'
+import { withRouter, Route, RouteComponentProps } from 'react-router-dom'
+import { RootState } from 'redux/rootReducer'
 import { hot } from 'react-hot-loader/root'
 import { getIsFirstLoad } from 'redux/modules/app/selectors'
 
-class AsyncTrigger extends Component {
-  constructor(props) {
+type MappedState = {
+  isFirstLoad: boolean
+}
+
+type Props = RouteComponentProps &
+  MappedState & {
+    isFirstLoad: boolean
+    trigger: (pathname: string) => Promise<void>
+  }
+
+type State = {
+  needTrigger?: boolean
+  location?: RouteComponentProps['location'] | null
+  previousLocation?: RouteComponentProps['location'] | null
+}
+
+class AsyncTrigger extends Component<Props, State> {
+  constructor(props: Props) {
     super(props)
 
     this.state = {
@@ -19,7 +34,12 @@ class AsyncTrigger extends Component {
     }
   }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
+  mounted = false
+
+  static getDerivedStateFromProps(
+    nextProps: Props,
+    prevState: State,
+  ): Partial<State | null> {
     const { location } = prevState
 
     const {
@@ -55,7 +75,7 @@ class AsyncTrigger extends Component {
     this.trigger()
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
+  shouldComponentUpdate(nextProps: Props, nextState: State) {
     const { previousLocation } = this.state
     return nextState.previousLocation !== previousLocation
   }
@@ -72,10 +92,9 @@ class AsyncTrigger extends Component {
     const { trigger, location } = this.props
     const { needTrigger } = this.state
 
-    if (needTrigger) {
+    if (needTrigger && location && typeof trigger === 'function') {
       this.safeSetState({ needTrigger: false }, () => {
         trigger(location.pathname)
-          // eslint-disable-next-line no-console
           .catch(err => console.log('Failure in RouterTrigger:', err))
           .then(() => {
             this.safeSetState({ previousLocation: null })
@@ -84,9 +103,9 @@ class AsyncTrigger extends Component {
     }
   }
 
-  safeSetState(nextState, callback) {
+  safeSetState(nextState: State, callback?: () => void) {
     if (this.mounted) {
-      this.setState(nextState, callback)
+      this.setState(state => ({ ...state, nextState }), callback)
     }
   }
 
@@ -97,13 +116,7 @@ class AsyncTrigger extends Component {
   }
 }
 
-AsyncTrigger.propTypes = {
-  children: childrenType.isRequired,
-  location: PropTypes.object.isRequired,
-  trigger: PropTypes.func.isRequired,
-}
-
-const mapState = createStructuredSelector({
+const mapState = createStructuredSelector<RootState, MappedState>({
   isFirstLoad: getIsFirstLoad,
 })
 

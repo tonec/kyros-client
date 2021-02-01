@@ -3,12 +3,20 @@ import React from 'react'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
-import { withRouter, Redirect } from 'react-router'
+import { withRouter, Redirect, RouteComponentProps } from 'react-router'
 import hoistStatics from 'hoist-non-react-statics'
 import { getAuthUser } from 'redux/modules/auth/selectors'
+import { User } from 'types'
+import { RootState } from 'redux/rootReducer'
 
-function PrivateRoute(DecoratedComponent) {
-  const Wrapper = ({ location, user }) => {
+type MappedState = {
+  user: User
+}
+
+type Props = RouteComponentProps & MappedState
+
+function PrivateRoute(DecoratedComponent: React.ComponentType) {
+  const Wrapper = ({ location, user }: Props) => {
     if (user) {
       return <DecoratedComponent />
     }
@@ -26,7 +34,7 @@ function PrivateRoute(DecoratedComponent) {
   return hoistStatics(Wrapper, DecoratedComponent)
 }
 
-const mapState = createStructuredSelector({
+const mapState = createStructuredSelector<RootState, MappedState>({
   user: getAuthUser,
 })
 

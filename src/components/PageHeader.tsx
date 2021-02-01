@@ -12,7 +12,12 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-function PageHeader({ title, renderActions }) {
+type Props = {
+  title: string
+  renderActions: () => React.ReactNode
+}
+
+function PageHeader({ title, renderActions }: Props): JSX.Element {
   const classes = useStyles()
 
   return (

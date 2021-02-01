@@ -1,9 +1,12 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { Box, Card, Container, Grid, Typography } from './ui'
 
-function NotFound({ staticContext }) {
+type Props = {
+  staticContext: Record<string, string | number>
+}
+
+function NotFound({ staticContext }: Props): JSX.Element {
   if (staticContext) {
     staticContext.statusCode = 404
   }
@@ -22,14 +25,6 @@ function NotFound({ staticContext }) {
       </Grid>
     </Container>
   )
-}
-
-NotFound.propTypes = {
-  staticContext: PropTypes.object,
-}
-
-NotFound.defaultProps = {
-  staticContext: null,
 }
 
 export default NotFound

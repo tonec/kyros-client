@@ -6,9 +6,15 @@ import { Redirect } from 'react-router'
 import { createStructuredSelector } from 'reselect'
 import hoistStatics from 'hoist-non-react-statics'
 import { getAuthUser } from 'redux/modules/auth/selectors'
+import { User } from 'types'
+import { RootState } from 'redux/rootReducer'
 
-function AuthRedirect(DecoratedComponent) {
-  const Wrapper = ({ user }) => {
+type Props = {
+  user: User
+}
+
+function AuthRedirect(DecoratedComponent: React.ComponentType) {
+  const Wrapper = ({ user }: Props) => {
     if (!user) {
       return <DecoratedComponent />
     }
@@ -19,7 +25,7 @@ function AuthRedirect(DecoratedComponent) {
   return hoistStatics(Wrapper, DecoratedComponent)
 }
 
-const mapState = createStructuredSelector({
+const mapState = createStructuredSelector<RootState, Props>({
   user: getAuthUser,
 })
 

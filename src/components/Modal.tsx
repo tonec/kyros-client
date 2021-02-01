@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 import { closeModal as closeModalQS } from 'helpers/modalQS'
@@ -7,8 +6,13 @@ import { closeModal } from 'redux/modules/modal/actions'
 import { getModalKey, getModalState } from 'redux/modules/modal/selectors'
 import { getQuery } from 'redux/modules/app/selectors'
 import { Dialog } from './ui'
+import { RootState } from 'redux/rootReducer'
 
-const getTitleString = (title, state) => {
+type Title = Record<string, string> | string
+type State = Record<string, string>
+type GetTitleString = (title: Title, state: State) => string | null
+
+const getTitleString: GetTitleString = (title, state) => {
   if (typeof title === 'string') return title
 
   const view = state.view || 'create'
@@ -16,7 +20,32 @@ const getTitleString = (title, state) => {
   return title[view] || title.create || null
 }
 
-function Modal({ children, title, name, modalKey, modalState, query }) {
+type Query = Record<string, string> & {
+  modalState: State
+}
+
+type MappedState = {
+  query: Query
+  modalKey: string
+  modalState: State
+}
+
+type Props = MappedState & {
+  children: (...args: any) => React.ReactNode
+  title: string
+  name: string
+  closeModal: () => void
+}
+
+function Modal({
+  children,
+  title,
+  name,
+  modalKey,
+  modalState,
+  query,
+  closeModal,
+}: Props): JSX.Element | null {
   const { modalKey: modalKeyQS, modalState: modalStateQS } = query
 
   const key = modalKeyQS || modalKey
@@ -39,26 +68,14 @@ function Modal({ children, title, name, modalKey, modalState, query }) {
   )
 }
 
-Modal.propTypes = {
-  children: PropTypes.func.isRequired,
-  title: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-  name: PropTypes.string.isRequired,
-  modalKey: PropTypes.string,
-  modalState: PropTypes.object,
-  query: PropTypes.object,
-}
-
-Modal.defaultProps = {
-  title: null,
-  modalKey: null,
-  modalState: null,
-  query: null,
-}
-
-const mapState = createStructuredSelector({
+const mapState = createStructuredSelector<RootState, MappedState>({
   query: getQuery,
   modalKey: getModalKey,
   modalState: getModalState,
 })
 
-export default connect(mapState)(Modal)
+const mapDispatch = {
+  closeModal,
+}
+
+export default connect(mapState, mapDispatch)(Modal)

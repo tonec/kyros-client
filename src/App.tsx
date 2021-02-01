@@ -9,35 +9,29 @@ import { RootState } from './redux/rootReducer'
 import { User } from './types'
 import { setIsFirstLoad } from './redux/modules/app/actions'
 import { getAuthUser } from './redux/modules/auth/selectors'
-import { setTheme, withTheme } from './styles'
+import { setTheme, Theme, withTheme } from './styles'
 
 import './assets/stylesheets/global.css'
 import './assets/stylesheets/reset.css'
 import './assets/stylesheets/nprogress.css'
 
-interface StateProps {
+type MappedState = {
   user: User
 }
 
-interface DispatchProps {
-  setIsFirstLoad: () => void
+type Props = MappedState &
+  RouteComponentProps &
+  RouteConfigComponentProps & {
+    history: ['history']
+    theme: Theme
+    setIsFirstLoad: () => void
+  }
+
+type State = {
+  prevProps: Props
 }
 
-interface AppProps {
-  history: RouteComponentProps['history']
-  location: RouteComponentProps['location']
-  route: RouteConfigComponentProps['route']
-  theme: Record<string, unknown>
-  user: User
-}
-
-type Props = StateProps & DispatchProps & AppProps
-
-interface AppState {
-  prevProps: AppProps
-}
-
-class App extends Component<Props> {
+class App extends Component<Props, State> {
   constructor(props: Props) {
     super(props)
 
@@ -48,7 +42,7 @@ class App extends Component<Props> {
     }
   }
 
-  static getDerivedStateFromProps(nextProps: Props, prevState: AppState) {
+  static getDerivedStateFromProps(nextProps: Props, prevState: State) {
     const { history, location } = nextProps
     const { prevProps } = prevState
 
@@ -94,7 +88,7 @@ class App extends Component<Props> {
   }
 }
 
-const mapState = createStructuredSelector<RootState, StateProps>({
+const mapState = createStructuredSelector<RootState, MappedState>({
   user: getAuthUser,
 })
 

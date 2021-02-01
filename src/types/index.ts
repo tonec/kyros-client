@@ -79,7 +79,7 @@ type Spacings =
 
 export type Spacing =
   | {
-      [P in Spacings]: number | string
+      [P in Spacings]?: number
     }
   | undefined
 

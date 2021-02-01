@@ -58,9 +58,9 @@ const useStylesDialog = makeStyles({
 
 type DialogProps = {
   children: React.ReactNode
-  title: string
+  title?: string | null
   open: boolean
-  testid: string
+  testid?: string
   onClose: () => void
 }
 
