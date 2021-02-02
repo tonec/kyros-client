@@ -1,3 +1,5 @@
+import { APIAction } from 'types'
+
 /*
  * Actions
  * * * * */
@@ -24,34 +26,34 @@ export const DELETE_FAIL = `${prefix}/DELETE_FAIL`
  * Action creators
  * * * * * * * * */
 
-export function fetchClients() {
+export function fetchClients(): APIAction {
   return {
-    types: [FETCH, FETCH_SUCCESS, FETCH_FAIL],
+    type: [FETCH, FETCH_SUCCESS, FETCH_FAIL],
     request: ({ client }) => client.get('client'),
   }
 }
 
-export function createClient(data) {
+export function createClient(data): APIAction {
   return {
-    types: [CREATE, CREATE_SUCCESS, CREATE_FAIL],
+    type: [CREATE, CREATE_SUCCESS, CREATE_FAIL],
     request: ({ client }) => client.post('client', data),
     flash: { success: 'Client created!' },
     closeModal: true,
   }
 }
 
-export function updateClient(id, data) {
+export function updateClient(id, data): APIAction {
   return {
-    types: [UPDATE, UPDATE_SUCCESS, UPDATE_FAIL],
+    type: [UPDATE, UPDATE_SUCCESS, UPDATE_FAIL],
     request: ({ client }) => client.patch(`client/${id}`, data),
     flash: { success: 'Client updated!' },
     closeModal: true,
   }
 }
 
-export function deleteClient(id) {
+export function deleteClient(id): APIAction {
   return {
-    types: [DELETE, DELETE_SUCCESS, DELETE_FAIL],
+    type: [DELETE, DELETE_SUCCESS, DELETE_FAIL],
     request: ({ client }) => client.delete(`client/${id}`),
     flash: { success: 'Client deleted!' },
   }

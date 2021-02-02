@@ -112,7 +112,7 @@ export type User = {
 }
 
 export interface APIAction {
-  types: [string, string, string]
+  type: [string, string, string]
   request: ({ client }: { client: AxiosInstance }) => AxiosPromise
   flash?: { success?: string; error?: string }
   closeModal?: boolean

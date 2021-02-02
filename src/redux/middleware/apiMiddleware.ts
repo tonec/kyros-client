@@ -21,7 +21,7 @@ export default ({ client, history }: Props): Middleware => {
 
     const {
       request,
-      types,
+      type,
       shouldRequest = () => true,
       inject = {},
       flash = {
@@ -37,9 +37,9 @@ export default ({ client, history }: Props): Middleware => {
     }
 
     if (
-      !Array.isArray(types) ||
-      types.length !== 3 ||
-      !types.every(type => typeof type === 'string')
+      !Array.isArray(type) ||
+      type.length !== 3 ||
+      !type.every(t => typeof t === 'string')
     ) {
       throw new Error('Expected an array of 3 string types.')
     }
@@ -53,7 +53,7 @@ export default ({ client, history }: Props): Middleware => {
     }
 
     // Is async
-    const [REQUEST, SUCCESS, FAIL] = types
+    const [REQUEST, SUCCESS, FAIL] = type
 
     // async action started
     next({ type: REQUEST, ...inject })

@@ -1,4 +1,4 @@
-import { APIAction, User } from '../../../types'
+import { APIAction, User } from 'types'
 
 /*
  * Actions
@@ -28,14 +28,14 @@ export const DELETE_FAIL = `${prefix}/DELETE_FAIL`
 
 export function fetchUsers(): APIAction {
   return {
-    types: [FETCH, FETCH_SUCCESS, FETCH_FAIL],
+    type: [FETCH, FETCH_SUCCESS, FETCH_FAIL],
     request: ({ client }) => client.get('user'),
   }
 }
 
 export function createUser(data: User): APIAction {
   return {
-    types: [CREATE, CREATE_SUCCESS, CREATE_FAIL],
+    type: [CREATE, CREATE_SUCCESS, CREATE_FAIL],
     request: ({ client }) => client.post('user', data),
     flash: { success: 'User created!' },
     closeModal: true,
@@ -44,7 +44,7 @@ export function createUser(data: User): APIAction {
 
 export function updateUser(id: string, data: User): APIAction {
   return {
-    types: [UPDATE, UPDATE_SUCCESS, UPDATE_FAIL],
+    type: [UPDATE, UPDATE_SUCCESS, UPDATE_FAIL],
     request: ({ client }) => client.patch(`user/${id}`, data),
     flash: { success: 'User updated!' },
     closeModal: true,
@@ -53,7 +53,7 @@ export function updateUser(id: string, data: User): APIAction {
 
 export function deleteUser(id: string): APIAction {
   return {
-    types: [DELETE, DELETE_SUCCESS, DELETE_FAIL],
+    type: [DELETE, DELETE_SUCCESS, DELETE_FAIL],
     request: ({ client }) => client.delete(`user/${id}`),
     flash: { success: 'User deleted!' },
   }
