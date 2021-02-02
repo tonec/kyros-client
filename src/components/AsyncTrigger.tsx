@@ -3,8 +3,8 @@ import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 import { withRouter, Route, RouteComponentProps } from 'react-router-dom'
-import { RootState } from 'redux/rootReducer'
 import { hot } from 'react-hot-loader/root'
+import { RootState } from 'redux/rootReducer'
 import { getIsFirstLoad } from 'redux/modules/app/selectors'
 
 type MappedState = {
@@ -36,10 +36,7 @@ class AsyncTrigger extends Component<Props, State> {
 
   mounted = false
 
-  static getDerivedStateFromProps(
-    nextProps: Props,
-    prevState: State,
-  ): Partial<State | null> {
+  static getDerivedStateFromProps(nextProps: Props, prevState: State) {
     const { location } = prevState
 
     const {
@@ -92,7 +89,7 @@ class AsyncTrigger extends Component<Props, State> {
     const { trigger, location } = this.props
     const { needTrigger } = this.state
 
-    if (needTrigger && location && typeof trigger === 'function') {
+    if (needTrigger) {
       this.safeSetState({ needTrigger: false }, () => {
         trigger(location.pathname)
           .catch(err => console.log('Failure in RouterTrigger:', err))
@@ -105,7 +102,7 @@ class AsyncTrigger extends Component<Props, State> {
 
   safeSetState(nextState: State, callback?: () => void) {
     if (this.mounted) {
-      this.setState(state => ({ ...state, nextState }), callback)
+      this.setState(nextState, callback)
     }
   }
 
