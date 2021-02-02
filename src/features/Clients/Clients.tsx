@@ -4,7 +4,7 @@ import { Button, PageHeader } from 'components'
 import ClientsTableContainer from './ClientsTableContainer'
 import ClientModal from '../Client/ClientModal'
 
-function Clients() {
+function Clients(): JSX.Element {
   const title = 'Clients'
 
   const handleCreateClient = () => {

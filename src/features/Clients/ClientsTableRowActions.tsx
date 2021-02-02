@@ -1,10 +1,10 @@
-import React from 'react'
-import { clientType } from 'types'
+import React, { MouseEvent } from 'react'
 import { useDispatch } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles'
 import { openModal } from 'helpers/modalQS'
 import { deleteClient } from 'redux/modules/client/actions'
 import { ConfirmAction, Icon, IconButton, Popover } from 'components'
+import { Client } from 'types/entity'
 
 const useStyles = makeStyles(theme => ({
   actions: {
@@ -23,20 +23,24 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-function ClientsTableRowActions({ client }) {
+type Props = {
+  client: Client
+}
+
+function ClientsTableRowActions({ client }: Props): JSX.Element {
   const classes = useStyles()
   const dispatch = useDispatch()
 
-  const onEdit = e => {
-    e.stopPropagation()
+  const onEdit = (event: MouseEvent) => {
+    event.stopPropagation()
 
     openModal('client', {
       state: { id: client.id, view: 'edit' },
     })
   }
 
-  const onDelete = e => {
-    e.stopPropagation()
+  const onDelete = (event: MouseEvent) => {
+    event.stopPropagation()
 
     dispatch(deleteClient(client.id))
   }
@@ -44,6 +48,7 @@ function ClientsTableRowActions({ client }) {
   return (
     <div className={classes.actions}>
       <Popover
+        open={false}
         triggerWrapClassName={classes.triggerWrap}
         renderTrigger={() => (
           <span className={classes.trigger}>
@@ -65,10 +70,6 @@ function ClientsTableRowActions({ client }) {
       </Popover>
     </div>
   )
-}
-
-ClientsTableRowActions.propTypes = {
-  client: clientType.isRequired,
 }
 
 export default ClientsTableRowActions

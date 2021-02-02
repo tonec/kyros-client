@@ -1,9 +1,10 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import cx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
 import { Card, Loader, Table } from 'components'
 import ClientsTableRow from './ClientsTableRow'
+import { Column } from 'types'
+import { Client } from 'types/entity'
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -14,20 +15,28 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
+type Props = {
+  columns: Column[]
+  data: Client[]
+  fallbackText?: string
+  isFetching: boolean
+  handleRowClick: (client: Client) => void
+}
+
 const { Head, Body, Row, Cell } = Table
 
 function ClientsTable({
   columns,
   data,
-  fallbackText,
+  fallbackText = 'No data to display',
   isFetching,
   handleRowClick,
-}) {
+}: Props): JSX.Element {
   const classes = useStyles()
 
   if (isFetching) {
     return (
-      <div className={classes.loader}>
+      <div>
         <Loader />
       </div>
     )
@@ -73,21 +82,6 @@ function ClientsTable({
       </Card>
     </div>
   )
-}
-
-ClientsTable.propTypes = {
-  columns: PropTypes.arrayOf(PropTypes.object).isRequired,
-  data: PropTypes.arrayOf(PropTypes.object),
-  fallbackText: PropTypes.string,
-  isFetching: PropTypes.bool,
-  handleRowClick: PropTypes.func,
-}
-
-ClientsTable.defaultProps = {
-  data: [],
-  fallbackText: 'No data to display',
-  isFetching: false,
-  handleRowClick: null,
 }
 
 export default ClientsTable

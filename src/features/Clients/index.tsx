@@ -5,7 +5,7 @@ import { Main } from 'components'
 import Clients from './Clients'
 import { Store } from 'redux'
 
-function ClientsView() {
+function ClientsView(): JSX.Element {
   const title = 'Clients'
 
   return (

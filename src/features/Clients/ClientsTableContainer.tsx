@@ -1,21 +1,30 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import { clientsType } from 'types'
 import { connect } from 'react-redux'
 import { useHistory } from 'react-router'
 import { createStructuredSelector } from 'reselect'
+import { Client } from 'types/entity'
 import { isFetchingClients } from 'redux/modules/api/selectors'
 import { getVisibleClients } from 'redux/modules/client/selectors'
 import ClientsTable from './ClientsTable'
+import { RootState } from 'redux/rootReducer'
+import { Column } from 'types'
 
-function ClientsTableContainer({ isFetchingClients, clients }) {
+type Props = {
+  isFetchingClients: boolean
+  clients: Client[]
+}
+
+function ClientsTableContainer({
+  isFetchingClients,
+  clients,
+}: Props): JSX.Element {
   const history = useHistory()
 
-  const handleRowClick = client => {
+  const handleRowClick = (client: Client) => {
     history.push(`/client/${client.id}/schedule`)
   }
 
-  const columns = [
+  const columns: Column[] = [
     {
       key: 'name',
       name: 'Client name',
@@ -34,17 +43,7 @@ function ClientsTableContainer({ isFetchingClients, clients }) {
   )
 }
 
-ClientsTableContainer.propTypes = {
-  isFetchingClients: PropTypes.bool,
-  clients: clientsType,
-}
-
-ClientsTableContainer.defaultProps = {
-  isFetchingClients: false,
-  clients: null,
-}
-
-const mapState = createStructuredSelector({
+const mapState = createStructuredSelector<RootState, Props>({
   isFetchingClients,
   clients: getVisibleClients,
 })

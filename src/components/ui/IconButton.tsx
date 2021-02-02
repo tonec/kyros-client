@@ -3,7 +3,7 @@ import React, { ComponentPropsWithoutRef } from 'react'
 import BaseIconButton from '@material-ui/core/IconButton'
 
 type Props = ComponentPropsWithoutRef<typeof BaseIconButton> & {
-  testid: string
+  testid?: string
 }
 
 function IconButton({

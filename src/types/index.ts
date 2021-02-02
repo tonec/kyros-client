@@ -129,3 +129,8 @@ export type ReactElementWithDisplayName = React.ReactElement & {
     displayName: string
   }
 }
+
+export type Column = {
+  key: string
+  name?: string
+}
