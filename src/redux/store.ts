@@ -1,11 +1,22 @@
 /* eslint-disable global-require */
-import { createStore, applyMiddleware, compose } from 'redux'
+import { createStore, applyMiddleware, compose, Store } from 'redux'
 import { routerMiddleware } from 'connected-react-router'
-import { createPersistoid } from 'redux-persist'
+import { createPersistoid, PersistConfig } from 'redux-persist'
+import { AxiosInstance } from 'axios'
 import apiMiddleware from './middleware/apiMiddleware'
-import rootReducer from './rootReducer'
+import rootReducer, { RootState } from './rootReducer'
+import { History } from 'history'
 
-export default ({ client, history, match, params, data, persistConfig }) => {
+declare const window: any
+
+interface Props {
+  client: AxiosInstance
+  history: History<unknown>
+  data: RootState
+  persistConfig: PersistConfig<any>
+}
+
+export default ({ client, history, data, persistConfig }: Props): Store => {
   let composeEnhancers = compose
 
   let initialState = { ...data }
@@ -17,7 +28,7 @@ export default ({ client, history, match, params, data, persistConfig }) => {
   }
 
   const middleware = [
-    apiMiddleware({ client, history, match, params }),
+    apiMiddleware({ client, history }),
     routerMiddleware(history),
   ]
 
