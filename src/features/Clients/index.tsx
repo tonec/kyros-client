@@ -3,6 +3,7 @@ import { provideHooks } from 'redial'
 import { fetchClients } from 'redux/modules/client/actions'
 import { Main } from 'components'
 import Clients from './Clients'
+import { Store } from 'redux'
 
 function ClientsView() {
   const title = 'Clients'
@@ -15,7 +16,7 @@ function ClientsView() {
 }
 
 const hooks = {
-  fetch: ({ store }) => store.dispatch(fetchClients()),
+  fetch: ({ store }: { store: Store }) => store.dispatch(fetchClients()),
 }
 
 export default provideHooks(hooks)(ClientsView)
