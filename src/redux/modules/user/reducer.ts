@@ -12,21 +12,21 @@ type Payload = PayloadAction<{
   data: { entities: User[] }
 }>
 
-interface IUserState {
+interface UserState {
   visibleUsers: string[]
 }
 
-export const initialState: IUserState = {
+export const initialState: UserState = {
   visibleUsers: [],
 }
 
-export default createReducer<IUserState>(initialState, {
-  [types.FETCH_SUCCESS]: (state: IUserState, { payload }: Payload) => ({
+export default createReducer<UserState>(initialState, {
+  [types.FETCH_SUCCESS]: (state: UserState, { payload }: Payload) => ({
     ...state,
     visibleUsers: payload.data.entities.map(fk('id')),
   }),
 
-  [RECEIVED]: (state: IUserState, { payload }: Payload) => {
+  [RECEIVED]: (state: UserState, { payload }: Payload) => {
     if (payload.action === 'store' && payload.entity === 'user') {
       return {
         ...state,
