@@ -14,7 +14,6 @@ function mergeCopyArrays(objValue: Obj<unknown>, srcValue: Obj<unknown>) {
   if (isArray(objValue)) {
     return srcValue
   }
-  return null
 }
 
 type EntityById<E> = Obj<E>
