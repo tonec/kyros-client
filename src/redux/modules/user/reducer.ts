@@ -20,7 +20,7 @@ export const initialState: IUserState = {
   visibleUsers: [],
 }
 
-export default createReducer(initialState, {
+export default createReducer<IUserState>(initialState, {
   [types.FETCH_SUCCESS]: (state: IUserState, { payload }: Payload) => ({
     ...state,
     visibleUsers: payload.data.entities.map(fk('id')),
