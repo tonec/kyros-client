@@ -1,5 +1,6 @@
 import { connectRouter } from 'connected-react-router'
-import { combineReducers } from '@reduxjs/toolkit'
+import { Reducer } from 'redux'
+import { persistCombineReducers } from 'redux-persist'
 import { History } from 'history'
 import api from './modules/api/reducer'
 import app from './modules/app/reducer'
@@ -11,9 +12,9 @@ import modal from './modules/modal/reducer'
 import user from './modules/user/reducer'
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-const rootReducer = (history: History) =>
-  combineReducers({
-    router: connectRouter(history),
+const rootReducer = (persistConfig: any, history: History) =>
+  persistCombineReducers(persistConfig, {
+    router: connectRouter(history) as Reducer,
     api,
     app,
     auth,

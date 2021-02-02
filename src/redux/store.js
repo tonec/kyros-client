@@ -1,7 +1,7 @@
 /* eslint-disable global-require */
 import { createStore, applyMiddleware, compose } from 'redux'
 import { routerMiddleware } from 'connected-react-router'
-import { persistCombineReducers, createPersistoid } from 'redux-persist'
+import { createPersistoid } from 'redux-persist'
 import apiMiddleware from './middleware/apiMiddleware'
 import rootReducer from './rootReducer'
 
@@ -22,7 +22,7 @@ export default ({ client, history, match, params, data, persistConfig }) => {
   ]
 
   const store = createStore(
-    rootReducer,
+    rootReducer(persistConfig, history),
     initialState,
     composeEnhancers(applyMiddleware(...middleware)),
   )
