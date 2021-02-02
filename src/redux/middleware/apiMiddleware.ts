@@ -3,9 +3,17 @@ import { closeModal as closeModalQS } from 'helpers/modalQS'
 import { showSuccess, showError } from 'redux/modules/flash/actions'
 import { closeModal as closeModalAction } from 'redux/modules/modal/actions'
 import { received } from 'redux/modules/app/actions'
+import { AxiosError, AxiosInstance, AxiosResponse } from 'axios'
+import { History } from 'history'
+import { Middleware } from 'redux'
 
-export default ({ client, history }) => {
-  return ({ dispatch, getState }) => next => action => {
+type Props = {
+  client: AxiosInstance
+  history: History
+}
+
+export default ({ client, history }: Props): Middleware => {
+  const middleware: Middleware = ({ dispatch, getState }) => next => action => {
     // Is thunk
     if (typeof action === 'function') {
       return action({ history, dispatch, getState })
@@ -62,7 +70,7 @@ export default ({ client, history }) => {
     //  whether action promise is resolved/value is returned or rejected
     actionPromise
       .then(
-        payload => {
+        (payload: AxiosResponse) => {
           next(received(payload))
 
           next({
@@ -80,7 +88,7 @@ export default ({ client, history }) => {
           }
         },
 
-        error => {
+        (error: AxiosError) => {
           next({
             type: FAIL,
             payload: { ...inject, ...error },
@@ -96,11 +104,15 @@ export default ({ client, history }) => {
           }
         },
       )
-      .catch(error => {
+      .catch((error: AxiosError) => {
         console.log('MIDDLEWARE ERROR: ', error)
         next({ type: FAIL, payload: { ...inject, ...error }, error: true })
       })
 
-    return actionPromise.catch(error => console.log('API error: ', error))
+    return actionPromise.catch((error: PromiseRejectedResult) =>
+      console.log('API error: ', error),
+    )
   }
+
+  return middleware
 }

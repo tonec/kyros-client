@@ -1,25 +1,37 @@
-import { del } from 'object-path-immutable'
 import get from 'lodash/get'
+import isArray from 'lodash/isArray'
 import merge from 'lodash/merge'
 import mergeWith from 'lodash/mergeWith'
-import isArray from 'lodash/isArray'
 import union from 'lodash/union'
+import { del } from 'object-path-immutable'
+import { APIPayload, Obj } from 'types'
 import createReducer from '../../createReducer'
 import { RECEIVED } from '../app/actions'
 import { LOGOUT } from '../auth/actions'
 import normalized from './schema'
 
-// eslint-disable-next-line consistent-return
-function mergeCopyArrays(objValue, srcValue) {
+function mergeCopyArrays(objValue: Obj<unknown>, srcValue: Obj<unknown>) {
   if (isArray(objValue)) {
     return srcValue
   }
+  return null
 }
 
-export const initialState = {}
+type EntityById<E> = Obj<E>
 
-export default createReducer(initialState, {
-  [RECEIVED]: (state, { payload }) => {
+export interface EntityStore<E> {
+  byId: EntityById<E>
+  allIds: string[]
+}
+
+interface EntityState {
+  [key: string]: EntityStore<any>
+}
+
+export const initialState: EntityState = {}
+
+export default createReducer<EntityState>(initialState, {
+  [RECEIVED]: (state: EntityState, { payload }: APIPayload) => {
     if (payload && payload.action === 'store') {
       const entity = payload.entity.toLowerCase()
       const data = normalized(payload)

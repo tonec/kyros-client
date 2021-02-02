@@ -1,6 +1,6 @@
 import { connectRouter } from 'connected-react-router'
 import { Reducer } from 'redux'
-import { persistCombineReducers } from 'redux-persist'
+import { persistCombineReducers, PersistConfig } from 'redux-persist'
 import { History } from 'history'
 import api from './modules/api/reducer'
 import app from './modules/app/reducer'

@@ -1,4 +1,5 @@
 import { createAction } from '@reduxjs/toolkit'
+import { AxiosResponse } from 'axios'
 
 /*
  * Actions
@@ -31,7 +32,7 @@ export const IS_OFFLINE = `${prefix}/IS_OFFLINE`
 export const setIsFirstLoad = createAction(FIRST_LOAD)
 
 // Message received from api (Dispatched by middleware)
-export const received = createAction(RECEIVED)
+export const received = createAction<AxiosResponse>(RECEIVED)
 
 // Connect to WebSocket
 export const connect = createAction(CONNECT)

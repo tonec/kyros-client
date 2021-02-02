@@ -9,7 +9,7 @@ import { History } from 'history'
 
 declare const window: any
 
-interface Props {
+type Props = {
   client: AxiosInstance
   history: History<unknown>
   data: RootState

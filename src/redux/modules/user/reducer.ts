@@ -1,16 +1,9 @@
-import { PayloadAction } from '@reduxjs/toolkit'
-import { fk } from '../../../utils'
+import { APIPayload } from 'types'
+import { fk } from 'utils'
 import createReducer from '../../createReducer'
 import * as types from './actions'
 import { RECEIVED } from '../app/actions'
 import { LOGOUT } from '../auth/actions'
-import { User } from '../../../types'
-
-type Payload = PayloadAction<{
-  action: string
-  entity: string
-  data: { entities: User[] }
-}>
 
 interface UserState {
   visibleUsers: string[]
@@ -21,12 +14,12 @@ export const initialState: UserState = {
 }
 
 export default createReducer<UserState>(initialState, {
-  [types.FETCH_SUCCESS]: (state: UserState, { payload }: Payload) => ({
+  [types.FETCH_SUCCESS]: (state: UserState, { payload }: APIPayload) => ({
     ...state,
     visibleUsers: payload.data.entities.map(fk('id')),
   }),
 
-  [RECEIVED]: (state: UserState, { payload }: Payload) => {
+  [RECEIVED]: (state: UserState, { payload }: APIPayload) => {
     if (payload.action === 'store' && payload.entity === 'user') {
       return {
         ...state,

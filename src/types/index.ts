@@ -1,4 +1,6 @@
 import React from 'react'
+import { PayloadAction } from '@reduxjs/toolkit'
+import { NormalizedSchema } from 'normalizr'
 import { AxiosInstance, AxiosPromise } from 'axios'
 import {
   arrayOf,
@@ -61,6 +63,19 @@ export const clientsType = arrayOf(clientType)
 
 export const timescaleType = oneOf(TIMESCALES)
 
+export type Obj<T = unknown> = Record<string, T>
+
+export type Normalized = NormalizedSchema<
+  {
+    [key: string]:
+      | {
+          [key: string]: any
+        }
+      | undefined
+  },
+  any
+>
+
 type Spacings =
   | 'm'
   | 'mt'
@@ -102,6 +117,12 @@ export interface APIAction {
   flash?: { success?: string; error?: string }
   closeModal?: boolean
 }
+
+export type APIPayload = PayloadAction<{
+  action: string
+  entity: string
+  data: { entities: User[] }
+}>
 
 export type ReactElementWithDisplayName = React.ReactElement & {
   type: {

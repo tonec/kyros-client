@@ -1,4 +1,4 @@
-import { IAPIAction, User } from '../../../types'
+import { APIAction, User } from '../../../types'
 
 /*
  * Actions
@@ -26,14 +26,14 @@ export const DELETE_FAIL = `${prefix}/DELETE_FAIL`
  * Action creators
  * * * * * * * * */
 
-export function fetchUsers(): IAPIAction {
+export function fetchUsers(): APIAction {
   return {
     types: [FETCH, FETCH_SUCCESS, FETCH_FAIL],
     request: ({ client }) => client.get('user'),
   }
 }
 
-export function createUser(data: User): IAPIAction {
+export function createUser(data: User): APIAction {
   return {
     types: [CREATE, CREATE_SUCCESS, CREATE_FAIL],
     request: ({ client }) => client.post('user', data),
@@ -42,7 +42,7 @@ export function createUser(data: User): IAPIAction {
   }
 }
 
-export function updateUser(id: string, data: User): IAPIAction {
+export function updateUser(id: string, data: User): APIAction {
   return {
     types: [UPDATE, UPDATE_SUCCESS, UPDATE_FAIL],
     request: ({ client }) => client.patch(`user/${id}`, data),
@@ -51,7 +51,7 @@ export function updateUser(id: string, data: User): IAPIAction {
   }
 }
 
-export function deleteUser(id: string): IAPIAction {
+export function deleteUser(id: string): APIAction {
   return {
     types: [DELETE, DELETE_SUCCESS, DELETE_FAIL],
     request: ({ client }) => client.delete(`user/${id}`),

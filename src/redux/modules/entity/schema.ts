@@ -1,6 +1,7 @@
 import { normalize, schema } from 'normalizr'
+import { APIPayload, Normalized } from 'types'
 
-export default message => {
+export default (message: APIPayload['payload']): Normalized => {
   const entity = new schema.Entity(
     message.entity.toLowerCase(),
     {},
