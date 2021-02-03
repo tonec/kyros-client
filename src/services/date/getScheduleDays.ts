@@ -3,7 +3,9 @@ import eachDay from 'date-fns/eachDayOfInterval'
 import endOfMonth from 'date-fns/endOfMonth'
 import startOfMonth from 'date-fns/startOfMonth'
 
-export default timescale => {
+type Timescale = 'day' | 'week' | 'fortnight' | 'month'
+
+export default (timescale: Timescale): Date[] | null => {
   const now = new Date()
 
   switch (timescale) {

@@ -23,7 +23,7 @@ const useStyles = makeStyles({
   },
 })
 
-export default function Header() {
+export default function Header(): JSX.Element {
   const dispatch = useDispatch()
   const history = useHistory()
   const { pathname } = useLocation()

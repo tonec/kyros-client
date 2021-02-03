@@ -6,7 +6,7 @@ import CheckCircleIcon from '@material-ui/icons/CheckCircle'
 
 type Props = {
   status: 'info' | 'warning' | 'error' | 'success'
-  className: string
+  className?: string
 }
 
 const StatusIcon = ({ status, className }: Props): JSX.Element | null => {
@@ -21,9 +21,7 @@ const StatusIcon = ({ status, className }: Props): JSX.Element | null => {
       return <ErrorIcon data-testid="icon-error" className={className} />
 
     case 'success':
-      return (
-        <CheckCircleIcon data-testid="icon-success" className={className} />
-      )
+      return <CheckCircleIcon data-testid="icon-success" className={className} />
 
     default:
       return null

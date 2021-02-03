@@ -1,25 +1,28 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { childrenType, maxWidthType } from 'types'
+import { childrenType, MaxWidth, maxWidthType } from 'types'
 import cx from 'clsx'
 import { makeStyles } from 'styles'
 import Base from './Base'
 
 const useStyles = makeStyles({
   wrap: {
-    display: 'flex',
-    flexDirection: 'row',
-  },
-  container: {
-    display: 'flex',
     flexDirection: 'column',
-    position: 'relative',
-    width: '100%',
-    marginLeft: 56,
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '100%',
   },
 })
 
-function Main({ children, title, maxWidth, className }) {
+type Props = {
+  children: React.ReactNode
+  title: string
+  maxWidth: MaxWidth
+  className: string
+  container: boolean
+}
+
+function Centered({ children, title, maxWidth, className, container }: Props): JSX.Element {
   const classes = useStyles()
 
   return (
@@ -27,26 +30,25 @@ function Main({ children, title, maxWidth, className }) {
       title={title}
       maxWidth={maxWidth}
       classNameWrap={cx(classes.wrap, className)}
-      classNameContainer={classes.container}
-      container
-      header
+      container={container}
     >
       {children}
     </Base>
   )
 }
 
-Main.propTypes = {
+Centered.propTypes = {
   children: childrenType.isRequired,
-  title: PropTypes.string,
+  title: PropTypes.string.isRequired,
+  container: PropTypes.bool,
   maxWidth: maxWidthType,
   className: PropTypes.string,
 }
 
-Main.defaultProps = {
-  title: null,
+Centered.defaultProps = {
   maxWidth: false,
+  container: false,
   className: null,
 }
 
-export default Main
+export default Centered

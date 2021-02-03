@@ -6,16 +6,16 @@ import * as actions from './actions'
 
 interface FlashState {
   visible: boolean
-  status: Status | null
-  message: string | null
+  status: Status
+  message: string
   dismissable: boolean
   timeout: number | null
 }
 
 export const initialState: FlashState = {
   visible: false,
-  status: null,
-  message: null,
+  status: 'error',
+  message: '',
   dismissable: false,
   timeout: null,
 }

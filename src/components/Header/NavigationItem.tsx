@@ -1,20 +1,25 @@
-import React from 'react'
+import React, { MouseEvent, KeyboardEvent } from 'react'
 import PropTypes from 'prop-types'
 import { useHistory } from 'react-router-dom'
 import { makeStyles } from 'styles'
 import { Anchor } from '../ui'
 
+type StyleProps = {
+  active: boolean
+  disabled: boolean
+}
+
 const useStyles = makeStyles(theme => ({
   item: {
     display: 'block',
-    color: ({ active, disabled }) => {
+    color: ({ active, disabled }: StyleProps) => {
       if (disabled) {
         return '#2b4f5c'
       }
       return active ? '#07181f' : theme.palette.common.white
     },
 
-    backgroundColor: ({ active }) =>
+    backgroundColor: ({ active }: StyleProps) =>
       active ? theme.palette.common.white : 'transparent',
 
     '& a': {
@@ -22,12 +27,19 @@ const useStyles = makeStyles(theme => ({
       textAlign: 'center',
       padding: '6px 0',
       outline: 'none',
-      cursor: ({ disabled }) => (disabled ? 'initial' : 'pointer'),
+      cursor: ({ disabled }: StyleProps) => (disabled ? 'initial' : 'pointer'),
     },
   },
 }))
 
-function NavigationItem({ path, icon, disabled, handleClick }) {
+type Props = {
+  path: string
+  icon: React.ReactElement
+  disabled: boolean
+  handleClick: (event: MouseEvent | KeyboardEvent) => void
+}
+
+function NavigationItem({ path, icon, disabled, handleClick }: Props): JSX.Element {
   const history = useHistory()
 
   const { pathname } = history.location
@@ -35,14 +47,14 @@ function NavigationItem({ path, icon, disabled, handleClick }) {
 
   const classes = useStyles({ active, disabled })
 
-  const onClick = event => {
+  const onClick = (event: MouseEvent | KeyboardEvent) => {
     event.preventDefault()
     event.stopPropagation()
 
     if (disabled) return
 
     if (typeof handleClick === 'function') {
-      handleClick()
+      handleClick(event)
       return
     }
 

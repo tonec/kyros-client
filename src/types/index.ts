@@ -3,7 +3,19 @@ import { PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from 'redux/rootReducer'
 import { NormalizedSchema } from 'normalizr'
 import { AxiosInstance, AxiosPromise } from 'axios'
-import { arrayOf, bool, func, instanceOf, node, number, oneOf, oneOfType, shape, string } from 'prop-types'
+import { BaseCSSProperties } from '@material-ui/core/styles/withStyles'
+import {
+  arrayOf,
+  bool,
+  func,
+  instanceOf,
+  node,
+  number,
+  oneOf,
+  oneOfType,
+  shape,
+  string,
+} from 'prop-types'
 import { TIMESCALES } from '../utils/constants'
 
 export const childrenType = oneOfType([arrayOf(node), node])
@@ -114,7 +126,23 @@ export type APIPayload<T> = PayloadAction<{
  * UI types
  * * * * * * * * */
 
-type Spacings = 'm' | 'mt' | 'mr' | 'mb' | 'ml' | 'mx' | 'my' | 'p' | 'pt' | 'pr' | 'pb' | 'pl' | 'px' | 'py'
+export type MaxWidth = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+
+type Spacings =
+  | 'm'
+  | 'mt'
+  | 'mr'
+  | 'mb'
+  | 'ml'
+  | 'mx'
+  | 'my'
+  | 'p'
+  | 'pt'
+  | 'pr'
+  | 'pb'
+  | 'pl'
+  | 'px'
+  | 'py'
 
 export type Spacing =
   | {

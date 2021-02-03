@@ -1,8 +1,11 @@
 import React, { useEffect } from 'react'
-import PropTypes from 'prop-types'
-import { statusTypes } from 'types'
+import { Status } from 'types'
 import { makeStyles, color } from 'styles'
 import { StatusIcon, Typography } from '../ui'
+
+type UseStylesProps = {
+  status: string
+}
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -13,7 +16,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: '#fff',
     borderBottomWidth: 5,
     borderBottomStyle: 'solid',
-    borderBottomColor: ({ status }) => color(status),
+    borderBottomColor: ({ status }: UseStylesProps) => color(status),
     boxShadow: theme.shadows[1],
   },
 
@@ -27,7 +30,7 @@ const useStyles = makeStyles(theme => ({
       top: '50%',
       left: theme.spacing(2),
       transform: 'translateY(-50%)',
-      color: ({ status }) => color(status),
+      color: ({ status }: UseStylesProps) => color(status),
     },
   },
 
@@ -46,14 +49,24 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-function Flash({ status, message, dismissable, timeout, handleDismiss }) {
+type Props = {
+  status: Status
+  message: string
+  dismissable: boolean
+  timeout: number | null
+  handleDismiss: () => void
+}
+
+function Flash({ status, message, dismissable, timeout, handleDismiss }: Props): JSX.Element {
   const classes = useStyles({ status })
 
   useEffect(() => {
-    let timer
+    let timer: ReturnType<typeof setTimeout>
+
     if (timeout) {
       timer = setTimeout(handleDismiss, timeout)
     }
+
     return () => clearTimeout(timer)
   }, [timeout, handleDismiss])
 
@@ -66,32 +79,13 @@ function Flash({ status, message, dismissable, timeout, handleDismiss }) {
 
       {dismissable && (
         <div className={classes.dismiss}>
-          <button
-            type="button"
-            data-testid="button-dismiss"
-            onClick={handleDismiss}
-          >
+          <button type="button" data-testid="button-dismiss" onClick={handleDismiss}>
             <Typography variant="body2">Dismiss</Typography>
           </button>
         </div>
       )}
     </div>
   )
-}
-
-Flash.propTypes = {
-  status: statusTypes,
-  message: PropTypes.string,
-  dismissable: PropTypes.bool,
-  timeout: PropTypes.number,
-  handleDismiss: PropTypes.func.isRequired,
-}
-
-Flash.defaultProps = {
-  status: 'error',
-  message: '',
-  dismissable: false,
-  timeout: null,
 }
 
 export default Flash

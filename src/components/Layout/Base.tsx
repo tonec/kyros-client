@@ -1,6 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import { childrenType, maxWidthType } from 'types'
+import { MaxWidth } from 'types'
 import cx from 'clsx'
 import Helmet from 'react-helmet'
 import { makeStyles } from 'styles'
@@ -8,25 +7,39 @@ import { ConditionalWrap } from '../ui'
 import Flash from '../Flash/FlashContainer'
 import Header from '../Header/Header'
 
+type StyleProps = {
+  maxWidth: MaxWidth
+}
+
 const useStyles = makeStyles({
   wrap: {
     display: 'flex',
     height: '100%',
   },
   container: {
-    maxWith: ({ maxWidth }) => maxWidth,
+    maxWidth: ({ maxWidth }: StyleProps) => maxWidth,
   },
 })
+
+type Props = {
+  children: React.ReactNode
+  title: string
+  maxWidth?: MaxWidth
+  classNameWrap?: string
+  header?: boolean
+  container?: boolean
+  classNameContainer?: string
+}
 
 function BaseLayout({
   children,
   title,
-  maxWidth,
+  maxWidth = 'lg',
   classNameWrap,
-  header,
-  container,
+  header = false,
+  container = false,
   classNameContainer,
-}) {
+}: Props): JSX.Element {
   const classes = useStyles({ maxWidth })
 
   return (
@@ -35,35 +48,13 @@ function BaseLayout({
       {header && <Header />}
       <ConditionalWrap
         condition={container}
-        wrap={child => (
-          <div className={cx(classes.container, classNameContainer)}>
-            {child}
-          </div>
-        )}
+        wrap={child => <div className={cx(classes.container, classNameContainer)}>{child}</div>}
       >
         {children}
       </ConditionalWrap>
       <Flash />
     </div>
   )
-}
-
-BaseLayout.propTypes = {
-  children: childrenType.isRequired,
-  title: PropTypes.string.isRequired,
-  header: PropTypes.bool,
-  container: PropTypes.bool,
-  maxWidth: maxWidthType,
-  classNameWrap: PropTypes.string,
-  classNameContainer: PropTypes.string,
-}
-
-BaseLayout.defaultProps = {
-  maxWidth: false,
-  header: false,
-  container: false,
-  classNameWrap: null,
-  classNameContainer: null,
 }
 
 export default BaseLayout
