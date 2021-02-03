@@ -1,10 +1,25 @@
-let theme = null
+import { Theme } from '@material-ui/core'
 
-export const setTheme = th => {
+let theme: Theme
+
+export const setTheme = (th: Theme): void => {
   theme = th
 }
 
-export default variant => {
+type ColorVariant =
+  | 'primary'
+  | 'primary.dark'
+  | 'secondary'
+  | 'secondary.dark'
+  | 'white'
+  | 'black'
+  | 'info'
+  | 'warning'
+  | 'error'
+  | 'success'
+  | 'disabled'
+
+export default (variant: ColorVariant): string => {
   switch (variant) {
     case 'primary':
       return theme.palette.primary.main
@@ -22,7 +37,7 @@ export default variant => {
       return theme.palette.common.white
 
     case 'black':
-      return theme.palette.common.block
+      return theme.palette.common.black
 
     case 'info':
       return theme.palette.info.light

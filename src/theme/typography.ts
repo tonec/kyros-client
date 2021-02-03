@@ -1,6 +1,7 @@
+import { Theme } from '@material-ui/core'
 import merge from 'lodash/merge'
 
-export default theme => {
+export default (theme: Theme): Theme['typography'] => {
   return merge(theme.typography, {
     h1: {
       fontSize: '2.4rem',

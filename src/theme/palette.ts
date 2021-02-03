@@ -1,6 +1,7 @@
+import { Theme } from '@material-ui/core'
 import merge from 'lodash/merge'
 
-export default theme => {
+export default (theme: Theme): Theme['palette'] => {
   return merge(theme.palette, {
     primary: {
       light: '#5d7cf6',
