@@ -1,5 +1,7 @@
 import Cookies from 'cookies-js'
 import get from 'lodash/get'
+import { AnyAction } from 'redux'
+import { APIAction } from 'types'
 import { TOKEN_KEY } from 'utils/constants'
 
 /*
@@ -18,9 +20,14 @@ export const LOGOUT = `${prefix}/LOGOUT`
  * Action creators
  * * * * * * * * */
 
-export function login(data) {
+type Credentials = {
+  email: string
+  password: string
+}
+
+export function login(data: Credentials): APIAction {
   return {
-    types: [LOGIN, LOGIN_SUCCESS, LOGIN_FAIL],
+    type: [LOGIN, LOGIN_SUCCESS, LOGIN_FAIL],
     request: async ({ client }) => {
       try {
         const response = await client.post('auth/login', data)
@@ -38,7 +45,7 @@ export function login(data) {
   }
 }
 
-export function logout() {
+export function logout(): AnyAction {
   Cookies.expire(TOKEN_KEY)
 
   return {

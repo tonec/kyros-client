@@ -1,9 +1,8 @@
 import React from 'react'
+import { Client, Column } from 'types'
 import { makeStyles } from '@material-ui/core/styles'
 import { Table } from 'components'
 import ClientsTableRowActions from './ClientsTableRowActions'
-import { Column } from 'types'
-import { Client } from 'types/entity'
 
 const useStyles = makeStyles(theme => ({
   actions: {

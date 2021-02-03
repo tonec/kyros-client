@@ -1,13 +1,12 @@
 import React from 'react'
+import { Client, Column } from 'types'
 import { connect } from 'react-redux'
 import { useHistory } from 'react-router'
 import { createStructuredSelector } from 'reselect'
-import { Client } from 'types/entity'
 import { isFetchingClients } from 'redux/modules/api/selectors'
 import { getVisibleClients } from 'redux/modules/client/selectors'
-import ClientsTable from './ClientsTable'
 import { RootState } from 'redux/rootReducer'
-import { Column } from 'types'
+import ClientsTable from './ClientsTable'
 
 type Props = {
   isFetchingClients: boolean

@@ -1,28 +1,25 @@
-import { createSelector, Selector } from 'reselect'
+import { createSelector } from 'reselect'
+import { Select, User } from 'types'
 import get from 'lodash/get'
-import { User } from 'types/entity'
 import { RootState } from 'redux/rootReducer'
 import { EntityStore } from '../entity/reducer'
 
-export const visibleUsers = ({ user }: RootState): string[] => user.visibleUsers
+export const visibleUsers: Select<string[]> = ({ user }) => user.visibleUsers
+export const userEntities: Select<EntityStore<User>> = ({ entity }) => entity.user
 
-export const userEntities = ({ entity }: RootState): EntityStore<User> =>
-  entity.user
-
-export const getAllUsers: Selector<RootState, User[]> = createSelector(
-  [userEntities],
-  userEntities =>
-    (get(userEntities, 'allIds', []) as string[]).map(id =>
-      get(userEntities, `byId[${id}]`),
-    ),
+export const getAllUsers = createSelector([userEntities], userEntities =>
+  (get(userEntities, 'allIds', []) as string[]).map(id => get(userEntities, `byId[${id}]`)),
 )
 
-export const getUser = (state: RootState, id: string): User | null => {
-  if (!id) return null
-  return userEntities(state).byId[id]
-}
+export const getUser = createSelector(
+  [userEntities, (state: RootState, props: { userId: string }) => props.userId],
+  (userEntities, userId) => {
+    if (!userId || !userEntities) return null
+    return userEntities.byId[userId]
+  },
+)
 
-export const getVisibleUsers: Selector<RootState, User[]> = createSelector(
+export const getVisibleUsers = createSelector(
   [visibleUsers, userEntities],
   (visibleUsers, userEntities) => {
     if (!visibleUsers) return []

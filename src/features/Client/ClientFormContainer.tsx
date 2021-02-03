@@ -1,22 +1,33 @@
-import React, { Dispatch } from 'react'
-import PropTypes from 'prop-types'
-import { APIAction, clientType } from 'types'
+import React from 'react'
 import { connect } from 'react-redux'
+import { createStructuredSelector } from 'reselect'
 import { closeModal } from 'helpers/modalQS'
+import { Client } from 'types'
+import { RootState } from 'redux/rootReducer'
 import { createClient, updateClient } from 'redux/modules/client/actions'
 import { getClient } from 'redux/modules/client/selectors'
 import ClientForm from './ClientForm'
-import { Client } from 'types/entity'
-import { RootState } from 'redux/rootReducer'
 import { Values } from './ClientForm'
 
-type Props = {
-  dispatch: Dispatch<(id: string, data: Values) => APIAction>
-  clientId: string
-  client: Client
+type MappedProps = {
+  client?: Client
 }
 
-function ClientFormContainer({ dispatch, client }: Props): JSX.Element {
+type OwnProps = {
+  clientId?: string
+}
+
+type Props = OwnProps &
+  MappedProps & {
+    createClient: (data: Partial<Client>) => void
+    updateClient: (id: string, data: Partial<Client>) => void
+  }
+
+function ClientFormContainer({
+  client,
+  createClient,
+  updateClient,
+}: Props): JSX.Element {
   const isEdit = Boolean(client)
 
   const handleCancel = () => {
@@ -24,10 +35,10 @@ function ClientFormContainer({ dispatch, client }: Props): JSX.Element {
   }
 
   const handleOnSubmit = (data: Values) => {
-    if (isEdit) {
-      dispatch(updateClient(client.id, data))
+    if (isEdit && client) {
+      updateClient(client.id, data)
     } else {
-      dispatch(createClient(data))
+      createClient(data)
     }
   }
 
@@ -49,8 +60,13 @@ function ClientFormContainer({ dispatch, client }: Props): JSX.Element {
   )
 }
 
-const mapState = (state: RootState, { clientId }: Props) => ({
-  client: getClient(state, clientId),
+const mapState = createStructuredSelector<RootState, OwnProps, MappedProps>({
+  client: getClient,
 })
 
-export default connect(mapState)(ClientFormContainer)
+const mapDispatch = {
+  createClient,
+  updateClient,
+}
+
+export default connect(mapState, mapDispatch)(ClientFormContainer)

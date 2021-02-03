@@ -1,9 +1,17 @@
-export const initialState = {
+import { AnyAction } from 'redux'
+import { Obj } from 'types'
+
+interface ApiState {
+  crud: Obj<Obj<boolean>>
+  fetch: Obj<Obj<boolean>>
+}
+
+export const initialState: ApiState = {
   crud: {},
   fetch: {},
 }
 
-export default function (state = initialState, action = {}) {
+export default function (state = initialState, action: AnyAction): ApiState {
   const typeSplit = action.type.split('/')
   const entity = typeSplit[0].replace('@', '')
 

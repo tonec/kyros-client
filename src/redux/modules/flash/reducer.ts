@@ -1,8 +1,18 @@
 import { LOCATION_CHANGE } from 'react-router-redux'
+import { AnyAction } from 'redux'
+import { Status } from 'types'
 import createReducer from '../../createReducer'
 import * as actions from './actions'
 
-export const initialState = {
+interface FlashState {
+  visible: boolean
+  status: Status | null
+  message: string | null
+  dismissable: boolean
+  timeout: number | null
+}
+
+export const initialState: FlashState = {
   visible: false,
   status: null,
   message: null,
@@ -11,7 +21,7 @@ export const initialState = {
 }
 
 export default createReducer(initialState, {
-  [actions.SHOW]: (state, action) => ({
+  [actions.SHOW]: (state: FlashState, action: AnyAction) => ({
     ...state,
     visible: true,
     status: action.status,

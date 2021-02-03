@@ -1,10 +1,10 @@
 import React, { MouseEvent } from 'react'
+import { Client } from 'types'
 import { useDispatch } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles'
 import { openModal } from 'helpers/modalQS'
 import { deleteClient } from 'redux/modules/client/actions'
 import { ConfirmAction, Icon, IconButton, Popover } from 'components'
-import { Client } from 'types/entity'
 
 const useStyles = makeStyles(theme => ({
   actions: {

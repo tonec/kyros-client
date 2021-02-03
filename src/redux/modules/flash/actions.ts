@@ -1,4 +1,5 @@
-import { createAction } from '@reduxjs/toolkit'
+import { AnyAction, createAction } from '@reduxjs/toolkit'
+import { Status } from 'types'
 
 /*
  * Actions
@@ -13,15 +14,22 @@ export const HIDE = `${prefix}/HIDE`
  * Action creators
  * * * * * * * * */
 
-export function showFlash({ status, message, dismissable, timeout }) {
+type Flash = {
+  status: Status
+  message: string
+  dismissable?: boolean
+  timeout?: number
+}
+
+export function showFlash({ status, message, dismissable, timeout }: Flash): AnyAction {
   return { type: SHOW, status, message, dismissable, timeout }
 }
 
-export function showError(message) {
+export function showError(message: string): AnyAction {
   return showFlash({ status: 'error', message, dismissable: true })
 }
 
-export function showSuccess(message) {
+export function showSuccess(message: string): AnyAction {
   return showFlash({
     status: 'success',
     message,

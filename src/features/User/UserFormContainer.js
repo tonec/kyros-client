@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { userType } from 'types'
 import { connect } from 'react-redux'
+import { createStructuredSelector } from 'reselect'
 import { getInitialValues } from 'utils'
 import { createUser, updateUser } from 'redux/modules/user/actions'
 import { closeModal } from 'redux/modules/modal/actions'
@@ -48,7 +49,7 @@ UserFormContainer.defaultProps = {
   user: null,
 }
 
-const mapState = (state, { userId }) => ({
+const mapState = createStructuredSelector({
   user: getUser(state, userId),
 })
 

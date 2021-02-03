@@ -1,6 +1,6 @@
+import { LocationChangeAction } from 'connected-react-router'
 import get from 'lodash/get'
 import { LOCATION_CHANGE } from 'react-router-redux'
-import { APIPayload } from 'types'
 import createReducer from '../../createReducer'
 import * as types from './actions'
 
@@ -54,9 +54,9 @@ export default createReducer(initialState, {
     online: false,
   }),
 
-  [LOCATION_CHANGE]: (state: AppState, action: APIPayload) => {
-    const prevPath = get(state, 'pathHistory[0].pathname')
-    const nextPath = get(action, 'payload.pathname')
+  [LOCATION_CHANGE]: (state: AppState, action: LocationChangeAction) => {
+    const prevPath = get(state, 'pathHistory[0].location.pathname')
+    const nextPath = get(action, 'payload.location.pathname')
 
     if (nextPath === prevPath) {
       return state
@@ -64,7 +64,7 @@ export default createReducer(initialState, {
 
     return {
       ...state,
-      pathHistory: [action.payload, ...state.pathHistory.slice(0, 8)],
+      pathHistory: [action.payload.location, ...state.pathHistory.slice(0, 8)],
       previousPath: prevPath,
     }
   },

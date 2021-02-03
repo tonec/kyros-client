@@ -1,10 +1,9 @@
 import React from 'react'
 import cx from 'clsx'
+import { Client, Column } from 'types'
 import { makeStyles } from '@material-ui/core/styles'
 import { Card, Loader, Table } from 'components'
 import ClientsTableRow from './ClientsTableRow'
-import { Column } from 'types'
-import { Client } from 'types/entity'
 
 const useStyles = makeStyles(theme => ({
   container: {

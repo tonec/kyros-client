@@ -1,4 +1,5 @@
 import { APIPayload } from 'types'
+import { User } from 'types'
 import { fk } from 'utils'
 import createReducer from '../../createReducer'
 import * as types from './actions'
@@ -14,12 +15,12 @@ export const initialState: UserState = {
 }
 
 export default createReducer(initialState, {
-  [types.FETCH_SUCCESS]: (state: UserState, { payload }: APIPayload) => ({
+  [types.FETCH_SUCCESS]: (state: UserState, { payload }: APIPayload<User>) => ({
     ...state,
     visibleUsers: payload.data.entities.map(fk('id')),
   }),
 
-  [RECEIVED]: (state: UserState, { payload }: APIPayload) => {
+  [RECEIVED]: (state: UserState, { payload }: APIPayload<User>) => {
     if (payload.action === 'store' && payload.entity === 'user') {
       return {
         ...state,

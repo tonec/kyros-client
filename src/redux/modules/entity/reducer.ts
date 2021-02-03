@@ -10,7 +10,7 @@ import { RECEIVED } from '../app/actions'
 import { LOGOUT } from '../auth/actions'
 import normalized from './schema'
 
-function mergeCopyArrays(objValue: Obj<unknown>, srcValue: Obj<unknown>) {
+function mergeCopyArrays(objValue: Obj<any>, srcValue: Obj<any>) {
   if (isArray(objValue)) {
     return srcValue
   }
@@ -30,7 +30,7 @@ interface EntityState {
 export const initialState: EntityState = {}
 
 export default createReducer<EntityState>(initialState, {
-  [RECEIVED]: (state: EntityState, { payload }: APIPayload) => {
+  [RECEIVED]: (state: EntityState, { payload }: APIPayload<any>) => {
     if (payload && payload.action === 'store') {
       const entity = payload.entity.toLowerCase()
       const data = normalized(payload)
@@ -39,12 +39,7 @@ export default createReducer<EntityState>(initialState, {
 
       return merge({}, state, {
         [entity]: merge({}, state[entity], {
-          byId: mergeWith(
-            {},
-            state[entity] && state[entity].byId,
-            byId,
-            mergeCopyArrays,
-          ),
+          byId: mergeWith({}, state[entity] && state[entity].byId, byId, mergeCopyArrays),
           allIds: union(state[entity] && state[entity].allIds, allIds),
         }),
       })

@@ -1,28 +1,27 @@
+import { AnyAction } from 'redux'
+import { User } from 'types'
 import createReducer from '../../createReducer'
 import * as types from './actions'
 
-export const initialState = {
-  isFetching: false,
+interface AuthState {
+  user: User | null
+  error: string | null
+}
+
+export const initialState: AuthState = {
   user: null,
   error: null,
 }
 
 export default createReducer(initialState, {
-  [types.LOGIN]: state => ({
+  [types.LOGIN_SUCCESS]: (state: AuthState, { payload }: AnyAction) => ({
     ...state,
-    isFetching: true,
-  }),
-
-  [types.LOGIN_SUCCESS]: (state, { payload }) => ({
-    ...state,
-    isFetching: false,
     user: payload.user,
     error: null,
   }),
 
-  [types.LOGIN_FAIL]: (state, { payload, error }) => ({
+  [types.LOGIN_FAIL]: (state: AuthState, { payload, error }: AnyAction) => ({
     ...state,
-    isFetching: false,
     user: null,
     error: error && payload,
   }),

@@ -1,21 +1,29 @@
 import get from 'lodash/get'
+import { APIPayload, Client } from 'types'
 import { fk } from 'utils'
 import createReducer from '../../createReducer'
 import * as types from './actions'
 import { RECEIVED } from '../app/actions'
 import { LOGOUT } from '../auth/actions'
 
-export const initialState = {
+interface ClientState {
+  visibleClients: string[]
+}
+
+export const initialState: ClientState = {
   visibleClients: [],
 }
 
 export default createReducer(initialState, {
-  [types.FETCH_SUCCESS]: (state, { payload }) => ({
+  [types.FETCH_SUCCESS]: (
+    state: ClientState,
+    { payload }: APIPayload<Client>,
+  ) => ({
     ...state,
     visibleClients: get(payload, 'data.entities', []).map(fk('id')),
   }),
 
-  [RECEIVED]: (state, { payload }) => {
+  [RECEIVED]: (state: ClientState, { payload }: APIPayload<Client>) => {
     if (payload.action === 'store' && payload.entity === 'client') {
       return {
         ...state,
@@ -25,7 +33,7 @@ export default createReducer(initialState, {
               return acc.concat(client.id)
             }
             return acc
-          }, []),
+          }, [] as string[]),
         ),
       }
     }

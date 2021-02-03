@@ -7,12 +7,13 @@ import { getModalKey, getModalState } from 'redux/modules/modal/selectors'
 import { getQuery } from 'redux/modules/app/selectors'
 import { Dialog } from './ui'
 import { RootState } from 'redux/rootReducer'
+import { Obj } from 'types'
+import { ParsedQs } from 'qs'
 
 type Title = Record<string, string> | string
 type State = Record<string, string>
-type GetTitleString = (title: Title, state: State) => string | null
 
-const getTitleString: GetTitleString = (title, state) => {
+const getTitleString = (title, state: State): string | null => {
   if (typeof title === 'string') return title
 
   const view = state.view || 'create'
@@ -20,19 +21,15 @@ const getTitleString: GetTitleString = (title, state) => {
   return title[view] || title.create || null
 }
 
-type Query = Record<string, string> & {
-  modalState: State
-}
-
 type MappedState = {
-  query: Query
+  query: ParsedQs
   modalKey: string
-  modalState: State
+  modalState: Obj<string | Obj<string>>
 }
 
 type Props = MappedState & {
   children: (...args: any) => React.ReactNode
-  title: string
+  title: Record<string, string> | string
   name: string
   closeModal: () => void
 }
@@ -49,11 +46,11 @@ function Modal({
   const { modalKey: modalKeyQS, modalState: modalStateQS } = query
 
   const key = modalKeyQS || modalKey
-  const state = modalStateQS || modalState || {}
+  const ms = modalStateQS || modalState || {}
 
   if (key !== name) return null
 
-  const titleString = getTitleString(title, state)
+  const titleString = getTitleString(title, ms)
   const open = Boolean(key)
 
   const handleClose = () => {
@@ -63,7 +60,7 @@ function Modal({
 
   return (
     <Dialog title={titleString} open={open} onClose={handleClose}>
-      {children(state)}
+      {children(ms)}
     </Dialog>
   )
 }

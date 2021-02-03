@@ -1,4 +1,5 @@
-import { createAction } from '@reduxjs/toolkit'
+import { AnyAction, createAction } from '@reduxjs/toolkit'
+import { Obj } from 'types'
 
 /*
  * Actions
@@ -13,7 +14,7 @@ export const CLOSE = `${prefix}/CLOSE`
  * Action creators
  * * * * * * * * */
 
-export function openModal(modalKey, { state } = {}) {
+export function openModal(modalKey: string, state: Obj<any>): AnyAction {
   return {
     type: OPEN,
     payload: {

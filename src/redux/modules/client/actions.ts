@@ -1,4 +1,4 @@
-import { APIAction } from 'types'
+import { APIAction, Client } from 'types'
 
 /*
  * Actions
@@ -33,7 +33,7 @@ export function fetchClients(): APIAction {
   }
 }
 
-export function createClient(data): APIAction {
+export function createClient(data: Client): APIAction {
   return {
     type: [CREATE, CREATE_SUCCESS, CREATE_FAIL],
     request: ({ client }) => client.post('client', data),
@@ -42,7 +42,7 @@ export function createClient(data): APIAction {
   }
 }
 
-export function updateClient(id, data): APIAction {
+export function updateClient(id: string, data: Client): APIAction {
   return {
     type: [UPDATE, UPDATE_SUCCESS, UPDATE_FAIL],
     request: ({ client }) => client.patch(`client/${id}`, data),
@@ -51,7 +51,7 @@ export function updateClient(id, data): APIAction {
   }
 }
 
-export function deleteClient(id): APIAction {
+export function deleteClient(id: string): APIAction {
   return {
     type: [DELETE, DELETE_SUCCESS, DELETE_FAIL],
     request: ({ client }) => client.delete(`client/${id}`),
