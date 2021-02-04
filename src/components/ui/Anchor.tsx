@@ -1,10 +1,4 @@
-import React, {
-  CSSProperties,
-  MouseEvent,
-  KeyboardEvent,
-  ReactNode,
-} from 'react'
-import createChainedFunction from 'utils/createChainedFunction'
+import React, { CSSProperties, MouseEvent, KeyboardEvent, ReactNode } from 'react'
 
 function isTrivialHref(href: string) {
   return !href || href.trim() === '#'
@@ -48,6 +42,10 @@ function Anchor({
       event.preventDefault()
       handleClick(event)
     }
+
+    if (typeof onKeyDown === 'function') {
+      onKeyDown(event)
+    }
   }
 
   let setTabIndex = tabIndex || 1
@@ -70,7 +68,7 @@ function Anchor({
       role="link"
       style={style}
       onClick={handleClick}
-      onKeyDown={createChainedFunction(handleKeyDown, onKeyDown)}
+      onKeyDown={handleKeyDown}
     >
       {children}
     </a>
