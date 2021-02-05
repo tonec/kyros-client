@@ -8,7 +8,7 @@ import { RootState } from 'redux/rootReducer'
 import { getIsFirstLoad } from 'redux/modules/app/selectors'
 
 type MappedState = {
-  isFirstLoad: boolean | null
+  isFirstLoad: boolean
 }
 
 type Props = RouteComponentProps &

@@ -1,5 +1,7 @@
 import React from 'react'
 import { Values } from './Login'
+import { FormRenderProps } from 'react-final-form'
+import { FormState } from 'final-form'
 import { Button, ButtonsSpacer, Form, InputField } from 'components'
 import validate from './validate'
 
@@ -11,7 +13,12 @@ function LoginForm({ handleOnSubmit }: Props): JSX.Element {
   return (
     <Form
       onSubmit={handleOnSubmit}
-      render={({ submitting, pristine, handleSubmit, hasValidationErrors }) => {
+      render={({
+        submitting,
+        pristine,
+        handleSubmit,
+        hasValidationErrors,
+      }: FormRenderProps & FormState<Values>) => {
         return (
           <form onSubmit={handleSubmit}>
             <InputField

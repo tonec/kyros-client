@@ -33,7 +33,7 @@ export function fetchClients(): APIAction {
   }
 }
 
-export function createClient(data: Client): APIAction {
+export function createClient(data: Partial<Client>): APIAction {
   return {
     type: [CREATE, CREATE_SUCCESS, CREATE_FAIL],
     request: ({ client }) => client.post('client', data),
@@ -42,7 +42,7 @@ export function createClient(data: Client): APIAction {
   }
 }
 
-export function updateClient(id: string, data: Client): APIAction {
+export function updateClient(id: string, data: Partial<Client>): APIAction {
   return {
     type: [UPDATE, UPDATE_SUCCESS, UPDATE_FAIL],
     request: ({ client }) => client.patch(`client/${id}`, data),

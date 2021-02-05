@@ -13,10 +13,7 @@ type Props = {
   clients: Client[]
 }
 
-function ClientsTableContainer({
-  isFetchingClients,
-  clients,
-}: Props): JSX.Element {
+function ClientsTableContainer({ isFetchingClients, clients }: Props): JSX.Element {
   const history = useHistory()
 
   const handleRowClick = (client: Client) => {

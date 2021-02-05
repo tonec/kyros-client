@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Button, ButtonsSpacer, Form, InputField } from 'components'
-import validate from './validate'
 import { FormRenderProps } from 'react-final-form'
 import { FormState } from 'final-form'
+import { Button, ButtonsSpacer, Form, InputField } from 'components'
+import validate from './validate'
 
 export interface Values {
   name: string
@@ -16,12 +16,7 @@ type Props = {
   handleOnSubmit: (data: Values) => void
 }
 
-function ClientForm({
-  isEdit,
-  initialValues,
-  handleCancel,
-  handleOnSubmit,
-}: Props): JSX.Element {
+function ClientForm({ isEdit, initialValues, handleCancel, handleOnSubmit }: Props): JSX.Element {
   return (
     <Form
       initialValues={initialValues}

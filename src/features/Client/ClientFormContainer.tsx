@@ -7,10 +7,9 @@ import { RootState } from 'redux/rootReducer'
 import { createClient, updateClient } from 'redux/modules/client/actions'
 import { getClient } from 'redux/modules/client/selectors'
 import ClientForm from './ClientForm'
-import { Values } from './ClientForm'
 
 type MappedProps = {
-  client?: Client
+  client: Client | null
 }
 
 type OwnProps = {
@@ -19,22 +18,18 @@ type OwnProps = {
 
 type Props = OwnProps &
   MappedProps & {
-    createClient: (data: Partial<Client>) => void
+    createClient: (data: Omit<Client, 'id'>) => void
     updateClient: (id: string, data: Partial<Client>) => void
   }
 
-function ClientFormContainer({
-  client,
-  createClient,
-  updateClient,
-}: Props): JSX.Element {
+function ClientFormContainer({ client, createClient, updateClient }: Props): JSX.Element {
   const isEdit = Boolean(client)
 
   const handleCancel = () => {
     closeModal()
   }
 
-  const handleOnSubmit = (data: Values) => {
+  const handleOnSubmit = (data: Omit<Client, 'id'>) => {
     if (isEdit && client) {
       updateClient(client.id, data)
     } else {

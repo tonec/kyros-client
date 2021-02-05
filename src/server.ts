@@ -2,6 +2,7 @@ import 'babel-polyfill'
 import path from 'path'
 import express from 'express'
 import helmet from 'helmet'
+import get from 'lodash/get'
 import cookieParser from 'cookie-parser'
 import compression from 'compression'
 import favicon from 'serve-favicon'
@@ -42,7 +43,7 @@ app
 app.use(express.static('public'))
 
 // app.use('/app-shell', (req, res) => {
-//   res.send(render())
+//   res.send(render({}))
 // })
 
 app.get('*', async (req, res) => {
@@ -95,7 +96,10 @@ app.get('*', async (req, res) => {
   const content = render({ req, store, history, routerContext })
 
   if (routerContext.url && routerContext.location) {
-    res.redirect(301, `${routerContext.url}?redirect=${routerContext.location.state.from}`)
+    const from = get(routerContext, 'location.state.from')
+    const redirect = from ? `?redirect=${from}` : ''
+
+    res.redirect(301, `${routerContext.url}${redirect}`)
     return
   }
 

@@ -21,8 +21,8 @@ const useStyles = makeStyles({
 type Props = {
   children: React.ReactNode
   title: string
-  maxWidth: MaxWidth
-  className: string
+  maxWidth?: MaxWidth
+  className?: string
 }
 
 function Main({ children, title, maxWidth, className }: Props): JSX.Element {

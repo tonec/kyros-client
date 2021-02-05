@@ -91,7 +91,7 @@ export type ReactElementWithDisplayName = React.ReactElement & {
  * * * * * * * * */
 
 export interface Select<T> {
-  (arg: RootState): T | null
+  (arg: RootState): T
 }
 
 export type Normalized = NormalizedSchema<

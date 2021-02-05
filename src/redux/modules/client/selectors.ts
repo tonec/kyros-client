@@ -14,7 +14,7 @@ export const getAllClients = createSelector([clientEntities], clientEntities => 
 })
 
 export const getClient = createSelector(
-  [clientEntities, (state: RootState, props: { clientId: string }) => props.clientId],
+  [clientEntities, (state: RootState, props: { clientId?: string }) => props.clientId],
   (clientEntities, clientId) => {
     if (!clientId || !clientEntities) return null
     return clientEntities.byId[clientId]
