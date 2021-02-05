@@ -53,10 +53,7 @@ const persistConfig = {
   const triggerHooks = async (routes: RouteConfig[], pathname: string) => {
     NProgress.start()
 
-    const { components, match, params } = await asyncMatchRoutes(
-      routes,
-      pathname,
-    )
+    const { components, match, params } = await asyncMatchRoutes(routes, pathname)
 
     const locals = {
       history,
@@ -94,9 +91,7 @@ const persistConfig = {
           <HelmetProvider>
             <CssBaseline />
             <ThemeProvider theme={theme}>
-              <AsyncTrigger
-                trigger={(pathname: string) => triggerHooks(routes, pathname)}
-              >
+              <AsyncTrigger trigger={(pathname: string) => triggerHooks(routes, pathname)}>
                 {renderRoutes(routes)}
               </AsyncTrigger>
             </ThemeProvider>

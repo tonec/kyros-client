@@ -9,7 +9,7 @@ import { createMemoryHistory } from 'history'
 import qhistory from 'qhistory'
 import { stringify, parse } from 'qs'
 import { trigger } from 'redial'
-import PrettyError from 'pretty-error'
+import PrettyError, { ParsedError } from 'pretty-error'
 import { getStoredState } from 'redux-persist'
 import { CookieStorage, NodeCookiesWrapper } from 'redux-persist-cookie-storage'
 import Cookies from 'cookies'
@@ -19,6 +19,7 @@ import render from 'helpers/render'
 import createStore from 'redux/store'
 import routes from './routes'
 import config from '../config'
+import { RootState } from 'redux/rootReducer'
 
 const PUBLIC_PATH = path.resolve(__dirname, '../public')
 const FAVICON = path.join(PUBLIC_PATH, 'favicon.ico')
@@ -27,8 +28,7 @@ const MANIFEST = path.join(PUBLIC_PATH, 'manifest.json')
 const app = express()
 const pretty = new PrettyError()
 
-process.on('unhandledRejection', (reason, p) => {
-  // eslint-disable-next-line no-console
+process.on('unhandledRejection', (reason: ParsedError, p) => {
   console.error('Unhandled Rejection at: Promise ', p, pretty.render(reason))
 })
 
@@ -41,12 +41,12 @@ app
 
 app.use(express.static('public'))
 
-app.use('/app-shell', (req, res) => {
-  res.send(render())
-})
+// app.use('/app-shell', (req, res) => {
+//   res.send(render())
+// })
 
 app.get('*', async (req, res) => {
-  const cookieJar = new NodeCookiesWrapper(new Cookies(req, res))
+  const cookieJar = new NodeCookiesWrapper(new Cookies(req, res)) as any
   const client = apiClient(req)
 
   const persistConfig = {
@@ -54,7 +54,7 @@ app.get('*', async (req, res) => {
     storage: new CookieStorage(cookieJar, {
       setCookieOptions: { httpOnly: false },
     }),
-    stateReconciler: (inboundState, originalState) => originalState,
+    stateReconciler: (inboundState: any, originalState: any) => originalState,
     whitelist: ['auth'],
   }
 
@@ -73,7 +73,7 @@ app.get('*', async (req, res) => {
   const store = createStore({
     client,
     history,
-    data: preloadedState,
+    data: preloadedState as RootState,
     persistConfig,
   })
 
@@ -91,22 +91,21 @@ app.get('*', async (req, res) => {
     // console.log(error)
   }
 
-  const context = {}
-  const content = render({ req, store, history, context })
+  const routerContext: any = {}
+  const content = render({ req, store, history, routerContext })
 
-  if (context.url) {
-    res.redirect(301, `${context.url}?redirect=${context.location.state.from}`)
+  if (routerContext.url && routerContext.location) {
+    res.redirect(301, `${routerContext.url}?redirect=${routerContext.location.state.from}`)
     return
   }
 
-  if (context.statusCode) {
-    res.status(context.statusCode)
+  if (routerContext.statusCode) {
+    res.status(routerContext.statusCode)
   }
 
   res.send(content)
 })
 
 app.listen(config.PORT, () => {
-  // eslint-disable-next-line no-console
   console.log(`Listening on port ${config.PORT}`)
 })

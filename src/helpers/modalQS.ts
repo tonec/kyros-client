@@ -1,8 +1,8 @@
 import { MODAL_QUERY_PARAMS } from 'utils/constants'
 import { add, remove } from 'utils/qs'
 
-export function openModal(modalKey, { state } = {}) {
-  const queryStringObject = { modalKey }
+export function openModal(modalKey: string, state = {}): void {
+  const queryStringObject: { [k: string]: any } = { modalKey }
 
   if (state) {
     queryStringObject.modalState = state
@@ -11,6 +11,6 @@ export function openModal(modalKey, { state } = {}) {
   add(queryStringObject)
 }
 
-export function closeModal() {
+export function closeModal(): void {
   remove(MODAL_QUERY_PARAMS)
 }

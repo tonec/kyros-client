@@ -1,4 +1,14 @@
+import { HelmetData } from 'react-helmet-async'
 import registerSW from './registerSW'
+
+type HtmlArgs = {
+  content?: string
+  links?: string
+  styles?: string
+  scripts?: string
+  initialState?: string
+  helmet?: HelmetData
+}
 
 export default function ({
   content = '',
@@ -7,7 +17,7 @@ export default function ({
   scripts = '',
   initialState = '',
   helmet,
-}) {
+}: HtmlArgs): string {
   return `
     <!DOCTYPE html>
     <style>
@@ -15,8 +25,8 @@ export default function ({
     </style>
     <html lang="en-US">
       <head>
-        ${helmet.title.toString()}
-        ${helmet.meta.toString()}
+        ${helmet && helmet.title.toString()}
+        ${helmet && helmet.meta.toString()}
         <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="manifest" href="/manifest.json" />

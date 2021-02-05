@@ -1,4 +1,4 @@
-export default () => {
+export default (): string => {
   return `
     <script>
     // Register service worker

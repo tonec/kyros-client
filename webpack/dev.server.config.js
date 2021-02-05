@@ -13,7 +13,7 @@ module.exports = merge(baseConfig, {
     __dirname: false,
   },
 
-  entry: './src/server.js',
+  entry: './src/server.ts',
 
   output: {
     filename: 'bundle.js',

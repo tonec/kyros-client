@@ -22,7 +22,7 @@ export function add(queryObject: Obj<string | number>, keepHistory = true): void
   })
 }
 
-export function remove(queryKey: string, keepHistory = true): void {
+export function remove(queryKey: string | string[], keepHistory = true): void {
   if (typeof window === 'undefined') return
 
   const newQuery = {

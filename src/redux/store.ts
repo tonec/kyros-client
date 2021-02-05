@@ -27,10 +27,7 @@ export default ({ client, history, data, persistConfig }: Props): Store => {
     delete window.INITIAL_STATE
   }
 
-  const middleware = [
-    apiMiddleware({ client, history }),
-    routerMiddleware(history),
-  ]
+  const middleware = [apiMiddleware({ client, history }), routerMiddleware(history)]
 
   const store = createStore(
     rootReducer(persistConfig, history),

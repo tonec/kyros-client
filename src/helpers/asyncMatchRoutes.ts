@@ -1,6 +1,6 @@
 import { matchRoutes } from 'react-router-config'
 
-function getComponents(match) {
+function getComponents(match: any[]) {
   return match
     .map(v => v.route.component)
     .reduce(async (result, component) => {
@@ -13,7 +13,7 @@ function getComponents(match) {
     }, [])
 }
 
-function getParams(match) {
+function getParams(match: any[]) {
   return match.reduce((result, component) => {
     if (component.match && component.match.params) {
       return { ...result, ...component.match.params }
@@ -22,7 +22,7 @@ function getParams(match) {
   }, {})
 }
 
-export default async (routes, pathname) => {
+export default async (routes: any[], pathname: string): Promise<any> => {
   const match = matchRoutes(routes, pathname)
   const params = getParams(match)
   const components = await getComponents(match)

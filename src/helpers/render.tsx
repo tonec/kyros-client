@@ -8,20 +8,28 @@ import { ServerStyleSheets, ThemeProvider } from '@material-ui/core/styles'
 import { CssBaseline } from '@material-ui/core'
 import { ChunkExtractor } from '@loadable/server'
 import serialize from 'serialize-javascript'
-import { HelmetProvider } from 'react-helmet-async'
+import { History } from 'history'
+import { FilledContext, HelmetProvider } from 'react-helmet-async'
 import theme from 'theme'
 import routes from '../routes'
 import Html from './Html'
+import { Request } from 'express'
+import { Store } from 'redux'
+import { StaticRouterContext } from 'react-router'
 
-export default ({ req, store, history, routerContext }) => {
+type RenderArgs = {
+  req: Request
+  store: Store
+  history: History
+  routerContext: StaticRouterContext
+}
+
+export default ({ req, store, history, routerContext }: RenderArgs): string => {
   if (!req) return Html({})
 
   const sheets = new ServerStyleSheets()
 
-  const statsFile = path.resolve(
-    __dirname,
-    '../public/dist/loadable-stats.json',
-  )
+  const statsFile = path.resolve(__dirname, '../public/dist/loadable-stats.json')
   const extractor = new ChunkExtractor({ statsFile })
   const helmetContext = {}
 
@@ -43,7 +51,7 @@ export default ({ req, store, history, routerContext }) => {
   const links = extractor.getLinkTags()
   const scripts = extractor.getScriptTags()
   const initialState = serialize(store.getState())
-  const { helmet } = helmetContext
+  const { helmet } = helmetContext as FilledContext
 
   return Html({ content, links, styles, scripts, initialState, helmet })
 }

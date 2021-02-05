@@ -1,8 +1,8 @@
-/* eslint-disable no-param-reassign */
-import axios from 'axios'
+import axios, { AxiosInstance } from 'axios'
+import { Request } from 'express'
 import config from '../../config'
 
-export default function axiosClient(req) {
+export default function apiClient(req?: Request): AxiosInstance {
   const instance = axios.create({
     baseURL: `http://${config.apiHost}:${config.apiPort}/api`,
   })
@@ -12,7 +12,7 @@ export default function axiosClient(req) {
   instance.interceptors.request.use(
     conf => {
       if (__SERVER__) {
-        if (req.header('cookie')) {
+        if (req && req.header('cookie')) {
           conf.headers.Cookie = req.header('cookie')
         }
       }
