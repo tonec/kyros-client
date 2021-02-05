@@ -50,7 +50,7 @@ UserFormContainer.defaultProps = {
 }
 
 const mapState = createStructuredSelector({
-  user: getUser(state, userId),
+  user: getUser,
 })
 
 export default connect(mapState)(UserFormContainer)

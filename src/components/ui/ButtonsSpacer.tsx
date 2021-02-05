@@ -29,34 +29,23 @@ type Props = {
   className?: string
 }
 
-function ButtonsSpacer({
-  children,
-  variant = 'right',
-  className,
-}: Props): JSX.Element {
+function ButtonsSpacer({ children, variant = 'right', className }: Props): JSX.Element {
   const containerClasses = useContainerStyles({ variant })
   const buttonClasses = useButtonStyles({ variant })
 
   const els = React.Children.toArray(children) as ReactElementWithDisplayName[]
 
   const allAreButtons = els.every(child => {
-    console.log('child', child)
     return child.type.displayName === 'Button'
   })
 
   if (!allAreButtons) {
-    console.warn(
-      "Warning ButtonSpacer has children that aren't Button components",
-    )
+    console.warn("Warning ButtonSpacer has children that aren't Button components")
   }
 
-  const newEls = els.map(el =>
-    React.cloneElement(el, { classes: buttonClasses }),
-  )
+  const newEls = els.map(el => React.cloneElement(el, { classes: buttonClasses }))
 
-  return (
-    <div className={cx(containerClasses.container, className)}>{newEls}</div>
-  )
+  return <div className={cx(containerClasses.container, className)}>{newEls}</div>
 }
 
 export default ButtonsSpacer
