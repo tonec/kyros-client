@@ -1,5 +1,4 @@
 import { Component } from 'react'
-import get from 'lodash/get'
 import { RouteComponentProps } from 'react-router-dom'
 import { compose } from 'redux'
 import { createStructuredSelector } from 'reselect'
@@ -42,18 +41,7 @@ class App extends Component<Props, State> {
     }
   }
 
-  static getDerivedStateFromProps(nextProps: Props, prevState: State) {
-    const { history, location } = nextProps
-    const { prevProps } = prevState
-
-    // On login or else on logout
-    if (!prevProps.user && nextProps.user) {
-      const redirect = get(location, 'state.from')
-      history.push(redirect || '/home')
-    } else if (prevProps.user && !nextProps.user) {
-      history.push('/login')
-    }
-
+  static getDerivedStateFromProps(nextProps: Props) {
     return {
       prevProps: nextProps,
     }
