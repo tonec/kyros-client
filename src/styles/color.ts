@@ -6,7 +6,7 @@ export const setTheme = (th: Theme): void => {
   theme = th
 }
 
-type ColorVariant =
+export type ColorVariant =
   | 'primary'
   | 'primary.dark'
   | 'secondary'

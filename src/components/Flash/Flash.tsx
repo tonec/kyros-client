@@ -4,7 +4,7 @@ import { makeStyles, color } from 'styles'
 import { StatusIcon, Typography } from '../ui'
 
 type UseStylesProps = {
-  status: string
+  status: Status
 }
 
 const useStyles = makeStyles(theme => ({
