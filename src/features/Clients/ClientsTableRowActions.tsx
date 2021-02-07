@@ -1,4 +1,4 @@
-import React, { MouseEvent } from 'react'
+import React from 'react'
 import { Client } from 'types'
 import { useDispatch } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles'
@@ -31,17 +31,11 @@ function ClientsTableRowActions({ client }: Props): JSX.Element {
   const classes = useStyles()
   const dispatch = useDispatch()
 
-  const onEdit = (event: MouseEvent) => {
-    event.stopPropagation()
-
-    openModal('client', {
-      state: { id: client.id, view: 'edit' },
-    })
+  const onEdit = () => {
+    openModal('client', { id: client.id, view: 'edit' })
   }
 
-  const onDelete = (event: MouseEvent) => {
-    event.stopPropagation()
-
+  const onDelete = () => {
     dispatch(deleteClient(client.id))
   }
 

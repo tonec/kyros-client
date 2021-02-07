@@ -10,10 +10,10 @@ import { RootState } from 'redux/rootReducer'
 import { Obj } from 'types'
 import { ParsedQs } from 'qs'
 
-type Title = Record<string, string> | string
-type State = Record<string, string>
+type Title = Obj<string> | string
+type State = Obj<string>
 
-const getTitleString = (title, state: State): string | null => {
+const getTitleString = (title: Title, state: State): string | null => {
   if (typeof title === 'string') return title
 
   const view = state.view || 'create'
@@ -45,12 +45,12 @@ function Modal({
 }: Props): JSX.Element | null {
   const { modalKey: modalKeyQS, modalState: modalStateQS } = query
 
-  const key = modalKeyQS || modalKey
-  const ms = modalStateQS || modalState || {}
+  const key = modalKeyQS
+  const state = modalStateQS || {}
 
   if (key !== name) return null
 
-  const titleString = getTitleString(title, ms)
+  const titleString = getTitleString(title, state)
   const open = Boolean(key)
 
   const handleClose = () => {
@@ -60,7 +60,7 @@ function Modal({
 
   return (
     <Dialog title={titleString} open={open} onClose={handleClose}>
-      {children(ms)}
+      {children(state)}
     </Dialog>
   )
 }

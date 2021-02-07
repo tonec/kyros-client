@@ -3,7 +3,7 @@ import { provideHooks } from 'redial'
 import { Main } from 'components'
 import ScheduleContainer from './ScheduleContainer'
 
-function ScheduleView() {
+function ScheduleView(): JSX.Element {
   const title = 'Schedule'
 
   return (

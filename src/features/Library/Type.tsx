@@ -8,7 +8,7 @@ const useStyles = makeStyles({
   },
 })
 
-function TypeLibrary() {
+function TypeLibrary(): JSX.Element {
   const classes = useStyles()
 
   return (

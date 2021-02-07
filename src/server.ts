@@ -47,7 +47,7 @@ app.use(express.static('public'))
 // })
 
 app.get('*', async (req, res) => {
-  const cookieJar = new NodeCookiesWrapper(new Cookies(req, res)) as any
+  const cookieJar = new NodeCookiesWrapper(new Cookies(req, res))
   const client = apiClient(req)
 
   const persistConfig = {

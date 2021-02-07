@@ -1,11 +1,10 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { FormRenderProps } from 'react-final-form'
 import { FormState } from 'final-form'
 import { Button, ButtonsSpacer, Form, InputField } from 'components'
 import validate from './validate'
 
-export interface Values {
+export type Values = {
   name: string
 }
 
@@ -56,18 +55,6 @@ function ClientForm({ isEdit, initialValues, handleCancel, handleOnSubmit }: Pro
       }}
     />
   )
-}
-
-ClientForm.propTypes = {
-  isEdit: PropTypes.bool,
-  initialValues: PropTypes.object,
-  handleCancel: PropTypes.func.isRequired,
-  handleOnSubmit: PropTypes.func.isRequired,
-}
-
-ClientForm.defaultProps = {
-  isEdit: false,
-  initialValues: {},
 }
 
 export default ClientForm

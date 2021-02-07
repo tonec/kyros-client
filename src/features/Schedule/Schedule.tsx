@@ -4,7 +4,11 @@ import { timescaleType } from 'types'
 import ScheduleLayout from './ScheduleLayout'
 import ScheduleDay from './ScheduleDay'
 
-function Schedule({ timescale, days }) {
+type Props = {
+  timescale: Timesca
+}
+
+function Schedule({ timescale, days }): JSX.Element {
   return (
     <ScheduleLayout timescale={timescale}>
       {days.map(date => (

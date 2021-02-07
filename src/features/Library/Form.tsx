@@ -15,12 +15,24 @@ import {
   Typography,
 } from 'components'
 import validate from './validate'
+import { FormRenderProps } from 'react-final-form'
+import { FormState } from 'final-form'
 
 const useStyles = makeStyles({
   card: {
     width: 350,
   },
 })
+
+type Values = {
+  email: string
+  password: string
+  checkbox1: boolean
+  checkbox2: boolean
+  select: string
+  description: string
+  radio: string
+}
 
 function FormLibrary(): JSX.Element {
   const classes = useStyles()
@@ -37,7 +49,7 @@ function FormLibrary(): JSX.Element {
         <Form
           onSubmit={handleOnSubmit}
           initialValues={{ remember: true, checky: 1 }}
-          render={({ handleSubmit, values }) => {
+          render={({ handleSubmit, values }: FormRenderProps & FormState<Values>) => {
             return (
               <form onSubmit={handleSubmit}>
                 <InputField
@@ -58,12 +70,12 @@ function FormLibrary(): JSX.Element {
                   validate={validate.password}
                 />
 
-                <CheckboxField name="checkbox-1" label="Checkbox 1" />
+                <CheckboxField name="checkbox1" label="Checkbox 1" />
 
-                <CheckboxField name="checkbox-2" label="Checkbox 2" />
+                <CheckboxField name="checkbox2" label="Checkbox 2" />
 
                 <SelectField
-                  name="Selecty"
+                  name="select"
                   label="Select"
                   value=""
                   options={{
