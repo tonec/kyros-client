@@ -11,9 +11,13 @@ import { Obj } from 'types'
 import { ParsedQs } from 'qs'
 
 type Title = Obj<string> | string
-type State = Obj<string>
 
-const getTitleString = (title: Title, state: State): string | null => {
+type ModalState = {
+  id: string
+  view: string
+}
+
+const getTitleString = (title: Title, state: ModalState): string | null => {
   if (typeof title === 'string') return title
 
   const view = state.view || 'create'
@@ -45,8 +49,8 @@ function Modal({
 }: Props): JSX.Element | null {
   const { modalKey: modalKeyQS, modalState: modalStateQS } = query
 
-  const key = modalKeyQS
-  const state = modalStateQS || {}
+  const key = modalKeyQS || modalKey
+  const state = (modalStateQS || modalState) as ModalState
 
   if (key !== name) return null
 
