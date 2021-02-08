@@ -3,7 +3,6 @@ import { PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from 'redux/rootReducer'
 import { NormalizedSchema } from 'normalizr'
 import { AxiosInstance, AxiosPromise } from 'axios'
-import { BaseCSSProperties } from '@material-ui/core/styles/withStyles'
 import {
   arrayOf,
   bool,
@@ -16,7 +15,7 @@ import {
   shape,
   string,
 } from 'prop-types'
-import { TIMESCALES } from '../utils/constants'
+import { TIMESCALES_OPTIONS } from '../utils/constants'
 
 export const childrenType = oneOfType([arrayOf(node), node])
 
@@ -57,8 +56,6 @@ export const clientType = shape({
 
 export const clientsType = arrayOf(clientType)
 
-export const timescaleType = oneOf(TIMESCALES)
-
 /*
  * Utility types
  * * * * * * * * */
@@ -75,6 +72,10 @@ export const isOfType = <T>(
   varToBeChecked: any,
   propertyToCheckFor: keyof T,
 ): varToBeChecked is T => (varToBeChecked as T)[propertyToCheckFor] !== undefined
+
+export const assertNever = (x: never): never => {
+  throw new Error('Unexpected object: ' + x)
+}
 
 /*
  * API types
@@ -163,6 +164,8 @@ export type Column = {
 }
 
 export type Status = 'info' | 'warning' | 'error' | 'success'
+
+export type Timescales = keyof typeof TIMESCALES_OPTIONS
 
 /*
  * Entities

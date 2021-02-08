@@ -1,10 +1,14 @@
 import React from 'react'
-import { childrenType, timescaleType } from 'types'
-import { makeStyles, color } from 'styles'
+import { makeStyles, color, Theme } from 'styles'
+import { Timescales } from 'types'
 
-const borderStyle = theme => `1px solid ${theme.palette.grey[400]}`
+const borderStyle = (theme: Theme) => `1px solid ${theme.palette.grey[400]}`
 
-const gridTempplate = timescale => {
+interface UseStylesProps {
+  timescale: Timescales
+}
+
+const gridTempplate = (timescale: Timescales) => {
   switch (timescale) {
     case 'day':
       return '1fr'
@@ -18,7 +22,7 @@ const gridTempplate = timescale => {
 const useStyles = makeStyles(theme => ({
   layout: {
     display: 'grid',
-    gridTemplateColumns: ({ timescale }) => gridTempplate(timescale),
+    gridTemplateColumns: ({ timescale }: UseStylesProps) => gridTempplate(timescale),
     borderLeft: borderStyle(theme),
     borderTop: borderStyle(theme),
     height: '100%',
@@ -26,15 +30,15 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-function ScheduleLayout({ children, timescale }) {
+interface Props {
+  children: React.ReactNode
+  timescale: Timescales
+}
+
+function ScheduleLayout({ children, timescale }: Props): JSX.Element {
   const classes = useStyles({ timescale })
 
   return <div className={classes.layout}>{children}</div>
-}
-
-ScheduleLayout.propTypes = {
-  children: childrenType.isRequired,
-  timescale: timescaleType.isRequired,
 }
 
 export default ScheduleLayout

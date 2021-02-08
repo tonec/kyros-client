@@ -1,13 +1,14 @@
 import React, { ChangeEvent, ComponentPropsWithoutRef, ReactNode } from 'react'
-import { UseLink } from 'types'
+import { Obj, UseLink } from 'types'
 import BaseSelect from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
 import InputLabel from './form/InputLabel'
 
 type Props = ComponentPropsWithoutRef<typeof BaseSelect> & {
-  options: Record<string, string>
-  icons?: Record<string, unknown>
-  $value: UseLink
+  onChange: (event: ChangeEvent<{ name?: string | undefined; value: unknown }>) => void
+  options: Obj<string>
+  icons?: Obj<unknown>
+  $value?: UseLink
 }
 
 function Select({
@@ -23,16 +24,13 @@ function Select({
   onChange,
   onBlur,
 }: Props): JSX.Element {
-  const handleOnChange = (
-    event: ChangeEvent<{ name?: string | undefined; value: unknown }>,
-    child: ReactNode,
-  ) => {
+  const handleOnChange = (event: ChangeEvent<{ name?: string | undefined; value: unknown }>) => {
     if ($value) {
       $value.set(event.target.value)
     }
 
     if (typeof onChange === 'function') {
-      onChange(event, child)
+      onChange(event)
     }
   }
 

@@ -1,9 +1,8 @@
 import React from 'react'
 import format from 'date-fns/format'
-import PropTypes from 'prop-types'
-import { makeStyles } from 'styles'
+import { makeStyles, Theme } from 'styles'
 
-const borderStyle = theme => `1px solid ${theme.palette.grey[400]}`
+const borderStyle = (theme: Theme) => `1px solid ${theme.palette.grey[400]}`
 
 const useStyles = makeStyles(theme => ({
   day: {
@@ -16,7 +15,11 @@ const useStyles = makeStyles(theme => ({
   body: {},
 }))
 
-function ScheduleDay({ date }) {
+interface Props {
+  date: Date
+}
+
+function ScheduleDay({ date }: Props): JSX.Element {
   const classes = useStyles()
 
   return (
@@ -25,10 +28,6 @@ function ScheduleDay({ date }) {
       <div className={classes.body}>body</div>
     </div>
   )
-}
-
-ScheduleDay.propTypes = {
-  date: PropTypes.instanceOf(Date).isRequired,
 }
 
 export default ScheduleDay

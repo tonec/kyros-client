@@ -1,17 +1,24 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import { usersType } from 'types'
+import { User } from 'types'
 import { connect } from 'react-redux'
 import { useHistory } from 'react-router'
 import { createStructuredSelector } from 'reselect'
 import { isFetchingUsers } from 'redux/modules/api/selectors'
 import { getVisibleUsers } from 'redux/modules/user/selectors'
 import UsersTable from './UsersTable'
+import { RootState } from 'redux/rootReducer'
 
-function UsersTableContainer({ isFetchingUsers, users }) {
+interface MappedState {
+  isFetchingUsers: boolean
+  users: User[]
+}
+
+type Props = MappedState
+
+function UsersTableContainer({ isFetchingUsers, users }: Props): JSX.Element {
   const history = useHistory()
 
-  const handleRowClick = user => {
+  const handleRowClick = (user: User) => {
     history.push(`/user/${user.id}/schedule`)
   }
 
@@ -38,17 +45,7 @@ function UsersTableContainer({ isFetchingUsers, users }) {
   )
 }
 
-UsersTableContainer.propTypes = {
-  isFetchingUsers: PropTypes.bool,
-  users: usersType,
-}
-
-UsersTableContainer.defaultProps = {
-  isFetchingUsers: false,
-  users: null,
-}
-
-const mapState = createStructuredSelector({
+const mapState = createStructuredSelector<RootState, MappedState>({
   isFetchingUsers,
   users: getVisibleUsers,
 })

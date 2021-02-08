@@ -2,7 +2,7 @@ import React from 'react'
 import { Modal } from 'components'
 import UserFormContainer from './UserFormContainer'
 
-function UserModal() {
+function UserModal(): JSX.Element {
   const title = {
     create: 'Create user',
     edit: 'Edit user',

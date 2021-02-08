@@ -1,7 +1,7 @@
 import React from 'react'
 import { Client } from 'types'
 import { useDispatch } from 'react-redux'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from 'styles'
 import { openModal } from 'helpers/modalQS'
 import { deleteClient } from 'redux/modules/client/actions'
 import { ConfirmAction, Icon, IconButton, Popover } from 'components'
@@ -42,7 +42,6 @@ function ClientsTableRowActions({ client }: Props): JSX.Element {
   return (
     <div className={classes.actions}>
       <Popover
-        open={false}
         triggerWrapClassName={classes.triggerWrap}
         renderTrigger={() => (
           <span className={classes.trigger}>

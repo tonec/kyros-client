@@ -4,7 +4,7 @@ import { Button, PageHeader } from 'components'
 import UsersTableContainer from './UsersTableContainer'
 import UserModal from '../User/UserModal'
 
-function Users() {
+function Users(): JSX.Element {
   const title = 'Users'
 
   const handleCreateUser = () => {

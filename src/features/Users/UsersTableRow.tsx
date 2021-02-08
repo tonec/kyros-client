@@ -1,6 +1,6 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import { makeStyles } from '@material-ui/core/styles'
+import { Column, User } from 'types'
+import { makeStyles } from 'styles'
 import { Table } from 'components'
 import UsersTableRowActions from './UsersTableRowActions'
 
@@ -11,9 +11,15 @@ const useStyles = makeStyles({
   },
 })
 
+interface Props {
+  columns: Column[]
+  item: User
+  handleRowClick?: (item: User) => void
+}
+
 const { Row, Cell } = Table
 
-function UsersTableRow({ columns, item, handleRowClick }) {
+function UsersTableRow({ columns, item, handleRowClick }: Props): JSX.Element {
   const classes = useStyles()
 
   const onRowClick = () => {
@@ -38,14 +44,7 @@ function UsersTableRow({ columns, item, handleRowClick }) {
   }
 
   return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    <Row
-      key={item.id}
-      {...rowProps}
-      style={rowStyle}
-      testid={`row-${item.id}`}
-      hover
-    >
+    <Row key={item.id} {...rowProps} style={rowStyle} testid={`row-${item.id}`} hover>
       {columns.map(column => {
         if (column.key === 'actions') {
           return (
@@ -66,24 +65,12 @@ function UsersTableRow({ columns, item, handleRowClick }) {
             testid={`cell-${item.id}-${column.key}`}
             onClick={onRowClick}
           >
-            {item[column.key]}
+            {item[column.key as keyof User]}
           </Cell>
         )
       })}
     </Row>
   )
-}
-
-UsersTableRow.propTypes = {
-  columns: PropTypes.arrayOf(PropTypes.object),
-  item: PropTypes.shape({ id: PropTypes.string }),
-  handleRowClick: PropTypes.func,
-}
-
-UsersTableRow.defaultProps = {
-  columns: [],
-  item: null,
-  handleRowClick: null,
 }
 
 export default UsersTableRow

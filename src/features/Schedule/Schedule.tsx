@@ -1,14 +1,14 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import { timescaleType } from 'types'
+import { Timescales } from 'types'
 import ScheduleLayout from './ScheduleLayout'
 import ScheduleDay from './ScheduleDay'
 
 interface Props {
-  timescale: Timesca
+  timescale: Timescales
+  days: Date[]
 }
 
-function Schedule({ timescale, days }): JSX.Element {
+function Schedule({ timescale, days }: Props): JSX.Element {
   return (
     <ScheduleLayout timescale={timescale}>
       {days.map(date => (
@@ -16,15 +16,6 @@ function Schedule({ timescale, days }): JSX.Element {
       ))}
     </ScheduleLayout>
   )
-}
-
-Schedule.propTypes = {
-  timescale: timescaleType.isRequired,
-  days: PropTypes.arrayOf(PropTypes.instanceOf(Date)),
-}
-
-Schedule.defaultProps = {
-  days: [],
 }
 
 export default Schedule

@@ -1,11 +1,7 @@
 import React, { ComponentPropsWithoutRef, MouseEvent } from 'react'
 import cx from 'clsx'
 import { makeStyles } from 'styles'
-import PopupState, {
-  bindTrigger,
-  bindHover,
-  bindPopover,
-} from 'material-ui-popup-state'
+import PopupState, { bindTrigger, bindHover, bindPopover } from 'material-ui-popup-state'
 import BasePopover from 'material-ui-popup-state/HoverPopover'
 
 const useStyles = makeStyles({
@@ -17,11 +13,15 @@ const useStyles = makeStyles({
   },
 })
 
-type Props = ComponentPropsWithoutRef<typeof BasePopover> & {
-  triggerWrapClassName?: string
-  renderTrigger: () => React.ReactNode
-  bindType?: 'click' | 'hover'
-}
+type Props = Omit<
+  ComponentPropsWithoutRef<typeof BasePopover> & {
+    triggerWrapClassName?: string
+    renderTrigger: () => React.ReactNode
+    bindType?: 'click' | 'hover'
+    open?: boolean
+  },
+  'open'
+>
 
 function Popover({
   children,

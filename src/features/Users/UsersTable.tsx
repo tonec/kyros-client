@@ -1,7 +1,7 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import { Column, User } from 'types'
 import cx from 'clsx'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from 'styles'
 import { Card, Loader, Table } from 'components'
 import UsersTableRow from './UsersTableRow'
 
@@ -20,15 +20,23 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
+interface Props {
+  columns: Column[]
+  data: User[]
+  fallbackText?: string
+  isFetching: boolean
+  handleRowClick: (client: User) => void
+}
+
 const { Head, Body, Row, Cell } = Table
 
 function UsersTable({
   columns,
   data,
-  fallbackText,
+  fallbackText = 'No data to display',
   isFetching,
   handleRowClick,
-}) {
+}: Props): JSX.Element {
   const classes = useStyles()
 
   if (isFetching) {
@@ -79,21 +87,6 @@ function UsersTable({
       </Card>
     </div>
   )
-}
-
-UsersTable.propTypes = {
-  columns: PropTypes.arrayOf(PropTypes.object).isRequired,
-  data: PropTypes.arrayOf(PropTypes.object),
-  fallbackText: PropTypes.string,
-  isFetching: PropTypes.bool,
-  handleRowClick: PropTypes.func,
-}
-
-UsersTable.defaultProps = {
-  data: [],
-  fallbackText: 'No data to display',
-  isFetching: false,
-  handleRowClick: null,
 }
 
 export default UsersTable

@@ -2,10 +2,11 @@ import addDays from 'date-fns/addDays'
 import eachDay from 'date-fns/eachDayOfInterval'
 import endOfMonth from 'date-fns/endOfMonth'
 import startOfMonth from 'date-fns/startOfMonth'
+import { assertNever } from 'types'
 
 type Timescale = 'day' | 'week' | 'fortnight' | 'month'
 
-export default (timescale: Timescale): Date[] | null => {
+export default (timescale: Timescale): Date[] => {
   const now = new Date()
 
   switch (timescale) {
@@ -31,6 +32,6 @@ export default (timescale: Timescale): Date[] | null => {
       })
 
     default:
-      return null
+      return assertNever(timescale)
   }
 }

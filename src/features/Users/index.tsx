@@ -3,8 +3,9 @@ import { provideHooks } from 'redial'
 import { fetchUsers } from 'redux/modules/user/actions'
 import { Main } from 'components'
 import Users from './Users'
+import { Store } from 'redux'
 
-function UsersView() {
+function UsersView(): JSX.Element {
   const title = 'Users'
 
   return (
@@ -15,7 +16,7 @@ function UsersView() {
 }
 
 const hooks = {
-  fetch: ({ store }) => store.dispatch(fetchUsers()),
+  fetch: ({ store }: { store: Store }) => store.dispatch(fetchUsers()),
 }
 
 export default provideHooks(hooks)(UsersView)

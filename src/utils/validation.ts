@@ -1,7 +1,7 @@
 import { Obj } from 'types'
 import isEmpty from './isEmpty'
 
-type Value = string | number | null | undefined
+export type Value = string | number | null | undefined
 
 export function required(value: Value): string | undefined {
   if (isEmpty(value)) {

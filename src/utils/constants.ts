@@ -13,7 +13,6 @@ export const PERMISSIONS_OPTIONS = {
 }
 
 // Schedule view timescales
-export const TIMESCALES = ['day', 'week', 'fortnight', 'month']
 
 export const TIMESCALES_OPTIONS = {
   day: 'Day',

@@ -11,7 +11,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-function ScheduleHeader() {
+function ScheduleHeader(): JSX.Element {
   const classes = useStyles()
 
   return (

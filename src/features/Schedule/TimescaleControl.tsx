@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { ChangeEvent } from 'react'
 import { useLocation } from 'react-router'
 import { useLink } from 'valuelink'
 import { makeStyles } from 'styles'
 import { TIMESCALES_OPTIONS } from 'utils/constants'
 import { add } from 'utils/qs'
 import { DatePicker, Select } from 'components'
+import { ParsedQs } from 'qs'
+import { Location } from 'history'
+import { ParsableDate } from '@material-ui/pickers/constants/prop-types'
 
 const useStyles = makeStyles({
   control: {
@@ -13,13 +16,17 @@ const useStyles = makeStyles({
   },
 })
 
-function TimescaleControl() {
-  const classes = useStyles()
-  const location = useLocation()
-  const $date = useLink()
+type LocationWithQuery = Location & { query: ParsedQs }
 
-  const handleChange = event => {
-    add({ ts: event.target.value })
+function TimescaleControl(): JSX.Element {
+  const classes = useStyles()
+  const location = useLocation() as LocationWithQuery
+  const $date = useLink<ParsableDate | null>(null)
+
+  const handleChange = (event: ChangeEvent<{ name?: string | undefined; value: unknown }>) => {
+    if (typeof event.target.value === 'string') {
+      add({ ts: event.target.value })
+    }
   }
 
   const ts = location.query.ts || 'week'

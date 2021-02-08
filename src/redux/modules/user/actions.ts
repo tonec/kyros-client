@@ -33,7 +33,7 @@ export function fetchUsers(): APIAction {
   }
 }
 
-export function createUser(data: User): APIAction {
+export function createUser(data: Partial<User>): APIAction {
   return {
     type: [CREATE, CREATE_SUCCESS, CREATE_FAIL],
     request: ({ client }) => client.post('user', data),
@@ -42,7 +42,7 @@ export function createUser(data: User): APIAction {
   }
 }
 
-export function updateUser(id: string, data: User): APIAction {
+export function updateUser(id: string, data: Partial<User>): APIAction {
   return {
     type: [UPDATE, UPDATE_SUCCESS, UPDATE_FAIL],
     request: ({ client }) => client.patch(`user/${id}`, data),

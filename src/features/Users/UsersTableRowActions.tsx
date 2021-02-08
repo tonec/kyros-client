@@ -1,5 +1,5 @@
 import React from 'react'
-import { userType } from 'types'
+import { User, userType } from 'types'
 import { useDispatch } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles'
 import { openModal } from 'helpers/modalQS'
@@ -24,21 +24,21 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-function UsersTableRowActions({ user }) {
+interface Props {
+  user: User
+}
+
+function UsersTableRowActions({ user }: Props): JSX.Element {
   const classes = useStyles()
   const dispatch = useDispatch()
 
-  const onEdit = e => {
-    e.stopPropagation()
-
+  const onEdit = () => {
     openModal('user', {
       state: { id: user.id, view: 'edit' },
     })
   }
 
-  const onDelete = e => {
-    e.stopPropagation()
-
+  const onDelete = () => {
     dispatch(deleteUser(user.id))
   }
 

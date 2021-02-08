@@ -1,18 +1,18 @@
 import React from 'react'
-import { UseLink } from 'types'
 import isValid from 'date-fns/isValid'
 import DateFnsUtils from '@date-io/date-fns'
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers'
 import { MaterialUiPickersDate } from '@material-ui/pickers/typings/date'
 import { ParsableDate } from '@material-ui/pickers/constants/prop-types'
+import { UseStateRef } from 'valuelink/lib'
 
 interface Props {
-  label: string
-  $value: UseLink & { value: ParsableDate }
-  variant: 'inline' | 'dialog' | 'static' | undefined
-  format: string
-  margin: 'normal' | 'none' | 'dense' | undefined
-  disableToolbar: boolean
+  label?: string
+  $value?: UseStateRef<ParsableDate> | null
+  variant?: 'inline' | 'dialog' | 'static' | undefined
+  format?: string
+  margin?: 'normal' | 'none' | 'dense' | undefined
+  disableToolbar?: boolean
 }
 
 function DatePicker({
@@ -24,7 +24,7 @@ function DatePicker({
   disableToolbar = true,
 }: Props): JSX.Element {
   const handleDateChange = (date: MaterialUiPickersDate) => {
-    if (isValid(date)) {
+    if ($value && isValid(date)) {
       $value.set(date)
     }
   }
@@ -38,7 +38,7 @@ function DatePicker({
         variant={variant}
         format={format}
         margin={margin}
-        value={$value.value}
+        value={$value ? $value.value : null}
         disableToolbar={disableToolbar}
         onChange={handleDateChange}
         KeyboardButtonProps={{

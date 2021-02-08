@@ -12,7 +12,7 @@ export const getAllUsers = createSelector([userEntities], userEntities =>
 )
 
 export const getUser = createSelector(
-  [userEntities, (state: RootState, props: { userId: string }) => props.userId],
+  [userEntities, (state: RootState, props: { userId?: string }) => props.userId],
   (userEntities, userId) => {
     if (!userId || !userEntities) return null
     return userEntities.byId[userId]
