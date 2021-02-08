@@ -3,7 +3,7 @@ import { Status } from 'types'
 import { makeStyles, color } from 'styles'
 import { StatusIcon, Typography } from '../ui'
 
-type UseStylesProps = {
+interface UseStylesProps {
   status: Status
 }
 

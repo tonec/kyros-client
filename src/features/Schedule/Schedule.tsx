@@ -4,7 +4,7 @@ import { timescaleType } from 'types'
 import ScheduleLayout from './ScheduleLayout'
 import ScheduleDay from './ScheduleDay'
 
-type Props = {
+interface Props {
   timescale: Timesca
 }
 

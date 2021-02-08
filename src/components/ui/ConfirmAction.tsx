@@ -1,7 +1,7 @@
 import React, { MouseEvent, useState } from 'react'
 import ConfirmationDialog from './ConfirmationDialog'
 
-type Props = {
+interface Props {
   children: (...args: any) => React.ReactNode
   title?: string
   content?: string
@@ -10,18 +10,11 @@ type Props = {
 
 type Callback = (event?: MouseEvent) => void
 
-function ConfirmAction({
-  children,
-  title,
-  content,
-  action,
-}: Props): JSX.Element {
+function ConfirmAction({ children, title, content, action }: Props): JSX.Element {
   const [open, setOpen] = useState(false)
   const [callback, setCallback] = useState<Callback>()
 
-  const openConfirmationDialog = (callback: Callback) => (
-    event: MouseEvent,
-  ) => {
+  const openConfirmationDialog = (callback: Callback) => (event: MouseEvent) => {
     event.preventDefault()
     event.persist()
 
@@ -53,12 +46,6 @@ function ConfirmAction({
       />
     </>
   )
-}
-
-ConfirmAction.defaultProps = {
-  title: null,
-  content: null,
-  action: null,
 }
 
 export default ConfirmAction

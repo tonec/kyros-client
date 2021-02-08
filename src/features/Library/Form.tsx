@@ -24,7 +24,7 @@ const useStyles = makeStyles({
   },
 })
 
-type Values = {
+interface Values {
   email: string
   password: string
   checkbox1: boolean

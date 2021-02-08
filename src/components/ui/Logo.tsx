@@ -2,7 +2,7 @@ import React from 'react'
 import cx from 'clsx'
 import { makeStyles } from 'styles'
 
-type UseStyleProps = {
+interface UseStyleProps {
   size?: number
 }
 
@@ -17,7 +17,7 @@ const useStyles = makeStyles(() => ({
   },
 }))
 
-type Props = {
+interface Props {
   size?: number
   className?: string
 }

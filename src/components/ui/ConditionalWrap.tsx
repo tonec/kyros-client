@@ -1,6 +1,6 @@
 import React from 'react'
 
-type Props = {
+interface Props {
   condition: boolean
   wrap: (children: React.ReactNode) => React.ReactElement
   children: React.ReactNode

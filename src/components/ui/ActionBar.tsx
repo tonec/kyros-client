@@ -9,7 +9,7 @@ const useStylesActionBar = makeStyles({
   },
 })
 
-type Props = {
+interface Props {
   children: React.ReactNode
   className: string
 }

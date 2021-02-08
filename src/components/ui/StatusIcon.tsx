@@ -4,7 +4,7 @@ import WarningIcon from '@material-ui/icons/Warning'
 import ErrorIcon from '@material-ui/icons/Error'
 import CheckCircleIcon from '@material-ui/icons/CheckCircle'
 
-type Props = {
+interface Props {
   status: 'info' | 'warning' | 'error' | 'success'
   className?: string
 }

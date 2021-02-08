@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-type Props = {
+interface Props {
   viewBox?: string
   children: React.ReactNode
   style?: Record<string, string>
@@ -23,13 +23,7 @@ type Props = {
   className?: string
 }
 
-function SvgIcon({
-  viewBox = '0 0 24 24',
-  children,
-  style,
-  size,
-  className,
-}: Props): JSX.Element {
+function SvgIcon({ viewBox = '0 0 24 24', children, style, size, className }: Props): JSX.Element {
   const classes = useStyles()
 
   const styles = { ...style }
@@ -40,11 +34,7 @@ function SvgIcon({
   }
 
   return (
-    <svg
-      viewBox={viewBox}
-      className={cx(classes.svg, className)}
-      style={styles}
-    >
+    <svg viewBox={viewBox} className={cx(classes.svg, className)} style={styles}>
       {children}
     </svg>
   )

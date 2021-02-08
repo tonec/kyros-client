@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-type Props = {
+interface Props {
   error: string
 }
 

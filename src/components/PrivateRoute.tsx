@@ -9,7 +9,7 @@ import { getAuthUser } from 'redux/modules/auth/selectors'
 import { User } from 'types'
 import { RootState } from 'redux/rootReducer'
 
-type MappedState = {
+interface MappedState {
   user: User
 }
 
@@ -38,10 +38,6 @@ const mapState = createStructuredSelector<RootState, MappedState>({
   user: getAuthUser,
 })
 
-const ComposedPrivateRoute = compose(
-  connect(mapState),
-  withRouter,
-  PrivateRoute,
-)
+const ComposedPrivateRoute = compose(connect(mapState), withRouter, PrivateRoute)
 
 export default ComposedPrivateRoute

@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react'
 import { makeStyles, color } from 'styles'
 import FormInputError from './FormInputError'
 
-type UseStylesProps = {
+interface UseStylesProps {
   fullWidth?: boolean
   disabled?: boolean
   isError?: boolean

@@ -8,17 +8,13 @@ import HomeIcon from '@material-ui/icons/Home'
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz'
 import PeopleIcon from '@material-ui/icons/People'
 
-type Props = {
+interface Props {
   variant: string
   className?: string
   size?: 'default' | 'small' | 'large'
 }
 
-function Icon({
-  variant,
-  className,
-  size = 'default',
-}: Props): JSX.Element | null {
+function Icon({ variant, className, size = 'default' }: Props): JSX.Element | null {
   switch (variant) {
     case 'delete':
       return <DeleteIcon className={className} fontSize={size} />

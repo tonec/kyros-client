@@ -11,7 +11,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-type Props = {
+interface Props {
   title?: string
   content?: string
   action?: string

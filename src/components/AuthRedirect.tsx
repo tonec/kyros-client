@@ -11,7 +11,7 @@ import { RootState } from 'redux/rootReducer'
 import { getQuery } from 'redux/modules/app/selectors'
 import { ParsedQs } from 'qs'
 
-type Props = {
+interface Props {
   user: User
   query: ParsedQs
 }

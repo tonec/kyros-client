@@ -2,14 +2,11 @@ import React from 'react'
 import { UseLink } from 'types'
 import isValid from 'date-fns/isValid'
 import DateFnsUtils from '@date-io/date-fns'
-import {
-  MuiPickersUtilsProvider,
-  KeyboardDatePicker,
-} from '@material-ui/pickers'
+import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers'
 import { MaterialUiPickersDate } from '@material-ui/pickers/typings/date'
 import { ParsableDate } from '@material-ui/pickers/constants/prop-types'
 
-type Props = {
+interface Props {
   label: string
   $value: UseLink & { value: ParsableDate }
   variant: 'inline' | 'dialog' | 'static' | undefined

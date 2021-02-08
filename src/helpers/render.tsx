@@ -17,7 +17,7 @@ import { Request } from 'express'
 import { Store } from 'redux'
 import { StaticRouterContext } from 'react-router'
 
-type RenderArgs = {
+interface RenderArgs {
   req: Request
   store: Store
   history: History

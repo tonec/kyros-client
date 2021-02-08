@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-type Props = {
+interface Props {
   columns: Column[]
   data: Client[]
   fallbackText?: string

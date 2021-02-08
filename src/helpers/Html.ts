@@ -1,7 +1,7 @@
 import { HelmetData } from 'react-helmet-async'
 import registerSW from './registerSW'
 
-type HtmlArgs = {
+interface HtmlArgs {
   content?: string
   links?: string
   styles?: string

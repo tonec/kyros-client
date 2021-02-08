@@ -20,7 +20,7 @@ export const LOGOUT = `${prefix}/LOGOUT`
  * Action creators
  * * * * * * * * */
 
-type Credentials = {
+interface Credentials {
   email: string
   password: string
 }

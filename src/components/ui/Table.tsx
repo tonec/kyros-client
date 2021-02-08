@@ -6,7 +6,7 @@ import TableBody from './TableBody'
 import TableRow from './TableRow'
 import TableCell from './TableCell'
 
-type Props = {
+interface Props {
   children: React.ReactNode
   className?: string
 }

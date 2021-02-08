@@ -4,16 +4,12 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary'
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 
-type AccordionSummaryProps = {
+interface AccordionSummaryProps {
   children: React.ReactNode
 }
 
 function AccordionSummary({ children }: AccordionSummaryProps): JSX.Element {
-  return (
-    <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-      {children}
-    </ExpansionPanelSummary>
-  )
+  return <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>{children}</ExpansionPanelSummary>
 }
 
 type AccordionDetailsProps = {

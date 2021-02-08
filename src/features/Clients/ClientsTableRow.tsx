@@ -11,7 +11,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-type Props = {
+interface Props {
   columns: Column[]
   item: Client
   handleRowClick?: (item: Client) => void
@@ -19,11 +19,7 @@ type Props = {
 
 const { Row, Cell } = Table
 
-function ClientsTableRow({
-  columns,
-  item,
-  handleRowClick,
-}: Props): JSX.Element {
+function ClientsTableRow({ columns, item, handleRowClick }: Props): JSX.Element {
   const classes = useStyles()
 
   const onRowClick = () => {
@@ -48,13 +44,7 @@ function ClientsTableRow({
   }
 
   return (
-    <Row
-      key={item.id}
-      {...rowProps}
-      style={rowStyle}
-      testid={`row-${item.id}`}
-      hover
-    >
+    <Row key={item.id} {...rowProps} style={rowStyle} testid={`row-${item.id}`} hover>
       {columns.map(column => {
         if (column.key === 'actions') {
           return (

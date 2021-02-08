@@ -22,27 +22,19 @@ const useStylesTitle = makeStyles(theme => ({
   },
 }))
 
-type DialogTitleProps = {
+interface DialogTitleProps {
   children: React.ReactNode
   onClose: () => void
 }
 
-function DialogTitle({
-  children,
-  onClose,
-  ...props
-}: DialogTitleProps): JSX.Element {
+function DialogTitle({ children, onClose, ...props }: DialogTitleProps): JSX.Element {
   const classes = useStylesTitle()
 
   return (
     <BaseDialogTitle disableTypography className={classes.root} {...props}>
       <Typography variant="h3">{children}</Typography>
       {onClose ? (
-        <IconButton
-          aria-label="close"
-          className={classes.closeButton}
-          onClick={onClose}
-        >
+        <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
           <CloseIcon />
         </IconButton>
       ) : null}
@@ -56,7 +48,7 @@ const useStylesDialog = makeStyles({
   },
 })
 
-type DialogProps = {
+interface DialogProps {
   children: React.ReactNode
   title?: string | null
   open: boolean
@@ -64,13 +56,7 @@ type DialogProps = {
   onClose: () => void
 }
 
-function Dialog({
-  children,
-  title,
-  open,
-  testid,
-  onClose,
-}: DialogProps): JSX.Element {
+function Dialog({ children, title, open, testid, onClose }: DialogProps): JSX.Element {
   const classes = useStylesDialog()
 
   let testId = 'modal'

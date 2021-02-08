@@ -16,7 +16,7 @@ const useStyles = makeStyles({
   },
 })
 
-type Props = {
+interface Props {
   children: React.ReactElement
   component?: React.ReactNode
   className?: string

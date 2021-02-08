@@ -5,7 +5,7 @@ import { createStructuredSelector } from 'reselect'
 import { renderRoutes, RouteConfigComponentProps } from 'react-router-config'
 import { connect } from 'react-redux'
 import { RootState } from './redux/rootReducer'
-import { Obj, User } from './types'
+import { User } from './types'
 import { setIsFirstLoad } from './redux/modules/app/actions'
 import { getAuthUser } from './redux/modules/auth/selectors'
 import { setTheme, Theme, withTheme } from './styles'
@@ -14,7 +14,7 @@ import './assets/stylesheets/global.css'
 import './assets/stylesheets/reset.css'
 import './assets/stylesheets/nprogress.css'
 
-type MappedState = {
+interface MappedState {
   user: User
 }
 
@@ -26,7 +26,7 @@ type Props = MappedState &
     setIsFirstLoad: () => void
   }
 
-type State = {
+interface State {
   prevProps: Props
 }
 

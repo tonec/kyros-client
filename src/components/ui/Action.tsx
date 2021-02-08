@@ -2,7 +2,7 @@ import React from 'react'
 import cx from 'clsx'
 import { makeStyles, color } from 'styles'
 
-type UseStylesProps = {
+interface UseStylesProps {
   variant?: string
   disabled?: boolean
 }
@@ -20,8 +20,7 @@ const useStyles = makeStyles(theme => {
       width: '100%',
       boxShadow: '0px -1px 1px 0px rgba(122, 133, 135, 0.25)',
 
-      cursor: ({ disabled }: UseStylesProps) =>
-        disabled ? 'initial' : 'pointer',
+      cursor: ({ disabled }: UseStylesProps) => (disabled ? 'initial' : 'pointer'),
 
       color: ({ variant, disabled }: UseStylesProps) => {
         if (disabled) {
@@ -49,7 +48,7 @@ const useStyles = makeStyles(theme => {
   }
 })
 
-type Props = {
+interface Props {
   children: React.ReactNode
   type?: 'button' | 'reset' | 'submit' | undefined
   variant?: 'primary' | 'secondary'

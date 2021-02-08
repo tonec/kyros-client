@@ -8,11 +8,11 @@ import { createClient, updateClient } from 'redux/modules/client/actions'
 import { getClient } from 'redux/modules/client/selectors'
 import ClientForm from './ClientForm'
 
-type MappedProps = {
+interface MappedProps {
   client: Client | null
 }
 
-type OwnProps = {
+interface OwnProps {
   clientId?: string
 }
 

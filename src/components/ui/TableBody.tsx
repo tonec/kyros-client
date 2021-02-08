@@ -1,7 +1,7 @@
 import React from 'react'
 import BaseTableBody from '@material-ui/core/TableBody'
 
-type Props = {
+interface Props {
   children: React.ReactNode
 }
 

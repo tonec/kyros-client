@@ -4,11 +4,11 @@ import { FormState } from 'final-form'
 import { Button, ButtonsSpacer, Form, InputField } from 'components'
 import validate from './validate'
 
-export type Values = {
+export interface Values {
   name: string
 }
 
-type Props = {
+interface Props {
   isEdit: boolean
   initialValues: Partial<Values>
   handleCancel: () => void

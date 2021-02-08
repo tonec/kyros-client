@@ -14,11 +14,11 @@ const useStyles = makeStyles({
   },
 })
 
-type Props = {
+interface Props {
   handleLogout: () => void
 }
 
-type Params = {
+interface Params {
   clientId: string
 }
 

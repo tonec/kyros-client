@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Box, Card, Container, Grid, Typography } from './ui'
 
-type Props = {
+interface Props {
   staticContext: Record<string, string | number>
 }
 

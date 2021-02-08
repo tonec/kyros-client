@@ -3,7 +3,7 @@ import cx from 'clsx'
 import { makeStyles } from 'styles'
 import BaseCard from '@material-ui/core/Card'
 
-type UseStylesProps = {
+interface UseStylesProps {
   flush: boolean
 }
 
@@ -27,11 +27,7 @@ function Card({
   const classes = useStyles({ flush })
 
   return (
-    <BaseCard
-      className={cx(classes.root, className)}
-      raised={raised}
-      elevation={elevation}
-    >
+    <BaseCard className={cx(classes.root, className)} raised={raised} elevation={elevation}>
       {children}
     </BaseCard>
   )

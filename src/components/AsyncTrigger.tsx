@@ -7,7 +7,7 @@ import { hot } from 'react-hot-loader/root'
 import { RootState } from 'redux/rootReducer'
 import { getIsFirstLoad } from 'redux/modules/app/selectors'
 
-type MappedState = {
+interface MappedState {
   isFirstLoad: boolean
 }
 
@@ -17,7 +17,7 @@ type Props = RouteComponentProps &
     trigger: (pathname: string) => Promise<void>
   }
 
-type State = {
+interface State {
   needTrigger?: boolean
   location?: RouteComponentProps['location'] | null
   previousLocation?: RouteComponentProps['location'] | null

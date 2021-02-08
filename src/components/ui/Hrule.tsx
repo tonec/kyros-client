@@ -10,9 +10,7 @@ const useStyles = makeStyles(theme => ({
 
 function Hrule(): JSX.Element {
   const classes = useStyles()
-  return (
-    <Divider component="hr" variant="fullWidth" className={classes.hrule} />
-  )
+  return <Divider variant="fullWidth" className={classes.hrule} />
 }
 
 export default Hrule

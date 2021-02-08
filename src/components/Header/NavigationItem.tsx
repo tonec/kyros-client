@@ -1,10 +1,9 @@
 import React, { MouseEvent, KeyboardEvent } from 'react'
-import PropTypes from 'prop-types'
 import { useHistory } from 'react-router-dom'
 import { makeStyles } from 'styles'
 import { Anchor } from '../ui'
 
-type StyleProps = {
+interface StyleProps {
   active: boolean
   disabled: boolean
 }
@@ -32,7 +31,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-type Props = {
+interface Props {
   path: string
   icon: React.ReactElement
   disabled: boolean
@@ -68,20 +67,6 @@ function NavigationItem({ path, icon, disabled, handleClick }: Props): JSX.Eleme
       <Anchor onClick={onClick}>{icon}</Anchor>
     </li>
   )
-}
-
-NavigationItem.propTypes = {
-  path: PropTypes.string,
-  icon: PropTypes.element,
-  disabled: PropTypes.bool,
-  handleClick: PropTypes.func,
-}
-
-NavigationItem.defaultProps = {
-  path: '',
-  icon: null,
-  disabled: false,
-  handleClick: null,
 }
 
 export default NavigationItem

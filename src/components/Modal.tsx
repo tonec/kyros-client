@@ -12,7 +12,7 @@ import { ParsedQs } from 'qs'
 
 type Title = Obj<string> | string
 
-type ModalState = {
+interface ModalState {
   id: string
   view: string
 }
@@ -25,7 +25,7 @@ const getTitleString = (title: Title, state: ModalState): string | null => {
   return title[view] || title.create || null
 }
 
-type MappedState = {
+interface MappedState {
   query: ParsedQs
   modalKey: string
   modalState: Obj<string | Obj<string>>
@@ -47,10 +47,8 @@ function Modal({
   query,
   closeModal,
 }: Props): JSX.Element | null {
-  const { modalKey: modalKeyQS, modalState: modalStateQS } = query
-
-  const key = modalKeyQS || modalKey
-  const state = (modalStateQS || modalState) as ModalState
+  const key = query.modalKeyQS || modalKey
+  const state = ((query.modalStateQS || modalState || {}) as unknown) as ModalState
 
   if (key !== name) return null
 

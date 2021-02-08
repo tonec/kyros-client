@@ -4,7 +4,7 @@ function isTrivialHref(href: string) {
   return !href || href.trim() === '#'
 }
 
-type Props = {
+interface Props {
   href?: string
   tabIndex?: number
   disabled?: boolean

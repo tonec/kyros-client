@@ -8,7 +8,7 @@ import { getVisibleClients } from 'redux/modules/client/selectors'
 import { RootState } from 'redux/rootReducer'
 import ClientsTable from './ClientsTable'
 
-type Props = {
+interface Props {
   isFetchingClients: boolean
   clients: Client[]
 }

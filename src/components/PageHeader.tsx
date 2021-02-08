@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { makeStyles } from 'styles'
 import { Typography } from './ui'
 
@@ -12,7 +11,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-type Props = {
+interface Props {
   title: string
   renderActions: () => React.ReactNode
 }
@@ -26,15 +25,6 @@ function PageHeader({ title, renderActions }: Props): JSX.Element {
       {renderActions && renderActions()}
     </div>
   )
-}
-
-PageHeader.propTypes = {
-  title: PropTypes.string.isRequired,
-  renderActions: PropTypes.func,
-}
-
-PageHeader.defaultProps = {
-  renderActions: null,
 }
 
 export default PageHeader

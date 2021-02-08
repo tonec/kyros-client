@@ -3,7 +3,7 @@ import cx from 'clsx'
 import { ReactElementWithDisplayName } from 'types'
 import { makeStyles } from 'styles'
 
-type UseStyleProps = {
+interface UseStyleProps {
   variant: 'left' | 'center' | 'right'
 }
 
@@ -23,7 +23,7 @@ const useButtonStyles = makeStyles(theme => ({
   },
 }))
 
-type Props = {
+interface Props {
   children: React.ReactNode
   variant?: 'left' | 'right' | 'center'
   className?: string

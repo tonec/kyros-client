@@ -18,7 +18,7 @@ const useStyles = makeStyles({
   },
 })
 
-type Props = {
+interface Props {
   children: React.ReactNode
   title: string
   maxWidth?: MaxWidth

@@ -14,7 +14,7 @@ export const HIDE = `${prefix}/HIDE`
  * Action creators
  * * * * * * * * */
 
-type Flash = {
+interface Flash {
   status: Status
   message: string
   dismissable?: boolean

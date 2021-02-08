@@ -18,7 +18,7 @@ const useStyles = makeStyles({
   },
 })
 
-type Props = {
+interface Props {
   visible: boolean
   status: Status
   message: string

@@ -7,7 +7,7 @@ import { ConditionalWrap } from '../ui'
 import Flash from '../Flash/FlashContainer'
 import Header from '../Header/Header'
 
-type StyleProps = {
+interface StyleProps {
   maxWidth: MaxWidth
 }
 
@@ -21,7 +21,7 @@ const useStyles = makeStyles({
   },
 })
 
-type Props = {
+interface Props {
   children: React.ReactNode
   title: string
   maxWidth?: MaxWidth
