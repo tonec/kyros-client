@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import PropTypes, { oneOfType, string, func, number } from 'prop-types'
 import { makeStyles } from 'styles'
 import BaseInput from '@material-ui/core/TextField'
 import ConditionalWrap from '../ConditionalWrap'
@@ -106,51 +105,6 @@ function InputNumber({
       {error && <span>{error}</span>}
     </ConditionalWrap>
   )
-}
-
-InputNumber.propTypes = {
-  name: PropTypes.string.isRequired,
-  label: PropTypes.string,
-  type: PropTypes.string,
-  $value: PropTypes.shape({
-    value: oneOfType([string, number]),
-    set: func,
-    check: func,
-    error: string,
-  }),
-  value: oneOfType([string, number]),
-  defaultValue: PropTypes.number,
-  min: PropTypes.number,
-  max: PropTypes.number,
-  // eslint-disable-next-line react/forbid-prop-types
-  inputProps: PropTypes.object,
-  helperText: PropTypes.string,
-  disabled: PropTypes.bool,
-  isWrapped: PropTypes.bool,
-  fullWidth: PropTypes.bool,
-  noStepper: PropTypes.bool,
-  className: PropTypes.string,
-  useLocalStorage: PropTypes.bool,
-  onChange: PropTypes.func,
-}
-
-InputNumber.defaultProps = {
-  label: '',
-  type: 'text',
-  $value: null,
-  value: '',
-  defaultValue: null,
-  min: null,
-  max: null,
-  inputProps: {},
-  helperText: '',
-  disabled: false,
-  isWrapped: false,
-  fullWidth: false,
-  noStepper: false,
-  className: null,
-  useLocalStorage: false,
-  onChange: null,
 }
 
 export default InputNumber

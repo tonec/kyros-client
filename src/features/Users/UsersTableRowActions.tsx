@@ -1,5 +1,5 @@
 import React from 'react'
-import { User, userType } from 'types'
+import { User } from 'types'
 import { useDispatch } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles'
 import { openModal } from 'helpers/modalQS'
@@ -66,10 +66,6 @@ function UsersTableRowActions({ user }: Props): JSX.Element {
       </Popover>
     </div>
   )
-}
-
-UsersTableRowActions.propTypes = {
-  user: userType.isRequired,
 }
 
 export default UsersTableRowActions

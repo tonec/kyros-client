@@ -11,7 +11,6 @@ module.exports = {
   rules: {
     'no-shadow': 'off',
     'prefer-promise-reject-errors': 'off',
-    'react/forbid-prop-types': 'off',
     'react/jsx-closing-tag-location': 'off',
     'react/jsx-filename-extension': 'off',
     'react/jsx-props-no-spreading': 'off',

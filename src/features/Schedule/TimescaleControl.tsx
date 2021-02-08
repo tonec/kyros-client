@@ -1,13 +1,13 @@
 import React, { ChangeEvent } from 'react'
 import { useLocation } from 'react-router'
 import { useLink } from 'valuelink'
+import { ParsedQs } from 'qs'
+import { Location } from 'history'
+import { ParsableDate } from '@material-ui/pickers/constants/prop-types'
 import { makeStyles } from 'styles'
 import { TIMESCALES_OPTIONS } from 'utils/constants'
 import { add } from 'utils/qs'
 import { DatePicker, Select } from 'components'
-import { ParsedQs } from 'qs'
-import { Location } from 'history'
-import { ParsableDate } from '@material-ui/pickers/constants/prop-types'
 
 const useStyles = makeStyles({
   control: {

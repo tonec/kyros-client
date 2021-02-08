@@ -85,10 +85,7 @@ export function renderWithStore(
 
 export function renderWithRouter(
   ui,
-  {
-    route = '/login',
-    history = createMemoryHistory({ initialEntries: [route] }),
-  } = {},
+  { route = '/login', history = createMemoryHistory({ initialEntries: [route] }) } = {},
 ) {
   return {
     ...render(<Router history={history}>{ui}</Router>),

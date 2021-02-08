@@ -1,5 +1,6 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import { FormRenderProps } from 'react-final-form'
+import { FormState } from 'final-form'
 import { PERMISSIONS_OPTIONS } from 'utils/constants'
 import {
   Button,
@@ -13,12 +14,33 @@ import {
 } from 'components'
 import validate from './validate'
 
-function UserForm({ isEdit, initialValues, handleCancel, handleOnSubmit }) {
+export interface Values {
+  firstName: string
+  lastName: string
+  email: string
+  password: string
+  permissions: keyof typeof PERMISSIONS_OPTIONS
+  super: boolean
+}
+
+interface Props {
+  isEdit: boolean
+  initialValues: Partial<Values>
+  handleCancel: () => void
+  handleOnSubmit: (data: Values) => void
+}
+
+function UserForm({ isEdit, initialValues, handleCancel, handleOnSubmit }: Props): JSX.Element {
   return (
     <Form
       initialValues={initialValues}
       onSubmit={handleOnSubmit}
-      render={({ submitting, pristine, handleSubmit, hasValidationErrors }) => {
+      render={({
+        submitting,
+        pristine,
+        handleSubmit,
+        hasValidationErrors,
+      }: FormRenderProps & FormState<Values>) => {
         return (
           <form onSubmit={handleSubmit}>
             <Grid container spacing={3}>
@@ -97,18 +119,6 @@ function UserForm({ isEdit, initialValues, handleCancel, handleOnSubmit }) {
       }}
     />
   )
-}
-
-UserForm.propTypes = {
-  isEdit: PropTypes.bool,
-  initialValues: PropTypes.object,
-  handleCancel: PropTypes.func.isRequired,
-  handleOnSubmit: PropTypes.func.isRequired,
-}
-
-UserForm.defaultProps = {
-  isEdit: false,
-  initialValues: {},
 }
 
 export default UserForm

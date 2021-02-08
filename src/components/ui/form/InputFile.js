@@ -1,5 +1,4 @@
 import React, { forwardRef } from 'react'
-import PropTypes from 'prop-types'
 import { makeStyles } from 'styles'
 import ConditionalWrap from '../ConditionalWrap'
 import FormControl from './FormControl'
@@ -24,22 +23,15 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const InputFile = forwardRef(
-  ({ buttonText, directory, isWrapped, disabled, onChange }, ref) => {
+  ({ buttonText = 'Choose file', directory, isWrapped, disabled, onChange }, ref) => {
     const classes = useStyles()
 
     return (
       <ConditionalWrap
         condition={isWrapped}
-        wrap={child => (
-          <FormControl className={classes.control}>{child}</FormControl>
-        )}
+        wrap={child => <FormControl className={classes.control}>{child}</FormControl>}
       >
-        <Button
-          variant="contained"
-          component="label"
-          className={classes.label}
-          disabled={disabled}
-        >
+        <Button variant="contained" component="label" className={classes.label} disabled={disabled}>
           {buttonText}
           <input
             ref={ref}
@@ -54,20 +46,5 @@ const InputFile = forwardRef(
     )
   },
 )
-
-InputFile.propTypes = {
-  buttonText: PropTypes.string,
-  directory: PropTypes.string,
-  isWrapped: PropTypes.bool,
-  disabled: PropTypes.bool,
-  onChange: PropTypes.func.isRequired,
-}
-
-InputFile.defaultProps = {
-  buttonText: 'Choose file',
-  directory: 'false',
-  isWrapped: false,
-  disabled: false,
-}
 
 export default InputFile
