@@ -105,10 +105,4 @@ const persistConfig = {
   loadableReady(() => {
     hydrate()
   })
-
-  if (module.hot) {
-    module.hot.accept('./routes', () => {
-      hydrate()
-    })
-  }
 })()

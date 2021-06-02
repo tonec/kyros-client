@@ -3,6 +3,7 @@ const path = require('path')
 const webpack = require('webpack')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
 const config = require('../config')
 
 module.exports = {
@@ -29,8 +30,17 @@ module.exports = {
     rules: [
       {
         test: /\.(js|ts|tsx)?$/,
-        loader: 'babel-loader',
         exclude: /node_modules/,
+        use: 
+        {
+          loader: require.resolve('babel-loader'),
+          options: {
+            plugins: [
+              require.resolve('react-refresh/babel'),
+            ].filter(Boolean),
+          },
+        },
+
       },
       {
         test: /\.(css)$/,
@@ -69,6 +79,8 @@ module.exports = {
       /express\/lib/, 
       path.resolve('node_modules'),
       { 'ejs': 'ejs' }                                 
-    )           
+    ),
+    
+    new ReactRefreshWebpackPlugin()
   ],
 }

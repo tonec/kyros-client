@@ -5,7 +5,7 @@ import UsersTableContainer from './UsersTableContainer'
 import UserModal from '../User/UserModal'
 
 function Users(): JSX.Element {
-  const title = 'Users'
+  const title = 'Usersss'
 
   const handleCreateUser = () => {
     openModal('user')
