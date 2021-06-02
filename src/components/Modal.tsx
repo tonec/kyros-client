@@ -47,8 +47,8 @@ function Modal({
   query,
   closeModal,
 }: Props): JSX.Element | null {
-  const key = query.modalKeyQS || modalKey
-  const state = ((query.modalStateQS || modalState || {}) as unknown) as ModalState
+  const key = query.modalKey || modalKey
+  const state = (query.modalState || modalState || {}) as unknown as ModalState
 
   if (key !== name) return null
 
