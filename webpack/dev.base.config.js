@@ -13,29 +13,17 @@ module.exports = {
   resolve: {
     modules: ['src', 'node_modules'],
     extensions: ['.json', '.js', '.ts', '.tsx'],
-    alias: { 'react-dom': '@hot-loader/react-dom' },
   },
 
   devtool: 'source-map',
 
-  stats: {
-    warningsFilter: warning => {
-      let block = false
 
-      const blockedFiles = [
-        'node_modules/express/lib/view.js',
-        'node_modules/require_optional/index.js',
-      ]
-
-      blockedFiles.forEach(modulePath => {
-        if (RegExp(modulePath).test(warning) === true) {
-          block = true
-        }
-      })
-
-      return block
-    },
-  },
+  ignoreWarnings: [
+    {
+      message: /require\.extensions/
+    }
+  ],
+  
 
   module: {
     rules: [
@@ -51,7 +39,6 @@ module.exports = {
             loader: MiniCssExtractPlugin.loader,
             options: {
               publicPath: config.paths.PUBLIC,
-              hmr: true,
             },
           },
           'css-loader',
@@ -77,5 +64,11 @@ module.exports = {
       chunkFilename: '[id].css',
       ignoreOrder: false,
     }),
+
+    new webpack.ContextReplacementPlugin(
+      /express\/lib/, 
+      path.resolve('node_modules'),
+      { 'ejs': 'ejs' }                                 
+    )           
   ],
 }

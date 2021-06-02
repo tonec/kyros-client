@@ -1,6 +1,6 @@
 const path = require('path')
 const webpack = require('webpack')
-const merge = require('webpack-merge')
+const { merge } = require('webpack-merge')
 const LoadablePlugin = require('@loadable/webpack-plugin')
 const baseConfig = require('./dev.base.config')
 const config = require('../config')
@@ -11,7 +11,6 @@ const DIST_DIRECTORY = path.resolve(ROOT_DIRECTORY, 'public/dist')
 module.exports = merge(baseConfig, {
   entry: {
     main: [
-      'react-hot-loader/patch',
       'webpack-hot-middleware/client?path=http://localhost:3001/__webpack_hmr',
       path.resolve(ROOT_DIRECTORY, 'src/client.tsx'),
     ],

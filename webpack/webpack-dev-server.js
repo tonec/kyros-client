@@ -9,12 +9,6 @@ const compiler = webpack(webpackConfig)
 const app = express()
 
 app.use(devMiddleware(compiler, {
-  contentBase: 'http://localhost:3000',
-  quiet: true,
-  noInfo: true,
-  hot: true,
-  inline: true,
-  lazy: false,
   publicPath: webpackConfig.output.publicPath,
   headers: { 'Access-Control-Allow-Origin': '*' },
   writeToDisk: true

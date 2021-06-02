@@ -3,7 +3,6 @@ import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 import { withRouter, Route, RouteComponentProps } from 'react-router-dom'
-import { hot } from 'react-hot-loader/root'
 import { RootState } from 'redux/rootReducer'
 import { getIsFirstLoad } from 'redux/modules/app/selectors'
 
@@ -117,4 +116,4 @@ const mapState = createStructuredSelector<RootState, MappedState>({
   isFirstLoad: getIsFirstLoad,
 })
 
-export default compose(connect(mapState), withRouter, hot)(AsyncTrigger)
+export default compose(connect(mapState), withRouter)(AsyncTrigger)
