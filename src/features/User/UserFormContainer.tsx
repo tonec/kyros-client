@@ -8,6 +8,7 @@ import { closeModal } from 'redux/modules/modal/actions'
 import { getUser } from 'redux/modules/user/selectors'
 import UserForm from './UserForm'
 import { RootState } from 'redux/rootReducer'
+import { Values } from './UserForm'
 
 interface MappedState {
   user: User | null
@@ -19,8 +20,8 @@ interface OwnProps {
 
 type Props = OwnProps &
   MappedState & {
-    createUser: (data: Omit<User, 'id'>) => void
-    updateUser: (id: string, data: Omit<User, 'id'>) => void
+    createUser: (data: Partial<User>) => void
+    updateUser: (id: string, data: Partial<User>) => void
     closeModal: () => void
   }
 
@@ -31,7 +32,7 @@ function UserFormContainer({ user, createUser, updateUser, closeModal }: Props):
     closeModal()
   }
 
-  const handleOnSubmit = (data: Omit<User, 'id'>) => {
+  const handleOnSubmit = (data: Values) => {
     if (isEdit && user) {
       updateUser(user.id, data)
     } else {

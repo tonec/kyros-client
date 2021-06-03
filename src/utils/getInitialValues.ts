@@ -1,4 +1,4 @@
-function getInitialValues<T extends { createdAt: string; updatedAt: string; id: string }>(
+function getInitialValues<T extends { createdAt?: string; updatedAt?: string; id?: string }>(
   values: T,
 ): any {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
