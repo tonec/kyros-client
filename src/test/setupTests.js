@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-/* eslint-disable import/no-extraneous-dependencies */
 import 'regenerator-runtime/runtime'
 import '@testing-library/jest-dom'
 import React from 'react'
