@@ -11,10 +11,6 @@ import { render } from '@testing-library/react'
 import apiMiddleware from 'redux/middleware/apiMiddleware'
 import { getRootState } from 'redux/rootReducer'
 
-/**
- * @jest-environment jsdom
- */
-
 export function renderWith(
   ui,
   {
