@@ -33,9 +33,7 @@ function UsersTableRowActions({ user }: Props): JSX.Element {
   const dispatch = useDispatch()
 
   const onEdit = () => {
-    openModal('user', {
-      state: { id: user.id, view: 'edit' },
-    })
+    openModal('user', { id: user.id, view: 'edit' })
   }
 
   const onDelete = () => {
