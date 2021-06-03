@@ -22,8 +22,10 @@
   "jest": {
     "setupFilesAfterEnv": [
       "./src/test/setupTests.js"
-    ]
+    ],
+    "testEnvironment": "jsdom"
   },
+  
   "author": "",
   "license": "ISC",
   "dependencies": {

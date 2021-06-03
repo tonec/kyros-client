@@ -26,7 +26,6 @@ describe('app reducer', () => {
       }),
     ).toEqual({
       ...initialState,
-      isFetching: true,
     })
   })
 
@@ -38,7 +37,6 @@ describe('app reducer', () => {
       }),
     ).toEqual({
       ...initialState,
-      isFetching: false,
       user: loginSuccessResponse.user,
     })
   })
@@ -52,7 +50,6 @@ describe('app reducer', () => {
       }),
     ).toEqual({
       ...initialState,
-      isFetching: false,
       error: loginErrorResponse,
     })
   })
@@ -61,7 +58,6 @@ describe('app reducer', () => {
 it('LOGOUT action', () => {
   const state = {
     ...initialState,
-    isFetching: false,
     user: loginSuccessResponse.user,
   }
 

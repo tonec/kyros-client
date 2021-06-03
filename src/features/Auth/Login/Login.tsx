@@ -21,7 +21,6 @@ function Login(): JSX.Element {
   const classes = useStyles()
 
   const handleOnSubmit = (data: Values) => {
-    console.log(data)
     dispatch(login(data))
   }
 

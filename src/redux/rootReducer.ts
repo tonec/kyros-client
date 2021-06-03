@@ -1,6 +1,6 @@
 import { connectRouter } from 'connected-react-router'
 import { Reducer } from 'redux'
-import { persistCombineReducers, PersistConfig } from 'redux-persist'
+import { persistCombineReducers } from 'redux-persist'
 import { History } from 'history'
 import api from './modules/api/reducer'
 import app from './modules/app/reducer'
@@ -11,19 +11,21 @@ import flash from './modules/flash/reducer'
 import modal from './modules/modal/reducer'
 import user from './modules/user/reducer'
 
+export const getRootState = (history: History): any => ({
+  router: connectRouter(history) as Reducer,
+  api,
+  app,
+  auth,
+  client,
+  entity,
+  flash,
+  modal,
+  user,
+})
+
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 const rootReducer = (persistConfig: any, history: History) =>
-  persistCombineReducers(persistConfig, {
-    router: connectRouter(history) as Reducer,
-    api,
-    app,
-    auth,
-    client,
-    entity,
-    flash,
-    modal,
-    user,
-  })
+  persistCombineReducers(persistConfig, getRootState(history))
 
 export type RootState = StateType<ReturnType<typeof rootReducer>>
 

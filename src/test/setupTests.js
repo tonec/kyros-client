@@ -9,7 +9,11 @@ import { Provider } from 'react-redux'
 import configureStore from 'redux-mock-store'
 import { render } from '@testing-library/react'
 import apiMiddleware from 'redux/middleware/apiMiddleware'
-import reducer from 'redux/rootReducer'
+import { getRootState } from 'redux/rootReducer'
+
+/**
+ * @jest-environment jsdom
+ */
 
 export function renderWith(
   ui,
@@ -32,7 +36,7 @@ export function renderWith(
     }),
   ])
 
-  const initialState = reducer(history)
+  const initialState = getRootState(history)
 
   initialState.router = {
     location: { query: query || {} },
@@ -75,7 +79,7 @@ export function renderWithStore(
     }),
   ])
 
-  const store = createStore(() => reducer(history), initialState)
+  const store = createStore(() => getRootState(history), initialState)
 
   function Wrapper({ children }) {
     return <Provider store={store}>{children}</Provider>

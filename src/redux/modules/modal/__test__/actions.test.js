@@ -23,11 +23,7 @@ describe('modal actions', () => {
     const store = mockStore({})
     const { dispatch } = store
 
-    dispatch(
-      actions.openModal('modalKey', {
-        state: { id: '1234', view: 'edit' },
-      }),
-    )
+    dispatch(actions.openModal('modalKey', { id: '1234', view: 'edit' }))
 
     const acts = store.getActions()
 
