@@ -17,7 +17,8 @@
     "test": "cross-env NODE_PATH=src jest src",
     "test:watch": "cross-env NODE_PATH=src jest --watch src",
     "test:coverage": "cross-env NODE_PATH=src jest --coverage src",
-    "lighthouse-report": "lighthouse http://localhost:8081 --view"
+    "lighthouse-report": "lighthouse http://localhost:8081 --view",
+    "prepare": "husky install"
   },
   "jest": {
     "setupFilesAfterEnv": [
@@ -143,6 +144,7 @@
     "eslint-plugin-react": "^7.21.5",
     "eslint-plugin-react-hooks": "^4.2.0",
     "file-loader": "^6.2.0",
+    "husky": "^6.0.0",
     "mini-css-extract-plugin": "^1.6.0",
     "nodemon": "^2.0.7",
     "prettier": "^2.2.1",

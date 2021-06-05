@@ -14,6 +14,8 @@ import {
 } from 'components'
 import validate from './validate'
 
+const test = 'test'
+
 export interface Values {
   firstName: string
   lastName: string
