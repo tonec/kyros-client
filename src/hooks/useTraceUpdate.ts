@@ -1,19 +1,18 @@
 import { useEffect, useRef } from 'react'
 
-export default props => {
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+export default (props: any): void => {
   const prev = useRef(props)
 
   useEffect(() => {
-    const changedProps = Object.entries(props).reduce((ps, [k, v]) => {
+    const changedProps = Object.entries(props).reduce((ps: any, [k, v]) => {
       if (prev.current[k] !== v) {
-        // eslint-disable-next-line no-param-reassign
         ps[k] = [prev.current[k], v]
       }
       return ps
     }, {})
 
     if (Object.keys(changedProps).length > 0) {
-      // eslint-disable-next-line no-console
       console.log('Changed props:', changedProps)
     }
 

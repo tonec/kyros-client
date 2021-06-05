@@ -13,7 +13,7 @@
     "prod:build-client": "webpack --config webpack/prod.client.config.js --optimize-minimize --mode production",
     "prod:build-server": "webpack --config webpack/prod.server.config.js --optimize-minimize --mode production",
     "prod:server": "node build/bundle.js",
-    "lint": "eslint -c .eslintrc src --fix",
+    "lint": "eslint -c .eslintrc.js src --fix",
     "test": "cross-env NODE_PATH=src jest src",
     "test:watch": "cross-env NODE_PATH=src jest --watch src",
     "test:coverage": "cross-env NODE_PATH=src jest --coverage src",

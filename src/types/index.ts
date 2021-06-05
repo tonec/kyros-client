@@ -3,7 +3,9 @@ import { PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from 'redux/rootReducer'
 import { NormalizedSchema } from 'normalizr'
 import { AxiosInstance, AxiosPromise } from 'axios'
-import { TIMESCALES_OPTIONS } from '../utils/constants'
+import { Store } from 'redux'
+import { History } from 'history'
+import { TIMESCALES_OPTIONS } from 'utils/constants'
 
 /*
  * Utility types
@@ -26,14 +28,18 @@ export const assertNever = (x: never): never => {
   throw new Error('Unexpected object: ' + x)
 }
 
-/*
- * API types
- * * * * * * * * */
-
 export type ReactElementWithDisplayName = React.ReactElement & {
   type: {
     displayName: string
   }
+}
+
+export interface Locals {
+  history: History
+  store: Store
+  match: any[]
+  params: any[]
+  location: History['location']
 }
 
 /*

@@ -8,13 +8,7 @@ type Props = ComponentPropsWithoutRef<typeof BaseSelect> &
     options: Record<string, unknown>
   }
 
-function SelectField({
-  name,
-  validate,
-  fieldProps,
-  options,
-  ...rest
-}: Props): JSX.Element {
+function SelectField({ name, validate, fieldProps, options, ...rest }: Props): JSX.Element {
   return (
     <Field
       name={name}

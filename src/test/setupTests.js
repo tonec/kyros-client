@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import 'regenerator-runtime/runtime'
 import '@testing-library/jest-dom'
 import React from 'react'

@@ -15,7 +15,7 @@ const useStyles = makeStyles({
 type Props = ComponentPropsWithoutRef<typeof BaseSelect> & {
   fieldInput: FieldInputProps<string, HTMLElement>
   meta: FieldMetaState<string>
-  options: Record<string, string>
+  options: Record<string, unknown>
   icons?: Record<string, unknown>
 }
 
@@ -64,7 +64,7 @@ function SelectForm({
           const Icon = icons[option] as React.ElementType
 
           return (
-            <MenuItem key={option} value={option} aria-label={options[option]}>
+            <MenuItem key={option} value={option}>
               <>
                 {Icon && <Icon className={classes.icon} />}
                 {options[option]}

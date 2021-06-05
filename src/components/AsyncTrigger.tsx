@@ -1,5 +1,4 @@
-import React, { Component } from 'react'
-import { compose } from 'redux'
+import React, { Component, ReactNode } from 'react'
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 import { withRouter, Route, RouteComponentProps } from 'react-router-dom'
@@ -12,6 +11,7 @@ interface MappedState {
 
 type Props = RouteComponentProps &
   MappedState & {
+    children: ReactNode
     isFirstLoad: boolean
     trigger: (pathname: string) => Promise<void>
   }
@@ -116,4 +116,4 @@ const mapState = createStructuredSelector<RootState, MappedState>({
   isFirstLoad: getIsFirstLoad,
 })
 
-export default compose(connect(mapState), withRouter)(AsyncTrigger)
+export default connect(mapState)(withRouter(AsyncTrigger))

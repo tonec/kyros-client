@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import merge from 'lodash/merge'
 import button from './button'
 import card from './card'
@@ -8,7 +9,7 @@ import label from './label'
 import radio from './radio'
 import tableRow from './tableRow'
 
-export default theme => {
+export default (theme: any) => {
   return merge(theme.overrides, {
     MuiButton: merge(theme.MuiButton, button),
     MuiCard: merge(theme.MuiCard, card),
