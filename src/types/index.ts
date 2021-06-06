@@ -1,4 +1,5 @@
 import React from 'react'
+import { Reducer } from 'redux'
 import { PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from 'redux/rootReducer'
 import { NormalizedSchema } from 'normalizr'
@@ -10,6 +11,12 @@ import { TIMESCALES_OPTIONS } from 'utils/constants'
 /*
  * Utility types
  * * * * * * * * */
+
+export type StateType<TReducerOrMap extends any> = TReducerOrMap extends Reducer<any, any>
+  ? ReturnType<TReducerOrMap>
+  : TReducerOrMap extends Record<any, any>
+  ? { [K in keyof TReducerOrMap]: StateType<TReducerOrMap[K]> }
+  : never
 
 export type Obj<T = unknown> = Record<string, T>
 

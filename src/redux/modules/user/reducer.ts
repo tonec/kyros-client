@@ -17,7 +17,7 @@ export const initialState: UserState = {
 export default createReducer(initialState, {
   [types.FETCH_SUCCESS]: (state: UserState, { payload }: APIPayload<User>) => ({
     ...state,
-    visibleUsers: payload.data.entities.map(fk('id')),
+    visibleUsers: payload.data.entities.map(fk<User>('id')),
   }),
 
   [RECEIVED]: (state: UserState, { payload }: APIPayload<User>) => {

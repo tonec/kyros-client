@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-///<reference types="webpack-env" />
 import 'babel-polyfill'
 import React from 'react'
 import ReactDOM from 'react-dom'

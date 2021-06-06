@@ -15,7 +15,7 @@ import './assets/stylesheets/reset.css'
 import './assets/stylesheets/nprogress.css'
 
 interface MappedState {
-  user: User
+  user: User | null
 }
 
 type Props = MappedState &

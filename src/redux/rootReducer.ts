@@ -2,6 +2,7 @@ import { connectRouter } from 'connected-react-router'
 import { Reducer } from 'redux'
 import { persistCombineReducers } from 'redux-persist'
 import { History } from 'history'
+import { StateType } from 'types'
 import api from './modules/api/reducer'
 import app from './modules/app/reducer'
 import auth from './modules/auth/reducer'
@@ -27,6 +28,6 @@ export const getRootState = (history: History) => ({
 const rootReducer = (persistConfig: any, history: History) =>
   persistCombineReducers(persistConfig, getRootState(history))
 
-export type RootState = ReturnType<typeof getRootState>
+export type RootState = StateType<ReturnType<typeof getRootState>>
 
 export default rootReducer
