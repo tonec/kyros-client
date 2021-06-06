@@ -11,7 +11,7 @@ import flash from './modules/flash/reducer'
 import modal from './modules/modal/reducer'
 import user from './modules/user/reducer'
 
-export const getRootState = (history: History): any => ({
+export const getRootState = (history: History) => ({
   router: connectRouter(history) as Reducer,
   api,
   app,
@@ -21,12 +21,12 @@ export const getRootState = (history: History): any => ({
   flash,
   modal,
   user,
-})
+}) as const
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 const rootReducer = (persistConfig: any, history: History) =>
   persistCombineReducers(persistConfig, getRootState(history))
 
-export type RootState = StateType<ReturnType<typeof rootReducer>>
+export type RootState = ReturnType<typeof getRootState>
 
 export default rootReducer
